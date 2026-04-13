@@ -1,6 +1,7 @@
 import { getState, updateState } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
+import { ambientBubbles, ambientFish, shimmerStars } from '../engine/particles.js';
 
 const NODE_POSITIONS = [
     { x: 50, y: 92 },
@@ -26,21 +27,33 @@ const DECORATIONS = [
     { emoji: '⭐', x: 52, y: 2, size: 1.8 },
 ];
 
+let cleanupFns = [];
+
 export function enter(container) {
     const state = getState();
     const nextAvailable = state.challenges.findIndex(c => !c.completed);
+    const completedCount = state.challenges.filter(c => c.completed).length;
+    const progressPct = Math.round((completedCount / 10) * 100);
 
     container.innerHTML = `
         <div class="map-header">
             <div style="display:flex;align-items:center;justify-content:space-between;">
                 <h2>🏝️ Numbers Reef</h2>
-                <button class="btn btn-small" id="sound-btn" style="background:transparent;color:#FFF;font-size:1.3rem;padding:4px 8px;min-height:auto;">${state.settings.soundOn ? '🔊' : '🔇'}</button>
+                <div style="display:flex;gap:6px;align-items:center;">
+                    <button class="btn btn-small" id="music-btn" style="background:transparent;color:#FFF;font-size:1.2rem;padding:4px 8px;min-height:auto;">🎵</button>
+                    <button class="btn btn-small" id="sound-btn" style="background:transparent;color:#FFF;font-size:1.2rem;padding:4px 8px;min-height:auto;">${state.settings.soundOn ? '🔊' : '🔇'}</button>
+                </div>
             </div>
-            <div class="map-star-count">⭐ ${state.totalStars} / 30 stars</div>
+            <div class="map-star-count">⭐ ${state.totalStars} / 30 &nbsp; 💰 ${state.coins || 0}</div>
+            <div style="background:rgba(255,255,255,0.2);border-radius:99px;height:8px;margin-top:6px;overflow:hidden;">
+                <div style="background:linear-gradient(90deg,#FFD740,#FF7043);height:100%;width:${progressPct}%;border-radius:99px;transition:width 0.5s;"></div>
+            </div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.7);margin-top:2px;">${completedCount}/10 challenges complete</div>
         </div>
         <div class="map-container" id="map-scroll">
             <div class="island-path" id="island-path">
                 <svg id="path-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+                <div class="map-ambient" id="map-ambient"></div>
             </div>
         </div>
         <div class="map-bottom">
@@ -51,6 +64,7 @@ export function enter(container) {
 
     const pathEl = container.querySelector('#island-path');
     const svgEl = container.querySelector('#path-svg');
+    const ambientLayer = container.querySelector('#map-ambient');
 
     // Draw path lines between nodes
     for (let i = 0; i < NODE_POSITIONS.length - 1; i++) {
@@ -88,6 +102,7 @@ export function enter(container) {
     });
 
     // Add challenge nodes
+    const nodeEls = [];
     NODE_POSITIONS.forEach((pos, i) => {
         const challenge = state.challenges[i];
         const isAvailable = i === nextAvailable;
@@ -119,12 +134,27 @@ export function enter(container) {
 
         if (!isLocked) {
             node.addEventListener('click', () => {
+                sound.tap();
                 navigate('challenge/' + i);
             });
         }
 
         pathEl.appendChild(node);
+        if (isCompleted) nodeEls.push(node);
     });
+
+    // Shimmer stars on completed nodes (delayed so they're positioned)
+    requestAnimationFrame(() => {
+        nodeEls.forEach(node => {
+            const cleanup = shimmerStars(node);
+            cleanupFns.push(cleanup);
+        });
+    });
+
+    // Ambient bubbles and fish
+    const bubbleCleanup = ambientBubbles(ambientLayer);
+    const fishCleanup = ambientFish(ambientLayer);
+    cleanupFns.push(bubbleCleanup, fishCleanup);
 
     // Scroll to the next available node
     requestAnimationFrame(() => {
@@ -143,17 +173,32 @@ export function enter(container) {
         container.querySelector('#sound-btn').textContent = newVal ? '🔊' : '🔇';
     });
 
-    // Sync sound state on load
+    // Music toggle
+    container.querySelector('#music-btn').addEventListener('click', () => {
+        const newVal = !getState().settings.musicOn;
+        updateState(s => { s.settings.musicOn = newVal; });
+        sound.bgMusic(newVal);
+        container.querySelector('#music-btn').style.opacity = newVal ? '1' : '0.5';
+    });
+
+    // Sync sound/music state on load
     sound.setEnabled(state.settings.soundOn);
+    if (state.settings.musicOn) sound.bgMusic(true);
+    container.querySelector('#music-btn').style.opacity = state.settings.musicOn ? '1' : '0.5';
 
     // Bottom bar buttons
     container.querySelector('#practice-btn').addEventListener('click', () => {
+        sound.tap();
         navigate('practice');
     });
 
     container.querySelector('#profile-btn').addEventListener('click', () => {
+        sound.tap();
         navigate('profile');
     });
 }
 
-export function exit() {}
+export function exit() {
+    cleanupFns.forEach(fn => fn());
+    cleanupFns = [];
+}

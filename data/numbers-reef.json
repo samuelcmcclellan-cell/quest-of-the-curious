@@ -5,106 +5,119 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "A pirate found 6 treasure chests. Each chest has 4 gold coins inside. How many gold coins did the pirate find in total?",
-      "illustration": "🏴‍☠️",
-      "options": [10, 20, 24, 28],
-      "correct": 24,
+      "question": "You found 3 pretty shells on the beach, then 5 more in a tide pool! How many shells do you have now?",
+      "illustration": "🐚",
+      "options": [7, 8, 9, 6],
+      "correct": 8,
       "hints": [
-        "Think about what math operation to use when you have equal groups.",
-        "You need to multiply: 6 groups of 4.",
-        "6 × 4 = 24"
+        "Count them together: 3 shells plus 5 more shells.",
+        "Start at 3 and count up 5 more: 4, 5, 6, 7, 8.",
+        "3 + 5 = 8 shells!"
       ]
     },
     {
       "type": "number-builder",
       "difficulty": 1,
-      "question": "Drag the digits to build the answer: What is 347 + 285?",
-      "illustration": "🧮",
-      "correct": 632,
+      "question": "A starfish has 12 spots and finds 15 more! Drag the digits to build the total number of spots!",
+      "illustration": "⭐",
+      "correct": 27,
       "hints": [
-        "Start by adding the ones place: 7 + 5 = 12. The ones digit is 2.",
-        "Carry the 1. Tens: 4 + 8 + 1 = 13. The tens digit is 3.",
-        "Carry the 1. Hundreds: 3 + 2 + 1 = 6. The answer is 632."
+        "Add 12 + 15. Start with the ones: 2 + 5 = 7.",
+        "Now the tens: 1 + 1 = 2. So the answer is 27!",
+        "12 + 15 = 27"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "An octopus has 8 arms. If 3 octopuses are swimming together, how many arms are there in total?",
-      "illustration": "🐙",
-      "options": [11, 16, 24, 32],
-      "correct": 24,
+      "question": "There are 5 fish swimming in a group, and each fish has 2 stripes. How many stripes in total?",
+      "illustration": "🐠",
+      "options": [7, 10, 12, 8],
+      "correct": 10,
       "hints": [
-        "Each octopus has 8 arms. How many octopuses are there?",
-        "Multiply: 3 octopuses × 8 arms each.",
-        "3 × 8 = 24 arms"
-      ]
-    },
-    {
-      "type": "number-builder",
-      "difficulty": 2,
-      "question": "A dolphin swam 156 meters in the morning and 278 meters in the afternoon. Drag digits to build the total distance!",
-      "illustration": "🐬",
-      "correct": 434,
-      "hints": [
-        "Add the two distances: 156 + 278.",
-        "Ones: 6 + 8 = 14, write 4 carry 1. Tens: 5 + 7 + 1 = 13, write 3 carry 1.",
-        "Hundreds: 1 + 2 + 1 = 4. The answer is 434."
+        "You have 5 groups of 2 — that's multiplication!",
+        "Count by 2s five times: 2, 4, 6, 8, 10.",
+        "5 × 2 = 10 stripes!"
       ]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "There are 7 rows of seats on a boat with 9 seats in each row. If 18 seats are already taken, how many empty seats are left?",
-      "illustration": "⛵",
-      "options": [35, 45, 54, 63],
-      "correct": 45,
+      "difficulty": 1,
+      "question": "A crab collected 4 bags of sand dollars with 3 in each bag. How many sand dollars does the crab have?",
+      "illustration": "🦀",
+      "options": [7, 10, 12, 15],
+      "correct": 12,
       "hints": [
-        "First find the total number of seats, then subtract the taken ones.",
-        "Total seats: 7 × 9 = 63. Now subtract 18.",
-        "63 - 18 = 45 empty seats"
+        "Think about 4 groups of 3.",
+        "Count by 3s four times: 3, 6, 9, 12.",
+        "4 × 3 = 12 sand dollars!"
       ]
     },
     {
       "type": "sequence-next",
-      "difficulty": 2,
-      "question": "Find the pattern and pick what comes next!",
-      "illustration": "🐢",
-      "sequence": [3, 6, 9, 12, 15, "?"],
-      "options": [16, 17, 18, 21],
-      "correct": 18,
+      "difficulty": 1,
+      "question": "These fish are swimming in a pattern! What number comes next?",
+      "illustration": "🐟",
+      "sequence": [2, 4, 6, 8, 10, "?"],
+      "options": [11, 12, 14, 13],
+      "correct": 12,
       "hints": [
-        "Look at how much each number increases by.",
-        "Each number goes up by 3: 3, 6, 9, 12, 15...",
-        "15 + 3 = 18"
+        "Look at how much each number goes up by.",
+        "Each number goes up by 2: 2, 4, 6, 8, 10...",
+        "10 + 2 = 12!"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 2,
+      "question": "A dolphin swam 25 meters in the morning and 30 meters in the afternoon. Drag the digits to build the total!",
+      "illustration": "🐬",
+      "correct": 55,
+      "hints": [
+        "Add 25 + 30. Start with the ones: 5 + 0 = 5.",
+        "Now the tens: 2 + 3 = 5. So it's 55!",
+        "25 + 30 = 55 meters!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "There are 6 boats at the dock. Each boat has 5 sailors. How many sailors are there in total?",
+      "illustration": "⛵",
+      "options": [11, 25, 30, 35],
+      "correct": 30,
+      "hints": [
+        "You have 6 groups of 5 sailors.",
+        "Count by 5s six times: 5, 10, 15, 20, 25, 30.",
+        "6 × 5 = 30 sailors!"
+      ]
+    },
+    {
+      "type": "balance-scale",
+      "difficulty": 2,
+      "question": "Make both sides equal! The left side shows 10.",
+      "illustration": "⚖️",
+      "leftSide": 10,
+      "correct": 10,
+      "dropSlots": [1, 2],
+      "availableNumbers": [3, 4, 5, 6, 7],
+      "hints": [
+        "You need two numbers that add up to 10.",
+        "Try 3 + 7, or 4 + 6, or 5 + 5!",
+        "3 + 7 = 10, or 4 + 6 = 10. Drag them to the right side!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 3,
-      "question": "A fishing boat caught 72 fish and needs to split them equally into 8 buckets. How many fish go in each bucket?",
+      "question": "A fishing boat caught 24 fish and needs to split them equally into 4 buckets. How many fish go in each bucket?",
       "illustration": "🐟",
-      "options": [7, 8, 9, 10],
-      "correct": 9,
+      "options": [4, 5, 6, 8],
+      "correct": 6,
       "hints": [
         "When you split things equally, you divide!",
-        "72 ÷ 8 = ? Think: what number times 8 equals 72?",
-        "72 ÷ 8 = 9 fish per bucket"
-      ]
-    },
-    {
-      "type": "balance-scale",
-      "difficulty": 3,
-      "question": "Make both sides of the scale equal! The left side shows 24.",
-      "illustration": "⚖️",
-      "leftSide": 24,
-      "correct": 24,
-      "dropSlots": [1, 2],
-      "availableNumbers": [6, 8, 12, 15, 18],
-      "hints": [
-        "You need two numbers from the choices that add up to 24.",
-        "Try 6 + 18, or 12 + 12... but wait, is 12 available twice?",
-        "6 + 18 = 24. Drag 6 and 18 to the right side!"
+        "24 ÷ 4 = ? Think: what number times 4 equals 24?",
+        "24 ÷ 4 = 6 fish per bucket!"
       ]
     },
     {
@@ -112,26 +125,13 @@
       "difficulty": 3,
       "question": "This pattern doubles each time. What comes next?",
       "illustration": "🐋",
-      "sequence": [2, 4, 8, 16, 32, "?"],
-      "options": [36, 48, 64, 128],
-      "correct": 64,
+      "sequence": [1, 2, 4, 8, 16, "?"],
+      "options": [18, 24, 32, 20],
+      "correct": 32,
       "hints": [
         "Look at how each number relates to the one before it.",
-        "Each number is double the previous: 2×2=4, 4×2=8, 8×2=16...",
-        "32 × 2 = 64"
-      ]
-    },
-    {
-      "type": "multiple-choice",
-      "difficulty": 4,
-      "question": "Captain Coral has 500 coins. She buys a map for 125 coins and a compass for 89 coins. She then finds a chest with 250 coins. How many coins does she have now?",
-      "illustration": "🧭",
-      "options": [436, 536, 636, 464],
-      "correct": 536,
-      "hints": [
-        "Do this step by step: start with 500, subtract each purchase, then add the found coins.",
-        "500 - 125 = 375. Then 375 - 89 = 286. Then 286 + 250 = ?",
-        "500 - 125 - 89 + 250 = 536 coins"
+        "Each number is double the previous: 1×2=2, 2×2=4, 4×2=8...",
+        "16 × 2 = 32!"
       ]
     }
   ]

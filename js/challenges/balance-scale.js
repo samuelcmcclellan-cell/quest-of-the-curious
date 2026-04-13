@@ -1,6 +1,7 @@
 import { ChallengeBase } from './challenge-base.js';
 import { InteractionManager } from '../engine/interaction.js';
 import * as sound from '../engine/sound.js';
+import { correctExplosion, goldenGlow } from '../engine/particles.js';
 
 export class BalanceScale extends ChallengeBase {
     constructor(data, container) {
@@ -8,7 +9,7 @@ export class BalanceScale extends ChallengeBase {
         this.interaction = null;
         this.leftValue = data.leftSide;
         this.rightValue = 0;
-        this.placedItems = {};  // { zoneId: value }
+        this.placedItems = {};
     }
 
     render() {
@@ -16,7 +17,7 @@ export class BalanceScale extends ChallengeBase {
 
         this.container.innerHTML = `
             <div class="challenge-question">
-                <div style="font-size:3rem;margin-bottom:12px;">${this.data.illustration || '⚖️'}</div>
+                <div class="challenge-illustration anim-float">${this.data.illustration || '⚖️'}</div>
                 <p>${this.data.question}</p>
             </div>
             <div class="challenge-area">
@@ -44,7 +45,7 @@ export class BalanceScale extends ChallengeBase {
                 </div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask Owl for Help
+                    🦉 Ask for Help
                     <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
                 </button>
             </div>
@@ -62,7 +63,6 @@ export class BalanceScale extends ChallengeBase {
             const value = this.data.availableNumbers[parseInt(idx)];
             const dropEl = this.container.querySelector(`[data-drop-zone="${dropZoneId}"]`);
 
-            // If zone already has a value, return old item
             if (this.placedItems[dropZoneId] !== undefined) {
                 const oldIdx = this.placedItems[dropZoneId].idx;
                 this.interaction.restoreDraggable(`num-${oldIdx}`);
@@ -72,12 +72,14 @@ export class BalanceScale extends ChallengeBase {
             dropEl.textContent = value;
             dropEl.classList.add('nb-slot-filled');
 
+            // Drop sound + glow
+            sound.drop();
+            goldenGlow(dropEl);
+
             this._updateScale();
         };
 
-        this.interaction.onReturn = () => {
-            // Nothing extra needed
-        };
+        this.interaction.onReturn = () => {};
     }
 
     _updateScale() {
@@ -95,20 +97,22 @@ export class BalanceScale extends ChallengeBase {
             rightLabel.style.color = 'var(--success)';
             rightLabel.style.fontWeight = '800';
 
-            // Mark all drop zones correct
             this.container.querySelectorAll('[data-drop-zone]').forEach(el => {
                 el.classList.add('nb-slot-correct');
             });
 
             if (this.interaction) this.interaction.destroy();
 
+            // Big celebration
+            const scaleEl = this.container.querySelector('#scale');
+            correctExplosion(scaleEl);
             sound.correct();
-            // Count this as correct
+
             this.checkAnswer(this.leftValue);
 
             setTimeout(() => {
                 if (this.onComplete) this.onComplete(this.getScore());
-            }, 800);
+            }, 1000);
         }
     }
 
@@ -118,9 +122,11 @@ export class BalanceScale extends ChallengeBase {
             const hint = this.showHint();
             if (!hint) return;
 
+            sound.tap();
+
             this.container.querySelector('#hint-container').innerHTML = `
                 <div class="hint-area anim-fade-in">
-                    <span style="font-size:1.5rem;">🦉</span>
+                    <span style="font-size:1.5rem;">🦉💡</span>
                     <span>${hint}</span>
                 </div>
             `;

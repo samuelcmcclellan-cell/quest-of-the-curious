@@ -1,4 +1,6 @@
-/* Buttons */
+/* ===========================
+   BUTTONS (bubbly / toy-like)
+   =========================== */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -6,69 +8,166 @@
     gap: 8px;
     padding: 14px 28px;
     border: none;
-    border-radius: var(--radius);
+    border-radius: 20px;
     font-family: var(--font);
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    transition: transform var(--transition), box-shadow var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
     min-height: 48px;
     min-width: 48px;
     touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn:active {
-    transform: scale(0.95);
+    transform: scale(0.93);
 }
 
 .btn-primary {
-    background: var(--accent);
+    background: linear-gradient(180deg, #FF8A65 0%, #FF7043 50%, #F4511E 100%);
     color: var(--text-white);
-    box-shadow: 0 4px 0 var(--accent-dark), 0 6px 12px var(--shadow);
+    box-shadow: 0 5px 0 var(--accent-dark), 0 8px 16px rgba(230, 74, 25, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary:active {
-    box-shadow: 0 2px 0 var(--accent-dark), 0 3px 6px var(--shadow);
-    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 2px 0 var(--accent-dark), 0 3px 6px rgba(230, 74, 25, 0.2);
+    transform: translateY(3px) scale(0.96);
 }
 
 .btn-secondary {
-    background: var(--primary);
+    background: linear-gradient(180deg, #64B5F6 0%, #2196F3 50%, #1976D2 100%);
     color: var(--text-white);
-    box-shadow: 0 4px 0 var(--primary-dark), 0 6px 12px var(--shadow);
+    box-shadow: 0 5px 0 var(--primary-dark), 0 8px 16px rgba(21, 101, 192, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .btn-secondary:active {
-    box-shadow: 0 2px 0 var(--primary-dark), 0 3px 6px var(--shadow);
-    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 2px 0 var(--primary-dark), 0 3px 6px rgba(21, 101, 192, 0.2);
+    transform: translateY(3px) scale(0.96);
 }
 
 .btn-ghost {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.2);
     color: var(--text);
     border: 2px solid var(--text-light);
+    backdrop-filter: blur(4px);
+}
+
+.btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .btn-small {
     padding: 8px 16px;
     font-size: 0.9rem;
+    border-radius: 14px;
 }
 
 .btn-large {
     padding: 18px 36px;
     font-size: 1.3rem;
     border-radius: var(--radius-lg);
+    box-shadow: 0 6px 0 var(--accent-dark), 0 10px 20px rgba(230, 74, 25, 0.3);
 }
 
-/* Cards */
+/* ===========================
+   CARDS
+   =========================== */
 .card {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
     padding: 20px;
-    box-shadow: 0 2px 8px var(--shadow);
+    box-shadow: 0 4px 16px var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
 }
 
-/* Input */
+/* ===========================
+   CHOICE BUTTONS (colorful cards)
+   =========================== */
+.choice-btn {
+    padding: 16px 12px;
+    border: 3px solid var(--primary-light);
+    border-radius: 20px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F3F8FF 100%);
+    font-family: var(--font);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s ease, transform 0.15s ease;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    touch-action: manipulation;
+    box-shadow: 0 4px 0 rgba(100, 181, 246, 0.4), 0 6px 12px var(--shadow);
+    position: relative;
+}
+
+.choice-btn:active {
+    transform: scale(0.95) translateY(2px);
+    box-shadow: 0 2px 0 rgba(100, 181, 246, 0.3), 0 3px 6px var(--shadow);
+}
+
+.choice-btn:nth-child(1) {
+    border-color: #EF9A9A;
+    box-shadow: 0 4px 0 rgba(229, 115, 115, 0.5), 0 6px 12px var(--shadow);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFEBEE 100%);
+}
+
+.choice-btn:nth-child(2) {
+    border-color: #90CAF9;
+    box-shadow: 0 4px 0 rgba(100, 181, 246, 0.5), 0 6px 12px var(--shadow);
+    background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+}
+
+.choice-btn:nth-child(3) {
+    border-color: #A5D6A7;
+    box-shadow: 0 4px 0 rgba(129, 199, 132, 0.5), 0 6px 12px var(--shadow);
+    background: linear-gradient(180deg, #FFFFFF 0%, #E8F5E9 100%);
+}
+
+.choice-btn:nth-child(4) {
+    border-color: #CE93D8;
+    box-shadow: 0 4px 0 rgba(186, 104, 200, 0.5), 0 6px 12px var(--shadow);
+    background: linear-gradient(180deg, #FFFFFF 0%, #F3E5F5 100%);
+}
+
+.choice-btn-correct {
+    border-color: var(--success) !important;
+    background: linear-gradient(180deg, #C8E6C9 0%, var(--success-light) 100%) !important;
+    color: #2E7D32;
+    box-shadow: 0 4px 0 #43A047, 0 0 16px rgba(102, 187, 106, 0.4) !important;
+}
+
+.choice-btn-wrong {
+    border-color: var(--warning) !important;
+    background: linear-gradient(180deg, #FFE0B2 0%, #FFCC80 100%) !important;
+    color: #E65100;
+    box-shadow: 0 4px 0 #EF6C00, 0 0 12px rgba(255, 167, 38, 0.3) !important;
+}
+
+.choice-btn-eliminated {
+    opacity: 0.3;
+    pointer-events: none;
+    filter: grayscale(0.5);
+}
+
+/* Victory flip animation class for correct choice */
+.choice-btn-flip {
+    animation: flip-card 0.6s ease;
+    border-color: var(--success) !important;
+    background: linear-gradient(180deg, #C8E6C9 0%, var(--success-light) 100%) !important;
+    color: #2E7D32;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 4px 0 #43A047 !important;
+}
+
+/* ===========================
+   INPUT
+   =========================== */
 .input {
     width: 100%;
     padding: 14px 18px;
@@ -79,15 +178,18 @@
     color: var(--text);
     background: var(--bg-card);
     outline: none;
-    transition: border-color var(--transition);
+    transition: border-color var(--transition), box-shadow var(--transition);
     min-height: 48px;
 }
 
 .input:focus {
     border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
 }
 
-/* Emoji display */
+/* ===========================
+   EMOJI DISPLAY
+   =========================== */
 .emoji {
     display: inline-block;
     line-height: 1;
@@ -105,7 +207,9 @@
     font-size: 5rem;
 }
 
-/* Star display */
+/* ===========================
+   STAR DISPLAY
+   =========================== */
 .stars {
     display: flex;
     gap: 4px;
@@ -114,13 +218,19 @@
 
 .star-filled {
     color: #FFD700;
+    animation: shimmer 2.5s ease-in-out infinite;
 }
+
+.star-filled:nth-child(2) { animation-delay: 0.4s; }
+.star-filled:nth-child(3) { animation-delay: 0.8s; }
 
 .star-empty {
     color: #D0D0D0;
 }
 
-/* Badge */
+/* ===========================
+   BADGE
+   =========================== */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -132,11 +242,164 @@
 }
 
 .badge-stars {
-    background: #FFF3C4;
+    background: linear-gradient(135deg, #FFF9C4 0%, #FFF176 100%);
     color: #B7791F;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.25);
 }
 
-/* Top bar */
+/* ===========================
+   COIN BADGE (coin count display)
+   =========================== */
+.coin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #FFF176 0%, #FFD54F 50%, #FFB300 100%);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #5D4037;
+    box-shadow: 0 2px 0 #FF8F00, 0 4px 10px rgba(255, 143, 0, 0.3);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.coin-badge .coin-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* ===========================
+   STREAK COUNTER
+   =========================== */
+.streak-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 50%, #FFA000 100%);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(255, 111, 0, 0.4);
+}
+
+.streak-counter .streak-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.streak-counter[data-streak="active"] {
+    animation: streak-fire 1s ease-in-out infinite;
+}
+
+/* ===========================
+   PROGRESS FILL (island completion bar)
+   =========================== */
+.progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #66BB6A 0%, #43A047 40%, #2E7D32 100%);
+    box-shadow: 0 0 8px rgba(102, 187, 106, 0.4) inset;
+    transition: width 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    animation: shimmer-slide 2s ease-in-out infinite;
+}
+
+@keyframes shimmer-slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ===========================
+   ACHIEVEMENT POPUP
+   =========================== */
+.achievement-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    animation: fade-in 0.3s ease;
+}
+
+.achievement-popup-content {
+    background: linear-gradient(145deg, #FFFFFF 0%, #FFF8E1 100%);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px;
+    text-align: center;
+    max-width: 340px;
+    width: 90%;
+    position: relative;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        0 0 0 4px var(--gold),
+        0 0 0 8px rgba(255, 215, 0, 0.3);
+    animation: bounce 0.5s ease;
+    overflow: hidden;
+}
+
+/* Confetti-like animated border effect */
+.achievement-popup-content::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: conic-gradient(
+        from 0deg,
+        #FF6B6B, #FFD93D, #6BCB77, #4D96FF,
+        #9B59B6, #FF6B6B, #FFD93D, #6BCB77
+    );
+    border-radius: calc(var(--radius-lg) + 4px);
+    z-index: -1;
+    animation: confetti-border-spin 3s linear infinite;
+}
+
+@keyframes confetti-border-spin {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.achievement-popup-content::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background: linear-gradient(145deg, #FFFFFF 0%, #FFF8E1 100%);
+    border-radius: calc(var(--radius-lg) - 0px);
+    z-index: -1;
+}
+
+/* ===========================
+   TOP BAR
+   =========================== */
 .top-bar {
     display: flex;
     align-items: center;
@@ -150,7 +413,9 @@
     font-weight: 700;
 }
 
-/* Owl companion */
+/* ===========================
+   OWL COMPANION
+   =========================== */
 .owl {
     position: relative;
     display: inline-block;
@@ -166,7 +431,7 @@
     padding: 8px 14px;
     font-size: 0.9rem;
     white-space: nowrap;
-    box-shadow: 0 2px 8px var(--shadow);
+    box-shadow: 0 4px 16px var(--shadow);
     margin-bottom: 8px;
 }
 
@@ -178,4 +443,170 @@
     transform: translateX(-50%);
     border: 6px solid transparent;
     border-top-color: var(--bg-card);
+}
+
+
+/* ===========================
+   GUIDE CHARACTER (CSS-built)
+   Positioned bottom-right of challenge screen
+   Circular body, two big eyes, smile, wizard hat
+   =========================== */
+.guide-character {
+    position: fixed;
+    bottom: 80px;
+    right: 16px;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-round);
+    background: linear-gradient(145deg, #7C4DFF 0%, #651FFF 40%, #6200EA 100%);
+    box-shadow: 0 4px 12px rgba(98, 0, 234, 0.35);
+    z-index: 50;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Wizard hat (triangle above head) */
+.guide-character::before {
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 26px solid #311B92;
+    filter: drop-shadow(0 -2px 4px rgba(49, 27, 146, 0.3));
+}
+
+/* Hat brim + star decoration */
+.guide-character::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 8px;
+    background: linear-gradient(180deg, #4527A0 0%, #311B92 100%);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Eyes - built with box-shadow trick on a single element inside the guide */
+.guide-eyes {
+    position: absolute;
+    top: 18px;
+    left: 14px;
+    width: 12px;
+    height: 14px;
+    background: #FFFFFF;
+    border-radius: var(--radius-round);
+    box-shadow: 20px 0 0 0 #FFFFFF;
+}
+
+/* Pupils */
+.guide-eyes::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    width: 6px;
+    height: 7px;
+    background: #1A1A2E;
+    border-radius: var(--radius-round);
+    box-shadow: 20px 0 0 0 #1A1A2E;
+}
+
+/* Smile */
+.guide-smile {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 10px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 0 0 10px 10px;
+}
+
+/* --- Guide animation states --- */
+
+/* Idle: gentle breathing / bobbing */
+.guide-idle {
+    animation: guide-breathe 3s ease-in-out infinite;
+}
+
+@keyframes guide-breathe {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-4px) scale(1.03); }
+}
+
+/* Cheer: jump and spin */
+.guide-cheer {
+    animation: guide-cheer 0.8s ease;
+}
+
+@keyframes guide-cheer {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    25% { transform: translateY(-20px) rotate(-10deg) scale(1.1); }
+    50% { transform: translateY(-25px) rotate(360deg) scale(1.15); }
+    75% { transform: translateY(-10px) rotate(370deg) scale(1.05); }
+    100% { transform: translateY(0) rotate(360deg) scale(1); }
+}
+
+/* Sad: gentle droop */
+.guide-sad {
+    animation: guide-droop 1.5s ease-in-out infinite;
+}
+
+@keyframes guide-droop {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(6px) rotate(-5deg); }
+}
+
+/* Think: thoughtful bob */
+.guide-think {
+    animation: guide-think 2s ease-in-out infinite;
+}
+
+@keyframes guide-think {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30% { transform: translateY(-3px) rotate(3deg); }
+    60% { transform: translateY(-2px) rotate(-2deg); }
+}
+
+/* Speech bubble above character */
+.guide-speech {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 12px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    max-width: 180px;
+    box-shadow: 0 4px 16px var(--shadow);
+    animation: guide-speech-bounce 0.4s ease;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+.guide-speech::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    border: 8px solid transparent;
+    border-top-color: var(--bg-card);
+}
+
+@keyframes guide-speech-bounce {
+    0% { transform: scale(0.5) translateY(10px); opacity: 0; }
+    60% { transform: scale(1.05) translateY(-2px); opacity: 1; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
 }

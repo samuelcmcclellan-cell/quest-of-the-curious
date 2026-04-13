@@ -1,12 +1,15 @@
-/* Challenge Screen */
+/* ===========================
+   CHALLENGE SCREEN
+   =========================== */
 .challenge-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 16px;
-    background: var(--bg-card);
-    box-shadow: 0 2px 4px var(--shadow);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+    box-shadow: 0 2px 8px var(--shadow);
     z-index: 10;
+    backdrop-filter: blur(8px);
 }
 
 .challenge-progress {
@@ -20,18 +23,22 @@
     height: 8px;
     border-radius: var(--radius-round);
     background: #D0D0D0;
+    transition: all 0.3s ease;
 }
 
 .challenge-dot-done {
     background: var(--success);
+    box-shadow: 0 0 6px rgba(102, 187, 106, 0.4);
 }
 
 .challenge-dot-current {
     background: var(--accent);
     width: 12px;
     height: 12px;
+    box-shadow: 0 0 8px rgba(255, 112, 67, 0.5);
 }
 
+/* Difficulty-themed challenge body backgrounds */
 .challenge-body {
     flex: 1;
     display: flex;
@@ -39,6 +46,24 @@
     padding: 20px 16px;
     gap: 20px;
     overflow-y: auto;
+    position: relative;
+    background: linear-gradient(180deg, #E0F7FA 0%, #B2EBF2 50%, #80DEEA 100%);
+}
+
+.challenge-body[data-difficulty="easy"],
+.challenge-body.difficulty-easy {
+    background: var(--bg-easy);
+}
+
+.challenge-body[data-difficulty="medium"],
+.challenge-body.difficulty-medium {
+    background: var(--bg-medium);
+}
+
+.challenge-body[data-difficulty="hard"],
+.challenge-body.difficulty-hard {
+    background: var(--bg-hard);
+    color: var(--text-white);
 }
 
 .challenge-question {
@@ -47,6 +72,9 @@
     text-align: center;
     line-height: 1.5;
     padding: 12px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius);
+    backdrop-filter: blur(4px);
 }
 
 .challenge-area {
@@ -58,7 +86,9 @@
     gap: 16px;
 }
 
-/* Multiple Choice */
+/* ===========================
+   MULTIPLE CHOICE
+   =========================== */
 .choices {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -67,56 +97,17 @@
     max-width: 400px;
 }
 
-.choice-btn {
-    padding: 16px 12px;
-    border: 3px solid var(--primary-light);
-    border-radius: var(--radius);
-    background: var(--bg-card);
-    font-family: var(--font);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text);
-    cursor: pointer;
-    transition: all var(--transition);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    touch-action: manipulation;
-}
-
-.choice-btn:active {
-    transform: scale(0.95);
-}
-
-.choice-btn-correct {
-    border-color: var(--success);
-    background: var(--success-light);
-    color: #2E7D32;
-}
-
-.choice-btn-wrong {
-    border-color: var(--warning);
-    background: #FFE0B2;
-    color: #E65100;
-}
-
-.choice-btn-eliminated {
-    opacity: 0.3;
-    pointer-events: none;
-}
-
 /* Hint area */
 .hint-area {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 12px 16px;
-    background: #E3F2FD;
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
     border-radius: var(--radius);
     font-size: 0.95rem;
     color: var(--primary-dark);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.15);
 }
 
 .hint-btn {
@@ -124,7 +115,7 @@
     align-items: center;
     gap: 6px;
     padding: 10px 16px;
-    background: #E3F2FD;
+    background: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 100%);
     border: 2px solid var(--primary-light);
     border-radius: var(--radius);
     font-family: var(--font);
@@ -134,9 +125,16 @@
     cursor: pointer;
     min-height: 48px;
     touch-action: manipulation;
+    transition: all var(--transition);
 }
 
-/* Number Builder */
+.hint-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===========================
+   NUMBER BUILDER
+   =========================== */
 .number-builder-slots {
     display: flex;
     gap: 12px;
@@ -162,21 +160,24 @@
     font-size: 1.8rem;
     font-weight: 800;
     color: var(--text-light);
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.7);
     transition: all var(--transition);
+    backdrop-filter: blur(4px);
 }
 
 .nb-slot-filled {
     border-style: solid;
     border-color: var(--primary);
     color: var(--text);
-    background: #E3F2FD;
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
 }
 
 .nb-slot-correct {
     border-color: var(--success);
-    background: var(--success-light);
+    background: linear-gradient(135deg, #C8E6C9 0%, var(--success-light) 100%);
     color: #2E7D32;
+    animation: golden-glow 1.2s ease-in-out infinite;
 }
 
 .nb-slot-label {
@@ -195,11 +196,12 @@
     margin-bottom: 16px;
 }
 
+/* Colorful gem/block digit tiles with gradients */
 .nb-digit {
     width: 48px;
     height: 48px;
     border-radius: var(--radius);
-    background: var(--primary);
+    background: linear-gradient(145deg, #42A5F5 0%, #1E88E5 50%, #1565C0 100%);
     color: var(--text-white);
     font-size: 1.3rem;
     font-weight: 800;
@@ -208,21 +210,65 @@
     justify-content: center;
     cursor: grab;
     touch-action: none;
-    transition: opacity var(--transition);
-    box-shadow: 0 2px 0 var(--primary-dark);
+    transition: opacity var(--transition), transform var(--transition);
+    box-shadow:
+        0 3px 0 #0D47A1,
+        0 6px 12px rgba(13, 71, 161, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Gem shine highlight */
+.nb-digit::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 16px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+}
+
+/* Alternate gem colors */
+.nb-digit:nth-child(odd) {
+    background: linear-gradient(145deg, #EF5350 0%, #E53935 50%, #C62828 100%);
+    box-shadow:
+        0 3px 0 #B71C1C,
+        0 6px 12px rgba(183, 28, 28, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.nb-digit:nth-child(3n) {
+    background: linear-gradient(145deg, #AB47BC 0%, #8E24AA 50%, #6A1B9A 100%);
+    box-shadow:
+        0 3px 0 #4A148C,
+        0 6px 12px rgba(74, 20, 140, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.nb-digit:nth-child(4n) {
+    background: linear-gradient(145deg, #66BB6A 0%, #43A047 50%, #2E7D32 100%);
+    box-shadow:
+        0 3px 0 #1B5E20,
+        0 6px 12px rgba(27, 94, 32, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .nb-digit.drag-disabled {
     opacity: 0.3;
     cursor: default;
+    filter: grayscale(0.5);
 }
 
 /* Drop zone hover state */
 .drop-zone-hover {
     border-color: var(--accent) !important;
     border-style: solid !important;
-    background: #FFF3E0 !important;
+    background: rgba(255, 243, 224, 0.8) !important;
     transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 112, 67, 0.3) !important;
 }
 
 /* Drag clone */
@@ -230,7 +276,9 @@
     border-radius: var(--radius);
 }
 
-/* Balance Scale */
+/* ===========================
+   BALANCE SCALE
+   =========================== */
 .scale-container {
     width: 100%;
     max-width: 360px;
@@ -253,10 +301,11 @@
     align-items: center;
     gap: 8px;
     padding: 12px;
-    background: var(--bg-card);
+    background: linear-gradient(180deg, #FFFFFF 0%, #F3F8FF 100%);
     border-radius: var(--radius);
     border: 2px solid var(--primary-light);
     min-height: 80px;
+    box-shadow: 0 4px 12px var(--shadow);
 }
 
 .scale-pan-value {
@@ -293,7 +342,7 @@
     font-size: 1.3rem;
     font-weight: 800;
     color: var(--text-light);
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.7);
     transition: all var(--transition);
 }
 
@@ -306,12 +355,13 @@
     margin-bottom: 16px;
 }
 
+/* Gold coin style scale numbers */
 .scale-num {
     width: 48px;
     height: 48px;
-    border-radius: var(--radius);
-    background: var(--accent);
-    color: var(--text-white);
+    border-radius: var(--radius-round);
+    background: linear-gradient(145deg, #FFD54F 0%, #FFC107 30%, #FFB300 60%, #FF8F00 100%);
+    color: #5D4037;
     font-size: 1.2rem;
     font-weight: 800;
     display: flex;
@@ -319,11 +369,36 @@
     justify-content: center;
     cursor: grab;
     touch-action: none;
-    transition: opacity var(--transition);
-    box-shadow: 0 2px 0 var(--accent-dark);
+    transition: opacity var(--transition), transform var(--transition);
+    box-shadow:
+        0 3px 0 #E65100,
+        0 6px 12px rgba(230, 81, 0, 0.25),
+        inset 0 2px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: 2px solid #F57F17;
+    position: relative;
 }
 
-/* Sequence */
+/* Coin shine effect */
+.scale-num::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    width: 14px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+}
+
+.scale-num:active {
+    transform: scale(0.95);
+}
+
+/* ===========================
+   SEQUENCE
+   =========================== */
 .sequence-display {
     display: flex;
     align-items: center;
@@ -333,33 +408,44 @@
     margin-bottom: 12px;
 }
 
+/* Bigger, more playful circular sequence items */
 .seq-item {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius);
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-round);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 800;
+    transition: all 0.3s ease;
 }
 
 .seq-item-filled {
-    background: var(--primary);
+    background: linear-gradient(145deg, #42A5F5 0%, #1E88E5 50%, #1565C0 100%);
     color: var(--text-white);
-    box-shadow: 0 2px 0 var(--primary-dark);
+    box-shadow:
+        0 3px 0 #0D47A1,
+        0 6px 12px rgba(13, 71, 161, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .seq-item-blank {
-    background: var(--bg-card);
+    background: rgba(255, 255, 255, 0.7);
     border: 3px dashed var(--accent);
     color: var(--accent);
     animation: glow-pulse 2s ease-in-out infinite;
+    backdrop-filter: blur(4px);
 }
 
 .seq-item-correct {
-    background: var(--success);
-    box-shadow: 0 2px 0 #43A047;
+    background: linear-gradient(145deg, #66BB6A 0%, #43A047 50%, #2E7D32 100%);
+    color: var(--text-white);
+    box-shadow:
+        0 3px 0 #1B5E20,
+        0 0 16px rgba(102, 187, 106, 0.4);
+    animation: golden-glow 1.5s ease-in-out infinite;
 }
 
 .seq-arrow {
@@ -367,17 +453,22 @@
     font-size: 1.2rem;
 }
 
-/* Challenge footer */
+/* ===========================
+   CHALLENGE FOOTER
+   =========================== */
 .challenge-footer {
     padding: 12px 16px;
-    background: var(--bg-card);
-    box-shadow: 0 -2px 4px var(--shadow);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 -2px 8px var(--shadow);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    backdrop-filter: blur(8px);
 }
 
-/* Results Screen */
+/* ===========================
+   RESULTS SCREEN
+   =========================== */
 .results-container {
     flex: 1;
     display: flex;
@@ -387,7 +478,7 @@
     padding: 20px;
     gap: 24px;
     text-align: center;
-    background: linear-gradient(180deg, #E3F2FD 0%, var(--bg) 100%);
+    background: linear-gradient(180deg, #E0F7FA 0%, #B2EBF2 40%, #80DEEA 100%);
 }
 
 .results-stars {
@@ -407,4 +498,108 @@
     gap: 12px;
     width: 100%;
     max-width: 280px;
+}
+
+/* ===========================
+   CHALLENGE SCREEN WRAPPER
+   =========================== */
+.challenge-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: background 0.5s ease;
+}
+
+/* Difficulty-themed backgrounds */
+.challenge-bg-1 { background: linear-gradient(180deg, #E0F7FA 0%, #B2EBF2 40%, #80DEEA 100%); }
+.challenge-bg-2 { background: linear-gradient(180deg, #E8F5E9 0%, #A5D6A7 40%, #66BB6A 100%); }
+.challenge-bg-3 { background: linear-gradient(180deg, #FFF3E0 0%, #FFCC80 40%, #FFA726 100%); }
+.challenge-bg-4 { background: linear-gradient(180deg, #F3E5F5 0%, #CE93D8 40%, #AB47BC 100%); }
+.challenge-bg-5 { background: linear-gradient(180deg, #FCE4EC 0%, #F48FB1 40%, #EC407A 100%); }
+
+/* Challenge illustration */
+.challenge-illustration {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+/* ===========================
+   RESULT STARS
+   =========================== */
+.result-star {
+    display: inline-block;
+    font-size: 3rem;
+    opacity: 0;
+    animation: result-star-pop 0.5s ease forwards;
+}
+
+.result-star-filled {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+.result-star-empty {
+    color: #D0D0D0;
+    filter: none;
+}
+
+@keyframes result-star-pop {
+    0% { opacity: 0; transform: scale(0) rotate(-30deg); }
+    60% { opacity: 1; transform: scale(1.3) rotate(10deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ===========================
+   RESULTS REWARDS
+   =========================== */
+.results-rewards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.reward-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1rem;
+    animation: result-star-pop 0.5s ease forwards;
+    opacity: 0;
+}
+
+.reward-coins {
+    background: linear-gradient(135deg, #FFD740, #FFA000);
+    color: #5D4037;
+    box-shadow: 0 2px 8px rgba(255, 160, 0, 0.4);
+}
+
+.reward-streak {
+    background: linear-gradient(135deg, #FF6F00, #FFB300);
+    color: #FFF;
+    box-shadow: 0 2px 8px rgba(255, 111, 0, 0.4);
+}
+
+/* ===========================
+   BADGE - COINS
+   =========================== */
+.badge-coins {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, #FFD740, #FFA000);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #5D4037;
+}
+
+/* ===========================
+   GUIDE CELEBRATE
+   =========================== */
+.guide-celebrate {
+    animation: guide-cheer 0.8s ease;
 }

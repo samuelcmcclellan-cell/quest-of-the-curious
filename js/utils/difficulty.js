@@ -1,9 +1,9 @@
-const HISTORY_SIZE = 10;
+const HISTORY_SIZE = 8;
 
 export class DifficultyTracker {
     constructor(initialLevel = 1) {
         this.level = initialLevel;
-        this.history = []; // array of booleans (correct/incorrect)
+        this.history = [];
     }
 
     record(correct) {
@@ -15,14 +15,15 @@ export class DifficultyTracker {
     }
 
     _adjust() {
-        if (this.history.length < 3) return;
+        if (this.history.length < 4) return;
 
         const accuracy = this.history.filter(Boolean).length / this.history.length;
 
-        if (accuracy > 0.85 && this.level < 5) {
+        // Gentler thresholds for kids — need sustained success to level up
+        if (accuracy >= 0.9 && this.level < 5) {
             this.level++;
             this.history = [];
-        } else if (accuracy < 0.5 && this.level > 1) {
+        } else if (accuracy < 0.4 && this.level > 1) {
             this.level--;
             this.history = [];
         }

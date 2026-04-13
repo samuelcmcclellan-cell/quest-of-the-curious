@@ -1,3 +1,7 @@
+/* ===========================
+   EXISTING ANIMATIONS (kept)
+   =========================== */
+
 /* Glow pulse for available nodes */
 @keyframes glow-pulse {
     0%, 100% {
@@ -145,3 +149,351 @@
 .delay-3 { animation-delay: 0.3s; }
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
+
+
+/* =============================================
+   NEW UNDERWATER ADVENTURE ANIMATIONS
+   ============================================= */
+
+/* Bubbles floating upward */
+@keyframes bubble-rise {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translateY(-25vh) translateX(8px) scale(1.05);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-50vh) translateX(-6px) scale(0.95);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translateY(-75vh) translateX(4px) scale(1.02);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(0) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* Side-to-side swimming motion for fish */
+@keyframes swim {
+    0% {
+        transform: translateX(0) scaleX(1) rotate(0deg);
+    }
+    25% {
+        transform: translateX(30px) scaleX(1) rotate(3deg);
+    }
+    49% {
+        transform: translateX(60px) scaleX(1) rotate(0deg);
+    }
+    50% {
+        transform: translateX(60px) scaleX(-1) rotate(0deg);
+    }
+    75% {
+        transform: translateX(30px) scaleX(-1) rotate(-3deg);
+    }
+    99% {
+        transform: translateX(0) scaleX(-1) rotate(0deg);
+    }
+    100% {
+        transform: translateX(0) scaleX(1) rotate(0deg);
+    }
+}
+
+/* Gentle wave animation for title text (per-letter) */
+@keyframes wave-text {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-6px);
+    }
+    75% {
+        transform: translateY(3px);
+    }
+}
+
+/* Golden pulsing glow for correct answers */
+@keyframes golden-glow {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.4), 0 4px 0 #43A047;
+    }
+    50% {
+        box-shadow: 0 0 24px rgba(255, 215, 0, 0.8), 0 0 48px rgba(255, 215, 0, 0.3), 0 4px 0 #43A047;
+    }
+}
+
+/* Text zooms in large then fades (for "CORRECT!" overlay) */
+@keyframes zoom-in-fade {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    30% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+/* Element splashes away - sinks down with scale */
+@keyframes splash-out {
+    0% {
+        transform: scale(1) translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1.1) translateY(-10px) rotate(-5deg);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(0.5) translateY(60px) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+/* Shimmering effect for stars */
+@keyframes shimmer {
+    0%, 100% {
+        filter: brightness(1) drop-shadow(0 0 2px rgba(255, 215, 0, 0.3));
+    }
+    25% {
+        filter: brightness(1.3) drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+    }
+    50% {
+        filter: brightness(1) drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
+    }
+    75% {
+        filter: brightness(1.4) drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    }
+}
+
+/* 3D card flip for correct multiple choice */
+@keyframes flip-card {
+    0% {
+        transform: perspective(600px) rotateY(0deg);
+    }
+    50% {
+        transform: perspective(600px) rotateY(90deg);
+    }
+    100% {
+        transform: perspective(600px) rotateY(0deg);
+    }
+}
+
+/* Sink down and fade for wrong answer splash effect */
+@keyframes slide-sink {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    40% {
+        transform: translateY(5px) scale(1.02);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(30px) scale(0.9);
+        opacity: 0.3;
+    }
+}
+
+/* Flame/pulse animation for streak counter */
+@keyframes streak-fire {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1) drop-shadow(0 0 4px rgba(255, 112, 67, 0.4));
+    }
+    25% {
+        transform: scale(1.08) rotate(-2deg);
+        filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 69, 0, 0.6));
+    }
+    50% {
+        transform: scale(1.12) rotate(0deg);
+        filter: brightness(1.4) drop-shadow(0 0 16px rgba(255, 69, 0, 0.8));
+    }
+    75% {
+        transform: scale(1.06) rotate(2deg);
+        filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 69, 0, 0.6));
+    }
+}
+
+/* Wave/bubble transition between screens */
+@keyframes screen-transition {
+    0% {
+        clip-path: circle(0% at 50% 50%);
+        opacity: 0;
+    }
+    40% {
+        clip-path: circle(50% at 50% 50%);
+        opacity: 0.8;
+    }
+    100% {
+        clip-path: circle(100% at 50% 50%);
+        opacity: 1;
+    }
+}
+
+/* Sparkle twinkle for completed nodes */
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+
+/* =============================================
+   NEW UTILITY CLASSES
+   ============================================= */
+
+/* Ambient floating bubble decoration */
+.ambient-bubble {
+    position: absolute;
+    border-radius: var(--radius-round);
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    z-index: 0;
+    animation: bubble-rise linear infinite;
+    will-change: transform, opacity;
+}
+
+.ambient-bubble.bubble-sm {
+    width: 10px;
+    height: 10px;
+}
+
+.ambient-bubble.bubble-md {
+    width: 18px;
+    height: 18px;
+}
+
+.ambient-bubble.bubble-lg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Ambient swimming fish decoration */
+.ambient-fish {
+    position: absolute;
+    font-size: 1.6rem;
+    pointer-events: none;
+    z-index: 0;
+    animation: swim 6s ease-in-out infinite;
+    will-change: transform;
+    opacity: 0.6;
+}
+
+.ambient-fish.fish-fast {
+    animation-duration: 4s;
+}
+
+.ambient-fish.fish-slow {
+    animation-duration: 9s;
+}
+
+/* "CORRECT!" zoom overlay text */
+.correct-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.correct-overlay-text {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--gold);
+    text-shadow:
+        0 0 10px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.3),
+        2px 2px 0 var(--gold-dark),
+        -1px -1px 0 rgba(0, 0, 0, 0.2);
+    letter-spacing: 4px;
+    animation: zoom-in-fade 1.2s ease forwards;
+}
+
+/* Streak badge with fire animation */
+.streak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 50%, #FFB300 100%);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(255, 111, 0, 0.4);
+    animation: streak-fire 1s ease-in-out infinite;
+}
+
+.streak-badge .streak-fire-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* Wave text letter animation helper */
+.wave-letter {
+    display: inline-block;
+    animation: wave-text 2s ease-in-out infinite;
+}
+
+.wave-letter:nth-child(1) { animation-delay: 0s; }
+.wave-letter:nth-child(2) { animation-delay: 0.08s; }
+.wave-letter:nth-child(3) { animation-delay: 0.16s; }
+.wave-letter:nth-child(4) { animation-delay: 0.24s; }
+.wave-letter:nth-child(5) { animation-delay: 0.32s; }
+.wave-letter:nth-child(6) { animation-delay: 0.40s; }
+.wave-letter:nth-child(7) { animation-delay: 0.48s; }
+.wave-letter:nth-child(8) { animation-delay: 0.56s; }
+.wave-letter:nth-child(9) { animation-delay: 0.64s; }
+.wave-letter:nth-child(10) { animation-delay: 0.72s; }
+.wave-letter:nth-child(11) { animation-delay: 0.80s; }
+.wave-letter:nth-child(12) { animation-delay: 0.88s; }
+.wave-letter:nth-child(13) { animation-delay: 0.96s; }
+.wave-letter:nth-child(14) { animation-delay: 1.04s; }
+.wave-letter:nth-child(15) { animation-delay: 1.12s; }
+
+/* Screen transition utility */
+.anim-screen-transition {
+    animation: screen-transition 0.6s ease forwards;
+}
+
+/* Golden glow utility */
+.anim-golden-glow {
+    animation: golden-glow 1.2s ease-in-out infinite;
+}
+
+/* Shimmer utility */
+.anim-shimmer {
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Additional delay helpers for new animations */
+.delay-6 { animation-delay: 0.6s; }
+.delay-7 { animation-delay: 0.7s; }
+.delay-8 { animation-delay: 0.8s; }
+.delay-9 { animation-delay: 0.9s; }
+.delay-10 { animation-delay: 1.0s; }

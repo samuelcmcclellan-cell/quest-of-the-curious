@@ -1,4 +1,6 @@
-/* Island Map Screen */
+/* ===========================
+   ISLAND MAP SCREEN
+   =========================== */
 .map-container {
     flex: 1;
     position: relative;
@@ -11,8 +13,9 @@
 .map-header {
     text-align: center;
     padding: 8px 16px 16px;
-    background: linear-gradient(180deg, #1565C0, #2196F3);
+    background: linear-gradient(180deg, #0D47A1, #1565C0 40%, #2196F3);
     color: var(--text-white);
+    position: relative;
 }
 
 .map-header h2 {
@@ -28,12 +31,47 @@
     opacity: 0.9;
 }
 
-/* Island path area */
+/* ===========================
+   AMBIENT DECORATIONS CONTAINER
+   =========================== */
+.map-ambient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* ===========================
+   PROGRESS BAR (island completion)
+   =========================== */
+.progress-bar {
+    width: 90%;
+    max-width: 400px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    margin: 12px auto;
+    position: relative;
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ===========================
+   ISLAND PATH AREA
+   =========================== */
 .island-path {
     position: relative;
     width: 100%;
     min-height: 800px;
     padding: 20px 0;
+    z-index: 1;
 }
 
 .island-path svg {
@@ -53,6 +91,7 @@
 
 .path-line-complete {
     stroke: var(--success);
+    filter: drop-shadow(0 0 4px rgba(102, 187, 106, 0.4));
 }
 
 .path-line-locked {
@@ -66,19 +105,21 @@
     stroke-dasharray: 8 8;
 }
 
-/* Map nodes */
+/* ===========================
+   MAP NODES (bigger, 64px, playful)
+   =========================== */
 .map-node {
     position: absolute;
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     border-radius: var(--radius-round);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 800;
     cursor: pointer;
-    transition: transform var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition);
     transform: translate(-50%, -50%);
     z-index: 2;
     border: none;
@@ -86,44 +127,79 @@
 }
 
 .map-node:active {
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.88);
 }
 
 .map-node-completed {
-    background: var(--success);
+    background: linear-gradient(145deg, #66BB6A 0%, #43A047 50%, #2E7D32 100%);
     color: var(--text-white);
-    box-shadow: 0 3px 0 #43A047, 0 4px 10px var(--shadow);
+    box-shadow:
+        0 4px 0 #1B5E20,
+        0 6px 14px rgba(27, 94, 32, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Sparkle effect on completed nodes */
+.map-node-completed::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, #FFD700 0%, rgba(255, 215, 0, 0) 70%);
+    border-radius: var(--radius-round);
+    animation: sparkle 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.map-node-completed:nth-child(even)::after {
+    animation-delay: 0.6s;
+    top: auto;
+    bottom: -6px;
+    right: auto;
+    left: -4px;
 }
 
 .map-node-available {
-    background: var(--accent);
+    background: linear-gradient(145deg, #FF8A65 0%, #FF7043 50%, #F4511E 100%);
     color: var(--text-white);
-    box-shadow: 0 3px 0 var(--accent-dark), 0 4px 10px var(--shadow);
+    box-shadow:
+        0 4px 0 #BF360C,
+        0 6px 14px rgba(191, 54, 12, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     animation: glow-pulse 2s ease-in-out infinite;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .map-node-locked {
-    background: #CFD8DC;
-    color: #90A4AE;
-    box-shadow: 0 2px 0 #B0BEC5;
+    background: linear-gradient(145deg, #CFD8DC 0%, #B0BEC5 50%, #90A4AE 100%);
+    color: #78909C;
+    box-shadow: 0 3px 0 #78909C, 0 4px 8px var(--shadow);
     cursor: default;
     pointer-events: none;
 }
 
 .map-node-stars {
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: -10px;
+    right: -10px;
     font-size: 0.7rem;
-    background: #FFF3C4;
+    background: linear-gradient(135deg, #FFF9C4 0%, #FFF176 100%);
     color: #B7791F;
     border-radius: 999px;
-    padding: 2px 5px;
+    padding: 2px 6px;
     font-weight: 700;
     white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.4);
 }
 
-/* Decorative elements */
+/* ===========================
+   DECORATIVE ELEMENTS
+   =========================== */
 .map-deco {
     position: absolute;
     font-size: 1.5rem;
@@ -132,13 +208,16 @@
     z-index: 1;
 }
 
-/* Map bottom bar */
+/* ===========================
+   MAP BOTTOM BAR
+   =========================== */
 .map-bottom {
     display: flex;
     gap: 12px;
     padding: 12px 16px;
-    background: var(--bg-card);
-    box-shadow: 0 -2px 8px var(--shadow);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 -2px 12px var(--shadow);
+    backdrop-filter: blur(8px);
 }
 
 .map-bottom .btn {

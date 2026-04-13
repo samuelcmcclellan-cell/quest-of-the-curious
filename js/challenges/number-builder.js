@@ -1,12 +1,13 @@
 import { ChallengeBase } from './challenge-base.js';
 import { InteractionManager } from '../engine/interaction.js';
 import * as sound from '../engine/sound.js';
+import { correctExplosion, splashEffect, goldenGlow } from '../engine/particles.js';
 
 export class NumberBuilder extends ChallengeBase {
     constructor(data, container) {
         super(data, container);
         this.interaction = null;
-        this.slots = {};       // { slotId: digitValue }
+        this.slots = {};
         this.correctDigits = String(data.correct).split('');
     }
 
@@ -16,7 +17,7 @@ export class NumberBuilder extends ChallengeBase {
 
         this.container.innerHTML = `
             <div class="challenge-question">
-                <div style="font-size:3rem;margin-bottom:12px;">${this.data.illustration || '🔢'}</div>
+                <div class="challenge-illustration anim-float">${this.data.illustration || '🔢'}</div>
                 <p>${this.data.question}</p>
             </div>
             <div class="challenge-area">
@@ -35,7 +36,7 @@ export class NumberBuilder extends ChallengeBase {
                 </div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask Owl for Help
+                    🦉 Ask for Help
                     <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
                 </button>
                 <button class="btn btn-primary" id="check-btn" style="display:none;">Check Answer ✓</button>
@@ -60,31 +61,29 @@ export class NumberBuilder extends ChallengeBase {
             const slotIndex = dropZoneId.replace('slot-', '');
             const slotEl = this.container.querySelector(`#slot-${slotIndex}`);
 
-            // If slot already has a digit, return the old one
             if (this.slots[slotIndex] !== undefined) {
                 this.interaction.restoreDraggable(`digit-${this.slots[slotIndex]}`);
             }
 
-            // Place digit in slot
             this.slots[slotIndex] = digit;
             slotEl.textContent = digit;
             slotEl.classList.add('nb-slot-filled');
 
-            // Check if all slots are filled
+            // Drop sound + glow
+            sound.drop();
+            goldenGlow(slotEl);
+
             const allFilled = Object.keys(this.slots).length === this.correctDigits.length;
             const checkBtn = this.container.querySelector('#check-btn');
             checkBtn.style.display = allFilled ? 'inline-flex' : 'none';
         };
 
-        this.interaction.onReturn = (dragId) => {
-            // Digit returned to tray - nothing extra needed
-        };
+        this.interaction.onReturn = () => {};
     }
 
     _setupCheck() {
         const checkBtn = this.container.querySelector('#check-btn');
         checkBtn.addEventListener('click', () => {
-            // Build the answer from slots
             const answer = parseInt(
                 this.correctDigits.map((_, i) => this.slots[i] || '0').join('')
             );
@@ -92,8 +91,10 @@ export class NumberBuilder extends ChallengeBase {
             const result = this.checkAnswer(answer);
 
             if (result.correct) {
+                const slotsContainer = this.container.querySelector('#slots');
+                correctExplosion(slotsContainer);
                 sound.correct();
-                // Highlight all slots green
+
                 this.correctDigits.forEach((_, i) => {
                     const slotEl = this.container.querySelector(`#slot-${i}`);
                     slotEl.classList.add('nb-slot-correct');
@@ -104,16 +105,15 @@ export class NumberBuilder extends ChallengeBase {
 
                 setTimeout(() => {
                     if (this.onComplete) this.onComplete(this.getScore());
-                }, 800);
+                }, 1000);
             } else {
                 sound.wrong();
-                // Shake slots and clear
                 const slotsContainer = this.container.querySelector('#slots');
                 slotsContainer.classList.add('anim-shake');
+                splashEffect(slotsContainer);
 
                 setTimeout(() => {
                     slotsContainer.classList.remove('anim-shake');
-                    // Clear wrong slots
                     this.correctDigits.forEach((correctDigit, i) => {
                         if (this.slots[i] !== correctDigit) {
                             const slotEl = this.container.querySelector(`#slot-${i}`);
@@ -124,7 +124,6 @@ export class NumberBuilder extends ChallengeBase {
                             }
                             delete this.slots[i];
                         } else {
-                            // Keep correct digits in place and mark them
                             const slotEl = this.container.querySelector(`#slot-${i}`);
                             slotEl.classList.add('nb-slot-correct');
                         }
@@ -141,9 +140,11 @@ export class NumberBuilder extends ChallengeBase {
             const hint = this.showHint();
             if (!hint) return;
 
+            sound.tap();
+
             this.container.querySelector('#hint-container').innerHTML = `
                 <div class="hint-area anim-fade-in">
-                    <span style="font-size:1.5rem;">🦉</span>
+                    <span style="font-size:1.5rem;">🦉💡</span>
                     <span>${hint}</span>
                 </div>
             `;

@@ -22,18 +22,34 @@
     --text-white: #FFFFFF;
     --shadow: rgba(0, 0, 0, 0.12);
     --shadow-strong: rgba(0, 0, 0, 0.2);
-    --radius: 12px;
-    --radius-lg: 20px;
+    --radius: 16px;
+    --radius-lg: 24px;
     --radius-round: 50%;
     --font: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     --transition: 0.2s ease;
+
+    /* Difficulty-themed gradients */
+    --bg-easy: linear-gradient(135deg, #FFB3A7 0%, #FFC3A0 40%, #FFECB3 100%);
+    --bg-medium: linear-gradient(135deg, #43CEA2 0%, #3BB2D0 40%, #185A9D 100%);
+    --bg-hard: linear-gradient(135deg, #8E2DE2 0%, #6A1B9A 40%, #4A148C 100%);
+
+    /* Underwater palette extras */
+    --ocean-light: #E0F7FA;
+    --ocean-mid: #4DD0E1;
+    --ocean-deep: #006064;
+    --coral: #FF8A80;
+    --coral-dark: #D32F2F;
+    --sand: #FFF8E1;
+    --gold: #FFD700;
+    --gold-dark: #FFA000;
+    --bubble: rgba(255, 255, 255, 0.5);
 }
 
 html, body {
     height: 100%;
     overflow: hidden;
     font-family: var(--font);
-    background: var(--bg);
+    background: linear-gradient(170deg, #E0F7FA 0%, #B2EBF2 25%, #80DEEA 50%, #4DD0E1 75%, #00ACC1 100%);
     color: var(--text);
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;

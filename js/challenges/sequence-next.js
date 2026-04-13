@@ -1,5 +1,6 @@
 import { ChallengeBase } from './challenge-base.js';
 import * as sound from '../engine/sound.js';
+import { correctExplosion, splashEffect } from '../engine/particles.js';
 
 export class SequenceNext extends ChallengeBase {
     constructor(data, container) {
@@ -10,7 +11,7 @@ export class SequenceNext extends ChallengeBase {
     render() {
         this.container.innerHTML = `
             <div class="challenge-question">
-                <div style="font-size:3rem;margin-bottom:12px;">${this.data.illustration || '🔢'}</div>
+                <div class="challenge-illustration anim-float">${this.data.illustration || '🔢'}</div>
                 <p>${this.data.question}</p>
             </div>
             <div class="challenge-area">
@@ -26,7 +27,7 @@ export class SequenceNext extends ChallengeBase {
                 <div class="choices" id="choices"></div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask Owl for Help
+                    🦉 Ask for Help
                     <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
                 </button>
             </div>
@@ -55,7 +56,6 @@ export class SequenceNext extends ChallengeBase {
         if (result.correct) {
             this.locked = true;
             btn.classList.add('choice-btn-correct', 'anim-bounce');
-            sound.correct();
 
             // Fill in the blank in the sequence
             const blankEl = this.container.querySelector('.seq-item-blank');
@@ -63,18 +63,22 @@ export class SequenceNext extends ChallengeBase {
                 blankEl.textContent = answer;
                 blankEl.classList.remove('seq-item-blank');
                 blankEl.classList.add('seq-item-filled', 'seq-item-correct', 'anim-bounce');
+                correctExplosion(blankEl);
             }
 
+            sound.correct();
+
             this.buttons.forEach(b => {
-                if (b !== btn) b.style.opacity = '0.5';
+                if (b !== btn) b.style.opacity = '0.4';
                 b.style.pointerEvents = 'none';
             });
 
             setTimeout(() => {
                 if (this.onComplete) this.onComplete(this.getScore());
-            }, 800);
+            }, 1000);
         } else {
             btn.classList.add('choice-btn-wrong', 'anim-shake');
+            splashEffect(btn);
             sound.wrong();
             this.locked = true;
 
@@ -92,9 +96,11 @@ export class SequenceNext extends ChallengeBase {
             const hint = this.showHint();
             if (!hint) return;
 
+            sound.tap();
+
             this.container.querySelector('#hint-container').innerHTML = `
                 <div class="hint-area anim-fade-in">
-                    <span style="font-size:1.5rem;">🦉</span>
+                    <span style="font-size:1.5rem;">🦉💡</span>
                     <span>${hint}</span>
                 </div>
             `;

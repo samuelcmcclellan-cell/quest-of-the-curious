@@ -10,15 +10,19 @@ const DEFAULT_STATE = {
         hintsUsed: 0
     })),
     totalStars: 0,
+    coins: 0,
     achievements: [],
-    settings: { soundOn: true },
+    purchasedFaces: [],
+    purchasedHats: [],
+    settings: { soundOn: true, musicOn: false },
     stats: {
         totalChallenges: 0,
         totalCorrect: 0,
         streakCurrent: 0,
         streakBest: 0
     },
-    practice: { difficulty: 1, history: [] }
+    practice: { difficulty: 1, history: [] },
+    dailyChallenge: { lastDate: null, completed: false }
 };
 
 const listeners = new Set();

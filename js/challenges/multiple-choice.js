@@ -1,5 +1,6 @@
 import { ChallengeBase } from './challenge-base.js';
 import * as sound from '../engine/sound.js';
+import { correctExplosion, splashEffect } from '../engine/particles.js';
 
 export class MultipleChoice extends ChallengeBase {
     constructor(data, container) {
@@ -12,14 +13,14 @@ export class MultipleChoice extends ChallengeBase {
     render() {
         this.container.innerHTML = `
             <div class="challenge-question">
-                <div style="font-size:3rem;margin-bottom:12px;">${this.data.illustration || '🔢'}</div>
+                <div class="challenge-illustration anim-float">${this.data.illustration || '🔢'}</div>
                 <p>${this.data.question}</p>
             </div>
             <div class="challenge-area">
                 <div class="choices" id="choices"></div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask Owl for Help
+                    🦉 Ask for Help
                     <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
                 </button>
             </div>
@@ -49,20 +50,23 @@ export class MultipleChoice extends ChallengeBase {
         if (result.correct) {
             this.locked = true;
             btn.classList.add('choice-btn-correct', 'anim-bounce');
+
+            // Big celebration on the correct button
+            correctExplosion(btn);
             sound.correct();
 
             // Disable all buttons
             this.buttons.forEach(b => {
-                if (b !== btn) b.style.opacity = '0.5';
+                if (b !== btn) b.style.opacity = '0.4';
                 b.style.pointerEvents = 'none';
             });
 
-            // Notify completion after animation
             setTimeout(() => {
                 if (this.onComplete) this.onComplete(this.getScore());
-            }, 800);
+            }, 1000);
         } else {
             btn.classList.add('choice-btn-wrong', 'anim-shake');
+            splashEffect(btn);
             sound.wrong();
             this.locked = true;
 
@@ -78,9 +82,11 @@ export class MultipleChoice extends ChallengeBase {
         const hint = this.showHint();
         if (!hint) return;
 
+        sound.tap();
+
         this.hintContainer.innerHTML = `
             <div class="hint-area anim-fade-in">
-                <span style="font-size:1.5rem;">🦉</span>
+                <span style="font-size:1.5rem;">🦉💡</span>
                 <span>${hint}</span>
             </div>
         `;
@@ -101,7 +107,6 @@ export class MultipleChoice extends ChallengeBase {
             const wrongButtons = this.buttons.filter(
                 b => b.textContent != this.data.correct && !b.classList.contains('choice-btn-eliminated')
             );
-            // Eliminate up to 2 wrong answers
             wrongButtons.slice(0, 2).forEach(b => {
                 b.classList.add('choice-btn-eliminated');
             });
