@@ -1,0 +1,146 @@
+/* Island Map Screen */
+.map-container {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px 16px;
+    background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 30%, #E1F5FE 60%, #FFF8E1 85%, #FFECB3 100%);
+}
+
+.map-header {
+    text-align: center;
+    padding: 8px 16px 16px;
+    background: linear-gradient(180deg, #1565C0, #2196F3);
+    color: var(--text-white);
+}
+
+.map-header h2 {
+    font-size: 1.3rem;
+}
+
+.map-star-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Island path area */
+.island-path {
+    position: relative;
+    width: 100%;
+    min-height: 800px;
+    padding: 20px 0;
+}
+
+.island-path svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.path-line {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+.path-line-complete {
+    stroke: var(--success);
+}
+
+.path-line-locked {
+    stroke: #B0BEC5;
+    stroke-dasharray: 8 8;
+    opacity: 0.5;
+}
+
+.path-line-available {
+    stroke: var(--primary-light);
+    stroke-dasharray: 8 8;
+}
+
+/* Map nodes */
+.map-node {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-round);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform var(--transition);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    border: none;
+    touch-action: manipulation;
+}
+
+.map-node:active {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+.map-node-completed {
+    background: var(--success);
+    color: var(--text-white);
+    box-shadow: 0 3px 0 #43A047, 0 4px 10px var(--shadow);
+}
+
+.map-node-available {
+    background: var(--accent);
+    color: var(--text-white);
+    box-shadow: 0 3px 0 var(--accent-dark), 0 4px 10px var(--shadow);
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.map-node-locked {
+    background: #CFD8DC;
+    color: #90A4AE;
+    box-shadow: 0 2px 0 #B0BEC5;
+    cursor: default;
+    pointer-events: none;
+}
+
+.map-node-stars {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 0.7rem;
+    background: #FFF3C4;
+    color: #B7791F;
+    border-radius: 999px;
+    padding: 2px 5px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Decorative elements */
+.map-deco {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Map bottom bar */
+.map-bottom {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    box-shadow: 0 -2px 8px var(--shadow);
+}
+
+.map-bottom .btn {
+    flex: 1;
+}

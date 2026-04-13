@@ -1,0 +1,115 @@
+import { ChallengeBase } from './challenge-base.js';
+import * as sound from '../engine/sound.js';
+
+export class MultipleChoice extends ChallengeBase {
+    constructor(data, container) {
+        super(data, container);
+        this.buttons = [];
+        this.hintEl = null;
+        this.locked = false;
+    }
+
+    render() {
+        this.container.innerHTML = `
+            <div class="challenge-question">
+                <div style="font-size:3rem;margin-bottom:12px;">${this.data.illustration || '🔢'}</div>
+                <p>${this.data.question}</p>
+            </div>
+            <div class="challenge-area">
+                <div class="choices" id="choices"></div>
+                <div id="hint-container"></div>
+                <button class="hint-btn" id="hint-btn">
+                    🦉 Ask Owl for Help
+                    <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
+                </button>
+            </div>
+        `;
+
+        const choicesEl = this.container.querySelector('#choices');
+        this.hintContainer = this.container.querySelector('#hint-container');
+
+        this.data.options.forEach(option => {
+            const btn = document.createElement('button');
+            btn.className = 'choice-btn';
+            btn.textContent = option;
+            btn.addEventListener('click', () => this.handleChoice(option, btn));
+            choicesEl.appendChild(btn);
+            this.buttons.push(btn);
+        });
+
+        const hintBtn = this.container.querySelector('#hint-btn');
+        hintBtn.addEventListener('click', () => this.handleHint());
+    }
+
+    handleChoice(answer, btn) {
+        if (this.locked || this.solved) return;
+
+        const result = this.checkAnswer(answer);
+
+        if (result.correct) {
+            this.locked = true;
+            btn.classList.add('choice-btn-correct', 'anim-bounce');
+            sound.correct();
+
+            // Disable all buttons
+            this.buttons.forEach(b => {
+                if (b !== btn) b.style.opacity = '0.5';
+                b.style.pointerEvents = 'none';
+            });
+
+            // Notify completion after animation
+            setTimeout(() => {
+                if (this.onComplete) this.onComplete(this.getScore());
+            }, 800);
+        } else {
+            btn.classList.add('choice-btn-wrong', 'anim-shake');
+            sound.wrong();
+            this.locked = true;
+
+            setTimeout(() => {
+                btn.classList.remove('choice-btn-wrong', 'anim-shake');
+                btn.classList.add('choice-btn-eliminated');
+                this.locked = false;
+            }, 600);
+        }
+    }
+
+    handleHint() {
+        const hint = this.showHint();
+        if (!hint) return;
+
+        this.hintContainer.innerHTML = `
+            <div class="hint-area anim-fade-in">
+                <span style="font-size:1.5rem;">🦉</span>
+                <span>${hint}</span>
+            </div>
+        `;
+
+        const hintCount = this.container.querySelector('#hint-count');
+        const remaining = this.maxHints - this.hintsUsed;
+        if (remaining > 0) {
+            hintCount.textContent = `(${remaining} left)`;
+        } else {
+            const hintBtn = this.container.querySelector('#hint-btn');
+            hintBtn.style.opacity = '0.4';
+            hintBtn.style.pointerEvents = 'none';
+            hintCount.textContent = '(no more hints)';
+        }
+
+        // Level 2 hint: eliminate two wrong answers
+        if (this.hintsUsed === 2) {
+            const wrongButtons = this.buttons.filter(
+                b => b.textContent != this.data.correct && !b.classList.contains('choice-btn-eliminated')
+            );
+            // Eliminate up to 2 wrong answers
+            wrongButtons.slice(0, 2).forEach(b => {
+                b.classList.add('choice-btn-eliminated');
+            });
+        }
+    }
+
+    destroy() {
+        this.buttons = [];
+        super.destroy();
+    }
+}

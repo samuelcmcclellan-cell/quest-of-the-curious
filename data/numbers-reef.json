@@ -1,0 +1,138 @@
+{
+  "island": "numbers-reef",
+  "name": "Numbers Reef",
+  "challenges": [
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "A pirate found 6 treasure chests. Each chest has 4 gold coins inside. How many gold coins did the pirate find in total?",
+      "illustration": "🏴‍☠️",
+      "options": [10, 20, 24, 28],
+      "correct": 24,
+      "hints": [
+        "Think about what math operation to use when you have equal groups.",
+        "You need to multiply: 6 groups of 4.",
+        "6 × 4 = 24"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 1,
+      "question": "Drag the digits to build the answer: What is 347 + 285?",
+      "illustration": "🧮",
+      "correct": 632,
+      "hints": [
+        "Start by adding the ones place: 7 + 5 = 12. The ones digit is 2.",
+        "Carry the 1. Tens: 4 + 8 + 1 = 13. The tens digit is 3.",
+        "Carry the 1. Hundreds: 3 + 2 + 1 = 6. The answer is 632."
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "An octopus has 8 arms. If 3 octopuses are swimming together, how many arms are there in total?",
+      "illustration": "🐙",
+      "options": [11, 16, 24, 32],
+      "correct": 24,
+      "hints": [
+        "Each octopus has 8 arms. How many octopuses are there?",
+        "Multiply: 3 octopuses × 8 arms each.",
+        "3 × 8 = 24 arms"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 2,
+      "question": "A dolphin swam 156 meters in the morning and 278 meters in the afternoon. Drag digits to build the total distance!",
+      "illustration": "🐬",
+      "correct": 434,
+      "hints": [
+        "Add the two distances: 156 + 278.",
+        "Ones: 6 + 8 = 14, write 4 carry 1. Tens: 5 + 7 + 1 = 13, write 3 carry 1.",
+        "Hundreds: 1 + 2 + 1 = 4. The answer is 434."
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "There are 7 rows of seats on a boat with 9 seats in each row. If 18 seats are already taken, how many empty seats are left?",
+      "illustration": "⛵",
+      "options": [35, 45, 54, 63],
+      "correct": 45,
+      "hints": [
+        "First find the total number of seats, then subtract the taken ones.",
+        "Total seats: 7 × 9 = 63. Now subtract 18.",
+        "63 - 18 = 45 empty seats"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 2,
+      "question": "Find the pattern and pick what comes next!",
+      "illustration": "🐢",
+      "sequence": [3, 6, 9, 12, 15, "?"],
+      "options": [16, 17, 18, 21],
+      "correct": 18,
+      "hints": [
+        "Look at how much each number increases by.",
+        "Each number goes up by 3: 3, 6, 9, 12, 15...",
+        "15 + 3 = 18"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "A fishing boat caught 72 fish and needs to split them equally into 8 buckets. How many fish go in each bucket?",
+      "illustration": "🐟",
+      "options": [7, 8, 9, 10],
+      "correct": 9,
+      "hints": [
+        "When you split things equally, you divide!",
+        "72 ÷ 8 = ? Think: what number times 8 equals 72?",
+        "72 ÷ 8 = 9 fish per bucket"
+      ]
+    },
+    {
+      "type": "balance-scale",
+      "difficulty": 3,
+      "question": "Make both sides of the scale equal! The left side shows 24.",
+      "illustration": "⚖️",
+      "leftSide": 24,
+      "correct": 24,
+      "dropSlots": [1, 2],
+      "availableNumbers": [6, 8, 12, 15, 18],
+      "hints": [
+        "You need two numbers from the choices that add up to 24.",
+        "Try 6 + 18, or 12 + 12... but wait, is 12 available twice?",
+        "6 + 18 = 24. Drag 6 and 18 to the right side!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "This pattern doubles each time. What comes next?",
+      "illustration": "🐋",
+      "sequence": [2, 4, 8, 16, 32, "?"],
+      "options": [36, 48, 64, 128],
+      "correct": 64,
+      "hints": [
+        "Look at how each number relates to the one before it.",
+        "Each number is double the previous: 2×2=4, 4×2=8, 8×2=16...",
+        "32 × 2 = 64"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 4,
+      "question": "Captain Coral has 500 coins. She buys a map for 125 coins and a compass for 89 coins. She then finds a chest with 250 coins. How many coins does she have now?",
+      "illustration": "🧭",
+      "options": [436, 536, 636, 464],
+      "correct": 536,
+      "hints": [
+        "Do this step by step: start with 500, subtract each purchase, then add the found coins.",
+        "500 - 125 = 375. Then 375 - 89 = 286. Then 286 + 250 = ?",
+        "500 - 125 - 89 + 250 = 536 coins"
+      ]
+    }
+  ]
+}
