@@ -1,0 +1,96 @@
+import { getState, updateState, getIslandProgress } from '../state.js';
+import { navigate } from '../router.js';
+import * as sound from '../engine/sound.js';
+
+const ISLANDS = [
+    {
+        slug: 'numbers-reef',
+        emoji: '🏝️',
+        name: 'Numbers Reef',
+        tagline: 'Ocean math adventures',
+        gradient: 'linear-gradient(135deg, #29B6F6 0%, #0288D1 100%)',
+        mascot: '🦉'
+    },
+    {
+        slug: 'purrfect-park',
+        emoji: '🌳',
+        name: 'Purrfect Park',
+        tagline: 'Cat-tastic math challenges',
+        gradient: 'linear-gradient(135deg, #81C784 0%, #388E3C 100%)',
+        mascot: '🐱'
+    }
+];
+
+export function enter(container) {
+    const state = getState();
+
+    const cardsHtml = ISLANDS.map(island => {
+        const p = getIslandProgress(island.slug);
+        const pct = p.total ? Math.round((p.completed / p.total) * 100) : 0;
+        const starPct = p.total ? Math.round((p.stars / (p.total * 3)) * 100) : 0;
+        const stateClass = p.isComplete ? 'island-card-complete' : (p.completed > 0 ? 'island-card-started' : 'island-card-new');
+
+        return `
+            <button class="island-card ${stateClass}" data-island="${island.slug}" style="--island-gradient:${island.gradient};">
+                ${p.isComplete ? '<div class="island-trophy">🏆</div>' : ''}
+                <div class="island-mascot">${island.mascot}</div>
+                <div class="island-card-emoji">${island.emoji}</div>
+                <div class="island-card-name">${island.name}</div>
+                <div class="island-card-tagline">${island.tagline}</div>
+                <div class="island-card-progress">
+                    <div class="island-card-progress-bar">
+                        <div class="island-card-progress-fill" style="width:${pct}%;"></div>
+                    </div>
+                    <div class="island-card-progress-text">
+                        ${p.completed}/${p.total} · ⭐ ${p.stars}/${p.total * 3}
+                    </div>
+                </div>
+                ${p.isComplete ? '<div class="island-card-banner">Complete!</div>' : ''}
+            </button>
+        `;
+    }).join('');
+
+    container.innerHTML = `
+        <div class="islands-screen">
+            <div class="top-bar" style="background:linear-gradient(135deg,#1565C0,#7C4DFF);color:#FFF;">
+                <button class="btn btn-small" id="back-btn" style="background:transparent;color:#FFF;border:1px solid rgba(255,255,255,0.3);">← Home</button>
+                <span class="top-bar-title" style="color:#FFF;">Choose an Island</span>
+                <div style="display:flex;gap:6px;">
+                    <span class="badge badge-stars">⭐ ${state.totalStars}</span>
+                    <span class="badge badge-coins">💰 ${state.coins || 0}</span>
+                </div>
+            </div>
+            <div class="islands-container">
+                <p class="islands-hello">Hi ${state.playerName}! Pick an island to explore.</p>
+                <div class="islands-grid">
+                    ${cardsHtml}
+                </div>
+                <div class="islands-bottom">
+                    <button class="btn btn-secondary" id="practice-btn">🎯 Practice</button>
+                    <button class="btn btn-ghost" id="profile-btn">😊 Profile</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    container.querySelectorAll('.island-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const slug = card.dataset.island;
+            sound.tap();
+            updateState(s => { s.currentIsland = slug; });
+            navigate('map/' + slug);
+        });
+    });
+
+    container.querySelector('#back-btn').addEventListener('click', () => navigate('title'));
+    container.querySelector('#practice-btn').addEventListener('click', () => {
+        sound.tap();
+        navigate('practice');
+    });
+    container.querySelector('#profile-btn').addEventListener('click', () => {
+        sound.tap();
+        navigate('profile');
+    });
+}
+
+export function exit() {}

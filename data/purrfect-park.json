@@ -1,0 +1,138 @@
+{
+  "island": "purrfect-park",
+  "name": "Purrfect Park",
+  "challenges": [
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "9 playful cats are chasing butterflies, but 4 of them curl up for a nap. How many cats are still playing?",
+      "illustration": "🐱",
+      "options": [4, 5, 6, 13],
+      "correct": 5,
+      "hints": [
+        "Start with 9 cats and take away the ones that went to sleep.",
+        "9 minus 4 means: if you had 9 and lost 4, how many are left?",
+        "Count down from 9: 8, 7, 6, 5. Take 4 steps back — you land on 5."
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "Mittens the cat had 23 tasty fish in her bowl. She gobbled up 7. How many fish are left?",
+      "illustration": "🐟",
+      "options": [14, 15, 16, 17],
+      "correct": 16,
+      "hints": [
+        "You're taking away. 23 - 7 = ?",
+        "Break it up: 23 - 3 = 20, then 20 - 4 = 16.",
+        "Count back 7 from 23 (one less than 17)."
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 2,
+      "question": "Whiskers is counting paw prints along the path! She skips by 5 each time. What comes next?",
+      "illustration": "🐾",
+      "sequence": [5, 10, 15, 20, 25, "?"],
+      "options": [26, 28, 30, 35],
+      "correct": 30,
+      "hints": [
+        "Each step adds the same amount. What's 10 - 5?",
+        "We're skip-counting by 5.",
+        "25 + 5 = 30."
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 3,
+      "question": "4 rows of paw prints, with 12 paws in each row! How many paw prints are there in total? Build the answer!",
+      "illustration": "🐾",
+      "correct": 48,
+      "hints": [
+        "4 rows of 12 means 4 × 12.",
+        "Break 12 into 10 + 2: 4 × 10 = 40, and 4 × 2 = 8.",
+        "40 + 8 = 48 paw prints!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "Luna and Leo share 8 fish equally — half for each cat. How many fish does each cat get?",
+      "illustration": "🐈",
+      "options": [2, 3, 4, 5],
+      "correct": 4,
+      "hints": [
+        "Share equally means split into 2 equal groups.",
+        "Half of 8 is the same as 8 ÷ 2.",
+        "4 + 4 = 8, so each cat gets 4 fish."
+      ]
+    },
+    {
+      "type": "balance-scale",
+      "difficulty": 3,
+      "question": "A ball of yarn weighs 15. Drag numbers onto the other side to make the scale balance perfectly!",
+      "illustration": "🧶",
+      "leftSide": 15,
+      "correct": 15,
+      "dropSlots": [1, 2],
+      "availableNumbers": [4, 6, 7, 8, 9, 11],
+      "hints": [
+        "Find two numbers that add up to 15.",
+        "Try pairs: 7 + 8, 6 + 9, 4 + 11 — they all work!",
+        "Pick any two that sum to 15 and drop them on the right."
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "A toy mouse at the park shop costs 7 cents. Tom pays with a 10-cent coin. How much change does he get back?",
+      "illustration": "🐭",
+      "options": [2, 3, 4, 7],
+      "correct": 3,
+      "hints": [
+        "Change = what you paid - what it cost.",
+        "10 - 7 = ?",
+        "Count up from 7 to 10: 8, 9, 10. That's 3 cents."
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "There are 12 kittens playing in the park. One-quarter (¼) of them are orange. How many orange kittens are there?",
+      "illustration": "🐈",
+      "options": [2, 3, 4, 6],
+      "correct": 3,
+      "hints": [
+        "One-quarter means split into 4 equal groups.",
+        "12 ÷ 4 = ?",
+        "Groups of 3: 3 + 3 + 3 + 3 = 12. So ¼ of 12 is 3."
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 3,
+      "question": "Cat House A is home to 124 cats, and Cat House B has 58 cats. How many cats live in both houses together? Build the answer!",
+      "illustration": "🏠",
+      "correct": 182,
+      "hints": [
+        "Add 124 + 58.",
+        "Start with the ones: 4 + 8 = 12 (carry the 1). Then tens: 2 + 5 + 1 = 8.",
+        "Hundreds: 1. Together: 182 cats."
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "The cats form a growing pattern — counting by 3s! What number comes next?",
+      "illustration": "🐾",
+      "sequence": [3, 6, 9, 12, 15, "?"],
+      "options": [16, 17, 18, 21],
+      "correct": 18,
+      "hints": [
+        "The numbers go up by the same amount each time.",
+        "6 - 3 = 3, 9 - 6 = 3. We're counting by 3s.",
+        "15 + 3 = 18."
+      ]
+    }
+  ]
+}

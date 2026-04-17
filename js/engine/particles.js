@@ -536,6 +536,98 @@ export function ambientFish(container) {
 }
 
 /**
+ * ambientButterflies(container)
+ * Like ambientFish but slower, with butterfly/ladybug/beetle emoji.
+ * For the Purrfect Park theme. Returns a cleanup function.
+ */
+export function ambientButterflies(container) {
+    injectStyles();
+    const CREATURES = ['\uD83E\uDD8B', '\uD83D\uDC1E', '\uD83E\uDDA4', '\uD83D\uDC1D']; // 🦋 🐞 🪤 🐝
+    const flyers = [];
+    let stopped = false;
+
+    function spawnFlyer() {
+        if (stopped) return;
+
+        const f = document.createElement('div');
+        f.className = 'ambient-fish';
+        f.textContent = pick(CREATURES);
+        f.style.fontSize = rand(1.1, 1.8) + 'rem';
+        f.style.top = rand(8, 75) + '%';
+
+        const goRight = Math.random() > 0.5;
+        f.style.setProperty('--wave', rand(-30, 30) + 'px');
+        f.style.animationName = goRight ? 'fish-swim-right' : 'fish-swim-left';
+        f.style.animationDuration = rand(16, 28) + 's'; // slower than fish
+        f.style.left = '0';
+        f.style.width = '100%';
+
+        container.appendChild(f);
+        flyers.push(f);
+
+        f.addEventListener('animationend', () => {
+            f.remove();
+            const idx = flyers.indexOf(f);
+            if (idx !== -1) flyers.splice(idx, 1);
+        });
+
+        timeoutId = setTimeout(spawnFlyer, rand(4000, 9000));
+    }
+
+    let timeoutId = setTimeout(spawnFlyer, rand(500, 2000));
+
+    return function cleanup() {
+        stopped = true;
+        clearTimeout(timeoutId);
+        flyers.forEach(f => f.remove());
+        flyers.length = 0;
+    };
+}
+
+/**
+ * ambientLeaves(container)
+ * Gentle falling leaf / cherry-blossom emoji that drift down with rotation.
+ * Returns a cleanup function.
+ */
+export function ambientLeaves(container) {
+    injectStyles();
+    const LEAVES = ['\uD83C\uDF43', '\uD83C\uDF42', '\uD83C\uDF38', '\uD83C\uDF3A']; // 🍃 🍂 🌸 🌺
+    const leaves = [];
+    let stopped = false;
+
+    function spawnLeaf() {
+        if (stopped) return;
+        const leaf = document.createElement('div');
+        leaf.className = 'ambient-leaf';
+        leaf.textContent = pick(LEAVES);
+        leaf.style.left = rand(0, 95) + '%';
+        leaf.style.fontSize = rand(1.0, 1.6) + 'rem';
+        leaf.style.setProperty('--drift', rand(-60, 60) + 'px');
+        leaf.style.animationDuration = rand(7, 13) + 's';
+
+        container.appendChild(leaf);
+        leaves.push(leaf);
+
+        leaf.addEventListener('animationend', () => {
+            leaf.remove();
+            const idx = leaves.indexOf(leaf);
+            if (idx !== -1) leaves.splice(idx, 1);
+        });
+
+        timeoutId = setTimeout(spawnLeaf, rand(1200, 2400));
+    }
+
+    let timeoutId = setTimeout(spawnLeaf, rand(300, 1200));
+
+    return function cleanup() {
+        stopped = true;
+        clearTimeout(timeoutId);
+        leaves.forEach(l => l.remove());
+        leaves.length = 0;
+    };
+}
+
+/**
  * shimmerStars(element)
  * Continuous tiny sparkle particles around an element (e.g. completed
  * map nodes). Returns a cleanup function to stop the effect.

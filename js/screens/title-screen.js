@@ -18,7 +18,7 @@ export function enter(container) {
                     <span class="wave-letter" style="--i:0">Q</span><span class="wave-letter" style="--i:1">u</span><span class="wave-letter" style="--i:2">e</span><span class="wave-letter" style="--i:3">s</span><span class="wave-letter" style="--i:4">t</span><span class="wave-letter" style="--i:5"> </span><span class="wave-letter" style="--i:6">o</span><span class="wave-letter" style="--i:7">f</span><span class="wave-letter" style="--i:8"> </span><span class="wave-letter" style="--i:9">t</span><span class="wave-letter" style="--i:10">h</span><span class="wave-letter" style="--i:11">e</span><br>
                     <span class="wave-letter" style="--i:12">C</span><span class="wave-letter" style="--i:13">u</span><span class="wave-letter" style="--i:14">r</span><span class="wave-letter" style="--i:15">i</span><span class="wave-letter" style="--i:16">o</span><span class="wave-letter" style="--i:17">u</span><span class="wave-letter" style="--i:18">s</span>
                 </h1>
-                <p class="title-subtitle">Explore Numbers Reef and solve math puzzles!</p>
+                <p class="title-subtitle">Explore magical islands and solve math puzzles!</p>
                 <div class="title-input-area">
                     <label class="title-label">Your explorer name:</label>
                     <input class="input" id="name-input" type="text" value="${state.playerName}" maxlength="20" placeholder="Enter your name">
@@ -68,7 +68,7 @@ export function enter(container) {
     const startAction = () => {
         const name = container.querySelector('#name-input').value.trim() || 'Explorer';
         updateState(s => { s.playerName = name; });
-        navigate('map');
+        navigate('islands');
     };
 
     container.querySelector('#start-btn').addEventListener('click', startAction);

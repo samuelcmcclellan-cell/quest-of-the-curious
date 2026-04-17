@@ -1,7 +1,12 @@
-import { getState, updateState } from '../state.js';
+import { getState, updateState, getIslandProgress, getAllIslandSlugs } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import { confetti, starBurst } from '../engine/particles.js';
+
+const ISLAND_META = {
+    'numbers-reef':  { name: 'Numbers Reef',  emoji: '🏝️' },
+    'purrfect-park': { name: 'Purrfect Park', emoji: '🌳' }
+};
 
 const HATS = [
     { id: 'none', emoji: '', label: 'No Hat', cost: 0 },
@@ -32,16 +37,25 @@ const ACHIEVEMENTS = [
     { id: 'streak-3', label: 'On Fire!', emoji: '🔥', desc: 'Get a streak of 3 correct' },
     { id: 'coin-100', label: 'Treasure Hunter', emoji: '💰', desc: 'Collect 100 coins' },
     { id: 'streak-5', label: 'Unstoppable!', emoji: '⚡', desc: 'Get a streak of 5 correct' },
+    { id: 'cat-whisperer', label: 'Cat Whisperer', emoji: '🐈', desc: 'Complete Purrfect Park' },
+    { id: 'both-islands', label: 'World Explorer', emoji: '🌍', desc: 'Complete every island' },
 ];
 
 export function enter(container) {
     const state = getState();
     checkAchievements(state);
 
-    const completedCount = state.challenges.filter(c => c.completed).length;
+    const slugs = getAllIslandSlugs();
+    const islandStats = slugs.map(slug => ({ slug, meta: ISLAND_META[slug], progress: getIslandProgress(slug) }));
+    const completedCount = islandStats.reduce((sum, is) => sum + is.progress.completed, 0);
+    const totalChallenges = islandStats.reduce((sum, is) => sum + is.progress.total, 0);
     const accuracy = state.stats.totalChallenges > 0
         ? Math.round((state.stats.totalCorrect / state.stats.totalChallenges) * 100)
         : 0;
+
+    const islandLinesHtml = islandStats.map(is =>
+        `<span style="display:inline-flex;align-items:center;gap:4px;">${is.meta.emoji} ${is.meta.name}: <b>${is.progress.completed}/${is.progress.total}</b></span>`
+    ).join(' &nbsp;·&nbsp; ');
 
     container.innerHTML = `
         <div class="top-bar" style="background:linear-gradient(135deg,#1565C0,#2196F3);color:#FFF;">
@@ -60,10 +74,13 @@ export function enter(container) {
                 </div>
                 <h2>${state.playerName}</h2>
                 <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:0.9rem;color:var(--text-light);">
-                    <div>📝 ${completedCount}/10</div>
+                    <div>📝 ${completedCount}/${totalChallenges}</div>
                     <div>🎯 ${accuracy}%</div>
                     <div>🔥 ${state.stats.streakBest}</div>
                     <div>💰 ${state.coins || 0}</div>
+                </div>
+                <div style="margin-top:10px;font-size:0.82rem;color:var(--text-light);">
+                    ${islandLinesHtml}
                 </div>
             </div>
 
@@ -207,22 +224,33 @@ export function enter(container) {
         achievementsEl.appendChild(el);
     });
 
-    container.querySelector('#back-btn').addEventListener('click', () => navigate('map'));
+    container.querySelector('#back-btn').addEventListener('click', () => navigate('islands'));
 }
 
 function checkAchievements(state) {
     const earned = new Set(state.achievements);
-    const completed = state.challenges.filter(c => c.completed).length;
-    const has3Star = state.challenges.some(c => c.stars === 3);
+
+    // Flatten all island challenges
+    const allChallenges = [];
+    for (const island of Object.values(state.islands || {})) {
+        allChallenges.push(...(island.challenges || []));
+    }
+    const completed = allChallenges.filter(c => c.completed).length;
+    const has3Star = allChallenges.some(c => c.stars === 3);
+
+    const reefProgress = getIslandProgress('numbers-reef');
+    const parkProgress = getIslandProgress('purrfect-park');
 
     if (completed >= 1) earned.add('first-solve');
     if (has3Star) earned.add('three-stars');
     if (completed >= 5) earned.add('five-complete');
-    if (completed >= 10) earned.add('all-complete');
+    if (reefProgress.isComplete) earned.add('all-complete');
     if (state.stats.totalChallenges >= 5) earned.add('practice-5');
     if (state.stats.streakBest >= 3) earned.add('streak-3');
     if (state.stats.streakBest >= 5) earned.add('streak-5');
     if ((state.coins || 0) >= 100) earned.add('coin-100');
+    if (parkProgress.isComplete) earned.add('cat-whisperer');
+    if (reefProgress.isComplete && parkProgress.isComplete) earned.add('both-islands');
 
     const newAchievements = [...earned];
     if (newAchievements.length !== state.achievements.length) {

@@ -1,14 +1,24 @@
 const STORAGE_KEY = 'quest-of-the-curious';
 
-const DEFAULT_STATE = {
-    playerName: 'Explorer',
-    character: { hat: 'none', color: '#4A90D9', face: '😊' },
-    challenges: Array.from({ length: 10 }, () => ({
+const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park'];
+
+function makeChallenges(count) {
+    return Array.from({ length: count }, () => ({
         completed: false,
         stars: 0,
         attempts: 0,
         hintsUsed: 0
-    })),
+    }));
+}
+
+const DEFAULT_STATE = {
+    playerName: 'Explorer',
+    character: { hat: 'none', color: '#4A90D9', face: '😊' },
+    islands: {
+        'numbers-reef':  { challenges: makeChallenges(10) },
+        'purrfect-park': { challenges: makeChallenges(10) }
+    },
+    currentIsland: 'numbers-reef',
     totalStars: 0,
     coins: 0,
     achievements: [],
@@ -28,12 +38,35 @@ const DEFAULT_STATE = {
 const listeners = new Set();
 let state = loadState();
 
+function migrate(parsed) {
+    // Legacy: flat top-level `challenges` -> move into islands['numbers-reef']
+    if (parsed.challenges && !parsed.islands) {
+        parsed.islands = {
+            'numbers-reef': { challenges: parsed.challenges },
+            'purrfect-park': { challenges: makeChallenges(10) }
+        };
+        delete parsed.challenges;
+        parsed.currentIsland = 'numbers-reef';
+    }
+    // Ensure all known islands exist (forward compat if new ones added later)
+    if (!parsed.islands) {
+        parsed.islands = {};
+    }
+    for (const slug of ISLAND_SLUGS) {
+        if (!parsed.islands[slug]) {
+            parsed.islands[slug] = { challenges: makeChallenges(10) };
+        }
+    }
+    if (!parsed.currentIsland) parsed.currentIsland = 'numbers-reef';
+    return parsed;
+}
+
 function loadState() {
     try {
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
-            const parsed = JSON.parse(saved);
-            return { ...DEFAULT_STATE, ...parsed };
+            const parsed = migrate(JSON.parse(saved));
+            return { ...structuredClone(DEFAULT_STATE), ...parsed };
         }
     } catch (e) {
         console.warn('Failed to load state:', e);
@@ -49,6 +82,14 @@ function saveState() {
     }
 }
 
+function recomputeTotalStars() {
+    let total = 0;
+    for (const island of Object.values(state.islands || {})) {
+        for (const c of island.challenges || []) total += c.stars || 0;
+    }
+    state.totalStars = total;
+}
+
 export function getState() {
     return state;
 }
@@ -59,7 +100,7 @@ export function updateState(updater) {
     } else {
         Object.assign(state, updater);
     }
-    state.totalStars = state.challenges.reduce((sum, c) => sum + c.stars, 0);
+    recomputeTotalStars();
     saveState();
     listeners.forEach(fn => fn(state));
 }
@@ -75,6 +116,29 @@ export function resetState() {
     listeners.forEach(fn => fn(state));
 }
 
-export function getNextAvailableChallenge() {
-    return state.challenges.findIndex(c => !c.completed);
+export function getIslandChallenges(slug) {
+    return state.islands[slug]?.challenges || [];
+}
+
+export function getNextAvailableChallenge(slug) {
+    const island = state.islands[slug || state.currentIsland];
+    if (!island) return -1;
+    return island.challenges.findIndex(c => !c.completed);
+}
+
+export function getIslandProgress(slug) {
+    const island = state.islands[slug];
+    if (!island) return { completed: 0, total: 0, stars: 0, isComplete: false };
+    const completed = island.challenges.filter(c => c.completed).length;
+    const stars = island.challenges.reduce((s, c) => s + c.stars, 0);
+    return {
+        completed,
+        total: island.challenges.length,
+        stars,
+        isComplete: completed === island.challenges.length
+    };
+}
+
+export function getAllIslandSlugs() {
+    return ISLAND_SLUGS.slice();
 }

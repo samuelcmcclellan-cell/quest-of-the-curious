@@ -13,35 +13,65 @@ const CHALLENGE_TYPES = {
     'sequence-next': SequenceNext,
 };
 
+const ISLAND_MASCOTS = {
+    'numbers-reef': '🦉',
+    'purrfect-park': '🐱'
+};
+
 const GUIDE_STATES = {
-    idle:    { emoji: '🦉', message: '' },
-    think:   { emoji: '🦉💭', message: 'Hmm, think carefully...' },
-    cheer:   { emoji: '🦉🎉', message: '' },
-    hint:    { emoji: '🦉💡', message: '' },
-    encourage: { emoji: '🦉💪', message: "You've got this!" },
+    idle:      { suffix: '' },
+    cheer:     { suffix: '🎉' },
+    encourage: { suffix: '💪' },
+    hint:      { suffix: '💡' },
 };
 
 let currentChallenge = null;
-let challengeData = null;
+const dataCache = new Map();
 
-async function loadChallengeData() {
-    if (challengeData) return challengeData;
-    const response = await fetch('./data/numbers-reef.json');
-    challengeData = await response.json();
-    return challengeData;
+async function loadChallengeData(islandSlug) {
+    if (dataCache.has(islandSlug)) return dataCache.get(islandSlug);
+    const response = await fetch(`./data/${islandSlug}.json`);
+    const data = await response.json();
+    dataCache.set(islandSlug, data);
+    return data;
+}
+
+function parseParams(params) {
+    // Supported shapes:
+    //   ['numbers-reef', '3'] (new)
+    //   ['3']                  (legacy) -> use state.currentIsland
+    if (!params || params.length === 0) {
+        return { islandSlug: getState().currentIsland || 'numbers-reef', index: 0 };
+    }
+    const first = params[0];
+    const isIndexOnly = /^\d+$/.test(first);
+    if (isIndexOnly) {
+        return { islandSlug: getState().currentIsland || 'numbers-reef', index: parseInt(first, 10) };
+    }
+    return { islandSlug: first, index: parseInt(params[1] || '0', 10) };
 }
 
 export async function enter(container, params) {
-    const challengeIndex = parseInt(params[0]) || 0;
+    const { islandSlug, index: challengeIndex } = parseParams(params);
     const state = getState();
-    const data = await loadChallengeData();
-    const challenge = data.challenges[challengeIndex];
 
-    if (!challenge) {
-        navigate('map');
+    let data;
+    try {
+        data = await loadChallengeData(islandSlug);
+    } catch (e) {
+        console.warn('Failed to load island data:', islandSlug, e);
+        navigate('islands');
         return;
     }
 
+    const challenge = data.challenges[challengeIndex];
+    if (!challenge) {
+        navigate('map/' + islandSlug);
+        return;
+    }
+
+    const mascot = ISLAND_MASCOTS[islandSlug] || '🦉';
+    const islandChallenges = state.islands[islandSlug]?.challenges || [];
     const difficulty = challenge.difficulty || 1;
     const bgClass = `challenge-bg-${Math.min(difficulty, 5)}`;
 
@@ -50,7 +80,7 @@ export async function enter(container, params) {
             <div class="challenge-header">
                 <button class="btn btn-small btn-ghost" id="back-btn">← Map</button>
                 <div class="challenge-progress" id="progress-dots"></div>
-                <div class="guide-character guide-idle anim-float" id="guide" style="font-size:1.8rem;cursor:pointer;" title="Click for encouragement">🦉</div>
+                <div class="guide-character guide-idle anim-float" id="guide" style="font-size:1.8rem;cursor:pointer;" title="Click for encouragement">${mascot}</div>
             </div>
             <div class="challenge-body" id="challenge-body"></div>
             <div class="challenge-footer">
@@ -66,7 +96,7 @@ export async function enter(container, params) {
     data.challenges.forEach((_, i) => {
         const dot = document.createElement('div');
         dot.className = 'challenge-dot';
-        if (state.challenges[i].completed) {
+        if (islandChallenges[i]?.completed) {
             dot.classList.add('challenge-dot-done');
         } else if (i === challengeIndex) {
             dot.classList.add('challenge-dot-current');
@@ -82,19 +112,19 @@ export async function enter(container, params) {
         container.querySelector('#streak-count').textContent = streak;
     }
 
-    // Guide character tap - gives encouragement
+    // Guide tap - encouragement
     const guideEl = container.querySelector('#guide');
     guideEl.addEventListener('click', () => {
-        guideEl.textContent = GUIDE_STATES.encourage.emoji;
+        guideEl.textContent = mascot + GUIDE_STATES.encourage.suffix;
         guideEl.classList.add('anim-bounce');
         sound.tap();
         setTimeout(() => {
-            guideEl.textContent = GUIDE_STATES.idle.emoji;
+            guideEl.textContent = mascot;
             guideEl.classList.remove('anim-bounce');
         }, 1200);
     });
 
-    // Create the challenge instance
+    // Create challenge instance
     const ChallengeClass = CHALLENGE_TYPES[challenge.type];
     if (!ChallengeClass) {
         container.querySelector('#challenge-body').innerHTML = `
@@ -103,7 +133,7 @@ export async function enter(container, params) {
                 <button class="btn btn-primary" id="skip-btn">Skip</button>
             </div>
         `;
-        container.querySelector('#skip-btn').addEventListener('click', () => navigate('map'));
+        container.querySelector('#skip-btn').addEventListener('click', () => navigate('map/' + islandSlug));
         return;
     }
 
@@ -111,15 +141,13 @@ export async function enter(container, params) {
     currentChallenge = new ChallengeClass(challenge, bodyEl);
 
     currentChallenge.onComplete = (stars) => {
-        // Animate guide cheering
-        guideEl.textContent = GUIDE_STATES.cheer.emoji;
+        guideEl.textContent = mascot + GUIDE_STATES.cheer.suffix;
         guideEl.classList.add('anim-bounce');
 
-        // Award coins: 5 per star + 3 bonus for 3-star
         const coinReward = stars * 5 + (stars === 3 ? 3 : 0);
 
         updateState(s => {
-            const c = s.challenges[challengeIndex];
+            const c = s.islands[islandSlug].challenges[challengeIndex];
             c.completed = true;
             c.stars = Math.max(c.stars, stars);
             c.attempts += currentChallenge.attempts;
@@ -131,16 +159,13 @@ export async function enter(container, params) {
             s.coins = (s.coins || 0) + coinReward;
         });
 
-        navigate(`results/${challengeIndex}/${stars}`);
+        navigate(`results/${islandSlug}/${challengeIndex}/${stars}`);
     };
 
     currentChallenge.render();
-
-    // Play whoosh on entry
     sound.whoosh();
 
-    // Back button
-    container.querySelector('#back-btn').addEventListener('click', () => navigate('map'));
+    container.querySelector('#back-btn').addEventListener('click', () => navigate('map/' + islandSlug));
 }
 
 export function exit() {

@@ -10,12 +10,24 @@
     background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 30%, #E1F5FE 60%, #FFF8E1 85%, #FFECB3 100%);
 }
 
+/* Per-island map backgrounds (applied to the .map-container) */
+.map-container.map-bg-ocean {
+    background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 30%, #E1F5FE 60%, #FFF8E1 85%, #FFECB3 100%);
+}
+.map-container.map-bg-park {
+    background: linear-gradient(180deg, #C8E6C9 0%, #A5D6A7 40%, #81C784 70%, #FFF8E1 95%, #FCE4EC 100%);
+}
+
+/* Per-island map headers */
 .map-header {
     text-align: center;
     padding: 8px 16px 16px;
     background: linear-gradient(180deg, #0D47A1, #1565C0 40%, #2196F3);
     color: var(--text-white);
     position: relative;
+}
+.map-header.map-header-park {
+    background: linear-gradient(180deg, #2E7D32, #388E3C 40%, #66BB6A);
 }
 
 .map-header h2 {
