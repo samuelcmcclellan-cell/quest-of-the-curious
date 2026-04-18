@@ -1,0 +1,138 @@
+{
+  "island": "purrfect-park",
+  "name": "Purrfect Park",
+  "challenges": [
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many cats? 🐱🐱🐱🐱",
+      "illustration": "🐱",
+      "options": [3, 4, 5],
+      "correct": 4,
+      "hints": [
+        "Count the cats.",
+        "1, 2, 3, 4.",
+        "Four cats!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🐾🐾 + 🐾🐾🐾 = ?",
+      "illustration": "🐾",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": [
+        "Two paws and three more paws.",
+        "2 + 3.",
+        "Five paws!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 1,
+      "question": "What comes next?",
+      "illustration": "🐱",
+      "sequence": ["🐱", "🐾", "🐱", "🐾", "?"],
+      "options": ["🐱", "🐾", "🧶"],
+      "correct": "🐱",
+      "hints": [
+        "Cat, paw, cat, paw, then...",
+        "After a paw comes a cat.",
+        "It's a cat! 🐱"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🐱🐱🐱🐱🐱 + 🐱 = ?",
+      "illustration": "🐱",
+      "options": [5, 6, 7],
+      "correct": 6,
+      "hints": [
+        "Five cats and one more.",
+        "5 + 1.",
+        "Six cats!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many yarn balls? 🧶🧶🧶🧶🧶🧶",
+      "illustration": "🧶",
+      "options": [5, 6, 7],
+      "correct": 6,
+      "hints": [
+        "Count them one by one.",
+        "1, 2, 3, 4, 5, 6.",
+        "Six yarn balls!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "5 cats were playing. 1 fell asleep. How many are still playing?",
+      "illustration": "🐱",
+      "options": [3, 4, 5],
+      "correct": 4,
+      "hints": [
+        "Start with 5 and take 1 away.",
+        "5 - 1.",
+        "Four cats still playing!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "Which number is BIGGEST?",
+      "illustration": "🔢",
+      "options": [3, 5, 7],
+      "correct": 7,
+      "hints": [
+        "Bigger means more.",
+        "7 comes after 5 and 3.",
+        "7 is the biggest!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🐾🐾🐾🐾 + 🐾🐾🐾🐾 = ?",
+      "illustration": "🐾",
+      "options": [7, 8, 9],
+      "correct": 8,
+      "hints": [
+        "Four paws and four more.",
+        "4 + 4.",
+        "Eight paws!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 1,
+      "question": "What number comes next?",
+      "illustration": "🔢",
+      "sequence": [5, 6, "?"],
+      "options": [4, 7, 8],
+      "correct": 7,
+      "hints": [
+        "After 6 comes...",
+        "5, 6, then?",
+        "7 comes next!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "Mittens has 🐾🐾🐾 and Tom has 🐾🐾. How many paws all together?",
+      "illustration": "🐾",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": [
+        "Put them together and count.",
+        "3 + 2.",
+        "Five paws!"
+      ]
+    }
+  ]
+}

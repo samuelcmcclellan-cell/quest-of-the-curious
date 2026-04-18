@@ -1,4 +1,4 @@
-import { getState, updateState, getIslandProgress, getAllIslandSlugs } from '../state.js';
+import { getState, updateState, getIslandProgress, getAllIslandSlugs, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import { confetti, starBurst } from '../engine/particles.js';
@@ -43,6 +43,7 @@ const ACHIEVEMENTS = [
 
 export function enter(container) {
     const state = getState();
+    const profile = getCurrentProfileMeta();
     checkAchievements(state);
 
     const slugs = getAllIslandSlugs();
@@ -60,11 +61,8 @@ export function enter(container) {
     container.innerHTML = `
         <div class="top-bar" style="background:linear-gradient(135deg,#1565C0,#2196F3);color:#FFF;">
             <button class="btn btn-small" id="back-btn" style="background:transparent;color:#FFF;border:1px solid rgba(255,255,255,0.3);">← Back</button>
-            <span class="top-bar-title" style="color:#FFF;">Explorer Profile</span>
-            <div style="display:flex;gap:8px;">
-                <span class="badge badge-stars">⭐ ${state.totalStars}</span>
-                <span class="badge badge-coins">💰 ${state.coins || 0}</span>
-            </div>
+            <span class="top-bar-title" style="color:#FFF;">${profile.avatar} ${profile.name}'s Profile</span>
+            <button class="btn btn-small" id="switch-btn" style="background:rgba(255,255,255,0.18);color:#FFF;border:1px solid rgba(255,255,255,0.3);font-size:0.8rem;">👥 Switch</button>
         </div>
         <div style="flex:1;overflow-y:auto;padding:16px;">
             <!-- Character Display -->
@@ -72,7 +70,7 @@ export function enter(container) {
                 <div id="character-display" style="font-size:4rem;margin-bottom:8px;">
                     ${state.character.hat !== 'none' ? HATS.find(h => h.id === state.character.hat)?.emoji || '' : ''}${state.character.face}
                 </div>
-                <h2>${state.playerName}</h2>
+                <h2>${profile.avatar} ${profile.name} <span style="font-size:0.7em;color:var(--text-light);font-weight:500;">(age ${profile.age})</span></h2>
                 <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:0.9rem;color:var(--text-light);">
                     <div>📝 ${completedCount}/${totalChallenges}</div>
                     <div>🎯 ${accuracy}%</div>
@@ -225,6 +223,10 @@ export function enter(container) {
     });
 
     container.querySelector('#back-btn').addEventListener('click', () => navigate('islands'));
+    container.querySelector('#switch-btn').addEventListener('click', () => {
+        sound.tap();
+        navigate('users');
+    });
 }
 
 function checkAchievements(state) {

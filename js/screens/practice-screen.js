@@ -1,4 +1,4 @@
-import { getState, updateState } from '../state.js';
+import { getState, updateState, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import { generateChallenge } from '../utils/math-generator.js';
 import { DifficultyTracker } from '../utils/difficulty.js';
@@ -20,7 +20,10 @@ let stats = { total: 0, correct: 0, streak: 0 };
 
 export function enter(container) {
     const state = getState();
-    tracker = new DifficultyTracker(state.practice.difficulty || 1);
+    const age = getCurrentProfileMeta().age || 8;
+    const maxLevel = age <= 6 ? 2 : 5;
+    const startLevel = Math.min(state.practice.difficulty || 1, maxLevel);
+    tracker = new DifficultyTracker(startLevel, maxLevel);
     stats = { total: 0, correct: 0, streak: 0 };
 
     renderWrapper(container);

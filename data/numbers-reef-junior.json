@@ -1,0 +1,137 @@
+{
+  "island": "numbers-reef",
+  "name": "Numbers Reef",
+  "challenges": [
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many shells? 🐚🐚🐚",
+      "illustration": "🐚",
+      "options": [2, 3, 4],
+      "correct": 3,
+      "hints": [
+        "Count them one by one.",
+        "Point and count: 1, 2, 3.",
+        "There are 3 shells!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many fish? 🐟🐟🐟🐟🐟",
+      "illustration": "🐟",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": [
+        "Count each fish.",
+        "1, 2, 3, 4, 5.",
+        "Five fish!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🐠 + 🐠 = ?",
+      "illustration": "🐠",
+      "options": [1, 2, 3],
+      "correct": 2,
+      "hints": [
+        "One fish and one more fish.",
+        "1 + 1.",
+        "Two fish!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🦀🦀 + 🦀🦀 = ?",
+      "illustration": "🦀",
+      "options": [3, 4, 5],
+      "correct": 4,
+      "hints": [
+        "Two crabs and two more crabs.",
+        "2 + 2.",
+        "Four crabs!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 1,
+      "question": "What comes next in the pattern?",
+      "illustration": "🐚",
+      "sequence": ["🐚", "🐟", "🐚", "🐟", "🐚", "?"],
+      "options": ["🐚", "🐟", "🦀"],
+      "correct": "🐟",
+      "hints": [
+        "Look at the pattern: shell, fish, shell, fish...",
+        "After a shell comes a fish.",
+        "It's a fish! 🐟"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🐙🐙🐙 + 🐙🐙 = ?",
+      "illustration": "🐙",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": [
+        "Three octopuses and two more.",
+        "3 + 2.",
+        "Five octopuses!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many fish? 🐠🐠🐠🐠🐠🐠🐠",
+      "illustration": "🐠",
+      "options": [6, 7, 8],
+      "correct": 7,
+      "hints": [
+        "Touch each one and count.",
+        "1, 2, 3, 4, 5, 6, 7.",
+        "Seven fish!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "Which bucket has MORE fish: 🪣 with 🐟🐟🐟 or 🪣 with 🐟🐟🐟🐟🐟?",
+      "illustration": "🐟",
+      "options": ["3 fish", "5 fish", "They are the same"],
+      "correct": "5 fish",
+      "hints": [
+        "Count both buckets.",
+        "3 is smaller than 5.",
+        "5 is more than 3!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "⭐⭐⭐⭐ + ⭐ = ?",
+      "illustration": "⭐",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": [
+        "Four stars and one more.",
+        "4 + 1.",
+        "Five stars!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many fish? 🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟",
+      "illustration": "🐟",
+      "options": [8, 9, 10],
+      "correct": 10,
+      "hints": [
+        "Count all of them.",
+        "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.",
+        "Ten fish!"
+      ]
+    }
+  ]
+}

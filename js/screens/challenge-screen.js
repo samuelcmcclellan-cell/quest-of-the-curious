@@ -1,4 +1,4 @@
-import { getState, updateState } from '../state.js';
+import { getState, updateState, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import { MultipleChoice } from '../challenges/multiple-choice.js';
 import { NumberBuilder } from '../challenges/number-builder.js';
@@ -29,10 +29,13 @@ let currentChallenge = null;
 const dataCache = new Map();
 
 async function loadChallengeData(islandSlug) {
-    if (dataCache.has(islandSlug)) return dataCache.get(islandSlug);
-    const response = await fetch(`./data/${islandSlug}.json`);
+    const age = getCurrentProfileMeta().age || 8;
+    const variant = age <= 6 ? '-junior' : '';
+    const key = islandSlug + variant;
+    if (dataCache.has(key)) return dataCache.get(key);
+    const response = await fetch(`./data/${islandSlug}${variant}.json`);
     const data = await response.json();
-    dataCache.set(islandSlug, data);
+    dataCache.set(key, data);
     return data;
 }
 

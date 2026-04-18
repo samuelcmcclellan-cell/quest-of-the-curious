@@ -1,4 +1,4 @@
-import { getState, updateState, getIslandProgress } from '../state.js';
+import { getState, updateState, getIslandProgress, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 
@@ -23,6 +23,7 @@ const ISLANDS = [
 
 export function enter(container) {
     const state = getState();
+    const profile = getCurrentProfileMeta();
 
     const cardsHtml = ISLANDS.map(island => {
         const p = getIslandProgress(island.slug);
@@ -53,7 +54,7 @@ export function enter(container) {
     container.innerHTML = `
         <div class="islands-screen">
             <div class="top-bar" style="background:linear-gradient(135deg,#1565C0,#7C4DFF);color:#FFF;">
-                <button class="btn btn-small" id="back-btn" style="background:transparent;color:#FFF;border:1px solid rgba(255,255,255,0.3);">← Home</button>
+                <button class="btn btn-small" id="switch-btn" style="background:rgba(255,255,255,0.18);color:#FFF;border:1px solid rgba(255,255,255,0.3);font-size:0.85rem;">${profile.avatar} Switch</button>
                 <span class="top-bar-title" style="color:#FFF;">Choose an Island</span>
                 <div style="display:flex;gap:6px;">
                     <span class="badge badge-stars">⭐ ${state.totalStars}</span>
@@ -61,7 +62,7 @@ export function enter(container) {
                 </div>
             </div>
             <div class="islands-container">
-                <p class="islands-hello">Hi ${state.playerName}! Pick an island to explore.</p>
+                <p class="islands-hello">Hi ${profile.avatar} ${profile.name}! Pick an island to explore.</p>
                 <div class="islands-grid">
                     ${cardsHtml}
                 </div>
@@ -82,7 +83,10 @@ export function enter(container) {
         });
     });
 
-    container.querySelector('#back-btn').addEventListener('click', () => navigate('title'));
+    container.querySelector('#switch-btn').addEventListener('click', () => {
+        sound.tap();
+        navigate('users');
+    });
     container.querySelector('#practice-btn').addEventListener('click', () => {
         sound.tap();
         navigate('practice');

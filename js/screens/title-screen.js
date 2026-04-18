@@ -1,10 +1,12 @@
-import { getState, updateState } from '../state.js';
+import { hasAnyProgress, getProfiles } from '../state.js';
 import { navigate } from '../router.js';
 
 let cleanupFns = [];
 
 export function enter(container) {
-    const state = getState();
+    const anyProgress = hasAnyProgress();
+    const profiles = getProfiles();
+    const totalStars = profiles.reduce((sum, p) => sum + p.stars, 0);
 
     container.innerHTML = `
         <div class="title-scene">
@@ -19,14 +21,10 @@ export function enter(container) {
                     <span class="wave-letter" style="--i:12">C</span><span class="wave-letter" style="--i:13">u</span><span class="wave-letter" style="--i:14">r</span><span class="wave-letter" style="--i:15">i</span><span class="wave-letter" style="--i:16">o</span><span class="wave-letter" style="--i:17">u</span><span class="wave-letter" style="--i:18">s</span>
                 </h1>
                 <p class="title-subtitle">Explore magical islands and solve math puzzles!</p>
-                <div class="title-input-area">
-                    <label class="title-label">Your explorer name:</label>
-                    <input class="input" id="name-input" type="text" value="${state.playerName}" maxlength="20" placeholder="Enter your name">
-                </div>
                 <button class="btn btn-primary btn-large" id="start-btn">
                     Start Adventure 🚀
                 </button>
-                ${state.totalStars > 0 ? `<button class="btn btn-ghost title-continue" id="continue-btn">Continue Journey ⭐ ${state.totalStars} · 💰 ${state.coins || 0}</button>` : ''}
+                ${anyProgress ? `<button class="btn btn-ghost title-continue" id="continue-btn">Continue Journey ⭐ ${totalStars}</button>` : ''}
             </div>
         </div>
     `;
@@ -64,16 +62,11 @@ export function enter(container) {
     }, 2500);
     cleanupFns.push(() => clearInterval(fishInterval));
 
-    // Buttons
-    const startAction = () => {
-        const name = container.querySelector('#name-input').value.trim() || 'Explorer';
-        updateState(s => { s.playerName = name; });
-        navigate('islands');
-    };
-
-    container.querySelector('#start-btn').addEventListener('click', startAction);
+    // Both buttons route to profile picker
+    const go = () => navigate('users');
+    container.querySelector('#start-btn').addEventListener('click', go);
     const continueBtn = container.querySelector('#continue-btn');
-    if (continueBtn) continueBtn.addEventListener('click', startAction);
+    if (continueBtn) continueBtn.addEventListener('click', go);
 }
 
 export function exit() {

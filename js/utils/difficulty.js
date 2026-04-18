@@ -1,8 +1,9 @@
 const HISTORY_SIZE = 8;
 
 export class DifficultyTracker {
-    constructor(initialLevel = 1) {
-        this.level = initialLevel;
+    constructor(initialLevel = 1, maxLevel = 5) {
+        this.maxLevel = Math.max(1, Math.min(5, maxLevel));
+        this.level = Math.min(initialLevel, this.maxLevel);
         this.history = [];
     }
 
@@ -20,7 +21,7 @@ export class DifficultyTracker {
         const accuracy = this.history.filter(Boolean).length / this.history.length;
 
         // Gentler thresholds for kids — need sustained success to level up
-        if (accuracy >= 0.9 && this.level < 5) {
+        if (accuracy >= 0.9 && this.level < this.maxLevel) {
             this.level++;
             this.history = [];
         } else if (accuracy < 0.4 && this.level > 1) {
