@@ -30,7 +30,7 @@ const dataCache = new Map();
 
 async function loadChallengeData(islandSlug) {
     const age = getCurrentProfileMeta().age || 8;
-    const variant = age <= 6 ? '-junior' : '';
+    const variant = age <= 4 ? '-toddler' : age <= 6 ? '-junior' : '';
     const key = islandSlug + variant;
     if (dataCache.has(key)) return dataCache.get(key);
     const response = await fetch(`./data/${islandSlug}${variant}.json`);

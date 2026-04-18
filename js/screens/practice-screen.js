@@ -21,7 +21,7 @@ let stats = { total: 0, correct: 0, streak: 0 };
 export function enter(container) {
     const state = getState();
     const age = getCurrentProfileMeta().age || 8;
-    const maxLevel = age <= 6 ? 2 : 5;
+    const maxLevel = age <= 4 ? 1 : age <= 6 ? 2 : 5;
     const startLevel = Math.min(state.practice.difficulty || 1, maxLevel);
     tracker = new DifficultyTracker(startLevel, maxLevel);
     stats = { total: 0, correct: 0, streak: 0 };

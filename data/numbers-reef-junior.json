@@ -5,133 +5,93 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many waves rolled onto the beach? 🌊🌊🌊",
+      "question": "How many? 🌊🌊🌊",
       "illustration": "🌊",
       "options": [2, 3, 4],
       "correct": 3,
-      "hints": [
-        "Count each wave.",
-        "1, 2, 3.",
-        "Three waves!"
-      ]
+      "hints": ["Count the waves.", "1, 2, 3.", "Three!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many shells did you find on the sand? 🐚🐚🐚🐚🐚",
+      "question": "How many? 🐚🐚🐚🐚🐚",
       "illustration": "🐚",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": [
-        "Count each shell.",
-        "1, 2, 3, 4, 5.",
-        "Five shells!"
-      ]
+      "hints": ["Count each shell.", "1, 2, 3, 4, 5.", "Five!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "You jumped over 1 wave, then 1 more wave! How many waves did you jump? 🌊 + 🌊 = ?",
-      "illustration": "🦵",
+      "question": "🌊 + 🌊 = ?",
+      "illustration": "🏄",
       "options": [1, 2, 3],
       "correct": 2,
-      "hints": [
-        "One wave plus one more wave.",
-        "1 + 1.",
-        "Two waves jumped!"
-      ]
+      "hints": ["Jump 1, then 1 more.", "1 + 1.", "Two!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "A little crab made 2 sandcastles, then 2 more! How many all together? 🏰🏰 + 🏰🏰 = ?",
+      "question": "🏰🏰 + 🏰🏰 = ?",
       "illustration": "🏰",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": [
-        "Two castles and two more.",
-        "2 + 2.",
-        "Four sandcastles!"
-      ]
+      "hints": ["Two and two.", "2 + 2.", "Four!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "On the beach: shell, wave, shell, wave... what comes next?",
+      "question": "What's next?",
       "illustration": "🏖️",
       "sequence": ["🐚", "🌊", "🐚", "🌊", "🐚", "?"],
       "options": ["🐚", "🌊", "🦀"],
       "correct": "🌊",
-      "hints": [
-        "Shell, wave, shell, wave...",
-        "After a shell comes a wave.",
-        "It's a wave! 🌊"
-      ]
+      "hints": ["Shell, wave, shell, wave...", "Next is a wave.", "🌊!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "You jumped over 3 little waves, then 2 big waves! How many waves jumped? 🌊🌊🌊 + 🌊🌊 = ?",
-      "illustration": "🦵",
+      "question": "🌊🌊🌊 + 🌊🌊 = ?",
+      "illustration": "🏄",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": [
-        "Three waves and two more waves.",
-        "3 + 2.",
-        "Five waves jumped!"
-      ]
+      "hints": ["Three and two.", "3 + 2.", "Five!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many starfish are sunbathing? ⭐⭐⭐⭐⭐⭐⭐",
+      "question": "How many? ⭐⭐⭐⭐⭐⭐⭐",
       "illustration": "⭐",
       "options": [6, 7, 8],
       "correct": 7,
-      "hints": [
-        "Touch each starfish and count.",
-        "1, 2, 3, 4, 5, 6, 7.",
-        "Seven starfish!"
-      ]
+      "hints": ["Touch and count.", "1, 2, 3, 4, 5, 6, 7.", "Seven!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "Which bucket has MORE shells? 🪣 with 🐚🐚🐚 or 🪣 with 🐚🐚🐚🐚🐚?",
-      "illustration": "🪣",
-      "options": ["3 shells", "5 shells", "Same"],
-      "correct": "5 shells",
-      "hints": [
-        "Count both buckets.",
-        "3 is smaller than 5.",
-        "5 is more than 3!"
-      ]
+      "question": "Which is MORE?",
+      "illustration": "🐚",
+      "options": ["🐚🐚🐚", "🐚🐚🐚🐚🐚"],
+      "correct": "🐚🐚🐚🐚🐚",
+      "hints": ["Count each bucket.", "5 is bigger than 3.", "5 shells wins!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "You jumped 4 waves, then 1 more! How many waves total? 🌊🌊🌊🌊 + 🌊 = ?",
-      "illustration": "🌊",
+      "question": "🌊🌊🌊🌊 + 🌊 = ?",
+      "illustration": "🏄",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": [
-        "Four waves and one more.",
-        "4 + 1.",
-        "Five waves!"
-      ]
+      "hints": ["Four and one more.", "4 + 1.", "Five!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many waves did you jump today? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
+      "question": "How many? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
       "illustration": "🌊",
       "options": [8, 9, 10],
       "correct": 10,
-      "hints": [
-        "Count all the waves.",
-        "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.",
-        "Ten waves jumped! Great job!"
-      ]
+      "hints": ["Count them all.", "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.", "Ten waves!"]
     }
   ]
 }

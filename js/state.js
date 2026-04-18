@@ -3,8 +3,9 @@ const STORAGE_KEY = 'quest-of-the-curious';
 const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park'];
 
 const PROFILE_DEFS = [
-    { id: 'ziva', name: 'Ziva', age: 8, avatar: '👧', color: '#E91E63' },
-    { id: 'ava',  name: 'Ava',  age: 5, avatar: '👧', color: '#9C27B0' }
+    { id: 'ziva', name: 'Ziva', age: 8, avatar: '🧚', color: '#E91E63' },
+    { id: 'ava',  name: 'Ava',  age: 5, avatar: '🧜', color: '#00BCD4' },
+    { id: 'ella', name: 'Ella', age: 4, avatar: '🦕', color: '#66BB6A' }
 ];
 
 function makeChallenges(count) {
