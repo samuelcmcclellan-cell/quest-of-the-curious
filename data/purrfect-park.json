@@ -123,15 +123,15 @@
     {
       "type": "sequence-next",
       "difficulty": 3,
-      "question": "The cats form a growing pattern — counting by 3s! What number comes next?",
-      "illustration": "🐾",
+      "question": "🔮 Madame Whiskers peers into her crystal ball and sees cats arriving in a magical pattern: 3, 6, 9, 12, 15... What number will the crystal ball reveal next?",
+      "illustration": "🔮",
       "sequence": [3, 6, 9, 12, 15, "?"],
       "options": [16, 17, 18, 21],
       "correct": 18,
       "hints": [
-        "The numbers go up by the same amount each time.",
-        "6 - 3 = 3, 9 - 6 = 3. We're counting by 3s.",
-        "15 + 3 = 18."
+        "The crystal ball hums. Numbers go up by the same amount each time.",
+        "6 - 3 = 3, 9 - 6 = 3. The magic is counting by 3s!",
+        "15 + 3 = 18. The future is revealed!"
       ]
     }
   ]

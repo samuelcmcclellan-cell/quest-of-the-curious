@@ -123,15 +123,15 @@
     {
       "type": "sequence-next",
       "difficulty": 3,
-      "question": "This pattern doubles each time. What comes next?",
-      "illustration": "🐋",
+      "question": "🔮 The ocean oracle's crystal ball glows and reveals a pattern from the future. Each number doubles the last. What does the crystal ball show next?",
+      "illustration": "🔮",
       "sequence": [1, 2, 4, 8, 16, "?"],
       "options": [18, 24, 32, 20],
       "correct": 32,
       "hints": [
-        "Look at how each number relates to the one before it.",
-        "Each number is double the previous: 1×2=2, 2×2=4, 4×2=8...",
-        "16 × 2 = 32!"
+        "The crystal ball hums... each number is double the one before.",
+        "1×2=2, 2×2=4, 4×2=8, 8×2=16...",
+        "16 × 2 = 32! The future is revealed!"
       ]
     }
   ]

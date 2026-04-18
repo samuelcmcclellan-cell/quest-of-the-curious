@@ -5,112 +5,112 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many cats? 🐱🐱🐱🐱",
-      "illustration": "🐱",
+      "question": "How many soccer balls are on the field? ⚽⚽⚽⚽",
+      "illustration": "⚽",
       "options": [3, 4, 5],
       "correct": 4,
       "hints": [
-        "Count the cats.",
+        "Count each ball.",
         "1, 2, 3, 4.",
-        "Four cats!"
+        "Four soccer balls!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🐾🐾 + 🐾🐾🐾 = ?",
-      "illustration": "🐾",
+      "question": "Team Red scored 2 goals. Team Blue scored 3 goals. How many goals total? ⚽⚽ + ⚽⚽⚽ = ?",
+      "illustration": "🥅",
       "options": [4, 5, 6],
       "correct": 5,
       "hints": [
-        "Two paws and three more paws.",
+        "Two goals plus three goals.",
         "2 + 3.",
-        "Five paws!"
+        "Five goals!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What comes next?",
+      "question": "The cats line up to play: cat, ball, cat, ball... what comes next?",
       "illustration": "🐱",
-      "sequence": ["🐱", "🐾", "🐱", "🐾", "?"],
-      "options": ["🐱", "🐾", "🧶"],
+      "sequence": ["🐱", "⚽", "🐱", "⚽", "?"],
+      "options": ["🐱", "⚽", "🥅"],
       "correct": "🐱",
       "hints": [
-        "Cat, paw, cat, paw, then...",
-        "After a paw comes a cat.",
+        "Cat, ball, cat, ball...",
+        "After a ball comes a cat.",
         "It's a cat! 🐱"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🐱🐱🐱🐱🐱 + 🐱 = ?",
-      "illustration": "🐱",
+      "question": "5 kittens kicked the ball. Then 1 more kitten joined! How many kittens playing? 🐱×5 + 🐱 = ?",
+      "illustration": "⚽",
       "options": [5, 6, 7],
       "correct": 6,
       "hints": [
-        "Five cats and one more.",
+        "Five kittens and one more.",
         "5 + 1.",
-        "Six cats!"
+        "Six kittens!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many yarn balls? 🧶🧶🧶🧶🧶🧶",
-      "illustration": "🧶",
+      "question": "How many cleats does Team Whiskers have? 👟👟👟👟👟👟",
+      "illustration": "👟",
       "options": [5, 6, 7],
       "correct": 6,
       "hints": [
-        "Count them one by one.",
+        "Count each cleat.",
         "1, 2, 3, 4, 5, 6.",
-        "Six yarn balls!"
+        "Six cleats!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "5 cats were playing. 1 fell asleep. How many are still playing?",
-      "illustration": "🐱",
+      "question": "5 kittens were on the field. 1 sat down for a nap. How many are still playing?",
+      "illustration": "⚽",
       "options": [3, 4, 5],
       "correct": 4,
       "hints": [
         "Start with 5 and take 1 away.",
         "5 - 1.",
-        "Four cats still playing!"
+        "Four kittens still playing!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "Which number is BIGGEST?",
-      "illustration": "🔢",
+      "question": "Which team scored the MOST goals? Red: 3 goals. Blue: 5 goals. Green: 7 goals!",
+      "illustration": "🥅",
       "options": [3, 5, 7],
       "correct": 7,
       "hints": [
-        "Bigger means more.",
-        "7 comes after 5 and 3.",
-        "7 is the biggest!"
+        "The most means the biggest number.",
+        "7 is bigger than 5 and 3.",
+        "7 goals wins!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🐾🐾🐾🐾 + 🐾🐾🐾🐾 = ?",
-      "illustration": "🐾",
+      "question": "Mittens kicked the ball 4 times. Then she kicked 4 more! How many kicks total? ⚽×4 + ⚽×4 = ?",
+      "illustration": "⚽",
       "options": [7, 8, 9],
       "correct": 8,
       "hints": [
-        "Four paws and four more.",
+        "Four kicks and four more.",
         "4 + 4.",
-        "Eight paws!"
+        "Eight kicks!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What number comes next?",
+      "question": "The scoreboard counts: 5, 6, ? What number is next?",
       "illustration": "🔢",
       "sequence": [5, 6, "?"],
       "options": [4, 7, 8],
@@ -124,14 +124,14 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "Mittens has 🐾🐾🐾 and Tom has 🐾🐾. How many paws all together?",
-      "illustration": "🐾",
+      "question": "Team Fluffy scored 3 goals and Team Paws scored 2 goals. How many goals all together? 🥅🥅🥅 + 🥅🥅 = ?",
+      "illustration": "🥅",
       "options": [4, 5, 6],
       "correct": 5,
       "hints": [
-        "Put them together and count.",
+        "Add the two teams' goals.",
         "3 + 2.",
-        "Five paws!"
+        "Five goals total!"
       ]
     }
   ]
