@@ -18,7 +18,7 @@ export function initRouter(container) {
 }
 
 export function getCurrentRoute() {
-    const hash = window.location.hash.slice(1) || 'title';
+    const hash = window.location.hash.slice(1) || 'users';
     const [path, ...params] = hash.split('/');
     return { path, params };
 }
@@ -28,7 +28,7 @@ function handleRoute() {
 
     const screen = routes[path];
     if (!screen) {
-        navigate('title');
+        navigate('users');
         return;
     }
 

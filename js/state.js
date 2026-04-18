@@ -4,7 +4,7 @@ const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park'];
 
 const PROFILE_DEFS = [
     { id: 'ziva', name: 'Ziva', age: 8, avatar: '👧', color: '#E91E63' },
-    { id: 'avs',  name: 'Avs',  age: 5, avatar: '👦', color: '#00BCD4' }
+    { id: 'ava',  name: 'Ava',  age: 5, avatar: '👧', color: '#9C27B0' }
 ];
 
 function makeChallenges(count) {
@@ -117,6 +117,12 @@ function mergeProfile(def, saved) {
 function migrateRoot(parsed) {
     // Case A: already new shape.
     if (parsed && parsed.profiles && typeof parsed.profiles === 'object') {
+        // Legacy profile rename: 'avs' -> 'ava' (keep progress)
+        if (parsed.profiles.avs && !parsed.profiles.ava) {
+            parsed.profiles.ava = parsed.profiles.avs;
+            delete parsed.profiles.avs;
+            if (parsed.currentProfileId === 'avs') parsed.currentProfileId = 'ava';
+        }
         const profiles = {};
         for (const def of PROFILE_DEFS) {
             profiles[def.id] = mergeProfile(def, parsed.profiles[def.id] || {});

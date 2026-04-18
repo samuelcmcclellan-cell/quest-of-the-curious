@@ -13,7 +13,7 @@ export function enter(container) {
 
         return `
             <button class="user-card" data-profile="${p.id}" style="--user-gradient:${gradient};">
-                ${p.isActive ? '<div class="user-card-active-pill">Active</div>' : ''}
+                ${p.isActive ? '<div class="user-card-active-pill">Last played</div>' : ''}
                 <div class="user-card-avatar">${p.avatar}</div>
                 <div class="user-card-name">${p.name}</div>
                 <div class="user-card-age">age ${p.age}</div>
@@ -24,13 +24,19 @@ export function enter(container) {
 
     container.innerHTML = `
         <div class="users-screen">
-            <div class="top-bar" style="background:linear-gradient(135deg,#7C4DFF,#E91E63);color:#FFF;">
-                <button class="btn btn-small" id="back-btn" style="background:transparent;color:#FFF;border:1px solid rgba(255,255,255,0.3);">← Home</button>
-                <span class="top-bar-title" style="color:#FFF;">Who's playing?</span>
-                <span style="width:72px;"></span>
+            <div class="users-header">
+                <h1 class="users-title">
+                    <span class="wave-letter" style="--i:0">Q</span><span class="wave-letter" style="--i:1">u</span><span class="wave-letter" style="--i:2">e</span><span class="wave-letter" style="--i:3">s</span><span class="wave-letter" style="--i:4">t</span>
+                    <span class="wave-letter" style="--i:5"> </span>
+                    <span class="wave-letter" style="--i:6">o</span><span class="wave-letter" style="--i:7">f</span>
+                    <span class="wave-letter" style="--i:8"> </span>
+                    <span class="wave-letter" style="--i:9">t</span><span class="wave-letter" style="--i:10">h</span><span class="wave-letter" style="--i:11">e</span>
+                    <br>
+                    <span class="wave-letter" style="--i:12">C</span><span class="wave-letter" style="--i:13">u</span><span class="wave-letter" style="--i:14">r</span><span class="wave-letter" style="--i:15">i</span><span class="wave-letter" style="--i:16">o</span><span class="wave-letter" style="--i:17">u</span><span class="wave-letter" style="--i:18">s</span>
+                </h1>
             </div>
             <div class="users-container">
-                <p class="users-hello">Tap your name to start!</p>
+                <p class="users-hello">Who's playing today?</p>
                 <div class="users-grid">
                     ${cardsHtml}
                 </div>
@@ -47,16 +53,10 @@ export function enter(container) {
             }
         });
     });
-
-    container.querySelector('#back-btn').addEventListener('click', () => {
-        sound.tap();
-        navigate('title');
-    });
 }
 
 export function exit() {}
 
-// simple shade helper so each profile card has a gradient
 function shade(hex, pct) {
     const m = /^#?([0-9a-f]{6})$/i.exec(hex);
     if (!m) return hex;

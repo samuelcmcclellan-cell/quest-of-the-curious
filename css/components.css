@@ -786,6 +786,21 @@
     background: linear-gradient(180deg, #F3E5F5 0%, #FCE4EC 50%, #FFF3E0 100%);
 }
 
+.users-header {
+    padding: 28px 16px 8px;
+    text-align: center;
+}
+
+.users-title {
+    font-family: 'Fredoka One', 'Nunito', var(--font);
+    font-size: 2rem;
+    line-height: 1.1;
+    font-weight: 800;
+    color: #6A1B9A;
+    text-shadow: 0 3px 0 rgba(255, 255, 255, 0.6), 0 4px 16px rgba(106, 27, 154, 0.25);
+    letter-spacing: 1px;
+}
+
 .users-container {
     flex: 1;
     overflow-y: auto;
