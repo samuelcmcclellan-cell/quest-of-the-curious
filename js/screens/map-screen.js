@@ -54,6 +54,44 @@ const ISLAND_CONFIGS = {
             { emoji: '🐾', x: 85, y: 20, size: 1.6 },
             { emoji: '⭐', x: 52, y: 2, size: 1.8 },
         ]
+    },
+    'bubble-magic': {
+        slug: 'bubble-magic',
+        name: 'Bubble Magic',
+        title: '🫧 Bubble Magic',
+        mascot: '🧙‍♀️',
+        bgClass: 'map-bg-bubble',
+        headerClass: 'map-header-bubble',
+        ambient: { bubbles: true, fish: false, butterflies: false, leaves: false },
+        decorations: [
+            { emoji: '🧙‍♀️', x: 85, y: 88, size: 1.8 },
+            { emoji: '🫧', x: 12, y: 78, size: 1.6 },
+            { emoji: '✨', x: 88, y: 60, size: 1.4 },
+            { emoji: '🧚', x: 10, y: 52, size: 1.6 },
+            { emoji: '🌙', x: 90, y: 40, size: 1.5 },
+            { emoji: '🔮', x: 8, y: 30, size: 1.8 },
+            { emoji: '🪄', x: 85, y: 20, size: 1.6 },
+            { emoji: '⭐', x: 52, y: 2, size: 1.8 },
+        ]
+    },
+    'crystal-rock': {
+        slug: 'crystal-rock',
+        name: 'Crystal Rock',
+        title: '💎 Crystal Rock',
+        mascot: '🎸',
+        bgClass: 'map-bg-crystal',
+        headerClass: 'map-header-crystal',
+        ambient: { bubbles: false, fish: false, butterflies: false, leaves: false },
+        decorations: [
+            { emoji: '🎸', x: 85, y: 88, size: 1.9 },
+            { emoji: '🥁', x: 12, y: 76, size: 1.5 },
+            { emoji: '💎', x: 88, y: 58, size: 1.7 },
+            { emoji: '🎤', x: 10, y: 50, size: 1.6 },
+            { emoji: '🎹', x: 90, y: 40, size: 1.5 },
+            { emoji: '🎧', x: 8, y: 28, size: 1.6 },
+            { emoji: '🎵', x: 85, y: 18, size: 1.7 },
+            { emoji: '⭐', x: 52, y: 2, size: 1.8 },
+        ]
     }
 };
 

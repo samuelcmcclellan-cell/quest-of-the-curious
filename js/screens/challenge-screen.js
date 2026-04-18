@@ -15,7 +15,9 @@ const CHALLENGE_TYPES = {
 
 const ISLAND_MASCOTS = {
     'numbers-reef': '🦉',
-    'purrfect-park': '🐱'
+    'purrfect-park': '🐱',
+    'bubble-magic': '🧙‍♀️',
+    'crystal-rock': '🎸'
 };
 
 const GUIDE_STATES = {

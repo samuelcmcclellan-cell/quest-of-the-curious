@@ -17,6 +17,12 @@
 .map-container.map-bg-park {
     background: linear-gradient(180deg, #C8E6C9 0%, #A5D6A7 40%, #81C784 70%, #FFF8E1 95%, #FCE4EC 100%);
 }
+.map-container.map-bg-bubble {
+    background: linear-gradient(180deg, #E1BEE7 0%, #CE93D8 40%, #9C27B0 75%, #4527A0 100%);
+}
+.map-container.map-bg-crystal {
+    background: linear-gradient(180deg, #FFF176 0%, #FF8A65 35%, #EC407A 70%, #7B1FA2 100%);
+}
 
 /* Per-island map headers */
 .map-header {
@@ -28,6 +34,12 @@
 }
 .map-header.map-header-park {
     background: linear-gradient(180deg, #2E7D32, #388E3C 40%, #66BB6A);
+}
+.map-header.map-header-bubble {
+    background: linear-gradient(180deg, #4A148C, #6A1B9A 40%, #AB47BC);
+}
+.map-header.map-header-crystal {
+    background: linear-gradient(180deg, #B71C1C, #D500F9 40%, #FF5252);
 }
 
 .map-header h2 {

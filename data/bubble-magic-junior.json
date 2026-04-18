@@ -1,0 +1,98 @@
+{
+  "island": "bubble-magic",
+  "name": "Bubble Magic",
+  "challenges": [
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many? 🫧🫧🫧",
+      "illustration": "🫧",
+      "options": [2, 3, 4],
+      "correct": 3,
+      "hints": ["Count the bubbles.", "1, 2, 3.", "Three!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🧪 + 🧪🧪 = ?",
+      "illustration": "🧪",
+      "options": [2, 3, 4],
+      "correct": 3,
+      "hints": ["One and two more.", "1 + 2.", "Three!"]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 1,
+      "question": "What's next?",
+      "illustration": "✨",
+      "sequence": ["🫧", "✨", "🫧", "✨", "?"],
+      "options": ["🫧", "✨", "🔮"],
+      "correct": "🫧",
+      "hints": ["Bubble, sparkle, bubble, sparkle...", "Next is a bubble.", "🫧!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many? 🪄🪄🪄🪄",
+      "illustration": "🪄",
+      "options": [3, 4, 5],
+      "correct": 4,
+      "hints": ["Count the wands.", "1, 2, 3, 4.", "Four!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🧙 + 🧙🧙 = ?",
+      "illustration": "🧙",
+      "options": [2, 3, 4],
+      "correct": 3,
+      "hints": ["One witch and two.", "1 + 2.", "Three!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🫧🫧🫧🫧🫧 - 🫧 = ?",
+      "illustration": "💨",
+      "options": [3, 4, 5],
+      "correct": 4,
+      "hints": ["One bubble pops.", "5 - 1.", "Four left!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "How many? 🔮🔮🔮🔮🔮🔮",
+      "illustration": "🔮",
+      "options": [5, 6, 7],
+      "correct": 6,
+      "hints": ["Count each ball.", "1, 2, 3, 4, 5, 6.", "Six!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "✨✨✨ + ✨✨ = ?",
+      "illustration": "✨",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": ["Three and two.", "3 + 2.", "Five!"]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 1,
+      "question": "What's next?",
+      "illustration": "🔢",
+      "sequence": [3, 4, "?"],
+      "options": [2, 5, 6],
+      "correct": 5,
+      "hints": ["After 4 comes...", "3, 4, then?", "5!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🪄🪄🪄🪄 + 🪄🪄🪄🪄 = ?",
+      "illustration": "🪄",
+      "options": [7, 8, 9],
+      "correct": 8,
+      "hints": ["Four and four.", "4 + 4.", "Eight!"]
+    }
+  ]
+}

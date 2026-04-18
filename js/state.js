@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'quest-of-the-curious';
 
-const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park'];
+const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park', 'bubble-magic', 'crystal-rock'];
 
 const PROFILE_DEFS = [
     { id: 'ziva', name: 'Ziva', age: 8, avatar: '🧚', color: '#E91E63' },

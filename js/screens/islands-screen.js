@@ -18,6 +18,22 @@ const ISLANDS = [
         tagline: 'Cat-tastic math challenges',
         gradient: 'linear-gradient(135deg, #81C784 0%, #388E3C 100%)',
         mascot: '🐱'
+    },
+    {
+        slug: 'bubble-magic',
+        emoji: '🫧',
+        name: 'Bubble Magic',
+        tagline: 'Spellbound bubble puzzles',
+        gradient: 'linear-gradient(135deg, #BA68C8 0%, #6A1B9A 100%)',
+        mascot: '🧙‍♀️'
+    },
+    {
+        slug: 'crystal-rock',
+        emoji: '💎',
+        name: 'Crystal Rock',
+        tagline: 'Rock-n-roll gem beats',
+        gradient: 'linear-gradient(135deg, #FF5252 0%, #D500F9 100%)',
+        mascot: '🎸'
     }
 ];
 

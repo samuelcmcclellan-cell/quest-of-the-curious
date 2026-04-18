@@ -1,0 +1,139 @@
+{
+  "island": "bubble-magic",
+  "name": "Bubble Magic",
+  "challenges": [
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "🧙‍♀️ A witch brews 6 potions in the morning and 8 more in the afternoon. How many potions in total?",
+      "illustration": "🧪",
+      "options": [12, 13, 14, 16],
+      "correct": 14,
+      "hints": [
+        "Add the morning and afternoon potions.",
+        "6 + 8 = ?",
+        "6 + 8 = 14 potions!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 2,
+      "question": "🫧 Magic bubbles multiply! Each step adds ten. What comes next?",
+      "illustration": "🫧",
+      "sequence": [10, 20, 30, 40, 50, "?"],
+      "options": [51, 55, 60, 65],
+      "correct": 60,
+      "hints": [
+        "Count by tens!",
+        "10, 20, 30, 40, 50, then?",
+        "50 + 10 = 60!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "🧚 A fairy doubles every bubble she touches. She starts with 7 bubbles. How many after doubling?",
+      "illustration": "🫧",
+      "options": [12, 13, 14, 15],
+      "correct": 14,
+      "hints": [
+        "Doubling means 2 times.",
+        "7 + 7 or 7 × 2.",
+        "14 bubbles!"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 3,
+      "question": "🔮 A wizard casts a subtraction spell: 63 minus 27. Build the answer!",
+      "illustration": "🔮",
+      "correct": 36,
+      "hints": [
+        "Subtract 27 from 63.",
+        "63 - 20 = 43, then 43 - 7 = 36.",
+        "36!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "⏰ The magic spell starts at 2:00 and lasts 3 hours. What time does it end?",
+      "illustration": "⏰",
+      "options": ["4:00", "5:00", "6:00", "3:30"],
+      "correct": "5:00",
+      "hints": [
+        "Add 3 hours to the start time.",
+        "2:00 + 3 hours.",
+        "5:00!"
+      ]
+    },
+    {
+      "type": "balance-scale",
+      "difficulty": 3,
+      "question": "✨ Two magic pouches must balance the 18-pound crystal. Pick numbers that add to 18!",
+      "illustration": "⚖️",
+      "leftSide": 18,
+      "correct": 18,
+      "dropSlots": [1, 2],
+      "availableNumbers": [5, 7, 8, 9, 10, 11, 13],
+      "hints": [
+        "Find two numbers that add to 18.",
+        "Try pairs: 5+13, 7+11, 8+10, 9+9 (no same twice)...",
+        "Pick any pair summing to 18!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "🪄 Each wand casts 4 spells. There are 7 wands. How many spells can be cast?",
+      "illustration": "🪄",
+      "options": [21, 24, 28, 32],
+      "correct": 28,
+      "hints": [
+        "4 spells × 7 wands.",
+        "4 × 7 = ?",
+        "4 × 7 = 28 spells!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "🌙 Each bubble doubles in size! What's next?",
+      "illustration": "🫧",
+      "sequence": [1, 2, 4, 8, 16, "?"],
+      "options": [18, 24, 30, 32],
+      "correct": 32,
+      "hints": [
+        "Each is double the last.",
+        "1×2=2, 2×2=4, 4×2=8, 8×2=16...",
+        "16 × 2 = 32!"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 3,
+      "question": "📜 The spellbook says: 145 + 78. Build the answer!",
+      "illustration": "📜",
+      "correct": 223,
+      "hints": [
+        "Add ones: 5 + 8 = 13 (carry 1).",
+        "Tens: 4 + 7 + 1 = 12 (carry 1).",
+        "Hundreds: 1 + 1 = 2. Answer: 223!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "🔮 The crystal ball counts down by 10s. What's next?",
+      "illustration": "🔮",
+      "sequence": [100, 90, 80, 70, 60, "?"],
+      "options": [40, 50, 55, 65],
+      "correct": 50,
+      "hints": [
+        "Each step goes down by 10.",
+        "60 - 10 = ?",
+        "50!"
+      ]
+    }
+  ]
+}

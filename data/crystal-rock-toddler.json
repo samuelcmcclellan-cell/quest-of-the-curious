@@ -1,11 +1,11 @@
 {
-  "island": "numbers-reef",
-  "name": "Numbers Reef",
+  "island": "crystal-rock",
+  "name": "Crystal Rock",
   "challenges": [
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🦕",
+      "question": "🎸",
       "illustration": "👀",
       "options": [1, 2, 3],
       "correct": 1,
@@ -14,7 +14,7 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🦖🦖",
+      "question": "🥁🥁",
       "illustration": "👀",
       "options": [1, 2, 3],
       "correct": 2,
@@ -23,7 +23,7 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🥚🥚🥚",
+      "question": "💎💎💎",
       "illustration": "👀",
       "options": [2, 3, 4],
       "correct": 3,
@@ -32,7 +32,7 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🌋🌋🌋🌋",
+      "question": "🎤🎤🎤🎤",
       "illustration": "👀",
       "options": [3, 4, 5],
       "correct": 4,
@@ -41,7 +41,7 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🦕🦕🦕🦕🦕",
+      "question": "🎸🎸🎸🎸🎸",
       "illustration": "👀",
       "options": [4, 5, 6],
       "correct": 5,
@@ -52,15 +52,15 @@
       "difficulty": 1,
       "question": "?",
       "illustration": "🧩",
-      "sequence": ["🦕", "🥚", "🦕", "🥚", "?"],
-      "options": ["🦕", "🥚", "🌋"],
-      "correct": "🦕",
-      "hints": ["🦕", "🦕", "🦕"]
+      "sequence": ["🎸", "🥁", "🎸", "🥁", "?"],
+      "options": ["🎸", "🥁", "🎤"],
+      "correct": "🎸",
+      "hints": ["🎸", "🎸", "🎸"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🦴🦴🦴🦴🦴🦴",
+      "question": "🎵🎵🎵🎵🎵🎵",
       "illustration": "👀",
       "options": [5, 6, 7],
       "correct": 6,
@@ -71,24 +71,24 @@
       "difficulty": 1,
       "question": "?",
       "illustration": "🧩",
-      "sequence": ["🌋", "🦕", "🌋", "🦕", "?"],
-      "options": ["🌋", "🦕", "🥚"],
-      "correct": "🌋",
-      "hints": ["🌋", "🌋", "🌋"]
+      "sequence": ["💎", "🎤", "💎", "🎤", "?"],
+      "options": ["💎", "🎤", "🎸"],
+      "correct": "💎",
+      "hints": ["💎", "💎", "💎"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
       "question": "👉 more?",
       "illustration": "🔍",
-      "options": ["🦕🦕", "🦕🦕🦕🦕🦕"],
-      "correct": "🦕🦕🦕🦕🦕",
+      "options": ["🎸🎸", "🎸🎸🎸🎸🎸🎸"],
+      "correct": "🎸🎸🎸🎸🎸🎸",
       "hints": ["➡️", "➡️", "➡️"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🦕🦕🦕🦕🦕🦕🦕",
+      "question": "🎧🎧🎧🎧🎧🎧🎧",
       "illustration": "👀",
       "options": [6, 7, 8],
       "correct": 7,

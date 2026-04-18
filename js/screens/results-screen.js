@@ -5,7 +5,9 @@ import { confetti, starBurst } from '../engine/particles.js';
 
 const ISLAND_META = {
     'numbers-reef':  { name: 'Numbers Reef',  mascot: '🦉', emoji: '🏝️' },
-    'purrfect-park': { name: 'Purrfect Park', mascot: '🐱', emoji: '🌳' }
+    'purrfect-park': { name: 'Purrfect Park', mascot: '🐱', emoji: '🌳' },
+    'bubble-magic':  { name: 'Bubble Magic',  mascot: '🧙‍♀️', emoji: '🫧' },
+    'crystal-rock':  { name: 'Crystal Rock',  mascot: '🎸', emoji: '💎' }
 };
 
 const REACTION_BY_STARS = {
