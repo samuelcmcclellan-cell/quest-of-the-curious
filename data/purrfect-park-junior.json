@@ -5,11 +5,11 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? ⚽⚽⚽⚽",
+      "question": "Quantas? ⚽⚽⚽⚽",
       "illustration": "⚽",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["Count the balls.", "1, 2, 3, 4.", "Four!"]
+      "hints": ["Conte as bolas.", "1, 2, 3, 4.", "Quatro!"]
     },
     {
       "type": "multiple-choice",
@@ -18,17 +18,17 @@
       "illustration": "🥅",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Two goals and three.", "2 + 3.", "Five!"]
+      "hints": ["Duas bolas e três.", "2 + 3.", "Cinco!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What's next?",
+      "question": "O que vem a seguir?",
       "illustration": "🐱",
       "sequence": ["🐱", "⚽", "🐱", "⚽", "?"],
       "options": ["🐱", "⚽", "🥅"],
       "correct": "🐱",
-      "hints": ["Cat, ball, cat, ball...", "Next is a cat.", "🐱!"]
+      "hints": ["Gato, bola, gato, bola...", "O próximo é um gato.", "🐱!"]
     },
     {
       "type": "multiple-choice",
@@ -37,16 +37,16 @@
       "illustration": "⚽",
       "options": [5, 6, 7],
       "correct": 6,
-      "hints": ["Five and one more.", "5 + 1.", "Six!"]
+      "hints": ["Cinco e mais um.", "5 + 1.", "Seis!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 👟👟👟👟👟👟",
+      "question": "Quantas? 👟👟👟👟👟👟",
       "illustration": "👟",
       "options": [5, 6, 7],
       "correct": 6,
-      "hints": ["Count the cleats.", "1, 2, 3, 4, 5, 6.", "Six!"]
+      "hints": ["Conte as chuteiras.", "1, 2, 3, 4, 5, 6.", "Seis!"]
     },
     {
       "type": "multiple-choice",
@@ -55,16 +55,16 @@
       "illustration": "😴",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["One kitty naps.", "5 - 1.", "Four left!"]
+      "hints": ["Um gatinho cochila.", "5 - 1.", "Sobraram quatro!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "Biggest?",
+      "question": "Maior?",
       "illustration": "🥅",
       "options": [3, 5, 7],
       "correct": 7,
-      "hints": ["Most means biggest.", "7 is after 5 and 3.", "7!"]
+      "hints": ["Mais significa maior.", "7 vem depois de 5 e 3.", "7!"]
     },
     {
       "type": "multiple-choice",
@@ -73,17 +73,17 @@
       "illustration": "⚽",
       "options": [7, 8, 9],
       "correct": 8,
-      "hints": ["Four and four.", "4 + 4.", "Eight!"]
+      "hints": ["Quatro e quatro.", "4 + 4.", "Oito!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What's next?",
+      "question": "O que vem a seguir?",
       "illustration": "🔢",
       "sequence": [5, 6, "?"],
       "options": [4, 7, 8],
       "correct": 7,
-      "hints": ["After 6...", "5, 6, then?", "7!"]
+      "hints": ["Depois do 6...", "5, 6, e depois?", "7!"]
     },
     {
       "type": "multiple-choice",
@@ -92,7 +92,7 @@
       "illustration": "🥅",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Three and two.", "3 + 2.", "Five!"]
+      "hints": ["Três e dois.", "3 + 2.", "Cinco!"]
     }
   ]
 }

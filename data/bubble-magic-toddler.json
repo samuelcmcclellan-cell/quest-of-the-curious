@@ -79,7 +79,7 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "👉 more?",
+      "question": "👉 mais?",
       "illustration": "🔍",
       "options": ["🫧🫧", "🫧🫧🫧🫧🫧"],
       "correct": "🫧🫧🫧🫧🫧",

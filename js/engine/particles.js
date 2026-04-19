@@ -627,6 +627,219 @@ export function ambientLeaves(container) {
     };
 }
 
+// ---------------------------------------------------------------------------
+// Profile-theme ambient particles
+// ---------------------------------------------------------------------------
+
+function _ensureThemeStyles() {
+    injectStyles();
+    if (document.getElementById('theme-ambient-styles')) return;
+    const style = document.createElement('style');
+    style.id = 'theme-ambient-styles';
+    style.textContent = `
+@keyframes sparkle-drift {
+    0%   { transform: translate(0, 0) scale(0.4) rotate(0deg); opacity: 0; }
+    20%  { opacity: 0.95; }
+    80%  { opacity: 0.7; }
+    100% { transform: translate(var(--dx, 20px), -60px) scale(1) rotate(180deg); opacity: 0; }
+}
+.ambient-sparkle {
+    position: absolute;
+    pointer-events: none;
+    font-size: 0.9rem;
+    animation: sparkle-drift linear forwards;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
+}
+@keyframes soccer-arc {
+    0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { transform: translate(calc(var(--dx) * 0.5), -40px) rotate(240deg); opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translate(var(--dx), 0) rotate(720deg); opacity: 0; }
+}
+.ambient-soccer {
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+    font-size: 1.3rem;
+    animation: soccer-arc ease-in-out forwards;
+}
+@keyframes footprint-walk {
+    0%   { opacity: 0; transform: translate(0, 0) rotate(var(--rot, 0deg)) scale(0.9); }
+    20%  { opacity: 0.45; }
+    100% { opacity: 0; transform: translate(var(--dx, 60vw), var(--dy, -10px)) rotate(var(--rot, 0deg)) scale(0.9); }
+}
+.ambient-footprint {
+    position: absolute;
+    pointer-events: none;
+    font-size: 1.2rem;
+    animation: footprint-walk linear forwards;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+}
+/* Falling dino leaves (reuse leaf-fall from animations.css) */
+`;
+    document.head.appendChild(style);
+}
+
+/**
+ * sparkles(container)
+ * Drifting glowing dots — profile palette. Returns cleanup fn.
+ */
+export function sparkles(container) {
+    _ensureThemeStyles();
+    const items = [];
+    let stopped = false;
+
+    function spawn() {
+        if (stopped) return;
+        const el = document.createElement('div');
+        el.className = 'ambient-sparkle';
+        el.textContent = pick(['✨', '⭐', '💫', '🌟']);
+        el.style.left = rand(0, 100) + '%';
+        el.style.top  = rand(30, 95) + '%';
+        el.style.fontSize = rand(0.8, 1.4) + 'rem';
+        el.style.setProperty('--dx', rand(-40, 40) + 'px');
+        el.style.animationDuration = rand(3.5, 6) + 's';
+        container.appendChild(el);
+        items.push(el);
+
+        el.addEventListener('animationend', () => {
+            el.remove();
+            const i = items.indexOf(el);
+            if (i !== -1) items.splice(i, 1);
+        });
+
+        timeoutId = setTimeout(spawn, rand(500, 1200));
+    }
+
+    let timeoutId = setTimeout(spawn, rand(100, 400));
+    return function cleanup() {
+        stopped = true;
+        clearTimeout(timeoutId);
+        items.forEach(i => i.remove());
+        items.length = 0;
+    };
+}
+
+/**
+ * soccerBalls(container)
+ * Small soccer balls arcing across the container bottom. Returns cleanup fn.
+ */
+export function soccerBalls(container) {
+    _ensureThemeStyles();
+    const items = [];
+    let stopped = false;
+
+    function spawn() {
+        if (stopped) return;
+        const el = document.createElement('div');
+        el.className = 'ambient-soccer';
+        el.textContent = pick(['⚽', '🏐', '⚽']);
+        const goRight = Math.random() > 0.5;
+        const startX = goRight ? -20 : 110;
+        const dx = goRight ? rand(110, 140) : rand(-110, -140);
+        el.style.left = startX + 'vw';
+        el.style.fontSize = rand(1.1, 1.6) + 'rem';
+        el.style.setProperty('--dx', dx + 'vw');
+        el.style.animationDuration = rand(4.5, 7.5) + 's';
+        container.appendChild(el);
+        items.push(el);
+
+        el.addEventListener('animationend', () => {
+            el.remove();
+            const i = items.indexOf(el);
+            if (i !== -1) items.splice(i, 1);
+        });
+
+        timeoutId = setTimeout(spawn, rand(2500, 5000));
+    }
+
+    let timeoutId = setTimeout(spawn, rand(400, 1200));
+    return function cleanup() {
+        stopped = true;
+        clearTimeout(timeoutId);
+        items.forEach(i => i.remove());
+        items.length = 0;
+    };
+}
+
+/**
+ * dinoFootprints(container)
+ * Fading footprints traveling left→right plus drifting leaves. Returns cleanup.
+ */
+export function dinoFootprints(container) {
+    _ensureThemeStyles();
+    const items = [];
+    let stopped = false;
+
+    function spawnFootprint() {
+        if (stopped) return;
+        const el = document.createElement('div');
+        el.className = 'ambient-footprint';
+        el.textContent = pick(['🐾', '🦴']);
+        el.style.left = '-20px';
+        el.style.top = rand(20, 85) + '%';
+        el.style.fontSize = rand(1.0, 1.6) + 'rem';
+        el.style.setProperty('--dx', 'calc(100vw + 40px)');
+        el.style.setProperty('--rot', rand(-20, 20) + 'deg');
+        el.style.animationDuration = rand(8, 14) + 's';
+        container.appendChild(el);
+        items.push(el);
+
+        el.addEventListener('animationend', () => {
+            el.remove();
+            const i = items.indexOf(el);
+            if (i !== -1) items.splice(i, 1);
+        });
+
+        stepTimer = setTimeout(spawnFootprint, rand(2500, 5000));
+    }
+
+    function spawnLeaf() {
+        if (stopped) return;
+        const leaf = document.createElement('div');
+        leaf.className = 'ambient-leaf';
+        leaf.textContent = pick(['🌿', '🍃', '🌱']);
+        leaf.style.left = rand(0, 95) + '%';
+        leaf.style.fontSize = rand(1.0, 1.5) + 'rem';
+        leaf.style.setProperty('--drift', rand(-60, 60) + 'px');
+        leaf.style.animationDuration = rand(8, 14) + 's';
+        container.appendChild(leaf);
+        items.push(leaf);
+
+        leaf.addEventListener('animationend', () => {
+            leaf.remove();
+            const i = items.indexOf(leaf);
+            if (i !== -1) items.splice(i, 1);
+        });
+
+        leafTimer = setTimeout(spawnLeaf, rand(1800, 3200));
+    }
+
+    let stepTimer = setTimeout(spawnFootprint, rand(400, 1200));
+    let leafTimer = setTimeout(spawnLeaf, rand(600, 1600));
+    return function cleanup() {
+        stopped = true;
+        clearTimeout(stepTimer);
+        clearTimeout(leafTimer);
+        items.forEach(i => i.remove());
+        items.length = 0;
+    };
+}
+
+/**
+ * startThemeAmbient(layer, profileId)
+ * Dispatches the right ambient effect for a profile.
+ * Returns cleanup fn.
+ */
+export function startThemeAmbient(layer, profileId) {
+    if (!layer) return () => {};
+    if (profileId === 'ziva') return sparkles(layer);
+    if (profileId === 'ava')  return soccerBalls(layer);
+    if (profileId === 'ella') return dinoFootprints(layer);
+    return () => {};
+}
+
 /**
  * shimmerStars(element)
  * Continuous tiny sparkle particles around an element (e.g. completed

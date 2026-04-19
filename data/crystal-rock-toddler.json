@@ -1,6 +1,6 @@
 {
   "island": "crystal-rock",
-  "name": "Crystal Rock",
+  "name": "Rock dos Cristais",
   "challenges": [
     {
       "type": "multiple-choice",
@@ -79,7 +79,7 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "👉 more?",
+      "question": "👉 mais?",
       "illustration": "🔍",
       "options": ["🎸🎸", "🎸🎸🎸🎸🎸🎸"],
       "correct": "🎸🎸🎸🎸🎸🎸",

@@ -1,24 +1,24 @@
 {
   "island": "numbers-reef",
-  "name": "Numbers Reef",
+  "name": "Recife dos Números",
   "challenges": [
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🌊🌊🌊",
+      "question": "Quantas? 🌊🌊🌊",
       "illustration": "🌊",
       "options": [2, 3, 4],
       "correct": 3,
-      "hints": ["Count the waves.", "1, 2, 3.", "Three!"]
+      "hints": ["Conte as ondas.", "1, 2, 3.", "Três!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🐚🐚🐚🐚🐚",
+      "question": "Quantas? 🐚🐚🐚🐚🐚",
       "illustration": "🐚",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Count each shell.", "1, 2, 3, 4, 5.", "Five!"]
+      "hints": ["Conte cada concha.", "1, 2, 3, 4, 5.", "Cinco!"]
     },
     {
       "type": "multiple-choice",
@@ -27,7 +27,7 @@
       "illustration": "🏄",
       "options": [1, 2, 3],
       "correct": 2,
-      "hints": ["Jump 1, then 1 more.", "1 + 1.", "Two!"]
+      "hints": ["Pule 1, depois mais 1.", "1 + 1.", "Dois!"]
     },
     {
       "type": "multiple-choice",
@@ -36,17 +36,17 @@
       "illustration": "🏰",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["Two and two.", "2 + 2.", "Four!"]
+      "hints": ["Dois e dois.", "2 + 2.", "Quatro!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What's next?",
+      "question": "O que vem a seguir?",
       "illustration": "🏖️",
       "sequence": ["🐚", "🌊", "🐚", "🌊", "🐚", "?"],
       "options": ["🐚", "🌊", "🦀"],
       "correct": "🌊",
-      "hints": ["Shell, wave, shell, wave...", "Next is a wave.", "🌊!"]
+      "hints": ["Concha, onda, concha, onda...", "A próxima é uma onda.", "🌊!"]
     },
     {
       "type": "multiple-choice",
@@ -55,25 +55,25 @@
       "illustration": "🏄",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Three and two.", "3 + 2.", "Five!"]
+      "hints": ["Três e dois.", "3 + 2.", "Cinco!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? ⭐⭐⭐⭐⭐⭐⭐",
+      "question": "Quantas? ⭐⭐⭐⭐⭐⭐⭐",
       "illustration": "⭐",
       "options": [6, 7, 8],
       "correct": 7,
-      "hints": ["Touch and count.", "1, 2, 3, 4, 5, 6, 7.", "Seven!"]
+      "hints": ["Toque e conte.", "1, 2, 3, 4, 5, 6, 7.", "Sete!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "Which is MORE?",
+      "question": "Qual tem MAIS?",
       "illustration": "🐚",
       "options": ["🐚🐚🐚", "🐚🐚🐚🐚🐚"],
       "correct": "🐚🐚🐚🐚🐚",
-      "hints": ["Count each bucket.", "5 is bigger than 3.", "5 shells wins!"]
+      "hints": ["Conte cada baldinho.", "5 é maior que 3.", "5 conchas ganham!"]
     },
     {
       "type": "multiple-choice",
@@ -82,16 +82,16 @@
       "illustration": "🏄",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Four and one more.", "4 + 1.", "Five!"]
+      "hints": ["Quatro e mais um.", "4 + 1.", "Cinco!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
+      "question": "Quantas? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
       "illustration": "🌊",
       "options": [8, 9, 10],
       "correct": 10,
-      "hints": ["Count them all.", "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.", "Ten waves!"]
+      "hints": ["Conte todas.", "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.", "Dez ondas!"]
     }
   ]
 }

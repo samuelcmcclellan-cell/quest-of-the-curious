@@ -5,11 +5,11 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🫧🫧🫧",
+      "question": "Quantas? 🫧🫧🫧",
       "illustration": "🫧",
       "options": [2, 3, 4],
       "correct": 3,
-      "hints": ["Count the bubbles.", "1, 2, 3.", "Three!"]
+      "hints": ["Conte as bolhas.", "1, 2, 3.", "Três!"]
     },
     {
       "type": "multiple-choice",
@@ -18,26 +18,26 @@
       "illustration": "🧪",
       "options": [2, 3, 4],
       "correct": 3,
-      "hints": ["One and two more.", "1 + 2.", "Three!"]
+      "hints": ["Uma e mais duas.", "1 + 2.", "Três!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What's next?",
+      "question": "O que vem a seguir?",
       "illustration": "✨",
       "sequence": ["🫧", "✨", "🫧", "✨", "?"],
       "options": ["🫧", "✨", "🔮"],
       "correct": "🫧",
-      "hints": ["Bubble, sparkle, bubble, sparkle...", "Next is a bubble.", "🫧!"]
+      "hints": ["Bolha, brilho, bolha, brilho...", "A próxima é uma bolha.", "🫧!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🪄🪄🪄🪄",
+      "question": "Quantas? 🪄🪄🪄🪄",
       "illustration": "🪄",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["Count the wands.", "1, 2, 3, 4.", "Four!"]
+      "hints": ["Conte as varinhas.", "1, 2, 3, 4.", "Quatro!"]
     },
     {
       "type": "multiple-choice",
@@ -46,7 +46,7 @@
       "illustration": "🧙",
       "options": [2, 3, 4],
       "correct": 3,
-      "hints": ["One witch and two.", "1 + 2.", "Three!"]
+      "hints": ["Um mago e mais dois.", "1 + 2.", "Três!"]
     },
     {
       "type": "multiple-choice",
@@ -55,16 +55,16 @@
       "illustration": "💨",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["One bubble pops.", "5 - 1.", "Four left!"]
+      "hints": ["Uma bolha estoura.", "5 - 1.", "Sobraram quatro!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🔮🔮🔮🔮🔮🔮",
+      "question": "Quantas? 🔮🔮🔮🔮🔮🔮",
       "illustration": "🔮",
       "options": [5, 6, 7],
       "correct": 6,
-      "hints": ["Count each ball.", "1, 2, 3, 4, 5, 6.", "Six!"]
+      "hints": ["Conte cada bola.", "1, 2, 3, 4, 5, 6.", "Seis!"]
     },
     {
       "type": "multiple-choice",
@@ -73,17 +73,17 @@
       "illustration": "✨",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Three and two.", "3 + 2.", "Five!"]
+      "hints": ["Três e dois.", "3 + 2.", "Cinco!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What's next?",
+      "question": "O que vem a seguir?",
       "illustration": "🔢",
       "sequence": [3, 4, "?"],
       "options": [2, 5, 6],
       "correct": 5,
-      "hints": ["After 4 comes...", "3, 4, then?", "5!"]
+      "hints": ["Depois do 4 vem...", "3, 4, e depois?", "5!"]
     },
     {
       "type": "multiple-choice",
@@ -92,7 +92,7 @@
       "illustration": "🪄",
       "options": [7, 8, 9],
       "correct": 8,
-      "hints": ["Four and four.", "4 + 4.", "Eight!"]
+      "hints": ["Quatro e quatro.", "4 + 4.", "Oito!"]
     }
   ]
 }

@@ -1,7 +1,12 @@
+import { isLockedOut } from './state.js';
+
 const routes = {};
 let currentScreen = null;
 let currentScreenEl = null;
 let appContainer = null;
+
+// Routes that are always permitted even when the active profile is locked.
+const LOCKOUT_ALLOWLIST = new Set(['users', 'lockout']);
 
 export function registerRoute(path, screen) {
     routes[path] = screen;
@@ -25,6 +30,13 @@ export function getCurrentRoute() {
 
 function handleRoute() {
     const { path, params } = getCurrentRoute();
+
+    // Belt-and-suspenders lockout guard: if the active profile is locked,
+    // redirect to the lockout screen unless the target is already safe.
+    if (isLockedOut() && !LOCKOUT_ALLOWLIST.has(path)) {
+        navigate('lockout');
+        return;
+    }
 
     const screen = routes[path];
     if (!screen) {

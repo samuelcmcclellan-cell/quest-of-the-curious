@@ -36,10 +36,10 @@ export class NumberBuilder extends ChallengeBase {
                 </div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask for Help
-                    <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
+                    🦉 Pedir Ajuda
+                    <span id="hint-count">(${this.maxHints - this.hintsUsed} restantes)</span>
                 </button>
-                <button class="btn btn-primary" id="check-btn" style="display:none;">Check Answer ✓</button>
+                <button class="btn btn-primary" id="check-btn" style="display:none;">Verificar Resposta ✓</button>
             </div>
         `;
 
@@ -49,7 +49,7 @@ export class NumberBuilder extends ChallengeBase {
     }
 
     _getPlaceLabels(numSlots) {
-        const labels = ['ones', 'tens', 'hundreds', 'thousands'];
+        const labels = ['unidades', 'dezenas', 'centenas', 'milhares'];
         return labels.slice(0, numSlots).reverse();
     }
 
@@ -91,6 +91,7 @@ export class NumberBuilder extends ChallengeBase {
             const result = this.checkAnswer(answer);
 
             if (result.correct) {
+                this.recordCorrect();
                 const slotsContainer = this.container.querySelector('#slots');
                 correctExplosion(slotsContainer);
                 sound.correct();
@@ -107,6 +108,7 @@ export class NumberBuilder extends ChallengeBase {
                     if (this.onComplete) this.onComplete(this.getScore());
                 }, 1000);
             } else {
+                this.recordWrong();
                 sound.wrong();
                 const slotsContainer = this.container.querySelector('#slots');
                 slotsContainer.classList.add('anim-shake');
@@ -152,11 +154,11 @@ export class NumberBuilder extends ChallengeBase {
             const remaining = this.maxHints - this.hintsUsed;
             const hintCount = this.container.querySelector('#hint-count');
             if (remaining > 0) {
-                hintCount.textContent = `(${remaining} left)`;
+                hintCount.textContent = `(${remaining} restantes)`;
             } else {
                 hintBtn.style.opacity = '0.4';
                 hintBtn.style.pointerEvents = 'none';
-                hintCount.textContent = '(no more hints)';
+                hintCount.textContent = '(sem mais dicas)';
             }
         });
     }

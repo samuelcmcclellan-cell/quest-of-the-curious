@@ -23,12 +23,12 @@ export class SequenceNext extends ChallengeBase {
                         ${i < this.data.sequence.length - 1 ? '<div class="seq-arrow">→</div>' : ''}
                     `).join('')}
                 </div>
-                <p style="font-size:1rem;color:var(--text-light);margin:8px 0;">What comes next?</p>
+                <p style="font-size:1rem;color:var(--text-light);margin:8px 0;">O que vem a seguir?</p>
                 <div class="choices" id="choices"></div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask for Help
-                    <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
+                    🦉 Pedir Ajuda
+                    <span id="hint-count">(${this.maxHints - this.hintsUsed} restantes)</span>
                 </button>
             </div>
         `;
@@ -55,6 +55,7 @@ export class SequenceNext extends ChallengeBase {
 
         if (result.correct) {
             this.locked = true;
+            this.recordCorrect();
             btn.classList.add('choice-btn-correct', 'anim-bounce');
 
             // Fill in the blank in the sequence
@@ -81,6 +82,7 @@ export class SequenceNext extends ChallengeBase {
             splashEffect(btn);
             sound.wrong();
             this.locked = true;
+            this.recordWrong();
 
             setTimeout(() => {
                 btn.classList.remove('choice-btn-wrong', 'anim-shake');
@@ -108,11 +110,11 @@ export class SequenceNext extends ChallengeBase {
             const remaining = this.maxHints - this.hintsUsed;
             const hintCount = this.container.querySelector('#hint-count');
             if (remaining > 0) {
-                hintCount.textContent = `(${remaining} left)`;
+                hintCount.textContent = `(${remaining} restantes)`;
             } else {
                 hintBtn.style.opacity = '0.4';
                 hintBtn.style.pointerEvents = 'none';
-                hintCount.textContent = '(no more hints)';
+                hintCount.textContent = '(sem mais dicas)';
             }
 
             if (this.hintsUsed === 2) {

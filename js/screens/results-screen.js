@@ -1,20 +1,22 @@
-import { getState, getNextAvailableChallenge, getIslandProgress, getAllIslandSlugs } from '../state.js';
+import { getState, getNextAvailableChallenge, getIslandProgress, getAllIslandSlugs, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import { confetti, starBurst } from '../engine/particles.js';
+import { getCurrentTheme } from '../engine/profile-theme.js';
+import { STRINGS } from '../i18n.js';
 
 const ISLAND_META = {
-    'numbers-reef':  { name: 'Numbers Reef',  mascot: '🦉', emoji: '🏝️' },
-    'purrfect-park': { name: 'Purrfect Park', mascot: '🐱', emoji: '🌳' },
-    'bubble-magic':  { name: 'Bubble Magic',  mascot: '🧙‍♀️', emoji: '🫧' },
-    'crystal-rock':  { name: 'Crystal Rock',  mascot: '🎸', emoji: '💎' }
+    'numbers-reef':  { name: 'Recife dos Números',  mascot: '🦉', emoji: '🏝️' },
+    'purrfect-park': { name: 'Parque Purrfeito', mascot: '🐱', emoji: '🌳' },
+    'bubble-magic':  { name: 'Magia das Bolhas',  mascot: '🧙‍♀️', emoji: '🫧' },
+    'crystal-rock':  { name: 'Rock dos Cristais',  mascot: '🎸', emoji: '💎' }
 };
 
 const REACTION_BY_STARS = {
-    3: 'AMAZING! Perfect score! You\'re a math superstar!',
-    2: 'Great work, explorer! So close to perfect!',
-    1: 'Good job! You solved it! Keep practicing!',
-    0: 'Keep trying! You\'ll get it!'
+    3: 'INCRÍVEL! Nota máxima! Você é uma estrela da matemática!',
+    2: 'Ótimo trabalho, explorador! Quase perfeito!',
+    1: 'Bom trabalho! Você resolveu! Continue praticando!',
+    0: 'Continue tentando! Você vai conseguir!'
 };
 
 function parseParams(params) {
@@ -51,7 +53,11 @@ export function enter(container, params) {
     const otherHasMore = otherIslands.find(s => getNextAvailableChallenge(s) !== -1);
     const otherMeta = otherHasMore ? ISLAND_META[otherHasMore] : null;
 
-    const reactionMsg = REACTION_BY_STARS[stars] || REACTION_BY_STARS[0];
+    const profile = getCurrentProfileMeta();
+    const theme = getCurrentTheme();
+    const reactionMsg = stars === 3
+        ? (STRINGS.results3starByProfile[profile.id] || REACTION_BY_STARS[3])
+        : (REACTION_BY_STARS[stars] || REACTION_BY_STARS[0]);
     const coinsEarned = stars * 5 + (stars === 3 ? 3 : 0);
 
     const starHTML = Array.from({ length: 3 }, (_, i) => {
@@ -66,25 +72,28 @@ export function enter(container, params) {
     const allDone = totalSlugs.every(s => getIslandProgress(s).isComplete);
 
     container.innerHTML = `
-        <div class="results-container">
-            <div class="guide-character guide-celebrate anim-float" style="font-size:4rem;">${meta.mascot}🎉</div>
+        <div class="results-container ${theme.themeClass}">
+            <div class="results-mascot-stack">
+                <div class="guide-character guide-celebrate anim-float" style="font-size:4rem;">${meta.mascot}🎉</div>
+                <div class="results-sidekick anim-float" style="font-size:2.6rem;">${theme.sidekick}</div>
+            </div>
             <div class="results-stars" id="stars-area">${starHTML}</div>
             <p class="results-message">${reactionMsg}</p>
             <div class="results-rewards">
                 <div class="reward-badge reward-coins" id="coin-reward" style="opacity:0;">
-                    💰 +${coinsEarned} coins!
+                    💰 +${coinsEarned} moedas!
                 </div>
-                ${state.stats.streakCurrent >= 3 ? `<div class="reward-badge reward-streak" style="animation-delay:0.8s;">🔥 ${state.stats.streakCurrent} streak!</div>` : ''}
+                ${state.stats.streakCurrent >= 3 ? `<div class="reward-badge reward-streak" style="animation-delay:0.8s;">🔥 sequência de ${state.stats.streakCurrent}!</div>` : ''}
             </div>
             <p style="color:var(--text-light);font-size:0.9rem;">
-                ${state.playerName}: ⭐ ${state.totalStars} stars &nbsp; 💰 ${state.coins || 0} coins
+                ${state.playerName}: ⭐ ${state.totalStars} estrelas &nbsp; 💰 ${state.coins || 0} moedas
             </p>
             <div class="results-buttons">
-                ${!islandComplete ? `<button class="btn btn-primary btn-large" id="next-btn">Next Challenge →</button>` : ''}
-                ${islandComplete && otherMeta ? `<button class="btn btn-primary btn-large" id="next-island-btn">${otherMeta.emoji} Go to ${otherMeta.name} →</button>` : ''}
-                <button class="btn btn-secondary" id="map-btn">🗺️ Back to Map</button>
-                ${islandComplete ? `<p style="color:var(--success);font-weight:700;font-size:1.2rem;margin-top:12px;">🎉 You completed ${meta.name}!</p>` : ''}
-                ${allDone ? `<p style="color:#7B1FA2;font-weight:800;font-size:1.1rem;margin-top:4px;">🏆 All islands complete — you're a true Quest Master!</p>` : ''}
+                ${!islandComplete ? `<button class="btn btn-primary btn-large" id="next-btn">Próximo Desafio →</button>` : ''}
+                ${islandComplete && otherMeta ? `<button class="btn btn-primary btn-large" id="next-island-btn">${otherMeta.emoji} Ir para ${otherMeta.name} →</button>` : ''}
+                <button class="btn btn-secondary" id="map-btn">🗺️ Voltar ao Mapa</button>
+                ${islandComplete ? `<p style="color:var(--success);font-weight:700;font-size:1.2rem;margin-top:12px;">🎉 Você completou ${meta.name}!</p>` : ''}
+                ${allDone ? `<p style="color:#7B1FA2;font-weight:800;font-size:1.1rem;margin-top:4px;">🏆 Todas as ilhas completas — você é um verdadeiro Mestre da Jornada!</p>` : ''}
             </div>
         </div>
     `;

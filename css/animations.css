@@ -2,13 +2,13 @@
    EXISTING ANIMATIONS (kept)
    =========================== */
 
-/* Glow pulse for available nodes */
+/* Glow pulse for available nodes — tinted by active profile */
 @keyframes glow-pulse {
     0%, 100% {
-        box-shadow: 0 3px 0 var(--accent-dark), 0 4px 10px var(--shadow);
+        box-shadow: 0 3px 0 var(--profile-color-dark), 0 4px 10px var(--shadow);
     }
     50% {
-        box-shadow: 0 3px 0 var(--accent-dark), 0 4px 20px rgba(255, 112, 67, 0.4);
+        box-shadow: 0 3px 0 var(--profile-color-dark), 0 4px 24px var(--profile-color-light);
     }
 }
 

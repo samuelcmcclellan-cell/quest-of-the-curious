@@ -67,11 +67,11 @@
 }
 
 .challenge-question {
-    font-size: 1.2rem;
+    font-size: 1.45rem;
     font-weight: 600;
     text-align: center;
     line-height: 1.5;
-    padding: 12px;
+    padding: 14px;
     background: rgba(255, 255, 255, 0.25);
     border-radius: var(--radius);
     backdrop-filter: blur(4px);
@@ -150,14 +150,14 @@
 }
 
 .nb-slot {
-    width: 56px;
-    height: 64px;
+    width: 64px;
+    height: 72px;
     border: 3px dashed var(--primary-light);
     border-radius: var(--radius);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 2.1rem;
     font-weight: 800;
     color: var(--text-light);
     background: rgba(255, 255, 255, 0.7);
@@ -198,12 +198,12 @@
 
 /* Colorful gem/block digit tiles with gradients */
 .nb-digit {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border-radius: var(--radius);
     background: linear-gradient(145deg, #42A5F5 0%, #1E88E5 50%, #1565C0 100%);
     color: var(--text-white);
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 800;
     display: flex;
     align-items: center;
@@ -332,14 +332,14 @@
 }
 
 .scale-drop {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border: 3px dashed var(--primary-light);
     border-radius: var(--radius);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.55rem;
     font-weight: 800;
     color: var(--text-light);
     background: rgba(255, 255, 255, 0.7);
@@ -357,12 +357,12 @@
 
 /* Gold coin style scale numbers */
 .scale-num {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border-radius: var(--radius-round);
     background: linear-gradient(145deg, #FFD54F 0%, #FFC107 30%, #FFB300 60%, #FF8F00 100%);
     color: #5D4037;
-    font-size: 1.2rem;
+    font-size: 1.45rem;
     font-weight: 800;
     display: flex;
     align-items: center;
@@ -410,13 +410,13 @@
 
 /* Bigger, more playful circular sequence items */
 .seq-item {
-    width: 58px;
-    height: 58px;
+    width: 66px;
+    height: 66px;
     border-radius: var(--radius-round);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     font-weight: 800;
     transition: all 0.3s ease;
 }
@@ -519,7 +519,7 @@
 
 /* Challenge illustration */
 .challenge-illustration {
-    font-size: 3rem;
+    font-size: 3.8rem;
     margin-bottom: 12px;
 }
 

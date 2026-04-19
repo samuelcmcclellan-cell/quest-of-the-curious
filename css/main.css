@@ -45,6 +45,37 @@
     --bubble: rgba(255, 255, 255, 0.5);
 }
 
+/* Per-profile palettes — applied via #app[data-profile="<id>"] */
+#app {
+    /* Fallback defaults so vars always resolve */
+    --profile-color:       #E91E63;
+    --profile-color-dark:  #AD1457;
+    --profile-color-light: #F8BBD0;
+    --profile-gradient:    linear-gradient(135deg, #F06292 0%, #E91E63 50%, #AD1457 100%);
+    --profile-gradient-v:  linear-gradient(180deg, #AD1457, #E91E63 40%, #F06292);
+}
+#app[data-profile="ziva"] {
+    --profile-color:       #E91E63;
+    --profile-color-dark:  #AD1457;
+    --profile-color-light: #F8BBD0;
+    --profile-gradient:    linear-gradient(135deg, #F06292 0%, #E91E63 50%, #AD1457 100%);
+    --profile-gradient-v:  linear-gradient(180deg, #AD1457, #E91E63 40%, #F06292);
+}
+#app[data-profile="ava"] {
+    --profile-color:       #00BCD4;
+    --profile-color-dark:  #00838F;
+    --profile-color-light: #B2EBF2;
+    --profile-gradient:    linear-gradient(135deg, #4DD0E1 0%, #00BCD4 50%, #00838F 100%);
+    --profile-gradient-v:  linear-gradient(180deg, #00838F, #00BCD4 40%, #4DD0E1);
+}
+#app[data-profile="ella"] {
+    --profile-color:       #66BB6A;
+    --profile-color-dark:  #2E7D32;
+    --profile-color-light: #C8E6C9;
+    --profile-gradient:    linear-gradient(135deg, #81C784 0%, #66BB6A 50%, #2E7D32 100%);
+    --profile-gradient-v:  linear-gradient(180deg, #2E7D32, #66BB6A 40%, #81C784);
+}
+
 html, body {
     height: 100%;
     overflow: hidden;
@@ -79,23 +110,402 @@ html, body {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     font-weight: 800;
     line-height: 1.2;
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     line-height: 1.3;
 }
 
 h3 {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: 600;
 }
 
 p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.5;
+}
+
+/* -------------------------------------------------------------------------
+   Heart-pip strip — shown in challenge & practice screen headers.
+   Shakes on each wrong answer; fills from left to right.
+   ------------------------------------------------------------------------- */
+.challenge-header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+}
+
+.heart-strip {
+    display: inline-flex;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
+    line-height: 1;
+}
+.heart-pip {
+    color: rgba(220, 60, 70, 0.25);
+    transition: color 0.2s ease, transform 0.25s ease;
+    transform: scale(1);
+}
+.heart-pip-filled {
+    color: #E53935;
+    text-shadow: 0 0 3px rgba(229, 57, 53, 0.5);
+    transform: scale(1.15);
+}
+
+/* -------------------------------------------------------------------------
+   Stacked island + profile-sidekick mascot
+   ------------------------------------------------------------------------- */
+.mascot-stack {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    cursor: pointer;
+    min-width: 56px;
+}
+.mascot-stack .mascot-island {
+    font-size: 2rem;
+    line-height: 1;
+}
+.mascot-stack .mascot-profile {
+    font-size: 1.3rem;
+    margin-top: -6px;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+.mascot-speech {
+    position: absolute;
+    right: calc(100% + 6px);
+    top: 4px;
+    background: #FFF;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    max-width: 180px;
+    white-space: normal;
+    text-align: right;
+}
+.mascot-speech::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 12px;
+    border: 6px solid transparent;
+    border-left-color: #FFF;
+    border-right: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Profile theme classes — light tints on body / cards when a profile theme
+   class is applied. Island themes still render their own backgrounds.
+   ------------------------------------------------------------------------- */
+.theme-ziva .profile-deco,
+.theme-ava  .profile-deco,
+.theme-ella .profile-deco {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.35;
+    animation: float-gentle 4s ease-in-out infinite;
+    user-select: none;
+}
+@keyframes float-gentle {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+/* Decorative sidekick floating next to greeting */
+.islands-hello-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 12px 0;
+}
+.islands-hello {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.15rem;
+}
+.islands-sidekick {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.15));
+}
+
+/* Screen-wide ambient layer (non-interactive) */
+.screen-ambient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+/* Map header sidekick chip */
+.map-header-sidekick {
+    font-size: 1.4rem;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+/* Results sidekick stack */
+.results-mascot-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -4px;
+}
+.results-sidekick {
+    margin-top: -8px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+/* User-card sidekick (shown in users screen) */
+.user-card {
+    position: relative;
+}
+.user-card-sidekick {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 1.6rem;
+    opacity: 0.85;
+}
+
+/* Profile screen sidekick / accent */
+.profile-card-sidekick {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 2rem;
+    opacity: 0.9;
+    animation: float-gentle 3s ease-in-out infinite;
+}
+.profile-card-accent {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 1.6rem;
+    opacity: 0.75;
+}
+
+/* -------------------------------------------------------------------------
+   Lockout screen
+   ------------------------------------------------------------------------- */
+.lockout-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+    overflow: hidden;
+    color: var(--text);
+}
+.lockout-ambient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+.lockout-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+    max-width: 380px;
+}
+.lockout-mascot-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.lockout-speech {
+    background: #FFF;
+    padding: 10px 14px;
+    border-radius: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    font-weight: 600;
+    font-size: 1rem;
+    max-width: 220px;
+    position: relative;
+}
+.lockout-speech::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 18px;
+    border: 8px solid transparent;
+    border-left-color: #FFF;
+    border-right: 0;
+}
+.lockout-mascot {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lockout-mascot-main {
+    font-size: 3.8rem;
+    line-height: 1;
+}
+.lockout-mascot-side {
+    position: absolute;
+    bottom: -4px;
+    right: -8px;
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+}
+.lockout-timer-wrap {
+    position: relative;
+    width: 180px;
+    height: 180px;
+}
+.lockout-ring {
+    position: absolute;
+    inset: 0;
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+.lockout-ring-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.45);
+    stroke-width: 8;
+}
+.lockout-ring-progress {
+    fill: none;
+    stroke: var(--profile-color, #E91E63);
+    stroke-width: 10;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+}
+.lockout-timer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: #FFF;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+.lockout-encouragement {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #FFF;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.lockout-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+.lockout-home-btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.lockout-home-mini {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-left: 6px;
+}
+.lockout-why-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFF;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 4px;
+}
+.lockout-why-label {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 2px;
+}
+.lockout-modal {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 20px;
+}
+.lockout-modal[hidden] { display: none; }
+.lockout-modal-card {
+    background: #FFF;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    max-width: 340px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.lockout-modal-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+.lockout-modal-body {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+.lockout-release-caption {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #FFF;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    z-index: 2;
+}
+
+/* Theme-specific lockout backgrounds */
+.theme-bg-crystal {
+    background: linear-gradient(160deg, #6A1B9A 0%, #9C27B0 40%, #CE93D8 100%);
+}
+.theme-bg-pitch {
+    background: linear-gradient(160deg, #1B5E20 0%, #388E3C 40%, #81C784 100%);
+}
+.theme-bg-jungle {
+    background: linear-gradient(160deg, #3E2723 0%, #5D4037 30%, #6D8E4B 70%, #8BC34A 100%);
 }

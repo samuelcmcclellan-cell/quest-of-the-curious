@@ -1,10 +1,12 @@
-import { getState, updateState, getCurrentProfileMeta } from '../state.js';
+import { getState, updateState, getCurrentProfileMeta, getWrongAnswerCount, LOCKOUT_THRESHOLD } from '../state.js';
 import { navigate } from '../router.js';
 import { MultipleChoice } from '../challenges/multiple-choice.js';
 import { NumberBuilder } from '../challenges/number-builder.js';
 import { BalanceScale } from '../challenges/balance-scale.js';
 import { SequenceNext } from '../challenges/sequence-next.js';
 import * as sound from '../engine/sound.js';
+import { getCurrentTheme, pickCorrectPhrase, pickWrongPhrase } from '../engine/profile-theme.js';
+import { STRINGS } from '../i18n.js';
 
 const CHALLENGE_TYPES = {
     'multiple-choice': MultipleChoice,
@@ -20,14 +22,10 @@ const ISLAND_MASCOTS = {
     'crystal-rock': '🎸'
 };
 
-const GUIDE_STATES = {
-    idle:      { suffix: '' },
-    cheer:     { suffix: '🎉' },
-    encourage: { suffix: '💪' },
-    hint:      { suffix: '💡' },
-};
-
 let currentChallenge = null;
+let wrongListener = null;
+let correctListener = null;
+let speechTimer = null;
 const dataCache = new Map();
 
 async function loadChallengeData(islandSlug) {
@@ -42,9 +40,6 @@ async function loadChallengeData(islandSlug) {
 }
 
 function parseParams(params) {
-    // Supported shapes:
-    //   ['numbers-reef', '3'] (new)
-    //   ['3']                  (legacy) -> use state.currentIsland
     if (!params || params.length === 0) {
         return { islandSlug: getState().currentIsland || 'numbers-reef', index: 0 };
     }
@@ -56,9 +51,42 @@ function parseParams(params) {
     return { islandSlug: first, index: parseInt(params[1] || '0', 10) };
 }
 
+function renderHeartStrip(count) {
+    const pips = [];
+    for (let i = 0; i < LOCKOUT_THRESHOLD; i++) {
+        const filled = i < count;
+        pips.push(`<span class="heart-pip ${filled ? 'heart-pip-filled' : ''}" aria-hidden="true">♥</span>`);
+    }
+    return pips.join('');
+}
+
+function updateHeartStrip(container, count) {
+    const strip = container.querySelector('#heart-strip');
+    if (!strip) return;
+    strip.innerHTML = renderHeartStrip(count);
+    if (count > 0) strip.classList.add('anim-shake');
+    setTimeout(() => strip?.classList.remove('anim-shake'), 400);
+}
+
+function showSpeech(container, text) {
+    const bubble = container.querySelector('#mascot-speech');
+    if (!bubble) return;
+    bubble.textContent = text;
+    bubble.classList.remove('anim-fade-in');
+    void bubble.offsetWidth;
+    bubble.classList.add('anim-fade-in');
+    bubble.style.opacity = '1';
+    if (speechTimer) clearTimeout(speechTimer);
+    speechTimer = setTimeout(() => {
+        bubble.style.opacity = '0';
+    }, 2500);
+}
+
 export async function enter(container, params) {
     const { islandSlug, index: challengeIndex } = parseParams(params);
     const state = getState();
+    const profile = getCurrentProfileMeta();
+    const theme = getCurrentTheme();
 
     let data;
     try {
@@ -75,22 +103,32 @@ export async function enter(container, params) {
         return;
     }
 
-    const mascot = ISLAND_MASCOTS[islandSlug] || '🦉';
+    const islandMascot = ISLAND_MASCOTS[islandSlug] || '🦉';
     const islandChallenges = state.islands[islandSlug]?.challenges || [];
     const difficulty = challenge.difficulty || 1;
     const bgClass = `challenge-bg-${Math.min(difficulty, 5)}`;
+    const initialWrong = getWrongAnswerCount();
 
     container.innerHTML = `
-        <div class="challenge-screen ${bgClass}">
+        <div class="challenge-screen ${bgClass} ${theme.themeClass}">
             <div class="challenge-header">
-                <button class="btn btn-small btn-ghost" id="back-btn">← Map</button>
-                <div class="challenge-progress" id="progress-dots"></div>
-                <div class="guide-character guide-idle anim-float" id="guide" style="font-size:1.8rem;cursor:pointer;" title="Click for encouragement">${mascot}</div>
+                <button class="btn btn-small btn-ghost" id="back-btn">← Mapa</button>
+                <div class="challenge-header-center">
+                    <div class="challenge-progress" id="progress-dots"></div>
+                    <div class="heart-strip" id="heart-strip" title="${STRINGS.hearts.tooltip}">
+                        ${renderHeartStrip(initialWrong)}
+                    </div>
+                </div>
+                <div class="mascot-stack" id="mascot-stack" title="Clique para motivação">
+                    <div class="mascot-speech" id="mascot-speech" style="opacity:0;"></div>
+                    <div class="mascot-island anim-float">${islandMascot}</div>
+                    <div class="mascot-profile">${theme.sidekick}</div>
+                </div>
             </div>
             <div class="challenge-body" id="challenge-body"></div>
             <div class="challenge-footer">
                 <div class="streak-badge" id="streak-badge" style="display:none;">
-                    🔥 <span id="streak-count">0</span> streak!
+                    🔥 sequência de <span id="streak-count">0</span>!
                 </div>
             </div>
         </div>
@@ -117,16 +155,13 @@ export async function enter(container, params) {
         container.querySelector('#streak-count').textContent = streak;
     }
 
-    // Guide tap - encouragement
-    const guideEl = container.querySelector('#guide');
-    guideEl.addEventListener('click', () => {
-        guideEl.textContent = mascot + GUIDE_STATES.encourage.suffix;
-        guideEl.classList.add('anim-bounce');
+    // Mascot tap - encouragement (themed phrase)
+    const mascotStack = container.querySelector('#mascot-stack');
+    mascotStack.addEventListener('click', () => {
+        mascotStack.classList.add('anim-bounce');
         sound.tap();
-        setTimeout(() => {
-            guideEl.textContent = mascot;
-            guideEl.classList.remove('anim-bounce');
-        }, 1200);
+        showSpeech(container, pickCorrectPhrase(profile.id));
+        setTimeout(() => mascotStack.classList.remove('anim-bounce'), 800);
     });
 
     // Create challenge instance
@@ -134,8 +169,8 @@ export async function enter(container, params) {
     if (!ChallengeClass) {
         container.querySelector('#challenge-body').innerHTML = `
             <div class="challenge-area" style="text-align:center;">
-                <p>Unknown challenge type: ${challenge.type}</p>
-                <button class="btn btn-primary" id="skip-btn">Skip</button>
+                <p>Tipo de desafio desconhecido: ${challenge.type}</p>
+                <button class="btn btn-primary" id="skip-btn">Pular</button>
             </div>
         `;
         container.querySelector('#skip-btn').addEventListener('click', () => navigate('map/' + islandSlug));
@@ -146,8 +181,8 @@ export async function enter(container, params) {
     currentChallenge = new ChallengeClass(challenge, bodyEl);
 
     currentChallenge.onComplete = (stars) => {
-        guideEl.textContent = mascot + GUIDE_STATES.cheer.suffix;
-        guideEl.classList.add('anim-bounce');
+        mascotStack.classList.add('anim-bounce');
+        showSpeech(container, pickCorrectPhrase(profile.id));
 
         const coinReward = stars * 5 + (stars === 3 ? 3 : 0);
 
@@ -167,6 +202,22 @@ export async function enter(container, params) {
         navigate(`results/${islandSlug}/${challengeIndex}/${stars}`);
     };
 
+    // Listen for wrong/correct from ChallengeBase — updates heart strip + lockout transition
+    wrongListener = (e) => {
+        const { wrongCount, locked } = e.detail || {};
+        updateHeartStrip(container, wrongCount || 0);
+        showSpeech(container, pickWrongPhrase(profile.id));
+        if (locked) {
+            sound.timeout && sound.timeout();
+            setTimeout(() => navigate('lockout'), 600);
+        }
+    };
+    correctListener = () => {
+        updateHeartStrip(container, 0);
+    };
+    document.addEventListener('quest:wrong-answer', wrongListener);
+    document.addEventListener('quest:correct-answer', correctListener);
+
     currentChallenge.render();
     sound.whoosh();
 
@@ -177,5 +228,17 @@ export function exit() {
     if (currentChallenge) {
         currentChallenge.destroy();
         currentChallenge = null;
+    }
+    if (wrongListener) {
+        document.removeEventListener('quest:wrong-answer', wrongListener);
+        wrongListener = null;
+    }
+    if (correctListener) {
+        document.removeEventListener('quest:correct-answer', correctListener);
+        correctListener = null;
+    }
+    if (speechTimer) {
+        clearTimeout(speechTimer);
+        speechTimer = null;
     }
 }

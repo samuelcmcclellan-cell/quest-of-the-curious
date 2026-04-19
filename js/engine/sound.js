@@ -380,6 +380,25 @@ export function coinCollect() {
 }
 
 // ---------------------------------------------------------------------------
+// Timeout  --  gentle descending chime for lockout transition (NOT harsh)
+// ---------------------------------------------------------------------------
+export function timeout() {
+    if (!enabled) return;
+    const ctx = getCtx();
+    const now = ctx.currentTime;
+
+    // Descending major triad: G5 -> E5 -> C5 (soft, not alarming)
+    const notes = [783.99, 659.25, 523.25];
+    const spacing = 0.22;
+
+    notes.forEach((freq, i) => {
+        const t = now + i * spacing;
+        tone(ctx, freq, t, 0.6, 'sine', 0.14);
+        tone(ctx, freq * 0.5, t, 0.5, 'triangle', 0.05);
+    });
+}
+
+// ---------------------------------------------------------------------------
 // Background Music  --  calm underwater ambient loop
 // ---------------------------------------------------------------------------
 export function bgMusic(playing) {

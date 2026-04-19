@@ -1,7 +1,9 @@
-import { getState, updateState, getIslandChallenges } from '../state.js';
+import { getState, updateState, getIslandChallenges, getProfiles, getProfileIslandStars, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
-import { ambientBubbles, ambientFish, ambientButterflies, ambientLeaves, shimmerStars } from '../engine/particles.js';
+import { ambientBubbles, ambientFish, ambientButterflies, ambientLeaves, shimmerStars, startThemeAmbient } from '../engine/particles.js';
+import { renderCharacter } from '../engine/character.js';
+import { getCurrentTheme } from '../engine/profile-theme.js';
 
 const NODE_POSITIONS = [
     { x: 50, y: 92 },
@@ -19,8 +21,8 @@ const NODE_POSITIONS = [
 const ISLAND_CONFIGS = {
     'numbers-reef': {
         slug: 'numbers-reef',
-        name: 'Numbers Reef',
-        title: '🏝️ Numbers Reef',
+        name: 'Recife dos Números',
+        title: '🏝️ Recife dos Números',
         mascot: '🦉',
         bgClass: 'map-bg-ocean',
         headerClass: '',
@@ -38,8 +40,8 @@ const ISLAND_CONFIGS = {
     },
     'purrfect-park': {
         slug: 'purrfect-park',
-        name: 'Purrfect Park',
-        title: '🌳 Purrfect Park',
+        name: 'Parque Purrfeito',
+        title: '🌳 Parque Purrfeito',
         mascot: '🐱',
         bgClass: 'map-bg-park',
         headerClass: 'map-header-park',
@@ -57,8 +59,8 @@ const ISLAND_CONFIGS = {
     },
     'bubble-magic': {
         slug: 'bubble-magic',
-        name: 'Bubble Magic',
-        title: '🫧 Bubble Magic',
+        name: 'Magia das Bolhas',
+        title: '🫧 Magia das Bolhas',
         mascot: '🧙‍♀️',
         bgClass: 'map-bg-bubble',
         headerClass: 'map-header-bubble',
@@ -76,8 +78,8 @@ const ISLAND_CONFIGS = {
     },
     'crystal-rock': {
         slug: 'crystal-rock',
-        name: 'Crystal Rock',
-        title: '💎 Crystal Rock',
+        name: 'Rock dos Cristais',
+        title: '💎 Rock dos Cristais',
         mascot: '🎸',
         bgClass: 'map-bg-crystal',
         headerClass: 'map-header-crystal',
@@ -107,6 +109,8 @@ export function enter(container, params) {
     // Persist current island
     updateState(s => { s.currentIsland = islandSlug; });
 
+    const profile = getCurrentProfileMeta();
+    const theme = getCurrentTheme();
     const islandChallenges = getIslandChallenges(islandSlug);
     const nextAvailable = islandChallenges.findIndex(c => !c.completed);
     const completedCount = islandChallenges.filter(c => c.completed).length;
@@ -115,10 +119,10 @@ export function enter(container, params) {
     const starSum = islandChallenges.reduce((sum, c) => sum + c.stars, 0);
 
     container.innerHTML = `
-        <div class="map-header ${config.headerClass}">
+        <div class="map-header ${config.headerClass} ${theme.themeClass}">
             <div style="display:flex;align-items:center;justify-content:space-between;">
-                <button class="btn btn-small" id="islands-btn" style="background:transparent;color:#FFF;font-size:0.85rem;padding:4px 10px;min-height:auto;border:1px solid rgba(255,255,255,0.3);">🗺️ Islands</button>
-                <h2 style="margin:0;">${config.title}</h2>
+                <button class="btn btn-small" id="islands-btn" style="background:transparent;color:#FFF;font-size:0.85rem;padding:4px 10px;min-height:auto;border:1px solid rgba(255,255,255,0.3);">🗺️ Ilhas</button>
+                <h2 style="margin:0;">${config.title} <span class="map-header-sidekick">${theme.sidekick}</span></h2>
                 <div style="display:flex;gap:6px;align-items:center;">
                     <button class="btn btn-small" id="music-btn" style="background:transparent;color:#FFF;font-size:1.2rem;padding:4px 8px;min-height:auto;">🎵</button>
                     <button class="btn btn-small" id="sound-btn" style="background:transparent;color:#FFF;font-size:1.2rem;padding:4px 8px;min-height:auto;">${state.settings.soundOn ? '🔊' : '🔇'}</button>
@@ -126,10 +130,11 @@ export function enter(container, params) {
             </div>
             <div class="map-star-count">⭐ ${starSum} / ${total * 3} &nbsp; 💰 ${state.coins || 0}</div>
             <div style="background:rgba(255,255,255,0.2);border-radius:99px;height:8px;margin-top:6px;overflow:hidden;">
-                <div style="background:linear-gradient(90deg,#FFD740,#FF7043);height:100%;width:${progressPct}%;border-radius:99px;transition:width 0.5s;"></div>
+                <div style="background:var(--profile-gradient);height:100%;width:${progressPct}%;border-radius:99px;transition:width 0.5s;"></div>
             </div>
-            <div style="font-size:0.7rem;color:rgba(255,255,255,0.7);margin-top:2px;">${completedCount}/${total} challenges complete</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.7);margin-top:2px;">${completedCount}/${total} desafios concluídos</div>
         </div>
+        <div class="family-strip" id="family-strip"></div>
         <div class="map-container ${config.bgClass}" id="map-scroll">
             <div class="island-path" id="island-path">
                 <svg id="path-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
@@ -137,8 +142,8 @@ export function enter(container, params) {
             </div>
         </div>
         <div class="map-bottom">
-            <button class="btn btn-secondary" id="practice-btn">🎯 Practice</button>
-            <button class="btn btn-ghost" id="profile-btn">😊 Profile</button>
+            <button class="btn btn-secondary" id="practice-btn">🎯 Praticar</button>
+            <button class="btn btn-ghost" id="profile-btn">😊 Perfil</button>
         </div>
     `;
 
@@ -223,6 +228,36 @@ export function enter(container, params) {
         if (isCompleted) nodeEls.push(node);
     });
 
+    // Player token at the kid's current node
+    const currentIndex = nextAvailable >= 0 ? nextAvailable : Math.max(0, total - 1);
+    const tokenPos = NODE_POSITIONS[currentIndex];
+    if (tokenPos) {
+        const token = document.createElement('div');
+        token.className = 'player-token';
+        token.style.left = tokenPos.x + '%';
+        token.style.top = tokenPos.y + '%';
+        token.appendChild(renderCharacter({ character: state.character, size: 52 }));
+        pathEl.appendChild(token);
+    }
+
+    // Family Progress strip (siblings' avatars + stars for THIS island)
+    const stripEl = container.querySelector('#family-strip');
+    if (stripEl) {
+        const allProfiles = getProfiles();
+        allProfiles.forEach(p => {
+            const stars = getProfileIslandStars(p.id, islandSlug);
+            const member = document.createElement('div');
+            member.className = 'family-member' + (p.isActive ? ' family-member-active' : '');
+            member.dataset.profile = p.id;
+            member.innerHTML = `
+                <div class="family-avatar">${p.avatar}</div>
+                <div class="family-name">${p.name}</div>
+                <div class="family-stars">⭐ ${stars}</div>
+            `;
+            stripEl.appendChild(member);
+        });
+    }
+
     // Shimmer on completed nodes
     requestAnimationFrame(() => {
         nodeEls.forEach(node => {
@@ -236,6 +271,10 @@ export function enter(container, params) {
     if (config.ambient.fish) cleanupFns.push(ambientFish(ambientLayer));
     if (config.ambient.butterflies) cleanupFns.push(ambientButterflies(ambientLayer));
     if (config.ambient.leaves) cleanupFns.push(ambientLeaves(ambientLayer));
+
+    // Profile-themed ambient on top of island ambient (lighter touch)
+    const themeAmbient = startThemeAmbient(ambientLayer, profile.id);
+    if (themeAmbient) cleanupFns.push(themeAmbient);
 
     // Scroll to the next available node
     requestAnimationFrame(() => {

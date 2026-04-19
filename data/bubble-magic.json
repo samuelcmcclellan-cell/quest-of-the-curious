@@ -5,106 +5,106 @@
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "🧙‍♀️ A witch brews 6 potions in the morning and 8 more in the afternoon. How many potions in total?",
+      "question": "🧙‍♀️ Uma bruxa prepara 6 poções de manhã e mais 8 à tarde. Quantas poções no total?",
       "illustration": "🧪",
       "options": [12, 13, 14, 16],
       "correct": 14,
       "hints": [
-        "Add the morning and afternoon potions.",
+        "Some as poções da manhã e da tarde.",
         "6 + 8 = ?",
-        "6 + 8 = 14 potions!"
+        "6 + 8 = 14 poções!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 2,
-      "question": "🫧 Magic bubbles multiply! Each step adds ten. What comes next?",
+      "question": "🫧 As bolhas mágicas se multiplicam! Cada passo adiciona dez. O que vem a seguir?",
       "illustration": "🫧",
       "sequence": [10, 20, 30, 40, 50, "?"],
       "options": [51, 55, 60, 65],
       "correct": 60,
       "hints": [
-        "Count by tens!",
-        "10, 20, 30, 40, 50, then?",
+        "Conte de 10 em 10!",
+        "10, 20, 30, 40, 50, e depois?",
         "50 + 10 = 60!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "🧚 A fairy doubles every bubble she touches. She starts with 7 bubbles. How many after doubling?",
+      "question": "🧚 Uma fada dobra cada bolha que toca. Ela começa com 7 bolhas. Quantas depois de dobrar?",
       "illustration": "🫧",
       "options": [12, 13, 14, 15],
       "correct": 14,
       "hints": [
-        "Doubling means 2 times.",
-        "7 + 7 or 7 × 2.",
-        "14 bubbles!"
+        "Dobrar significa 2 vezes.",
+        "7 + 7 ou 7 × 2.",
+        "14 bolhas!"
       ]
     },
     {
       "type": "number-builder",
       "difficulty": 3,
-      "question": "🔮 A wizard casts a subtraction spell: 63 minus 27. Build the answer!",
+      "question": "🔮 Um mago lança um feitiço de subtração: 63 menos 27. Monte a resposta!",
       "illustration": "🔮",
       "correct": 36,
       "hints": [
-        "Subtract 27 from 63.",
-        "63 - 20 = 43, then 43 - 7 = 36.",
+        "Subtraia 27 de 63.",
+        "63 - 20 = 43, depois 43 - 7 = 36.",
         "36!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "⏰ The magic spell starts at 2:00 and lasts 3 hours. What time does it end?",
+      "question": "⏰ O feitiço mágico começa às 2:00 e dura 3 horas. A que horas termina?",
       "illustration": "⏰",
       "options": ["4:00", "5:00", "6:00", "3:30"],
       "correct": "5:00",
       "hints": [
-        "Add 3 hours to the start time.",
-        "2:00 + 3 hours.",
+        "Some 3 horas ao horário de início.",
+        "2:00 + 3 horas.",
         "5:00!"
       ]
     },
     {
       "type": "balance-scale",
       "difficulty": 3,
-      "question": "✨ Two magic pouches must balance the 18-pound crystal. Pick numbers that add to 18!",
+      "question": "✨ Duas bolsinhas mágicas precisam equilibrar o cristal de 18 quilos. Escolha números que somem 18!",
       "illustration": "⚖️",
       "leftSide": 18,
       "correct": 18,
       "dropSlots": [1, 2],
       "availableNumbers": [5, 7, 8, 9, 10, 11, 13],
       "hints": [
-        "Find two numbers that add to 18.",
-        "Try pairs: 5+13, 7+11, 8+10, 9+9 (no same twice)...",
-        "Pick any pair summing to 18!"
+        "Encontre dois números que somem 18.",
+        "Tente os pares: 5+13, 7+11, 8+10, 9+9 (não pode repetir)...",
+        "Escolha qualquer par que some 18!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 3,
-      "question": "🪄 Each wand casts 4 spells. There are 7 wands. How many spells can be cast?",
+      "question": "🪄 Cada varinha lança 4 feitiços. São 7 varinhas. Quantos feitiços podem ser lançados?",
       "illustration": "🪄",
       "options": [21, 24, 28, 32],
       "correct": 28,
       "hints": [
-        "4 spells × 7 wands.",
+        "4 feitiços × 7 varinhas.",
         "4 × 7 = ?",
-        "4 × 7 = 28 spells!"
+        "4 × 7 = 28 feitiços!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 3,
-      "question": "🌙 Each bubble doubles in size! What's next?",
+      "question": "🌙 Cada bolha dobra de tamanho! O que vem a seguir?",
       "illustration": "🫧",
       "sequence": [1, 2, 4, 8, 16, "?"],
       "options": [18, 24, 30, 32],
       "correct": 32,
       "hints": [
-        "Each is double the last.",
+        "Cada um é o dobro do anterior.",
         "1×2=2, 2×2=4, 4×2=8, 8×2=16...",
         "16 × 2 = 32!"
       ]
@@ -112,25 +112,25 @@
     {
       "type": "number-builder",
       "difficulty": 3,
-      "question": "📜 The spellbook says: 145 + 78. Build the answer!",
+      "question": "📜 O livro de feitiços diz: 145 + 78. Monte a resposta!",
       "illustration": "📜",
       "correct": 223,
       "hints": [
-        "Add ones: 5 + 8 = 13 (carry 1).",
-        "Tens: 4 + 7 + 1 = 12 (carry 1).",
-        "Hundreds: 1 + 1 = 2. Answer: 223!"
+        "Some as unidades: 5 + 8 = 13 (vai 1).",
+        "Dezenas: 4 + 7 + 1 = 12 (vai 1).",
+        "Centenas: 1 + 1 = 2. Resposta: 223!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 3,
-      "question": "🔮 The crystal ball counts down by 10s. What's next?",
+      "question": "🔮 A bola de cristal conta de 10 em 10 para trás. O que vem a seguir?",
       "illustration": "🔮",
       "sequence": [100, 90, 80, 70, 60, "?"],
       "options": [40, 50, 55, 65],
       "correct": 50,
       "hints": [
-        "Each step goes down by 10.",
+        "Cada passo diminui de 10.",
         "60 - 10 = ?",
         "50!"
       ]

@@ -1,15 +1,15 @@
 {
   "island": "crystal-rock",
-  "name": "Crystal Rock",
+  "name": "Rock dos Cristais",
   "challenges": [
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🎸🎸🎸🎸",
+      "question": "Quantas? 🎸🎸🎸🎸",
       "illustration": "🎸",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["Count the guitars.", "1, 2, 3, 4.", "Four!"]
+      "hints": ["Conte as guitarras.", "1, 2, 3, 4.", "Quatro!"]
     },
     {
       "type": "multiple-choice",
@@ -18,26 +18,26 @@
       "illustration": "🥁",
       "options": [2, 3, 4],
       "correct": 3,
-      "hints": ["One drum and two.", "1 + 2.", "Three!"]
+      "hints": ["Um tambor e dois.", "1 + 2.", "Três!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What's next?",
+      "question": "O que vem a seguir?",
       "illustration": "🎸",
       "sequence": ["🎸", "🎤", "🎸", "🎤", "?"],
       "options": ["🎸", "🎤", "🥁"],
       "correct": "🎸",
-      "hints": ["Guitar, mic, guitar, mic...", "Next is a guitar.", "🎸!"]
+      "hints": ["Guitarra, microfone, guitarra, microfone...", "O próximo é uma guitarra.", "🎸!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 💎💎💎💎💎",
+      "question": "Quantas? 💎💎💎💎💎",
       "illustration": "💎",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Count the gems.", "1, 2, 3, 4, 5.", "Five!"]
+      "hints": ["Conte as gemas.", "1, 2, 3, 4, 5.", "Cinco!"]
     },
     {
       "type": "multiple-choice",
@@ -46,7 +46,7 @@
       "illustration": "🎤",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["One and three.", "1 + 3.", "Four!"]
+      "hints": ["Um e três.", "1 + 3.", "Quatro!"]
     },
     {
       "type": "multiple-choice",
@@ -55,16 +55,16 @@
       "illustration": "🎧",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["One comes off.", "5 - 1.", "Four!"]
+      "hints": ["Um sai.", "5 - 1.", "Quatro!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "Biggest?",
+      "question": "O maior?",
       "illustration": "🎵",
       "options": [2, 5, 9],
       "correct": 9,
-      "hints": ["Biggest means most.", "9 is after 5 and 2.", "9!"]
+      "hints": ["Maior quer dizer mais.", "9 vem depois de 5 e 2.", "9!"]
     },
     {
       "type": "multiple-choice",
@@ -73,26 +73,26 @@
       "illustration": "🎹",
       "options": [5, 6, 7],
       "correct": 6,
-      "hints": ["Three and three.", "3 + 3.", "Six!"]
+      "hints": ["Três e três.", "3 + 3.", "Seis!"]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "What's next?",
+      "question": "O que vem a seguir?",
       "illustration": "🔢",
       "sequence": [4, 5, "?"],
       "options": [3, 6, 7],
       "correct": 6,
-      "hints": ["After 5 comes...", "4, 5, then?", "6!"]
+      "hints": ["Depois do 5 vem...", "4, 5, e aí?", "6!"]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "How many? 🎸🎸🎸🎸🎸🎸🎸",
+      "question": "Quantas? 🎸🎸🎸🎸🎸🎸🎸",
       "illustration": "🎸",
       "options": [6, 7, 8],
       "correct": 7,
-      "hints": ["Count each guitar.", "1, 2, 3, 4, 5, 6, 7.", "Seven!"]
+      "hints": ["Conte cada guitarra.", "1, 2, 3, 4, 5, 6, 7.", "Sete!"]
     }
   ]
 }

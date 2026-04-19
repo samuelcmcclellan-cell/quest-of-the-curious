@@ -20,8 +20,8 @@ export class MultipleChoice extends ChallengeBase {
                 <div class="choices" id="choices"></div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask for Help
-                    <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
+                    🦉 Pedir Ajuda
+                    <span id="hint-count">(${this.maxHints - this.hintsUsed} restantes)</span>
                 </button>
             </div>
         `;
@@ -49,6 +49,7 @@ export class MultipleChoice extends ChallengeBase {
 
         if (result.correct) {
             this.locked = true;
+            this.recordCorrect();
             btn.classList.add('choice-btn-correct', 'anim-bounce');
 
             // Big celebration on the correct button
@@ -69,6 +70,7 @@ export class MultipleChoice extends ChallengeBase {
             splashEffect(btn);
             sound.wrong();
             this.locked = true;
+            this.recordWrong();
 
             setTimeout(() => {
                 btn.classList.remove('choice-btn-wrong', 'anim-shake');
@@ -94,12 +96,12 @@ export class MultipleChoice extends ChallengeBase {
         const hintCount = this.container.querySelector('#hint-count');
         const remaining = this.maxHints - this.hintsUsed;
         if (remaining > 0) {
-            hintCount.textContent = `(${remaining} left)`;
+            hintCount.textContent = `(${remaining} restantes)`;
         } else {
             const hintBtn = this.container.querySelector('#hint-btn');
             hintBtn.style.opacity = '0.4';
             hintBtn.style.pointerEvents = 'none';
-            hintCount.textContent = '(no more hints)';
+            hintCount.textContent = '(sem mais dicas)';
         }
 
         // Level 2 hint: eliminate two wrong answers

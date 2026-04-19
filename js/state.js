@@ -3,10 +3,13 @@ const STORAGE_KEY = 'quest-of-the-curious';
 const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park', 'bubble-magic', 'crystal-rock'];
 
 const PROFILE_DEFS = [
-    { id: 'ziva', name: 'Ziva', age: 8, avatar: '🧚', color: '#E91E63' },
-    { id: 'ava',  name: 'Ava',  age: 5, avatar: '🧜', color: '#00BCD4' },
+    { id: 'ziva', name: 'Ziva', age: 8, avatar: '🔮', color: '#E91E63' },
+    { id: 'ava',  name: 'Ava',  age: 5, avatar: '⚽', color: '#00BCD4' },
     { id: 'ella', name: 'Ella', age: 4, avatar: '🦕', color: '#66BB6A' }
 ];
+
+const LOCKOUT_WRONG_THRESHOLD = 5;
+const LOCKOUT_DURATION_MS = 5 * 60 * 1000;
 
 function makeChallenges(count) {
     return Array.from({ length: count }, () => ({
@@ -44,7 +47,8 @@ function makeProfileDefaults(def) {
             streakBest: 0
         },
         practice: { difficulty: 1, history: [] },
-        dailyChallenge: { lastDate: null, completed: false }
+        dailyChallenge: { lastDate: null, completed: false },
+        lockout: { wrongCount: 0, lockedUntil: null }
     };
 }
 
@@ -101,6 +105,7 @@ function mergeProfile(def, saved) {
     merged.stats     = { ...base.stats,     ...(migratedSaved.stats     || {}) };
     merged.practice  = { ...base.practice,  ...(migratedSaved.practice  || {}) };
     merged.dailyChallenge = { ...base.dailyChallenge, ...(migratedSaved.dailyChallenge || {}) };
+    merged.lockout = { ...base.lockout, ...(migratedSaved.lockout || {}) };
     if (!Array.isArray(merged.achievements))    merged.achievements    = [];
     if (!Array.isArray(merged.purchasedFaces))  merged.purchasedFaces  = [];
     if (!Array.isArray(merged.purchasedHats))   merged.purchasedHats   = [];
@@ -258,6 +263,12 @@ export function switchProfile(profileId) {
     return true;
 }
 
+export function getProfileIslandStars(profileId, slug) {
+    const p = root.profiles[profileId];
+    if (!p) return 0;
+    return (p.islands?.[slug]?.challenges || []).reduce((s, c) => s + (c.stars || 0), 0);
+}
+
 export function getCurrentProfileMeta() {
     const def = PROFILE_DEFS.find(d => d.id === root.currentProfileId) || PROFILE_DEFS[0];
     return {
@@ -272,3 +283,58 @@ export function getCurrentProfileMeta() {
 export function hasAnyProgress() {
     return getProfiles().some(p => p.hasProgress);
 }
+
+// --- lockout API (per-profile wrong-answer time-out) ---
+
+export function getLockoutRemainingMs(profileId) {
+    const p = profileId ? root.profiles[profileId] : state;
+    if (!p || !p.lockout || !p.lockout.lockedUntil) return 0;
+    const remaining = p.lockout.lockedUntil - Date.now();
+    return remaining > 0 ? remaining : 0;
+}
+
+export function isLockedOut(profileId) {
+    return getLockoutRemainingMs(profileId) > 0;
+}
+
+/**
+ * Record a wrong answer for the active profile.
+ * Increments wrongCount; if threshold hit, sets lockedUntil and resets counter.
+ * Returns { wrongCount, locked } — locked is true when this call triggered the lockout.
+ */
+export function recordWrongAnswer() {
+    let triggered = false;
+    updateState(s => {
+        if (!s.lockout) s.lockout = { wrongCount: 0, lockedUntil: null };
+        s.lockout.wrongCount = (s.lockout.wrongCount || 0) + 1;
+        if (s.lockout.wrongCount >= LOCKOUT_WRONG_THRESHOLD) {
+            s.lockout.lockedUntil = Date.now() + LOCKOUT_DURATION_MS;
+            s.lockout.wrongCount = 0;
+            triggered = true;
+        }
+    });
+    return { wrongCount: state.lockout.wrongCount, locked: triggered };
+}
+
+export function resetWrongAnswers() {
+    if (!state.lockout || state.lockout.wrongCount === 0) return;
+    updateState(s => {
+        if (!s.lockout) s.lockout = { wrongCount: 0, lockedUntil: null };
+        s.lockout.wrongCount = 0;
+    });
+}
+
+export function clearLockout() {
+    updateState(s => {
+        if (!s.lockout) s.lockout = { wrongCount: 0, lockedUntil: null };
+        s.lockout.lockedUntil = null;
+        s.lockout.wrongCount = 0;
+    });
+}
+
+export function getWrongAnswerCount() {
+    return state.lockout?.wrongCount || 0;
+}
+
+export const LOCKOUT_THRESHOLD = LOCKOUT_WRONG_THRESHOLD;
+export const LOCKOUT_MS = LOCKOUT_DURATION_MS;

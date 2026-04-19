@@ -1,6 +1,6 @@
 {
   "island": "numbers-reef",
-  "name": "Numbers Reef",
+  "name": "Recife dos Números",
   "challenges": [
     {
       "type": "multiple-choice",
@@ -79,7 +79,7 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "👉 more?",
+      "question": "👉 mais?",
       "illustration": "🔍",
       "options": ["🦕🦕", "🦕🦕🦕🦕🦕"],
       "correct": "🦕🦕🦕🦕🦕",

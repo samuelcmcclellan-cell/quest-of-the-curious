@@ -2,19 +2,23 @@ import { getState, updateState, getIslandProgress, getAllIslandSlugs, getCurrent
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import { confetti, starBurst } from '../engine/particles.js';
+import { renderCharacter } from '../engine/character.js';
+import { getCurrentTheme } from '../engine/profile-theme.js';
 
 const ISLAND_META = {
-    'numbers-reef':  { name: 'Numbers Reef',  emoji: '🏝️' },
-    'purrfect-park': { name: 'Purrfect Park', emoji: '🌳' }
+    'numbers-reef':  { name: 'Recife dos Números',  emoji: '🏝️' },
+    'purrfect-park': { name: 'Parque Purrfeito', emoji: '🌳' },
+    'bubble-magic':  { name: 'Magia das Bolhas',  emoji: '🫧' },
+    'crystal-rock':  { name: 'Rock dos Cristais',  emoji: '💎' }
 };
 
 const HATS = [
-    { id: 'none', emoji: '', label: 'No Hat', cost: 0 },
-    { id: 'crown', emoji: '👑', label: 'Crown', cost: 10 },
-    { id: 'tophat', emoji: '🎩', label: 'Top Hat', cost: 20 },
-    { id: 'cap', emoji: '🧢', label: 'Cap', cost: 15 },
-    { id: 'wizard', emoji: '🪄', label: 'Wizard', cost: 30 },
-    { id: 'pirate', emoji: '🏴‍☠️', label: 'Pirate', cost: 40 },
+    { id: 'none', emoji: '', label: 'Sem Chapéu', cost: 0 },
+    { id: 'crown', emoji: '👑', label: 'Coroa', cost: 10 },
+    { id: 'tophat', emoji: '🎩', label: 'Cartola', cost: 20 },
+    { id: 'cap', emoji: '🧢', label: 'Boné', cost: 15 },
+    { id: 'wizard', emoji: '🪄', label: 'Mago', cost: 30 },
+    { id: 'pirate', emoji: '🏴‍☠️', label: 'Pirata', cost: 40 },
 ];
 
 const FACES = [
@@ -29,21 +33,22 @@ const FACES = [
 ];
 
 const ACHIEVEMENTS = [
-    { id: 'first-solve', label: 'First Steps', emoji: '🌟', desc: 'Complete your first challenge' },
-    { id: 'three-stars', label: 'Perfect!', emoji: '⭐', desc: 'Get 3 stars on a challenge' },
-    { id: 'five-complete', label: 'Halfway There', emoji: '🏅', desc: 'Complete 5 challenges' },
-    { id: 'all-complete', label: 'Island Master', emoji: '🏆', desc: 'Complete all 10 challenges' },
-    { id: 'practice-5', label: 'Practice Pro', emoji: '🎯', desc: 'Answer 5 practice problems' },
-    { id: 'streak-3', label: 'On Fire!', emoji: '🔥', desc: 'Get a streak of 3 correct' },
-    { id: 'coin-100', label: 'Treasure Hunter', emoji: '💰', desc: 'Collect 100 coins' },
-    { id: 'streak-5', label: 'Unstoppable!', emoji: '⚡', desc: 'Get a streak of 5 correct' },
-    { id: 'cat-whisperer', label: 'Cat Whisperer', emoji: '🐈', desc: 'Complete Purrfect Park' },
-    { id: 'both-islands', label: 'World Explorer', emoji: '🌍', desc: 'Complete every island' },
+    { id: 'first-solve', label: 'Primeiros Passos', emoji: '🌟', desc: 'Complete seu primeiro desafio' },
+    { id: 'three-stars', label: 'Perfeito!', emoji: '⭐', desc: 'Ganhe 3 estrelas em um desafio' },
+    { id: 'five-complete', label: 'No Meio do Caminho', emoji: '🏅', desc: 'Complete 5 desafios' },
+    { id: 'all-complete', label: 'Mestre da Ilha', emoji: '🏆', desc: 'Complete todos os 10 desafios' },
+    { id: 'practice-5', label: 'Praticante Pro', emoji: '🎯', desc: 'Responda 5 problemas de prática' },
+    { id: 'streak-3', label: 'Pegando Fogo!', emoji: '🔥', desc: 'Faça uma sequência de 3 acertos' },
+    { id: 'coin-100', label: 'Caçador de Tesouros', emoji: '💰', desc: 'Colete 100 moedas' },
+    { id: 'streak-5', label: 'Imparável!', emoji: '⚡', desc: 'Faça uma sequência de 5 acertos' },
+    { id: 'cat-whisperer', label: 'Encantador de Gatos', emoji: '🐈', desc: 'Complete o Parque Purrfeito' },
+    { id: 'both-islands', label: 'Explorador do Mundo', emoji: '🌍', desc: 'Complete todas as ilhas' },
 ];
 
 export function enter(container) {
     const state = getState();
     const profile = getCurrentProfileMeta();
+    const theme = getCurrentTheme();
     checkAchievements(state);
 
     const slugs = getAllIslandSlugs();
@@ -59,18 +64,18 @@ export function enter(container) {
     ).join(' &nbsp;·&nbsp; ');
 
     container.innerHTML = `
-        <div class="top-bar" style="background:linear-gradient(135deg,#1565C0,#2196F3);color:#FFF;">
-            <button class="btn btn-small" id="back-btn" style="background:transparent;color:#FFF;border:1px solid rgba(255,255,255,0.3);">← Back</button>
-            <span class="top-bar-title" style="color:#FFF;">${profile.avatar} ${profile.name}'s Profile</span>
-            <button class="btn btn-small" id="switch-btn" style="background:rgba(255,255,255,0.18);color:#FFF;border:1px solid rgba(255,255,255,0.3);font-size:0.8rem;">👥 Switch</button>
+        <div class="top-bar" style="background:var(--profile-gradient);color:#FFF;">
+            <button class="btn btn-small" id="back-btn" style="background:transparent;color:#FFF;border:1px solid rgba(255,255,255,0.3);">← Voltar</button>
+            <span class="top-bar-title" style="color:#FFF;">${profile.avatar} Perfil de ${profile.name}</span>
+            <button class="btn btn-small" id="switch-btn" style="background:rgba(255,255,255,0.18);color:#FFF;border:1px solid rgba(255,255,255,0.3);font-size:0.8rem;">👥 Trocar</button>
         </div>
         <div style="flex:1;overflow-y:auto;padding:16px;">
             <!-- Character Display -->
-            <div class="card" style="text-align:center;margin-bottom:16px;">
-                <div id="character-display" style="font-size:4rem;margin-bottom:8px;">
-                    ${state.character.hat !== 'none' ? HATS.find(h => h.id === state.character.hat)?.emoji || '' : ''}${state.character.face}
-                </div>
-                <h2>${profile.avatar} ${profile.name} <span style="font-size:0.7em;color:var(--text-light);font-weight:500;">(age ${profile.age})</span></h2>
+            <div class="card ${theme.themeClass}" style="text-align:center;margin-bottom:16px;position:relative;overflow:hidden;">
+                <div class="profile-card-sidekick anim-float" aria-hidden="true">${theme.sidekick}</div>
+                <div class="profile-card-accent" aria-hidden="true">${theme.accentEmoji}</div>
+                <div id="character-display" style="display:flex;justify-content:center;margin-bottom:8px;"></div>
+                <h2>${profile.avatar} ${profile.name} <span style="font-size:0.7em;color:var(--text-light);font-weight:500;">(${profile.age} anos)</span></h2>
                 <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:0.9rem;color:var(--text-light);">
                     <div>📝 ${completedCount}/${totalChallenges}</div>
                     <div>🎯 ${accuracy}%</div>
@@ -84,23 +89,27 @@ export function enter(container) {
 
             <!-- Face Shop -->
             <div class="card" style="margin-bottom:16px;">
-                <h3 style="margin-bottom:12px;">Choose Your Face <span style="font-size:0.8rem;color:var(--text-light);">(buy with 💰)</span></h3>
+                <h3 style="margin-bottom:12px;">Escolha Seu Rosto <span style="font-size:0.8rem;color:var(--text-light);">(compre com 💰)</span></h3>
                 <div id="face-grid" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;"></div>
             </div>
 
             <!-- Hat Shop -->
             <div class="card" style="margin-bottom:16px;">
-                <h3 style="margin-bottom:12px;">Choose Your Hat <span style="font-size:0.8rem;color:var(--text-light);">(buy with 💰)</span></h3>
+                <h3 style="margin-bottom:12px;">Escolha Seu Chapéu <span style="font-size:0.8rem;color:var(--text-light);">(compre com 💰)</span></h3>
                 <div id="hat-grid" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;"></div>
             </div>
 
             <!-- Achievements -->
             <div class="card" style="margin-bottom:16px;">
-                <h3 style="margin-bottom:12px;">Achievements</h3>
+                <h3 style="margin-bottom:12px;">Conquistas</h3>
                 <div id="achievements" style="display:flex;flex-direction:column;gap:8px;"></div>
             </div>
         </div>
     `;
+
+    // Character display (stacked face + hat)
+    const charDisplay = container.querySelector('#character-display');
+    charDisplay.appendChild(renderCharacter({ character: state.character, size: 96 }));
 
     // Face selection (coin-based)
     const faceGrid = container.querySelector('#face-grid');

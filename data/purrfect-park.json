@@ -5,133 +5,133 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "9 playful cats are chasing butterflies, but 4 of them curl up for a nap. How many cats are still playing?",
+      "question": "9 gatos brincalhões estão perseguindo borboletas, mas 4 deles se enroscam para tirar um cochilo. Quantos gatos ainda estão brincando?",
       "illustration": "🐱",
       "options": [4, 5, 6, 13],
       "correct": 5,
       "hints": [
-        "Start with 9 cats and take away the ones that went to sleep.",
-        "9 minus 4 means: if you had 9 and lost 4, how many are left?",
-        "Count down from 9: 8, 7, 6, 5. Take 4 steps back — you land on 5."
+        "Comece com 9 gatos e tire os que foram dormir.",
+        "9 menos 4 significa: se você tinha 9 e perdeu 4, quantos sobraram?",
+        "Conte para trás a partir do 9: 8, 7, 6, 5. Dê 4 passos para trás — você chega no 5."
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "Mittens the cat had 23 tasty fish in her bowl. She gobbled up 7. How many fish are left?",
+      "question": "A gata Mittens tinha 23 peixinhos gostosos na tigela. Ela devorou 7. Quantos peixes sobraram?",
       "illustration": "🐟",
       "options": [14, 15, 16, 17],
       "correct": 16,
       "hints": [
-        "You're taking away. 23 - 7 = ?",
-        "Break it up: 23 - 3 = 20, then 20 - 4 = 16.",
-        "Count back 7 from 23 (one less than 17)."
+        "Você está tirando. 23 - 7 = ?",
+        "Separe: 23 - 3 = 20, depois 20 - 4 = 16.",
+        "Conte 7 para trás a partir do 23 (um a menos que 17)."
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 2,
-      "question": "Whiskers is counting paw prints along the path! She skips by 5 each time. What comes next?",
+      "question": "A Whiskers está contando pegadas de patinhas pelo caminho! Ela pula de 5 em 5. O que vem a seguir?",
       "illustration": "🐾",
       "sequence": [5, 10, 15, 20, 25, "?"],
       "options": [26, 28, 30, 35],
       "correct": 30,
       "hints": [
-        "Each step adds the same amount. What's 10 - 5?",
-        "We're skip-counting by 5.",
+        "Cada passo soma a mesma quantidade. Quanto é 10 - 5?",
+        "Estamos contando de 5 em 5.",
         "25 + 5 = 30."
       ]
     },
     {
       "type": "number-builder",
       "difficulty": 3,
-      "question": "4 rows of paw prints, with 12 paws in each row! How many paw prints are there in total? Build the answer!",
+      "question": "4 fileiras de pegadas de patinhas, com 12 patinhas em cada fileira! Quantas pegadas de patinhas existem no total? Monte a resposta!",
       "illustration": "🐾",
       "correct": 48,
       "hints": [
-        "4 rows of 12 means 4 × 12.",
-        "Break 12 into 10 + 2: 4 × 10 = 40, and 4 × 2 = 8.",
-        "40 + 8 = 48 paw prints!"
+        "4 fileiras de 12 significa 4 × 12.",
+        "Separe o 12 em 10 + 2: 4 × 10 = 40, e 4 × 2 = 8.",
+        "40 + 8 = 48 pegadas de patinhas!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "Luna and Leo share 8 fish equally — half for each cat. How many fish does each cat get?",
+      "question": "A Luna e o Leo dividem 8 peixes igualmente — metade para cada gato. Quantos peixes cada gato recebe?",
       "illustration": "🐈",
       "options": [2, 3, 4, 5],
       "correct": 4,
       "hints": [
-        "Share equally means split into 2 equal groups.",
-        "Half of 8 is the same as 8 ÷ 2.",
-        "4 + 4 = 8, so each cat gets 4 fish."
+        "Dividir igualmente significa separar em 2 grupos iguais.",
+        "Metade de 8 é o mesmo que 8 ÷ 2.",
+        "4 + 4 = 8, então cada gato fica com 4 peixes."
       ]
     },
     {
       "type": "balance-scale",
       "difficulty": 3,
-      "question": "A ball of yarn weighs 15. Drag numbers onto the other side to make the scale balance perfectly!",
+      "question": "Um novelo de lã pesa 15. Arraste números para o outro lado para equilibrar a balança perfeitamente!",
       "illustration": "🧶",
       "leftSide": 15,
       "correct": 15,
       "dropSlots": [1, 2],
       "availableNumbers": [4, 6, 7, 8, 9, 11],
       "hints": [
-        "Find two numbers that add up to 15.",
-        "Try pairs: 7 + 8, 6 + 9, 4 + 11 — they all work!",
-        "Pick any two that sum to 15 and drop them on the right."
+        "Encontre dois números que somam 15.",
+        "Experimente pares: 7 + 8, 6 + 9, 4 + 11 — todos funcionam!",
+        "Escolha dois quaisquer que somem 15 e solte-os do lado direito."
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "A toy mouse at the park shop costs 7 cents. Tom pays with a 10-cent coin. How much change does he get back?",
+      "question": "Um ratinho de brinquedo na lojinha do parque custa 7 centavos. O Tom paga com uma moeda de 10 centavos. Quanto de troco ele recebe?",
       "illustration": "🐭",
       "options": [2, 3, 4, 7],
       "correct": 3,
       "hints": [
-        "Change = what you paid - what it cost.",
+        "Troco = o que você pagou - o que custou.",
         "10 - 7 = ?",
-        "Count up from 7 to 10: 8, 9, 10. That's 3 cents."
+        "Conte do 7 até o 10: 8, 9, 10. São 3 centavos."
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 3,
-      "question": "There are 12 kittens playing in the park. One-quarter (¼) of them are orange. How many orange kittens are there?",
+      "question": "Há 12 gatinhos brincando no parque. Um quarto (¼) deles é laranja. Quantos gatinhos laranja existem?",
       "illustration": "🐈",
       "options": [2, 3, 4, 6],
       "correct": 3,
       "hints": [
-        "One-quarter means split into 4 equal groups.",
+        "Um quarto significa separar em 4 grupos iguais.",
         "12 ÷ 4 = ?",
-        "Groups of 3: 3 + 3 + 3 + 3 = 12. So ¼ of 12 is 3."
+        "Grupos de 3: 3 + 3 + 3 + 3 = 12. Então ¼ de 12 é 3."
       ]
     },
     {
       "type": "number-builder",
       "difficulty": 3,
-      "question": "Cat House A is home to 124 cats, and Cat House B has 58 cats. How many cats live in both houses together? Build the answer!",
+      "question": "A Casa dos Gatos A é lar de 124 gatos, e a Casa dos Gatos B tem 58 gatos. Quantos gatos vivem nas duas casas juntos? Monte a resposta!",
       "illustration": "🏠",
       "correct": 182,
       "hints": [
-        "Add 124 + 58.",
-        "Start with the ones: 4 + 8 = 12 (carry the 1). Then tens: 2 + 5 + 1 = 8.",
-        "Hundreds: 1. Together: 182 cats."
+        "Some 124 + 58.",
+        "Comece pelas unidades: 4 + 8 = 12 (vai 1). Depois dezenas: 2 + 5 + 1 = 8.",
+        "Centenas: 1. Juntos: 182 gatos."
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 3,
-      "question": "🔮 Madame Whiskers peers into her crystal ball and sees cats arriving in a magical pattern: 3, 6, 9, 12, 15... What number will the crystal ball reveal next?",
+      "question": "🔮 Madame Whiskers olha dentro da bola de cristal e vê gatos chegando em um padrão mágico: 3, 6, 9, 12, 15... Qual número a bola de cristal vai revelar a seguir?",
       "illustration": "🔮",
       "sequence": [3, 6, 9, 12, 15, "?"],
       "options": [16, 17, 18, 21],
       "correct": 18,
       "hints": [
-        "The crystal ball hums. Numbers go up by the same amount each time.",
-        "6 - 3 = 3, 9 - 6 = 3. The magic is counting by 3s!",
-        "15 + 3 = 18. The future is revealed!"
+        "A bola de cristal vibra. Os números sobem a mesma quantidade cada vez.",
+        "6 - 3 = 3, 9 - 6 = 3. A mágica é contar de 3 em 3!",
+        "15 + 3 = 18. O futuro foi revelado!"
       ]
     }
   ]

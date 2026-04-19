@@ -1,137 +1,137 @@
 {
   "island": "numbers-reef",
-  "name": "Numbers Reef",
+  "name": "Recife dos Números",
   "challenges": [
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "You found 3 pretty shells on the beach, then 5 more in a tide pool! How many shells do you have now?",
+      "question": "Você achou 3 conchas lindas na praia e depois mais 5 numa poça da maré! Quantas conchas você tem agora?",
       "illustration": "🐚",
       "options": [7, 8, 9, 6],
       "correct": 8,
       "hints": [
-        "Count them together: 3 shells plus 5 more shells.",
-        "Start at 3 and count up 5 more: 4, 5, 6, 7, 8.",
-        "3 + 5 = 8 shells!"
+        "Conte juntas: 3 conchas mais 5 conchas.",
+        "Comece no 3 e conte mais 5: 4, 5, 6, 7, 8.",
+        "3 + 5 = 8 conchas!"
       ]
     },
     {
       "type": "number-builder",
       "difficulty": 1,
-      "question": "A starfish has 12 spots and finds 15 more! Drag the digits to build the total number of spots!",
+      "question": "Uma estrela-do-mar tem 12 pintinhas e encontra mais 15! Arraste os dígitos para montar o total de pintinhas!",
       "illustration": "⭐",
       "correct": 27,
       "hints": [
-        "Add 12 + 15. Start with the ones: 2 + 5 = 7.",
-        "Now the tens: 1 + 1 = 2. So the answer is 27!",
+        "Some 12 + 15. Comece pelas unidades: 2 + 5 = 7.",
+        "Agora as dezenas: 1 + 1 = 2. Então a resposta é 27!",
         "12 + 15 = 27"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "There are 5 fish swimming in a group, and each fish has 2 stripes. How many stripes in total?",
+      "question": "Há 5 peixes nadando em um cardume, e cada peixe tem 2 listras. Quantas listras no total?",
       "illustration": "🐠",
       "options": [7, 10, 12, 8],
       "correct": 10,
       "hints": [
-        "You have 5 groups of 2 — that's multiplication!",
-        "Count by 2s five times: 2, 4, 6, 8, 10.",
-        "5 × 2 = 10 stripes!"
+        "Você tem 5 grupos de 2 — isso é multiplicação!",
+        "Conte de 2 em 2, cinco vezes: 2, 4, 6, 8, 10.",
+        "5 × 2 = 10 listras!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "A crab collected 4 bags of sand dollars with 3 in each bag. How many sand dollars does the crab have?",
+      "question": "Um caranguejo juntou 4 saquinhos de bolachas-da-praia com 3 em cada saquinho. Quantas bolachas-da-praia o caranguejo tem?",
       "illustration": "🦀",
       "options": [7, 10, 12, 15],
       "correct": 12,
       "hints": [
-        "Think about 4 groups of 3.",
-        "Count by 3s four times: 3, 6, 9, 12.",
-        "4 × 3 = 12 sand dollars!"
+        "Pense em 4 grupos de 3.",
+        "Conte de 3 em 3, quatro vezes: 3, 6, 9, 12.",
+        "4 × 3 = 12 bolachas-da-praia!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 1,
-      "question": "These fish are swimming in a pattern! What number comes next?",
+      "question": "Estes peixes estão nadando num padrão! Qual número vem a seguir?",
       "illustration": "🐟",
       "sequence": [2, 4, 6, 8, 10, "?"],
       "options": [11, 12, 14, 13],
       "correct": 12,
       "hints": [
-        "Look at how much each number goes up by.",
-        "Each number goes up by 2: 2, 4, 6, 8, 10...",
+        "Veja o quanto cada número aumenta.",
+        "Cada número aumenta de 2: 2, 4, 6, 8, 10...",
         "10 + 2 = 12!"
       ]
     },
     {
       "type": "number-builder",
       "difficulty": 2,
-      "question": "A dolphin swam 25 meters in the morning and 30 meters in the afternoon. Drag the digits to build the total!",
+      "question": "Um golfinho nadou 25 metros de manhã e 30 metros à tarde. Arraste os dígitos para montar o total!",
       "illustration": "🐬",
       "correct": 55,
       "hints": [
-        "Add 25 + 30. Start with the ones: 5 + 0 = 5.",
-        "Now the tens: 2 + 3 = 5. So it's 55!",
-        "25 + 30 = 55 meters!"
+        "Some 25 + 30. Comece pelas unidades: 5 + 0 = 5.",
+        "Agora as dezenas: 2 + 3 = 5. Então é 55!",
+        "25 + 30 = 55 metros!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "There are 6 boats at the dock. Each boat has 5 sailors. How many sailors are there in total?",
+      "question": "Há 6 barcos no cais. Cada barco tem 5 marinheiros. Quantos marinheiros há no total?",
       "illustration": "⛵",
       "options": [11, 25, 30, 35],
       "correct": 30,
       "hints": [
-        "You have 6 groups of 5 sailors.",
-        "Count by 5s six times: 5, 10, 15, 20, 25, 30.",
-        "6 × 5 = 30 sailors!"
+        "Você tem 6 grupos de 5 marinheiros.",
+        "Conte de 5 em 5, seis vezes: 5, 10, 15, 20, 25, 30.",
+        "6 × 5 = 30 marinheiros!"
       ]
     },
     {
       "type": "balance-scale",
       "difficulty": 2,
-      "question": "Make both sides equal! The left side shows 10.",
+      "question": "Deixe os dois lados iguais! O lado esquerdo mostra 10.",
       "illustration": "⚖️",
       "leftSide": 10,
       "correct": 10,
       "dropSlots": [1, 2],
       "availableNumbers": [3, 4, 5, 6, 7],
       "hints": [
-        "You need two numbers that add up to 10.",
-        "Try 3 + 7, or 4 + 6, or 5 + 5!",
-        "3 + 7 = 10, or 4 + 6 = 10. Drag them to the right side!"
+        "Você precisa de dois números que somem 10.",
+        "Tente 3 + 7, ou 4 + 6, ou 5 + 5!",
+        "3 + 7 = 10, ou 4 + 6 = 10. Arraste-os para o lado direito!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 3,
-      "question": "A fishing boat caught 24 fish and needs to split them equally into 4 buckets. How many fish go in each bucket?",
+      "question": "Um barco de pesca pegou 24 peixes e precisa dividi-los igualmente em 4 baldes. Quantos peixes vão em cada balde?",
       "illustration": "🐟",
       "options": [4, 5, 6, 8],
       "correct": 6,
       "hints": [
-        "When you split things equally, you divide!",
-        "24 ÷ 4 = ? Think: what number times 4 equals 24?",
-        "24 ÷ 4 = 6 fish per bucket!"
+        "Quando você divide as coisas igualmente, você faz uma divisão!",
+        "24 ÷ 4 = ? Pense: que número vezes 4 dá 24?",
+        "24 ÷ 4 = 6 peixes por balde!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 3,
-      "question": "🔮 The ocean oracle's crystal ball glows and reveals a pattern from the future. Each number doubles the last. What does the crystal ball show next?",
+      "question": "🔮 A bola de cristal do oráculo do oceano brilha e revela um padrão do futuro. Cada número é o dobro do anterior. O que a bola de cristal mostra a seguir?",
       "illustration": "🔮",
       "sequence": [1, 2, 4, 8, 16, "?"],
       "options": [18, 24, 32, 20],
       "correct": 32,
       "hints": [
-        "The crystal ball hums... each number is double the one before.",
+        "A bola de cristal zumbe... cada número é o dobro do anterior.",
         "1×2=2, 2×2=4, 4×2=8, 8×2=16...",
-        "16 × 2 = 32! The future is revealed!"
+        "16 × 2 = 32! O futuro foi revelado!"
       ]
     }
   ]

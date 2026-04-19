@@ -45,8 +45,8 @@ export class BalanceScale extends ChallengeBase {
                 </div>
                 <div id="hint-container"></div>
                 <button class="hint-btn" id="hint-btn">
-                    🦉 Ask for Help
-                    <span id="hint-count">(${this.maxHints - this.hintsUsed} left)</span>
+                    🦉 Pedir Ajuda
+                    <span id="hint-count">(${this.maxHints - this.hintsUsed} restantes)</span>
                 </button>
             </div>
         `;
@@ -109,6 +109,7 @@ export class BalanceScale extends ChallengeBase {
             sound.correct();
 
             this.checkAnswer(this.leftValue);
+            this.recordCorrect();
 
             setTimeout(() => {
                 if (this.onComplete) this.onComplete(this.getScore());
@@ -134,11 +135,11 @@ export class BalanceScale extends ChallengeBase {
             const remaining = this.maxHints - this.hintsUsed;
             const hintCount = this.container.querySelector('#hint-count');
             if (remaining > 0) {
-                hintCount.textContent = `(${remaining} left)`;
+                hintCount.textContent = `(${remaining} restantes)`;
             } else {
                 hintBtn.style.opacity = '0.4';
                 hintBtn.style.pointerEvents = 'none';
-                hintCount.textContent = '(no more hints)';
+                hintCount.textContent = '(sem mais dicas)';
             }
         });
     }

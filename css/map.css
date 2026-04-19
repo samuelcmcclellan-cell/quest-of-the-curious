@@ -134,13 +134,13 @@
    =========================== */
 .map-node {
     position: absolute;
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     border-radius: var(--radius-round);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.55rem;
     font-weight: 800;
     cursor: pointer;
     transition: transform var(--transition), box-shadow var(--transition);
@@ -188,14 +188,30 @@
 }
 
 .map-node-available {
-    background: linear-gradient(145deg, #FF8A65 0%, #FF7043 50%, #F4511E 100%);
+    background: var(--profile-gradient-v);
     color: var(--text-white);
     box-shadow:
-        0 4px 0 #BF360C,
-        0 6px 14px rgba(191, 54, 12, 0.3),
+        0 4px 0 var(--profile-color-dark),
+        0 6px 14px rgba(0, 0, 0, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     animation: glow-pulse 2s ease-in-out infinite;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Distinctive dashed ring makes "available" readable even when profile
+   color matches completed-green (Ella). */
+.map-node-available::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 3px dashed rgba(255, 255, 255, 0.9);
+    animation: spin-ring 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes spin-ring {
+    to { transform: rotate(360deg); }
 }
 
 .map-node-locked {
@@ -246,4 +262,32 @@
 
 .map-bottom .btn {
     flex: 1;
+}
+
+/* ===========================
+   PLAYER TOKEN (kid character on map)
+   =========================== */
+.player-token {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.28));
+    animation: token-bob 2.2s ease-in-out infinite;
+}
+
+.player-token::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, -2px);
+    width: 22px;
+    height: 6px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.32), transparent 70%);
+    border-radius: 50%;
+}
+
+@keyframes token-bob {
+    0%, 100% { transform: translate(-50%, -130%); }
+    50%      { transform: translate(-50%, -142%); }
 }

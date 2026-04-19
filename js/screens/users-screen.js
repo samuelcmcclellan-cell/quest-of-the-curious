@@ -1,22 +1,26 @@
 import { getProfiles, switchProfile } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
+import { applyProfileTheme } from '../engine/theme.js';
+import { getThemeFor } from '../engine/profile-theme.js';
 
 export function enter(container) {
     const profiles = getProfiles();
 
     const cardsHtml = profiles.map(p => {
         const tagline = p.hasProgress
-            ? `⭐ ${p.stars} stars · ${p.completed} challenge${p.completed === 1 ? '' : 's'}`
-            : 'Start your adventure!';
+            ? `⭐ ${p.stars} estrelas · ${p.completed} desafio${p.completed === 1 ? '' : 's'}`
+            : 'Comece sua aventura!';
         const gradient = `linear-gradient(135deg, ${p.color} 0%, ${shade(p.color, -20)} 100%)`;
+        const theme = getThemeFor(p.id);
 
         return `
-            <button class="user-card" data-profile="${p.id}" style="--user-gradient:${gradient};">
-                ${p.isActive ? '<div class="user-card-active-pill">Last played</div>' : ''}
+            <button class="user-card ${theme.themeClass}" data-profile="${p.id}" style="--user-gradient:${gradient};">
+                ${p.isActive ? '<div class="user-card-active-pill">Último jogador</div>' : ''}
+                <div class="user-card-sidekick">${theme.sidekick}</div>
                 <div class="user-card-avatar">${p.avatar}</div>
                 <div class="user-card-name">${p.name}</div>
-                <div class="user-card-age">age ${p.age}</div>
+                <div class="user-card-age">${p.age} anos</div>
                 <div class="user-card-tagline">${tagline}</div>
             </button>
         `;
@@ -26,17 +30,17 @@ export function enter(container) {
         <div class="users-screen">
             <div class="users-header">
                 <h1 class="users-title">
-                    <span class="wave-letter" style="--i:0">Q</span><span class="wave-letter" style="--i:1">u</span><span class="wave-letter" style="--i:2">e</span><span class="wave-letter" style="--i:3">s</span><span class="wave-letter" style="--i:4">t</span>
-                    <span class="wave-letter" style="--i:5"> </span>
-                    <span class="wave-letter" style="--i:6">o</span><span class="wave-letter" style="--i:7">f</span>
-                    <span class="wave-letter" style="--i:8"> </span>
-                    <span class="wave-letter" style="--i:9">t</span><span class="wave-letter" style="--i:10">h</span><span class="wave-letter" style="--i:11">e</span>
+                    <span class="wave-letter" style="--i:0">A</span>
+                    <span class="wave-letter" style="--i:1"> </span>
+                    <span class="wave-letter" style="--i:2">J</span><span class="wave-letter" style="--i:3">o</span><span class="wave-letter" style="--i:4">r</span><span class="wave-letter" style="--i:5">n</span><span class="wave-letter" style="--i:6">a</span><span class="wave-letter" style="--i:7">d</span><span class="wave-letter" style="--i:8">a</span>
                     <br>
-                    <span class="wave-letter" style="--i:12">C</span><span class="wave-letter" style="--i:13">u</span><span class="wave-letter" style="--i:14">r</span><span class="wave-letter" style="--i:15">i</span><span class="wave-letter" style="--i:16">o</span><span class="wave-letter" style="--i:17">u</span><span class="wave-letter" style="--i:18">s</span>
+                    <span class="wave-letter" style="--i:9">d</span><span class="wave-letter" style="--i:10">o</span><span class="wave-letter" style="--i:11">s</span>
+                    <span class="wave-letter" style="--i:12"> </span>
+                    <span class="wave-letter" style="--i:13">C</span><span class="wave-letter" style="--i:14">u</span><span class="wave-letter" style="--i:15">r</span><span class="wave-letter" style="--i:16">i</span><span class="wave-letter" style="--i:17">o</span><span class="wave-letter" style="--i:18">s</span><span class="wave-letter" style="--i:19">o</span><span class="wave-letter" style="--i:20">s</span>
                 </h1>
             </div>
             <div class="users-container">
-                <p class="users-hello">Who's playing today?</p>
+                <p class="users-hello">Quem vai jogar hoje?</p>
                 <div class="users-grid">
                     ${cardsHtml}
                 </div>
@@ -49,6 +53,7 @@ export function enter(container) {
             const id = card.dataset.profile;
             sound.tap();
             if (switchProfile(id)) {
+                applyProfileTheme(id);
                 navigate('islands');
             }
         });
