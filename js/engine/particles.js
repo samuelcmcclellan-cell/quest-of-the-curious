@@ -87,6 +87,55 @@ function injectStyles() {
     animation: correct-zoom 0.9s ease forwards;
 }
 
+/* ---- fireworks ---------------------------------------------------------- */
+@keyframes rocket-launch {
+    0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--rx, 0px), var(--ry, -200px)) scale(0.6); opacity: 0.8; }
+}
+@keyframes firework-burst {
+    0%   { transform: translate(0, 0) scale(0.4) rotate(0deg); opacity: 0; }
+    20%  { transform: translate(calc(var(--dx) * 0.2), calc(var(--dy) * 0.2)) scale(1) rotate(60deg); opacity: 1; }
+    80%  { transform: translate(var(--dx), var(--dy)) scale(0.9) rotate(240deg); opacity: 0.8; }
+    100% { transform: translate(calc(var(--dx) * 1.2), calc(var(--dy) * 1.2 + 40px)) scale(0) rotate(360deg); opacity: 0; }
+}
+.firework-rocket {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    width: 5px;
+    height: 14px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #FFF 0%, #FFD740 60%, rgba(255,215,0,0));
+    animation: rocket-launch linear forwards;
+}
+.firework-spark {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    border-radius: 50%;
+    animation: firework-burst ease-out forwards;
+}
+
+/* ---- big-correct overlay (new reward tier) ------------------------------ */
+@keyframes big-correct-pop {
+    0%   { transform: translate(-50%, -50%) scale(0) rotate(-10deg); opacity: 0; }
+    40%  { transform: translate(-50%, -50%) scale(1.35) rotate(4deg); opacity: 1; }
+    70%  { transform: translate(-50%, -50%) scale(1) rotate(-2deg); opacity: 1; }
+    100% { transform: translate(-50%, -50%) translateY(-60px) scale(1.05) rotate(0deg); opacity: 0; }
+}
+.big-correct-overlay {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1011;
+    font-family: 'Fredoka One', 'Nunito', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #FFD740;
+    text-shadow: 0 3px 0 #C77700, 0 6px 20px rgba(0,0,0,0.35), 0 0 30px rgba(255,215,0,0.6);
+    animation: big-correct-pop 1.2s cubic-bezier(.2, .9, .3, 1.2) forwards;
+    white-space: nowrap;
+}
+
 /* ---- splash / water droplets -------------------------------------------- */
 @keyframes splash-drop {
     0%   { transform: translate(0,0) scale(1); opacity: 0.9; }
@@ -331,6 +380,90 @@ export function correctExplosion(element) {
     text.style.top = y + 'px';
     document.body.appendChild(text);
     autoRemove(text);
+}
+
+/**
+ * fireworks(x, y)
+ * Multi-rocket firework burst centered on (x, y). Launches 3-4 trailing
+ * rockets that rise from below, then each explodes into a ring of sparks
+ * in varied colors. Heavier than starBurst — use for 3-star / island
+ * completion moments.
+ */
+export function fireworks(x, y) {
+    injectStyles();
+    const FW_COLORS = ['#FFD740', '#FF80AB', '#40C4FF', '#69F0AE', '#FFAB40', '#CE93D8'];
+    const rocketCount = 4;
+
+    for (let r = 0; r < rocketCount; r++) {
+        const delay = r * 150;
+        const targetX = x + rand(-80, 80);
+        const targetY = y + rand(-40, 20);
+        const startX = targetX + rand(-30, 30);
+        const startY = Math.min(window.innerHeight - 10, targetY + 220);
+
+        // Rocket trail rising
+        const rocket = document.createElement('div');
+        rocket.className = 'firework-rocket';
+        rocket.style.left = startX + 'px';
+        rocket.style.top = startY + 'px';
+        rocket.style.setProperty('--rx', (targetX - startX) + 'px');
+        rocket.style.setProperty('--ry', (targetY - startY) + 'px');
+        rocket.style.animationDuration = '0.45s';
+        rocket.style.animationDelay = delay + 'ms';
+        document.body.appendChild(rocket);
+        autoRemove(rocket);
+
+        // Burst of sparks at target point
+        setTimeout(() => {
+            const sparkCount = 22;
+            const burstColor = pick(FW_COLORS);
+            for (let i = 0; i < sparkCount; i++) {
+                const angle = (i / sparkCount) * Math.PI * 2 + rand(-0.1, 0.1);
+                const dist = rand(60, 120);
+                const dx = Math.cos(angle) * dist;
+                const dy = Math.sin(angle) * dist;
+                const size = rand(4, 8);
+                const spark = document.createElement('div');
+                spark.className = 'firework-spark';
+                spark.style.left = targetX + 'px';
+                spark.style.top = targetY + 'px';
+                spark.style.width = size + 'px';
+                spark.style.height = size + 'px';
+                spark.style.background = burstColor;
+                spark.style.boxShadow = `0 0 8px ${burstColor}`;
+                spark.style.setProperty('--dx', dx + 'px');
+                spark.style.setProperty('--dy', dy + 'px');
+                spark.style.animationDuration = rand(0.9, 1.4) + 's';
+                document.body.appendChild(spark);
+                autoRemove(spark);
+            }
+        }, delay + 420);
+    }
+}
+
+/**
+ * bigCorrectCelebration(element, message)
+ * Over-the-top celebration: golden glow + star burst + fireworks +
+ * themed message text that pops in and drifts up. For correct answers
+ * inside challenges. Heavier than correctExplosion.
+ */
+export function bigCorrectCelebration(element, message) {
+    injectStyles();
+    const { x, y } = elCenter(element);
+
+    goldenGlow(element);
+    starBurst(x, y, 18);
+    fireworks(x, y);
+
+    if (message) {
+        const text = document.createElement('div');
+        text.className = 'big-correct-overlay';
+        text.textContent = message;
+        text.style.left = x + 'px';
+        text.style.top = y + 'px';
+        document.body.appendChild(text);
+        autoRemove(text);
+    }
 }
 
 /**

@@ -78,7 +78,7 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "👉 mais?",
       "illustration": "🔍",
       "options": ["🦕🦕", "🦕🦕🦕🦕🦕"],
@@ -87,12 +87,60 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🦕🦕🦕🦕🦕🦕🦕",
       "illustration": "👀",
       "options": [6, 7, 8],
       "correct": 7,
       "hints": ["7", "7", "7"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🥚🥚🥚🥚🥚🥚🥚🥚",
+      "illustration": "👀",
+      "options": [7, 8, 9],
+      "correct": 8,
+      "hints": ["8", "8", "8"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🦴🦴🦴🦴🦴🦴🦴🦴🦴",
+      "illustration": "👀",
+      "options": [8, 9, 10],
+      "correct": 9,
+      "hints": ["9", "9", "9"]
+    },
+    {
+      "type": "fraction-visual",
+      "difficulty": 2,
+      "question": "🍪 Metade?",
+      "illustration": "🍪",
+      "shape": "pie",
+      "numerator": 1,
+      "denominator": 2,
+      "options": ["1/2", "2/2", "1/4"],
+      "correct": "1/2",
+      "hints": ["1/2", "1/2", "1/2"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "👉 mais?",
+      "illustration": "🔍",
+      "options": ["🦕🦕🦕", "🦕🦕🦕🦕🦕🦕🦕"],
+      "correct": "🦕🦕🦕🦕🦕🦕🦕",
+      "hints": ["➡️", "➡️", "➡️"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "CHEFE 👑 Quantos? 🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕",
+      "illustration": "👑",
+      "options": [8, 9, 10],
+      "correct": 10,
+      "hints": ["10", "10", "10"]
     }
   ]
 }

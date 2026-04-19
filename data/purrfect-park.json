@@ -5,33 +5,33 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "9 gatos brincalhões estão perseguindo borboletas, mas 4 deles se enroscam para tirar um cochilo. Quantos gatos ainda estão brincando?",
+      "question": "9 gatos brincalhões perseguem borboletas, mas 4 se enroscam para cochilar. Quantos gatos ainda brincam?",
       "illustration": "🐱",
       "options": [4, 5, 6, 13],
       "correct": 5,
       "hints": [
-        "Comece com 9 gatos e tire os que foram dormir.",
-        "9 menos 4 significa: se você tinha 9 e perdeu 4, quantos sobraram?",
-        "Conte para trás a partir do 9: 8, 7, 6, 5. Dê 4 passos para trás — você chega no 5."
+        "Comece com 9 e tire os que foram dormir.",
+        "9 - 4 = ?",
+        "9 - 4 = 5 gatos ainda brincando!"
       ]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "A gata Mittens tinha 23 peixinhos gostosos na tigela. Ela devorou 7. Quantos peixes sobraram?",
+      "difficulty": 1,
+      "question": "A gata Mittens tinha 8 peixinhos na tigela e comeu 3. Quantos sobraram?",
       "illustration": "🐟",
-      "options": [14, 15, 16, 17],
-      "correct": 16,
+      "options": [4, 5, 6, 11],
+      "correct": 5,
       "hints": [
-        "Você está tirando. 23 - 7 = ?",
-        "Separe: 23 - 3 = 20, depois 20 - 4 = 16.",
-        "Conte 7 para trás a partir do 23 (um a menos que 17)."
+        "Subtrair é tirar. 8 - 3.",
+        "Conte para trás: 7, 6, 5.",
+        "8 - 3 = 5 peixes!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 2,
-      "question": "A Whiskers está contando pegadas de patinhas pelo caminho! Ela pula de 5 em 5. O que vem a seguir?",
+      "question": "A Whiskers conta as pegadas de 5 em 5. Qual número vem a seguir?",
       "illustration": "🐾",
       "sequence": [5, 10, 15, 20, 25, "?"],
       "options": [26, 28, 30, 35],
@@ -43,95 +43,171 @@
       ]
     },
     {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "A Luna e o Leo dividem 8 peixes igualmente. Quantos peixes cada gato recebe?",
+      "illustration": "🐈",
+      "options": [2, 3, 4, 6],
+      "correct": 4,
+      "hints": [
+        "Dividir igualmente entre 2 = metade.",
+        "8 ÷ 2 = ?",
+        "4 + 4 = 8, então cada um fica com 4 peixes!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "A gata Mittens tinha 23 peixinhos e devorou 7. Quantos sobraram?",
+      "illustration": "🐟",
+      "options": [14, 15, 16, 17],
+      "correct": 16,
+      "hints": [
+        "Subtraia: 23 - 7.",
+        "Separe: 23 - 3 = 20, depois 20 - 4 = 16.",
+        "23 - 7 = 16 peixes!"
+      ]
+    },
+    {
       "type": "number-builder",
       "difficulty": 3,
-      "question": "4 fileiras de pegadas de patinhas, com 12 patinhas em cada fileira! Quantas pegadas de patinhas existem no total? Monte a resposta!",
+      "question": "4 fileiras de pegadas com 12 patinhas em cada fileira. Quantas pegadas no total? Monte a resposta!",
       "illustration": "🐾",
       "correct": 48,
       "hints": [
-        "4 fileiras de 12 significa 4 × 12.",
-        "Separe o 12 em 10 + 2: 4 × 10 = 40, e 4 × 2 = 8.",
-        "40 + 8 = 48 pegadas de patinhas!"
+        "4 × 12. Separe o 12: (4 × 10) + (4 × 2).",
+        "4 × 10 = 40 e 4 × 2 = 8.",
+        "40 + 8 = 48 pegadas!"
       ]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "A Luna e o Leo dividem 8 peixes igualmente — metade para cada gato. Quantos peixes cada gato recebe?",
-      "illustration": "🐈",
-      "options": [2, 3, 4, 5],
-      "correct": 4,
-      "hints": [
-        "Dividir igualmente significa separar em 2 grupos iguais.",
-        "Metade de 8 é o mesmo que 8 ÷ 2.",
-        "4 + 4 = 8, então cada gato fica com 4 peixes."
-      ]
-    },
-    {
-      "type": "balance-scale",
       "difficulty": 3,
-      "question": "Um novelo de lã pesa 15. Arraste números para o outro lado para equilibrar a balança perfeitamente!",
-      "illustration": "🧶",
-      "leftSide": 15,
-      "correct": 15,
-      "dropSlots": [1, 2],
-      "availableNumbers": [4, 6, 7, 8, 9, 11],
-      "hints": [
-        "Encontre dois números que somam 15.",
-        "Experimente pares: 7 + 8, 6 + 9, 4 + 11 — todos funcionam!",
-        "Escolha dois quaisquer que somem 15 e solte-os do lado direito."
-      ]
-    },
-    {
-      "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "Um ratinho de brinquedo na lojinha do parque custa 7 centavos. O Tom paga com uma moeda de 10 centavos. Quanto de troco ele recebe?",
+      "question": "Um ratinho de brinquedo custa 7 centavos. O Tom paga com uma moeda de 10. Quanto de troco?",
       "illustration": "🐭",
       "options": [2, 3, 4, 7],
       "correct": 3,
       "hints": [
         "Troco = o que você pagou - o que custou.",
         "10 - 7 = ?",
-        "Conte do 7 até o 10: 8, 9, 10. São 3 centavos."
+        "Conte do 7 até o 10: 8, 9, 10. São 3 centavos!"
       ]
     },
     {
-      "type": "multiple-choice",
-      "difficulty": 3,
-      "question": "Há 12 gatinhos brincando no parque. Um quarto (¼) deles é laranja. Quantos gatinhos laranja existem?",
-      "illustration": "🐈",
-      "options": [2, 3, 4, 6],
-      "correct": 3,
+      "type": "balance-scale",
+      "difficulty": 4,
+      "question": "Um novelo de lã pesa 15. Arraste dois números para equilibrar a balança!",
+      "illustration": "🧶",
+      "leftSide": 15,
+      "correct": 15,
+      "dropSlots": [1, 2],
+      "availableNumbers": [4, 6, 7, 8, 9, 11],
       "hints": [
-        "Um quarto significa separar em 4 grupos iguais.",
-        "12 ÷ 4 = ?",
-        "Grupos de 3: 3 + 3 + 3 + 3 = 12. Então ¼ de 12 é 3."
+        "Encontre dois números que somem 15.",
+        "Experimente: 7 + 8, 6 + 9, 4 + 11.",
+        "Qualquer par que some 15 funciona!"
       ]
     },
     {
-      "type": "number-builder",
-      "difficulty": 3,
-      "question": "A Casa dos Gatos A é lar de 124 gatos, e a Casa dos Gatos B tem 58 gatos. Quantos gatos vivem nas duas casas juntos? Monte a resposta!",
-      "illustration": "🏠",
-      "correct": 182,
+      "type": "fraction-visual",
+      "difficulty": 4,
+      "question": "🐾 A tigela do gato está dividida em 4 partes iguais e 3 partes estão cheias de ração. Qual fração está cheia?",
+      "illustration": "🥣",
+      "shape": "bar",
+      "numerator": 3,
+      "denominator": 4,
+      "options": ["1/4", "2/4", "3/4", "4/4"],
+      "correct": "3/4",
       "hints": [
-        "Some 124 + 58.",
-        "Comece pelas unidades: 4 + 8 = 12 (vai 1). Depois dezenas: 2 + 5 + 1 = 8.",
-        "Centenas: 1. Juntos: 182 gatos."
+        "Conte as partes iguais da tigela (o número de baixo).",
+        "Agora conte só as cheias (o número de cima).",
+        "3 cheias de 4 no total = 3/4!"
       ]
     },
     {
       "type": "sequence-next",
-      "difficulty": 3,
-      "question": "🔮 Madame Whiskers olha dentro da bola de cristal e vê gatos chegando em um padrão mágico: 3, 6, 9, 12, 15... Qual número a bola de cristal vai revelar a seguir?",
+      "difficulty": 5,
+      "question": "🔮 Madame Whiskers vê gatos chegando num padrão mágico: cada número soma 3. Qual número é o próximo?",
       "illustration": "🔮",
       "sequence": [3, 6, 9, 12, 15, "?"],
       "options": [16, 17, 18, 21],
       "correct": 18,
       "hints": [
-        "A bola de cristal vibra. Os números sobem a mesma quantidade cada vez.",
-        "6 - 3 = 3, 9 - 6 = 3. A mágica é contar de 3 em 3!",
-        "15 + 3 = 18. O futuro foi revelado!"
+        "Os números sobem a mesma quantidade.",
+        "6 - 3 = 3, 9 - 6 = 3. É contar de 3 em 3!",
+        "15 + 3 = 18!"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 4,
+      "question": "A Casa dos Gatos A tem 124 gatos, e a Casa B tem 58. Quantos gatos nas duas casas? Monte a resposta!",
+      "illustration": "🏠",
+      "correct": 182,
+      "hints": [
+        "Some 124 + 58.",
+        "Unidades: 4 + 8 = 12 (vai 1). Dezenas: 2 + 5 + 1 = 8.",
+        "Centenas: 1. Total: 182 gatos!"
+      ]
+    },
+    {
+      "type": "word-problem",
+      "difficulty": 4,
+      "question": "Aventura na loja de gatos!",
+      "illustration": "🛍️",
+      "steps": [
+        "Um saquinho de ração custa 6 moedas.",
+        "Mimi compra 4 saquinhos.",
+        "Ela tem um cupom de 5 moedas de desconto.",
+        "Quanto ela vai pagar no total?"
+      ],
+      "correct": 19,
+      "hints": [
+        "Dois passos: multiplicar e depois tirar o desconto.",
+        "4 × 6 = 24. Depois 24 - 5.",
+        "24 - 5 = 19 moedas!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 5,
+      "question": "Um gato pula de 7 em 7 pelas pedrinhas. Qual pedra é a próxima?",
+      "illustration": "🐾",
+      "sequence": [7, 14, 21, 28, "?"],
+      "options": [32, 34, 35, 36],
+      "correct": 35,
+      "hints": [
+        "Cada pulo soma 7.",
+        "28 + 7 = ?",
+        "28 + 7 = 35!"
+      ]
+    },
+    {
+      "type": "balance-scale",
+      "difficulty": 5,
+      "question": "O rei do parque pesa 22 gatinhos. Escolha dois que somem 22 para equilibrar!",
+      "illustration": "⚖️",
+      "leftSide": 22,
+      "correct": 22,
+      "dropSlots": [1, 2],
+      "availableNumbers": [6, 8, 9, 11, 13, 14, 15],
+      "hints": [
+        "Encontre dois números que somem 22.",
+        "Pares possíveis: 8 + 14, 9 + 13, 11 + 11 (não repete).",
+        "Qualquer par distinto que some 22!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 5,
+      "question": "👑 CHEFE! Gato-Rei tem 36 peixes e quer dar a mesma quantidade para 6 gatinhos, mas primeiro guarda 6 para si. Quantos peixes cada gatinho recebe?",
+      "illustration": "🦁",
+      "options": [4, 5, 6, 30],
+      "correct": 5,
+      "hints": [
+        "Dois passos: tirar 6 para o Rei, depois dividir entre 6 gatinhos.",
+        "36 - 6 = 30. Agora 30 ÷ 6.",
+        "30 ÷ 6 = 5 peixes por gatinho! Chefe derrotado!"
       ]
     }
   ]

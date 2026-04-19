@@ -1,9 +1,12 @@
 import { getState, getNextAvailableChallenge, getIslandProgress, getAllIslandSlugs, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
-import { confetti, starBurst } from '../engine/particles.js';
+import { confetti, starBurst, fireworks } from '../engine/particles.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
+import { getAchievementById } from '../engine/achievements.js';
 import { STRINGS } from '../i18n.js';
+
+let autoAdvanceTimer = null;
 
 const ISLAND_META = {
     'numbers-reef':  { name: 'Recife dos Números',  mascot: '🦉', emoji: '🏝️' },
@@ -20,9 +23,11 @@ const REACTION_BY_STARS = {
 };
 
 function parseParams(params) {
-    // New: [islandSlug, index, stars]. Legacy: [index, stars].
+    // Shapes:
+    //  [islandSlug, index, stars, flags?]
+    //  [index, stars] (legacy)
     if (!params || params.length === 0) {
-        return { islandSlug: getState().currentIsland || 'numbers-reef', index: 0, stars: 0 };
+        return { islandSlug: getState().currentIsland || 'numbers-reef', index: 0, stars: 0, flags: new Set() };
     }
     const first = params[0];
     const isIndexOnly = /^\d+$/.test(first);
@@ -30,20 +35,36 @@ function parseParams(params) {
         return {
             islandSlug: getState().currentIsland || 'numbers-reef',
             index: parseInt(first, 10),
-            stars: parseInt(params[1] || '0', 10)
+            stars: parseInt(params[1] || '0', 10),
+            flags: new Set()
         };
     }
+    const flagStr = params[3] || '';
+    const flags = new Set(flagStr.split(',').filter(Boolean));
     return {
         islandSlug: first,
         index: parseInt(params[1] || '0', 10),
-        stars: parseInt(params[2] || '0', 10)
+        stars: parseInt(params[2] || '0', 10),
+        flags
     };
 }
 
 export function enter(container, params) {
-    const { islandSlug, stars } = parseParams(params);
+    const { islandSlug, stars, flags } = parseParams(params);
+    const gotSpeed = flags.has('speed');
+    const wasDaily = flags.has('daily');
     const state = getState();
     const meta = ISLAND_META[islandSlug] || ISLAND_META['numbers-reef'];
+
+    // Pull & clear newly-unlocked achievements (set by challenge-screen)
+    let justUnlocked = [];
+    try {
+        const raw = sessionStorage.getItem('quest:just-unlocked');
+        if (raw) {
+            justUnlocked = JSON.parse(raw).map(id => getAchievementById(id)).filter(Boolean);
+            sessionStorage.removeItem('quest:just-unlocked');
+        }
+    } catch (e) { /* ignore */ }
 
     const nextChallengeIdx = getNextAvailableChallenge(islandSlug);
     const islandComplete = nextChallengeIdx === -1;
@@ -58,7 +79,9 @@ export function enter(container, params) {
     const reactionMsg = stars === 3
         ? (STRINGS.results3starByProfile[profile.id] || REACTION_BY_STARS[3])
         : (REACTION_BY_STARS[stars] || REACTION_BY_STARS[0]);
-    const coinsEarned = stars * 5 + (stars === 3 ? 3 : 0);
+    let coinsEarned = stars * 5 + (stars === 3 ? 3 : 0);
+    if (gotSpeed) coinsEarned += 3;
+    if (wasDaily) coinsEarned *= 2;
 
     const starHTML = Array.from({ length: 3 }, (_, i) => {
         const filled = i < stars;
@@ -77,7 +100,9 @@ export function enter(container, params) {
                 <div class="guide-character guide-celebrate anim-float" style="font-size:4rem;">${meta.mascot}🎉</div>
                 <div class="results-sidekick anim-float" style="font-size:2.6rem;">${theme.sidekick}</div>
             </div>
-            <div class="results-stars" id="stars-area">${starHTML}</div>
+            <div class="results-stars" id="stars-area">${starHTML}${gotSpeed ? '<span class="result-star result-star-speed" style="animation-delay:1.05s;">⚡</span>' : ''}</div>
+            ${gotSpeed ? '<p class="results-speed-note">⚡ Estrela-relâmpago! Você resolveu super rápido!</p>' : ''}
+            ${wasDaily ? '<p class="results-daily-note">🌟 Desafio do Dia — moedas em dobro!</p>' : ''}
             <p class="results-message">${reactionMsg}</p>
             <div class="results-rewards">
                 <div class="reward-badge reward-coins" id="coin-reward" style="opacity:0;">
@@ -85,11 +110,12 @@ export function enter(container, params) {
                 </div>
                 ${state.stats.streakCurrent >= 3 ? `<div class="reward-badge reward-streak" style="animation-delay:0.8s;">🔥 sequência de ${state.stats.streakCurrent}!</div>` : ''}
             </div>
+            ${justUnlocked.length ? `<div class="achievement-unlocks">${justUnlocked.map(a => `<div class="achievement-toast">${a.icon} <strong>${a.name}</strong> desbloqueado!<br><span class="achievement-desc">${a.desc}</span></div>`).join('')}</div>` : ''}
             <p style="color:var(--text-light);font-size:0.9rem;">
                 ${state.playerName}: ⭐ ${state.totalStars} estrelas &nbsp; 💰 ${state.coins || 0} moedas
             </p>
             <div class="results-buttons">
-                ${!islandComplete ? `<button class="btn btn-primary btn-large" id="next-btn">Próximo Desafio →</button>` : ''}
+                ${!islandComplete ? `<div class="auto-advance-note" id="auto-advance-note">Próximo desafio em instantes… <span class="auto-advance-bar"><span class="auto-advance-bar-fill" id="auto-advance-bar-fill"></span></span></div>` : ''}
                 ${islandComplete && otherMeta ? `<button class="btn btn-primary btn-large" id="next-island-btn">${otherMeta.emoji} Ir para ${otherMeta.name} →</button>` : ''}
                 <button class="btn btn-secondary" id="map-btn">🗺️ Voltar ao Mapa</button>
                 ${islandComplete ? `<p style="color:var(--success);font-weight:700;font-size:1.2rem;margin-top:12px;">🎉 Você completou ${meta.name}!</p>` : ''}
@@ -119,10 +145,14 @@ export function enter(container, params) {
     }, 1000);
 
     if (stars === 3) {
-        setTimeout(() => confetti(50), 400);
-        setTimeout(() => confetti(30), 1200);
+        setTimeout(() => confetti(60), 400);
+        setTimeout(() => confetti(40), 1200);
+        setTimeout(() => {
+            const rect = starsArea?.getBoundingClientRect();
+            if (rect) fireworks(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        }, 700);
     } else if (stars >= 1) {
-        setTimeout(() => confetti(20), 500);
+        setTimeout(() => confetti(28), 500);
     }
 
     if (islandComplete) {
@@ -139,14 +169,6 @@ export function enter(container, params) {
         }, 2200);
     }
 
-    const nextBtn = container.querySelector('#next-btn');
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            sound.tap();
-            navigate(`challenge/${islandSlug}/${nextChallengeIdx}`);
-        });
-    }
-
     const nextIslandBtn = container.querySelector('#next-island-btn');
     if (nextIslandBtn) {
         nextIslandBtn.addEventListener('click', () => {
@@ -157,8 +179,31 @@ export function enter(container, params) {
 
     container.querySelector('#map-btn').addEventListener('click', () => {
         sound.tap();
+        if (autoAdvanceTimer) { clearTimeout(autoAdvanceTimer); autoAdvanceTimer = null; }
         navigate('map/' + islandSlug);
     });
+
+    // Auto-advance to the next challenge (no manual button needed).
+    if (!islandComplete) {
+        const delay = stars === 3 ? 2400 : 1800;
+        const bar = container.querySelector('#auto-advance-bar-fill');
+        if (bar) {
+            requestAnimationFrame(() => {
+                bar.style.transition = `width ${delay}ms linear`;
+                bar.style.width = '100%';
+            });
+        }
+        if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
+        autoAdvanceTimer = setTimeout(() => {
+            autoAdvanceTimer = null;
+            navigate(`challenge/${islandSlug}/${nextChallengeIdx}`);
+        }, delay);
+    }
 }
 
-export function exit() {}
+export function exit() {
+    if (autoAdvanceTimer) {
+        clearTimeout(autoAdvanceTimer);
+        autoAdvanceTimer = null;
+    }
+}

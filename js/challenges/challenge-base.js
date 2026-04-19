@@ -1,5 +1,8 @@
 import { recordWrongAnswer, resetWrongAnswers, getWrongAnswerCount } from '../state.js';
 
+// Speed-star thresholds (ms) per difficulty tier.
+const SPEED_THRESHOLDS = { 1: 12000, 2: 18000, 3: 25000, 4: 35000, 5: 45000 };
+
 export class ChallengeBase {
     constructor(data, container) {
         this.data = data;
@@ -9,6 +12,21 @@ export class ChallengeBase {
         this.maxHints = data.hints ? data.hints.length : 3;
         this.solved = false;
         this.onComplete = null;
+        this.startTime = Date.now();
+        this.turboBonus = 1;
+    }
+
+    getElapsedMs() {
+        return Date.now() - this.startTime;
+    }
+
+    earnedSpeedStar() {
+        if (!this.solved) return false;
+        if (this.hintsUsed > 0) return false;
+        if (this.attempts > 1) return false;
+        const tier = Math.min(Math.max(this.data.difficulty || 1, 1), 5);
+        const threshold = SPEED_THRESHOLDS[tier] * this.turboBonus;
+        return this.getElapsedMs() <= threshold;
     }
 
     render() {

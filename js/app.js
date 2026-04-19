@@ -9,6 +9,8 @@ import * as resultsScreen from './screens/results-screen.js';
 import * as profileScreen from './screens/profile-screen.js';
 import * as practiceScreen from './screens/practice-screen.js';
 import * as lockoutScreen from './screens/lockout-screen.js';
+import * as shopScreen from './screens/shop-screen.js';
+import * as trophiesScreen from './screens/trophies-screen.js';
 
 applyProfileTheme(getCurrentProfileMeta().id);
 
@@ -20,6 +22,8 @@ registerRoute('results', resultsScreen);
 registerRoute('profile', profileScreen);
 registerRoute('practice', practiceScreen);
 registerRoute('lockout', lockoutScreen);
+registerRoute('shop', shopScreen);
+registerRoute('trophies', trophiesScreen);
 
 const app = document.getElementById('app');
 initRouter(app);

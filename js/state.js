@@ -1,6 +1,7 @@
 const STORAGE_KEY = 'quest-of-the-curious';
 
 const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park', 'bubble-magic', 'crystal-rock'];
+const CHALLENGES_PER_ISLAND = 15;
 
 const PROFILE_DEFS = [
     { id: 'ziva', name: 'Ziva', age: 8, avatar: '🔮', color: '#E91E63' },
@@ -28,10 +29,10 @@ function makeProfileDefaults(def) {
         avatar: def.avatar,
         color: def.color,
         playerName: def.name,
-        character: { hat: 'none', color: def.color, face: '😊' },
+        character: { hat: 'none', color: def.color, face: '😊', accessory: 'none', frame: 'default' },
         islands: {
-            'numbers-reef':  { challenges: makeChallenges(10) },
-            'purrfect-park': { challenges: makeChallenges(10) }
+            'numbers-reef':  { challenges: makeChallenges(CHALLENGES_PER_ISLAND) },
+            'purrfect-park': { challenges: makeChallenges(CHALLENGES_PER_ISLAND) }
         },
         currentIsland: 'numbers-reef',
         totalStars: 0,
@@ -44,10 +45,13 @@ function makeProfileDefaults(def) {
             totalChallenges: 0,
             totalCorrect: 0,
             streakCurrent: 0,
-            streakBest: 0
+            streakBest: 0,
+            speedStars: 0,
+            comboBest: 0
         },
         practice: { difficulty: 1, history: [] },
-        dailyChallenge: { lastDate: null, completed: false },
+        dailyChallenge: { lastDate: null, completed: false, streakDays: 0 },
+        powerUps: { bonusHint: 0, skip: 0, turbo: 0 },
         lockout: { wrongCount: 0, lockedUntil: null }
     };
 }
@@ -67,14 +71,26 @@ function migrateProfileIslands(profile) {
     if (profile.challenges && !profile.islands) {
         profile.islands = {
             'numbers-reef':  { challenges: profile.challenges },
-            'purrfect-park': { challenges: makeChallenges(10) }
+            'purrfect-park': { challenges: makeChallenges(CHALLENGES_PER_ISLAND) }
         };
         delete profile.challenges;
         profile.currentIsland = 'numbers-reef';
     }
     if (!profile.islands) profile.islands = {};
     for (const slug of ISLAND_SLUGS) {
-        if (!profile.islands[slug]) profile.islands[slug] = { challenges: makeChallenges(10) };
+        if (!profile.islands[slug]) {
+            profile.islands[slug] = { challenges: makeChallenges(CHALLENGES_PER_ISLAND) };
+            continue;
+        }
+        const island = profile.islands[slug];
+        if (!Array.isArray(island.challenges)) {
+            island.challenges = makeChallenges(CHALLENGES_PER_ISLAND);
+            continue;
+        }
+        if (island.challenges.length < CHALLENGES_PER_ISLAND) {
+            const needed = CHALLENGES_PER_ISLAND - island.challenges.length;
+            island.challenges.push(...makeChallenges(needed));
+        }
     }
     if (!profile.currentIsland) profile.currentIsland = 'numbers-reef';
     return profile;
@@ -105,6 +121,7 @@ function mergeProfile(def, saved) {
     merged.stats     = { ...base.stats,     ...(migratedSaved.stats     || {}) };
     merged.practice  = { ...base.practice,  ...(migratedSaved.practice  || {}) };
     merged.dailyChallenge = { ...base.dailyChallenge, ...(migratedSaved.dailyChallenge || {}) };
+    merged.powerUps = { ...base.powerUps, ...(migratedSaved.powerUps || {}) };
     merged.lockout = { ...base.lockout, ...(migratedSaved.lockout || {}) };
     if (!Array.isArray(merged.achievements))    merged.achievements    = [];
     if (!Array.isArray(merged.purchasedFaces))  merged.purchasedFaces  = [];
@@ -246,6 +263,7 @@ export function getProfiles() {
             age: def.age,
             avatar: def.avatar,
             color: def.color,
+            character: p?.character || null,
             stars,
             completed,
             hasProgress: stars > 0 || completed > 0,
@@ -338,3 +356,92 @@ export function getWrongAnswerCount() {
 
 export const LOCKOUT_THRESHOLD = LOCKOUT_WRONG_THRESHOLD;
 export const LOCKOUT_MS = LOCKOUT_DURATION_MS;
+
+// --- achievements API ---
+
+export function getAchievementIds() {
+    const list = state.achievements;
+    if (!Array.isArray(list)) return new Set();
+    return new Set(list.map(a => typeof a === 'string' ? a : a.id));
+}
+
+export function unlockAchievement(id) {
+    const owned = getAchievementIds();
+    if (owned.has(id)) return false;
+    updateState(s => {
+        if (!Array.isArray(s.achievements)) s.achievements = [];
+        s.achievements.push({ id, at: Date.now() });
+    });
+    return true;
+}
+
+// --- power-ups API ---
+
+export function getPowerUpInventory() {
+    return { ...(state.powerUps || {}) };
+}
+
+export function addPowerUp(kind, qty = 1) {
+    updateState(s => {
+        if (!s.powerUps) s.powerUps = { bonusHint: 0, skip: 0, turbo: 0 };
+        s.powerUps[kind] = (s.powerUps[kind] || 0) + qty;
+    });
+}
+
+export function consumePowerUp(kind) {
+    if (!(state.powerUps && state.powerUps[kind] > 0)) return false;
+    updateState(s => { s.powerUps[kind] -= 1; });
+    return true;
+}
+
+export function spendCoins(amount) {
+    if ((state.coins || 0) < amount) return false;
+    updateState(s => { s.coins = (s.coins || 0) - amount; });
+    return true;
+}
+
+// --- daily challenge API ---
+
+export function getTodayStamp() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+export function isDailyDoneToday() {
+    const today = getTodayStamp();
+    const dc = state.dailyChallenge || {};
+    return dc.lastDate === today && dc.completed === true;
+}
+
+export function markDailyStarted() {
+    const today = getTodayStamp();
+    updateState(s => {
+        if (!s.dailyChallenge) s.dailyChallenge = {};
+        if (s.dailyChallenge.lastDate !== today) {
+            s.dailyChallenge.lastDate = today;
+            s.dailyChallenge.completed = false;
+        }
+    });
+}
+
+export function markDailyCompleted() {
+    const today = getTodayStamp();
+    updateState(s => {
+        if (!s.dailyChallenge) s.dailyChallenge = {};
+        const prev = s.dailyChallenge.lastDate;
+        const yesterday = yesterdayStamp();
+        if (prev === yesterday) {
+            s.dailyChallenge.streakDays = (s.dailyChallenge.streakDays || 0) + 1;
+        } else if (prev !== today) {
+            s.dailyChallenge.streakDays = 1;
+        }
+        s.dailyChallenge.lastDate = today;
+        s.dailyChallenge.completed = true;
+    });
+}
+
+function yesterdayStamp() {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}

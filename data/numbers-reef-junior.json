@@ -23,11 +23,11 @@
     {
       "type": "multiple-choice",
       "difficulty": 1,
-      "question": "🌊 + 🌊 = ?",
-      "illustration": "🏄",
+      "question": "🐠 + 🐠 = ?",
+      "illustration": "🐠",
       "options": [1, 2, 3],
       "correct": 2,
-      "hints": ["Pule 1, depois mais 1.", "1 + 1.", "Dois!"]
+      "hints": ["Um e mais um.", "1 + 1.", "Dois!"]
     },
     {
       "type": "multiple-choice",
@@ -40,26 +40,26 @@
     },
     {
       "type": "sequence-next",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "O que vem a seguir?",
       "illustration": "🏖️",
       "sequence": ["🐚", "🌊", "🐚", "🌊", "🐚", "?"],
       "options": ["🐚", "🌊", "🦀"],
       "correct": "🌊",
-      "hints": ["Concha, onda, concha, onda...", "A próxima é uma onda.", "🌊!"]
+      "hints": ["Concha, onda, concha, onda...", "Depois da concha vem a onda.", "🌊!"]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🌊🌊🌊 + 🌊🌊 = ?",
       "illustration": "🏄",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Três e dois.", "3 + 2.", "Cinco!"]
+      "hints": ["Três e mais duas.", "3 + 2.", "Cinco!"]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "Quantas? ⭐⭐⭐⭐⭐⭐⭐",
       "illustration": "⭐",
       "options": [6, 7, 8],
@@ -68,16 +68,16 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
-      "question": "Qual tem MAIS?",
-      "illustration": "🐚",
-      "options": ["🐚🐚🐚", "🐚🐚🐚🐚🐚"],
+      "difficulty": 2,
+      "question": "Qual baldinho tem MAIS conchas?",
+      "illustration": "🪣",
+      "options": ["🐚🐚🐚", "🐚🐚🐚🐚🐚", "🐚🐚"],
       "correct": "🐚🐚🐚🐚🐚",
-      "hints": ["Conte cada baldinho.", "5 é maior que 3.", "5 conchas ganham!"]
+      "hints": ["Conte em cada baldinho.", "5 é maior que 3 e 2.", "O baldinho com 5 conchas!"]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🌊🌊🌊🌊 + 🌊 = ?",
       "illustration": "🏄",
       "options": [4, 5, 6],
@@ -86,12 +86,74 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 3,
       "question": "Quantas? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
       "illustration": "🌊",
       "options": [8, 9, 10],
       "correct": 10,
       "hints": ["Conte todas.", "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.", "Dez ondas!"]
+    },
+    {
+      "type": "fraction-visual",
+      "difficulty": 2,
+      "question": "Qual parte da pizza do peixe está comida?",
+      "illustration": "🍕",
+      "shape": "pie",
+      "numerator": 1,
+      "denominator": 2,
+      "options": ["1/2", "2/2", "1/4"],
+      "correct": "1/2",
+      "hints": [
+        "Conte as partes iguais.",
+        "Uma metade foi comida.",
+        "1 de 2 = 1/2!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "🐟🐟🐟🐟🐟 + 🐟🐟🐟🐟🐟 = ?",
+      "illustration": "🐟",
+      "options": [8, 9, 10],
+      "correct": 10,
+      "hints": ["Cinco e cinco.", "5 + 5.", "Dez!"]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "O que vem a seguir?",
+      "illustration": "🔢",
+      "sequence": [2, 4, 6, 8, "?"],
+      "options": [9, 10, 11],
+      "correct": 10,
+      "hints": ["Os números pulam de dois em dois.", "2, 4, 6, 8...", "8 + 2 = 10!"]
+    },
+    {
+      "type": "word-problem",
+      "difficulty": 4,
+      "question": "Aventura na praia!",
+      "illustration": "🏖️",
+      "steps": [
+        "Eu tinha 10 conchas.",
+        "Dei 3 à minha amiga.",
+        "Depois achei mais 2 na areia.",
+        "Quantas conchas tenho agora?"
+      ],
+      "correct": 9,
+      "hints": [
+        "Dois passos: tirar e depois somar.",
+        "10 - 3 = 7. Depois 7 + 2.",
+        "7 + 2 = 9 conchas!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "🏴‍☠️ CHEFE! O capitão acha 7 moedas na praia e depois mais 6 na areia. Quantas moedas ele tem?",
+      "illustration": "🐙",
+      "options": [11, 12, 13, 14],
+      "correct": 13,
+      "hints": ["Some tudo: 7 + 6.", "Pense em 7 + 3 = 10, depois 10 + 3 = 13.", "7 + 6 = 13! Chefe derrotado!"]
     }
   ]
 }

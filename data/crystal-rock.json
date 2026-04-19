@@ -4,15 +4,28 @@
   "challenges": [
     {
       "type": "multiple-choice",
-      "difficulty": 2,
+      "difficulty": 1,
       "question": "🎸 A banda tem 4 guitarras e 3 baixos. Quantos instrumentos de corda no total?",
       "illustration": "🎸",
-      "options": [5, 6, 7, 8],
+      "options": [5, 6, 7, 12],
       "correct": 7,
       "hints": [
-        "Some as guitarras e os baixos.",
+        "Junte guitarras e baixos.",
         "4 + 3 = ?",
-        "Sete instrumentos de corda!"
+        "4 + 3 = 7 instrumentos!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "💎 Eu tinha 9 cristais e dei 4 ao meu amigo. Quantos cristais tenho agora?",
+      "illustration": "💎",
+      "options": [4, 5, 6, 13],
+      "correct": 5,
+      "hints": [
+        "Tirar: 9 - 4.",
+        "Conte para trás: 8, 7, 6, 5.",
+        "9 - 4 = 5 cristais!"
       ]
     },
     {
@@ -20,30 +33,18 @@
       "difficulty": 2,
       "question": "🥁 O baterista toca 5 batidas por segundo durante 6 segundos. Quantas batidas no total?",
       "illustration": "🥁",
-      "options": [25, 28, 30, 36],
+      "options": [11, 25, 30, 36],
       "correct": 30,
       "hints": [
         "5 batidas × 6 segundos.",
         "5 × 6 = ?",
-        "30 batidas!"
-      ]
-    },
-    {
-      "type": "number-builder",
-      "difficulty": 3,
-      "question": "💎 O palco do show tem 148 cristais, e mais 36 foram adicionados. Quantos cristais brilham agora?",
-      "illustration": "💎",
-      "correct": 184,
-      "hints": [
-        "Some 148 + 36.",
-        "8 + 6 = 14 (vai 1). 4 + 3 + 1 = 8. Depois 1.",
-        "184 cristais!"
+        "5 × 6 = 30 batidas!"
       ]
     },
     {
       "type": "sequence-next",
       "difficulty": 2,
-      "question": "🎵 O ritmo conta de 4 em 4: 4, 8, 12, 16, 20, ? O que vem a seguir?",
+      "question": "🎵 O ritmo conta de 4 em 4. O que vem a seguir?",
       "illustration": "🎵",
       "sequence": [4, 8, 12, 16, 20, "?"],
       "options": [22, 24, 25, 28],
@@ -51,26 +52,54 @@
       "hints": [
         "Cada passo soma 4.",
         "20 + 4 = ?",
-        "24!"
+        "20 + 4 = 24!"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 3,
+      "question": "💎 O palco tem 148 cristais, e adicionam mais 36. Quantos cristais brilham agora?",
+      "illustration": "💎",
+      "correct": 184,
+      "hints": [
+        "Some 148 + 36.",
+        "8 + 6 = 14 (vai 1). 4 + 3 + 1 = 8. Depois 1.",
+        "148 + 36 = 184 cristais!"
+      ]
+    },
+    {
+      "type": "fraction-visual",
+      "difficulty": 3,
+      "question": "🎸 O palco foi pintado em 4 partes iguais e 2 partes estão pintadas. Qual fração está pintada?",
+      "illustration": "🎨",
+      "shape": "pie",
+      "numerator": 2,
+      "denominator": 4,
+      "options": ["1/4", "2/4", "3/4", "4/4"],
+      "correct": "2/4",
+      "hints": [
+        "Conte quantas partes iguais no total.",
+        "Agora conte só as pintadas.",
+        "2 pintadas de 4 = 2/4!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 3,
-      "question": "🎤 24 fãs dividem uma fileira igualmente em 4 grupos. Quantos fãs por grupo?",
-      "illustration": "🎤",
-      "options": [4, 5, 6, 8],
-      "correct": 6,
+      "question": "🎧 Uma música tem 3 minutos. Quantos segundos? (1 min = 60 s)",
+      "illustration": "🎧",
+      "options": [63, 120, 180, 360],
+      "correct": 180,
       "hints": [
-        "Divisão: 24 ÷ 4.",
-        "Quantos 4 cabem em 24?",
-        "24 ÷ 4 = 6 fãs por grupo!"
+        "Segundos por minuto × minutos.",
+        "60 × 3.",
+        "60 × 3 = 180 segundos!"
       ]
     },
     {
       "type": "balance-scale",
-      "difficulty": 3,
-      "question": "🎹 Um piano pesa 25 cristais. Equilibre a balança — arraste dois números que somem 25!",
+      "difficulty": 4,
+      "question": "🎹 Um piano pesa 25 cristais. Equilibre — arraste dois números que somem 25!",
       "illustration": "⚖️",
       "leftSide": 25,
       "correct": 25,
@@ -78,51 +107,31 @@
       "availableNumbers": [8, 9, 11, 13, 14, 16, 17],
       "hints": [
         "Encontre dois que somem 25.",
-        "Tente pares: 8+17, 9+16, 11+14...",
+        "Pares: 8 + 17, 9 + 16, 11 + 14.",
         "Qualquer par que some 25 funciona!"
       ]
     },
     {
-      "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "🎧 Uma música tem 3 minutos. Quantos segundos são? (1 minuto = 60 segundos)",
-      "illustration": "🎧",
-      "options": [120, 150, 180, 360],
-      "correct": 180,
+      "type": "word-problem",
+      "difficulty": 4,
+      "question": "Aventura no show de rock!",
+      "illustration": "🎤",
+      "steps": [
+        "A banda vendeu 50 ingressos pela manhã.",
+        "Depois vendeu mais 25 à tarde.",
+        "9 pessoas devolveram o ingresso.",
+        "Quantos ingressos foram vendidos no total?"
+      ],
+      "correct": 66,
       "hints": [
-        "Segundos por minuto × minutos.",
-        "60 × 3.",
-        "180 segundos!"
-      ]
-    },
-    {
-      "type": "number-builder",
-      "difficulty": 3,
-      "question": "🎸 Uma turnê de shows tocou 217 músicas. Depois mais 48 no bis. Quantas músicas no total?",
-      "illustration": "🎸",
-      "correct": 265,
-      "hints": [
-        "Some 217 + 48.",
-        "7 + 8 = 15 (vai 1). 1 + 4 + 1 = 6. Depois 2.",
-        "265 músicas!"
-      ]
-    },
-    {
-      "type": "multiple-choice",
-      "difficulty": 3,
-      "question": "💎 Uma gema custa 9 moedas. Você tem 50 moedas. Quantas gemas você pode comprar?",
-      "illustration": "💎",
-      "options": [4, 5, 6, 9],
-      "correct": 5,
-      "hints": [
-        "Divisão: 50 ÷ 9.",
-        "9 × 5 = 45, sobram 5 moedas. Não dá para mais uma.",
-        "5 gemas (com 5 moedas de sobra)!"
+        "Dois passos: somar e depois tirar.",
+        "50 + 25 = 75. Depois 75 - 9.",
+        "75 - 9 = 66 ingressos!"
       ]
     },
     {
       "type": "sequence-next",
-      "difficulty": 3,
+      "difficulty": 5,
       "question": "🎵 A batida da bateria triplica a cada compasso! O que vem a seguir?",
       "illustration": "🥁",
       "sequence": [1, 3, 9, 27, "?"],
@@ -131,7 +140,74 @@
       "hints": [
         "Cada número é 3 vezes o anterior.",
         "27 × 3 = ?",
-        "81!"
+        "27 × 3 = 81!"
+      ]
+    },
+    {
+      "type": "number-builder",
+      "difficulty": 4,
+      "question": "🎸 Uma turnê tocou 217 músicas. Mais 48 no bis. Quantas no total? Monte a resposta!",
+      "illustration": "🎸",
+      "correct": 265,
+      "hints": [
+        "Some 217 + 48.",
+        "7 + 8 = 15 (vai 1). 1 + 4 + 1 = 6. Depois 2.",
+        "217 + 48 = 265 músicas!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 4,
+      "question": "🎹 Um show tem 72 pessoas em 8 fileiras iguais. Quantas pessoas por fileira?",
+      "illustration": "🎹",
+      "options": [7, 8, 9, 11],
+      "correct": 9,
+      "hints": [
+        "Dividir: 72 ÷ 8.",
+        "8 × 9 = 72.",
+        "72 ÷ 8 = 9 pessoas por fileira!"
+      ]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 5,
+      "question": "🎤 Cada bis dobra os fãs e tira 1. O que vem a seguir?",
+      "illustration": "🎤",
+      "sequence": [2, 3, 5, 9, 17, "?"],
+      "options": [26, 32, 33, 34],
+      "correct": 33,
+      "hints": [
+        "Regra: dobra e tira 1. 2×2-1=3, 3×2-1=5, 5×2-1=9, 9×2-1=17.",
+        "17 × 2 - 1 = ?",
+        "34 - 1 = 33!"
+      ]
+    },
+    {
+      "type": "balance-scale",
+      "difficulty": 5,
+      "question": "💎 A coroa do rockstar pesa 30 cristais. Escolha dois que somem 30!",
+      "illustration": "⚖️",
+      "leftSide": 30,
+      "correct": 30,
+      "dropSlots": [1, 2],
+      "availableNumbers": [11, 13, 14, 16, 17, 19, 21],
+      "hints": [
+        "Encontre dois que somem 30.",
+        "Pares: 11 + 19, 13 + 17, 14 + 16.",
+        "Qualquer par que some 30!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 5,
+      "question": "👑 CHEFE! A Rainha do Rock precisa de 8 cristais para cada música e vai tocar 7 músicas. Se ela já tem 20 cristais, quantos mais precisa?",
+      "illustration": "👑",
+      "options": [28, 36, 44, 56],
+      "correct": 36,
+      "hints": [
+        "Dois passos: descobrir o total e depois subtrair o que já tem.",
+        "8 × 7 = 56 cristais necessários. Depois 56 - 20.",
+        "56 - 20 = 36 cristais! Chefe derrotado!"
       ]
     }
   ]

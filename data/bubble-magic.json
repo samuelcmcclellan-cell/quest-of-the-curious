@@ -4,42 +4,68 @@
   "challenges": [
     {
       "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "🧙‍♀️ Uma bruxa prepara 6 poções de manhã e mais 8 à tarde. Quantas poções no total?",
+      "difficulty": 1,
+      "question": "🧙‍♀️ Uma bruxa prepara 6 poções de manhã e 8 à tarde. Quantas poções no total?",
       "illustration": "🧪",
       "options": [12, 13, 14, 16],
       "correct": 14,
       "hints": [
-        "Some as poções da manhã e da tarde.",
+        "Some as poções das duas vezes do dia.",
         "6 + 8 = ?",
         "6 + 8 = 14 poções!"
       ]
     },
     {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🫧 Uma bolha estoura em 3 bolhinhas. Se há 5 bolhas e todas estouram, quantas bolhinhas?",
+      "illustration": "🫧",
+      "options": [8, 10, 12, 15],
+      "correct": 15,
+      "hints": [
+        "5 bolhas × 3 bolhinhas cada.",
+        "Conte de 3 em 3: 3, 6, 9, 12, 15.",
+        "5 × 3 = 15 bolhinhas!"
+      ]
+    },
+    {
       "type": "sequence-next",
       "difficulty": 2,
-      "question": "🫧 As bolhas mágicas se multiplicam! Cada passo adiciona dez. O que vem a seguir?",
+      "question": "🫧 As bolhas mágicas crescem! Cada passo soma 10. O que vem a seguir?",
       "illustration": "🫧",
       "sequence": [10, 20, 30, 40, 50, "?"],
       "options": [51, 55, 60, 65],
       "correct": 60,
       "hints": [
-        "Conte de 10 em 10!",
-        "10, 20, 30, 40, 50, e depois?",
+        "Conte de 10 em 10.",
+        "10, 20, 30, 40, 50, depois?",
         "50 + 10 = 60!"
       ]
     },
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "🧚 Uma fada dobra cada bolha que toca. Ela começa com 7 bolhas. Quantas depois de dobrar?",
+      "question": "🧚 Uma fada dobra cada bolha que toca. Ela tem 7 bolhas. Quantas depois de dobrar?",
       "illustration": "🫧",
-      "options": [12, 13, 14, 15],
+      "options": [12, 14, 15, 17],
       "correct": 14,
       "hints": [
-        "Dobrar significa 2 vezes.",
+        "Dobrar = somar consigo mesmo.",
         "7 + 7 ou 7 × 2.",
-        "14 bolhas!"
+        "7 + 7 = 14 bolhas!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "⏰ O feitiço começa às 2:00 e dura 3 horas. Que horas termina?",
+      "illustration": "⏰",
+      "options": ["3:30", "4:00", "5:00", "6:00"],
+      "correct": "5:00",
+      "hints": [
+        "Some 3 horas ao horário de início.",
+        "2:00 + 3 horas.",
+        "5:00!"
       ]
     },
     {
@@ -49,90 +75,139 @@
       "illustration": "🔮",
       "correct": 36,
       "hints": [
-        "Subtraia 27 de 63.",
+        "63 - 27.",
         "63 - 20 = 43, depois 43 - 7 = 36.",
-        "36!"
+        "63 - 27 = 36!"
       ]
     },
     {
-      "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "⏰ O feitiço mágico começa às 2:00 e dura 3 horas. A que horas termina?",
-      "illustration": "⏰",
-      "options": ["4:00", "5:00", "6:00", "3:30"],
-      "correct": "5:00",
+      "type": "fraction-visual",
+      "difficulty": 3,
+      "question": "🧪 O frasco da poção está dividido em 4 partes iguais e 3 partes já estão cheias. Qual fração está cheia?",
+      "illustration": "🧪",
+      "shape": "bar",
+      "numerator": 3,
+      "denominator": 4,
+      "options": ["1/4", "2/4", "3/4", "4/4"],
+      "correct": "3/4",
       "hints": [
-        "Some 3 horas ao horário de início.",
-        "2:00 + 3 horas.",
-        "5:00!"
+        "Conte quantas partes iguais no total (o número de baixo).",
+        "Agora conte só as cheias (o número de cima).",
+        "3 cheias de 4 = 3/4!"
       ]
     },
     {
       "type": "balance-scale",
-      "difficulty": 3,
-      "question": "✨ Duas bolsinhas mágicas precisam equilibrar o cristal de 18 quilos. Escolha números que somem 18!",
+      "difficulty": 4,
+      "question": "✨ O cristal encantado pesa 18. Equilibre com dois números!",
       "illustration": "⚖️",
       "leftSide": 18,
       "correct": 18,
       "dropSlots": [1, 2],
-      "availableNumbers": [5, 7, 8, 9, 10, 11, 13],
+      "availableNumbers": [5, 7, 8, 10, 11, 13],
       "hints": [
         "Encontre dois números que somem 18.",
-        "Tente os pares: 5+13, 7+11, 8+10, 9+9 (não pode repetir)...",
-        "Escolha qualquer par que some 18!"
+        "Pares: 5 + 13, 7 + 11, 8 + 10.",
+        "Qualquer par que some 18 funciona!"
       ]
     },
     {
-      "type": "multiple-choice",
-      "difficulty": 3,
-      "question": "🪄 Cada varinha lança 4 feitiços. São 7 varinhas. Quantos feitiços podem ser lançados?",
-      "illustration": "🪄",
-      "options": [21, 24, 28, 32],
-      "correct": 28,
+      "type": "word-problem",
+      "difficulty": 4,
+      "question": "Aventura mágica das poções!",
+      "illustration": "🧙‍♀️",
+      "steps": [
+        "A bruxa tem 80 mL de poção.",
+        "Ela usa 35 mL num feitiço.",
+        "Depois acha um frasco com 12 mL e adiciona.",
+        "Quantos mL de poção ela tem agora?"
+      ],
+      "correct": 57,
       "hints": [
-        "4 feitiços × 7 varinhas.",
-        "4 × 7 = ?",
-        "4 × 7 = 28 feitiços!"
+        "Dois passos: tirar e depois somar.",
+        "80 - 35 = 45. Depois 45 + 12.",
+        "45 + 12 = 57 mL!"
       ]
     },
     {
       "type": "sequence-next",
-      "difficulty": 3,
-      "question": "🌙 Cada bolha dobra de tamanho! O que vem a seguir?",
+      "difficulty": 5,
+      "question": "🌙 Cada bolha dobra de tamanho. Qual vem a seguir?",
       "illustration": "🫧",
       "sequence": [1, 2, 4, 8, 16, "?"],
       "options": [18, 24, 30, 32],
       "correct": 32,
       "hints": [
-        "Cada um é o dobro do anterior.",
+        "Cada número é o dobro do anterior.",
         "1×2=2, 2×2=4, 4×2=8, 8×2=16...",
         "16 × 2 = 32!"
       ]
     },
     {
       "type": "number-builder",
-      "difficulty": 3,
+      "difficulty": 4,
       "question": "📜 O livro de feitiços diz: 145 + 78. Monte a resposta!",
       "illustration": "📜",
       "correct": 223,
       "hints": [
-        "Some as unidades: 5 + 8 = 13 (vai 1).",
-        "Dezenas: 4 + 7 + 1 = 12 (vai 1).",
-        "Centenas: 1 + 1 = 2. Resposta: 223!"
+        "Unidades: 5 + 8 = 13 (vai 1).",
+        "Dezenas: 4 + 7 + 1 = 12 (vai 1). Centenas: 1 + 1 = 2.",
+        "145 + 78 = 223!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 4,
+      "question": "🧙 Um mago divide 42 cristais igualmente entre 6 alunos. Quantos cristais cada aluno recebe?",
+      "illustration": "💎",
+      "options": [5, 6, 7, 8],
+      "correct": 7,
+      "hints": [
+        "Dividir: 42 ÷ 6.",
+        "Que número vezes 6 dá 42?",
+        "42 ÷ 6 = 7 cristais por aluno!"
       ]
     },
     {
       "type": "sequence-next",
-      "difficulty": 3,
+      "difficulty": 5,
       "question": "🔮 A bola de cristal conta de 10 em 10 para trás. O que vem a seguir?",
       "illustration": "🔮",
       "sequence": [100, 90, 80, 70, 60, "?"],
       "options": [40, 50, 55, 65],
       "correct": 50,
       "hints": [
-        "Cada passo diminui de 10.",
+        "Cada passo diminui 10.",
         "60 - 10 = ?",
-        "50!"
+        "60 - 10 = 50!"
+      ]
+    },
+    {
+      "type": "balance-scale",
+      "difficulty": 5,
+      "question": "💎 O medalhão dourado pesa 28. Escolha dois que somem 28!",
+      "illustration": "⚖️",
+      "leftSide": 28,
+      "correct": 28,
+      "dropSlots": [1, 2],
+      "availableNumbers": [9, 11, 12, 13, 15, 16, 17, 19],
+      "hints": [
+        "Encontre dois que somem 28.",
+        "Pares: 9 + 19, 11 + 17, 12 + 16, 13 + 15.",
+        "Qualquer par distinto que some 28!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 5,
+      "question": "👑 CHEFE! A Grande Maga prepara 5 poções, cada uma com 4 ingredientes. Depois ela guarda 3 ingredientes. Quantos ingredientes usou no total?",
+      "illustration": "🧙‍♀️",
+      "options": [12, 17, 20, 23],
+      "correct": 17,
+      "hints": [
+        "Dois passos: multiplicar e subtrair.",
+        "5 × 4 = 20. Agora tire 3: 20 - 3.",
+        "20 - 3 = 17 ingredientes! Chefe derrotado!"
       ]
     }
   ]

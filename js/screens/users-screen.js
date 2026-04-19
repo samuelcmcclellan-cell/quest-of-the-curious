@@ -3,6 +3,7 @@ import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import { applyProfileTheme } from '../engine/theme.js';
 import { getThemeFor } from '../engine/profile-theme.js';
+import { renderCharacter, isCustomized } from '../engine/character.js';
 
 export function enter(container) {
     const profiles = getProfiles();
@@ -13,12 +14,16 @@ export function enter(container) {
             : 'Comece sua aventura!';
         const gradient = `linear-gradient(135deg, ${p.color} 0%, ${shade(p.color, -20)} 100%)`;
         const theme = getThemeFor(p.id);
+        const customized = isCustomized(p.character);
+        const avatarHtml = customized
+            ? `<div class="user-card-avatar user-card-avatar-custom" id="avatar-${p.id}"></div>`
+            : `<div class="user-card-avatar">${p.avatar}</div>`;
 
         return `
             <button class="user-card ${theme.themeClass}" data-profile="${p.id}" style="--user-gradient:${gradient};">
                 ${p.isActive ? '<div class="user-card-active-pill">Último jogador</div>' : ''}
                 <div class="user-card-sidekick">${theme.sidekick}</div>
-                <div class="user-card-avatar">${p.avatar}</div>
+                ${avatarHtml}
                 <div class="user-card-name">${p.name}</div>
                 <div class="user-card-age">${p.age} anos</div>
                 <div class="user-card-tagline">${tagline}</div>
@@ -47,6 +52,14 @@ export function enter(container) {
             </div>
         </div>
     `;
+
+    // Mount rendered characters for any customized profile cards
+    profiles.forEach(p => {
+        if (!isCustomized(p.character)) return;
+        const slot = container.querySelector(`#avatar-${p.id}`);
+        if (!slot) return;
+        slot.appendChild(renderCharacter({ character: p.character, size: 72 }));
+    });
 
     container.querySelectorAll('.user-card').forEach(card => {
         card.addEventListener('click', () => {

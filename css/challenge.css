@@ -500,6 +500,31 @@
     max-width: 280px;
 }
 
+.auto-advance-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+.auto-advance-bar {
+    width: 100%;
+    max-width: 220px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+.auto-advance-bar-fill {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--profile-color, var(--primary)));
+    border-radius: 999px;
+}
+
 /* ===========================
    CHALLENGE SCREEN WRAPPER
    =========================== */
@@ -602,4 +627,583 @@
    =========================== */
 .guide-celebrate {
     animation: guide-cheer 0.8s ease;
+}
+
+/* ===========================
+   TIMER + HEART ROW
+   =========================== */
+.challenge-timer-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.challenge-timer {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #37474F;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 2px 8px;
+    letter-spacing: 0.5px;
+}
+
+/* ===========================
+   COMBO FLAME
+   =========================== */
+.streak-badge {
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.combo-lvl-1 {
+    background: linear-gradient(135deg, #FF8A65, #FF5722);
+    box-shadow: 0 2px 8px rgba(255, 87, 34, 0.4);
+}
+
+.combo-lvl-2 {
+    background: linear-gradient(135deg, #FF5722, #E64A19);
+    box-shadow: 0 4px 14px rgba(230, 74, 25, 0.55);
+    transform: scale(1.05);
+    animation: combo-pulse 1.6s ease-in-out infinite;
+}
+
+.combo-lvl-3 {
+    background: linear-gradient(135deg, #FF1744, #FF9100);
+    box-shadow: 0 6px 22px rgba(255, 23, 68, 0.7), 0 0 20px rgba(255, 145, 0, 0.6);
+    transform: scale(1.12);
+    animation: combo-flame 0.8s ease-in-out infinite alternate;
+    color: #FFF;
+}
+
+.combo-flame {
+    display: inline-block;
+    font-size: 1.15em;
+    filter: drop-shadow(0 2px 4px rgba(255, 87, 34, 0.7));
+}
+
+@keyframes combo-pulse {
+    0%, 100% { transform: scale(1.05); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes combo-flame {
+    from { transform: scale(1.1) rotate(-1deg); filter: drop-shadow(0 0 6px #FF9100); }
+    to   { transform: scale(1.16) rotate(1deg); filter: drop-shadow(0 0 14px #FF1744); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .combo-lvl-2, .combo-lvl-3 { animation: none; }
+}
+
+/* ===========================
+   POWER-UP TRAY
+   =========================== */
+.power-up-tray {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.power-up-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background: linear-gradient(135deg, #FFF, #FFE082);
+    border: 2px solid #FFB300;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(255, 179, 0, 0.35);
+    transition: transform 0.1s;
+    color: #5D4037;
+}
+
+.power-up-btn:active {
+    transform: translateY(1px) scale(0.96);
+}
+
+.power-up-btn:disabled,
+.power-up-btn-active {
+    opacity: 0.55;
+    cursor: default;
+}
+
+.pu-icon { font-size: 1.2rem; }
+
+.pu-count {
+    background: #FF6F00;
+    color: #FFF;
+    border-radius: 10px;
+    padding: 0 6px;
+    font-size: 0.7rem;
+}
+
+.reveal-solution-btn {
+    background: linear-gradient(135deg, #CE93D8, #7B1FA2);
+    color: #FFF;
+    border: none;
+    border-radius: 14px;
+    padding: 8px 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(123, 31, 162, 0.4);
+}
+
+/* ===========================
+   SOLUTION PANEL
+   =========================== */
+.solution-panel {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: #F3E5F5;
+    border: 3px dashed #BA68C8;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(186, 104, 200, 0.25);
+}
+
+.solution-title {
+    font-weight: 800;
+    color: #6A1B9A;
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+}
+
+.solution-steps {
+    margin: 0 0 8px;
+    padding-left: 22px;
+    color: #4A148C;
+    line-height: 1.5;
+}
+
+.solution-final {
+    margin: 8px 0 4px;
+    color: #4A148C;
+    font-size: 1.05rem;
+}
+
+.solution-final-note {
+    font-size: 0.9rem;
+    color: #6A1B9A;
+    font-style: italic;
+    margin: 0;
+}
+
+/* ===========================
+   DAILY BANNER
+   =========================== */
+.daily-banner {
+    text-align: center;
+    padding: 6px 10px;
+    margin: 6px auto 0;
+    max-width: 320px;
+    background: linear-gradient(135deg, #FFE082, #FFA000);
+    color: #5D4037;
+    font-weight: 800;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(255, 160, 0, 0.4);
+}
+
+/* ===========================
+   SPEED STAR / RESULTS
+   =========================== */
+.result-star-speed {
+    color: #FFEB3B;
+    text-shadow: 0 0 12px #FFC107, 0 0 24px rgba(255, 193, 7, 0.6);
+    animation: star-appear 0.55s ease-out backwards, speed-throb 1.2s ease-in-out infinite 0.6s;
+}
+
+@keyframes speed-throb {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+}
+
+.results-speed-note {
+    color: #F57F17;
+    font-weight: 800;
+    margin: 4px 0 2px;
+}
+
+.results-daily-note {
+    color: #E65100;
+    font-weight: 800;
+    margin: 0 0 4px;
+}
+
+.achievement-unlocks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.achievement-toast {
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #FFD740, #FF6F00);
+    color: #4E342E;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    box-shadow: 0 4px 14px rgba(255, 111, 0, 0.45);
+    animation: toast-in 0.5s ease-out;
+}
+
+.achievement-desc {
+    font-size: 0.8rem;
+    color: #5D4037;
+    opacity: 0.9;
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateY(-8px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ===========================
+   SHOP
+   =========================== */
+.shop-container {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 18px 14px;
+}
+
+.shop-intro {
+    text-align: center;
+    color: #455A64;
+    margin: 0 0 14px;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.shop-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 10px;
+    background: #FFF;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid #ECEFF1;
+}
+
+.shop-card-icon { font-size: 2.2rem; margin-bottom: 4px; }
+.shop-card-name { font-weight: 800; color: #263238; }
+.shop-card-desc { font-size: 0.8rem; color: #546E7A; text-align: center; margin: 4px 0 6px; min-height: 32px; }
+.shop-card-owned { font-size: 0.75rem; color: #78909C; margin-bottom: 6px; }
+
+.shop-buy-btn {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 0.95rem;
+}
+
+/* ===========================
+   TROPHIES SCREEN
+   =========================== */
+.trophies-container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 18px 14px;
+}
+
+.trophies-heading {
+    margin: 12px 0 8px;
+    color: #37474F;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.trophies-progress {
+    font-size: 0.9rem;
+    color: #78909C;
+    font-weight: 600;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.achievement-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    background: #ECEFF1;
+    border-radius: 14px;
+    opacity: 0.55;
+    text-align: center;
+}
+
+.achievement-card-unlocked {
+    opacity: 1;
+    background: linear-gradient(135deg, #FFF59D, #FFB74D);
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.35);
+}
+
+.achievement-icon { font-size: 2rem; }
+.achievement-name { font-weight: 800; color: #263238; font-size: 0.9rem; }
+.achievement-desc { font-size: 0.75rem; color: #546E7A; }
+
+.trophy-islands-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.trophy-island {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    background: #ECEFF1;
+    border-radius: 14px;
+    text-align: center;
+    opacity: 0.6;
+}
+
+.trophy-island-earned {
+    opacity: 1;
+    background: linear-gradient(135deg, #FFD54F, #FF8F00);
+    color: #4E342E;
+    box-shadow: 0 4px 10px rgba(255, 143, 0, 0.45);
+}
+
+.trophy-island-icon { font-size: 2rem; }
+.trophy-island-name { font-weight: 800; font-size: 0.9rem; }
+.trophy-island-meta { font-size: 0.75rem; opacity: 0.85; }
+
+.trophies-stats {
+    margin-top: 18px;
+    background: #FFF;
+    padding: 12px 16px;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.trophy-stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px dashed #E0E0E0;
+    font-size: 0.95rem;
+    color: #455A64;
+}
+
+.trophy-stat:last-child { border-bottom: none; }
+.trophy-stat span { font-size: 1.1rem; }
+
+/* ===========================
+   FRACTION VISUAL
+   =========================== */
+.fraction-visual-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.fraction-visual-svg {
+    width: 160px;
+    height: 160px;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+.fv-slice-filled {
+    fill: #FF7043;
+    stroke: #FFF;
+    stroke-width: 2;
+    transition: fill 0.2s;
+}
+
+.fv-slice-empty {
+    fill: #FFE0B2;
+    stroke: #FFF;
+    stroke-width: 2;
+}
+
+.fraction-visual-bar {
+    display: flex;
+    width: 260px;
+    height: 56px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border: 3px solid #FFF;
+}
+
+.fv-cell {
+    flex: 1;
+    border-right: 2px solid #FFF;
+}
+
+.fv-cell:last-child {
+    border-right: none;
+}
+
+.fv-cell-filled {
+    background: linear-gradient(135deg, #42A5F5, #1E88E5);
+}
+
+.fv-cell-empty {
+    background: #E3F2FD;
+}
+
+.fraction-visual-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #5D4037;
+    opacity: 0.75;
+}
+
+.choice-btn-fraction {
+    min-width: 88px;
+    padding: 14px 12px;
+}
+
+.frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.frac-num,
+.frac-den {
+    font-size: 1.4rem;
+}
+
+.frac-bar {
+    display: block;
+    width: 100%;
+    min-width: 28px;
+    height: 3px;
+    background: currentColor;
+    margin: 3px 0;
+    border-radius: 2px;
+}
+
+/* ===========================
+   WORD PROBLEM
+   =========================== */
+.wp-story {
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 14px;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.wp-steps {
+    margin: 0;
+    padding-left: 22px;
+    font-size: 0.95rem;
+    color: #37474F;
+    line-height: 1.45;
+}
+
+.wp-steps li + li {
+    margin-top: 4px;
+}
+
+.wp-display {
+    font-size: 2.6rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-align: center;
+    padding: 12px 20px;
+    min-height: 64px;
+    background: #FFF;
+    border: 3px dashed #B0BEC5;
+    border-radius: 16px;
+    color: #263238;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.wp-display-correct {
+    border-color: #66BB6A;
+    background: #E8F5E9;
+    color: #1B5E20;
+}
+
+.wp-display-wrong {
+    border-color: #EF5350;
+    background: #FFEBEE;
+    color: #B71C1C;
+}
+
+.wp-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 260px;
+    margin: 0 auto 12px;
+}
+
+.wp-key {
+    padding: 14px 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #FFF, #ECEFF1);
+    color: #263238;
+    border: 2px solid #CFD8DC;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.15s;
+    touch-action: manipulation;
+}
+
+.wp-key:active {
+    transform: translateY(1px) scale(0.96);
+    background: #CFD8DC;
+}
+
+.wp-key-wide {
+    background: linear-gradient(135deg, #FFE0B2, #FFCC80);
+    border-color: #FFB74D;
+    color: #E65100;
+}
+
+.wp-scratch-toggle {
+    display: block;
+    margin: 0 auto 8px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    background: transparent;
+    border: 2px dashed #90A4AE;
+    border-radius: 10px;
+    color: #455A64;
+    cursor: pointer;
+}
+
+.wp-scratch {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 12px;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    border: 2px solid #B0BEC5;
+    border-radius: 10px;
+    background: #FFFDE7;
+    resize: vertical;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wp-key:active { transform: none; }
+    .fv-slice-filled { transition: none; }
 }

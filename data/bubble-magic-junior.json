@@ -28,7 +28,7 @@
       "sequence": ["🫧", "✨", "🫧", "✨", "?"],
       "options": ["🫧", "✨", "🔮"],
       "correct": "🫧",
-      "hints": ["Bolha, brilho, bolha, brilho...", "A próxima é uma bolha.", "🫧!"]
+      "hints": ["Bolha, brilho, bolha, brilho...", "Depois do brilho vem a bolha.", "🫧!"]
     },
     {
       "type": "multiple-choice",
@@ -41,7 +41,7 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🧙 + 🧙🧙 = ?",
       "illustration": "🧙",
       "options": [2, 3, 4],
@@ -50,25 +50,32 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🫧🫧🫧🫧🫧 - 🫧 = ?",
       "illustration": "💨",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["Uma bolha estoura.", "5 - 1.", "Sobraram quatro!"]
+      "hints": ["Uma bolha estoura.", "5 - 1.", "Quatro!"]
+    },
+    {
+      "type": "fraction-visual",
+      "difficulty": 2,
+      "question": "🧪 O frasco da poção está em 2 partes iguais. Uma parte está cheia. Que fração está cheia?",
+      "illustration": "🧪",
+      "shape": "bar",
+      "numerator": 1,
+      "denominator": 2,
+      "options": ["1/2", "2/2", "1/4"],
+      "correct": "1/2",
+      "hints": [
+        "Conte as partes iguais.",
+        "Uma cheia de duas.",
+        "1 de 2 = 1/2!"
+      ]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
-      "question": "Quantas? 🔮🔮🔮🔮🔮🔮",
-      "illustration": "🔮",
-      "options": [5, 6, 7],
-      "correct": 6,
-      "hints": ["Conte cada bola.", "1, 2, 3, 4, 5, 6.", "Seis!"]
-    },
-    {
-      "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "✨✨✨ + ✨✨ = ?",
       "illustration": "✨",
       "options": [4, 5, 6],
@@ -77,22 +84,81 @@
     },
     {
       "type": "sequence-next",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "O que vem a seguir?",
       "illustration": "🔢",
-      "sequence": [3, 4, "?"],
-      "options": [2, 5, 6],
-      "correct": 5,
-      "hints": ["Depois do 4 vem...", "3, 4, e depois?", "5!"]
+      "sequence": [3, 4, 5, "?"],
+      "options": [4, 6, 7],
+      "correct": 6,
+      "hints": ["Depois do 5 vem...", "3, 4, 5, e aí?", "6!"]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 3,
       "question": "🪄🪄🪄🪄 + 🪄🪄🪄🪄 = ?",
       "illustration": "🪄",
       "options": [7, 8, 9],
       "correct": 8,
       "hints": ["Quatro e quatro.", "4 + 4.", "Oito!"]
+    },
+    {
+      "type": "word-problem",
+      "difficulty": 4,
+      "question": "Aventura da bruxinha!",
+      "illustration": "🧙‍♀️",
+      "steps": [
+        "A bruxa fez 6 poções.",
+        "Ela guardou 2 na prateleira.",
+        "Depois fez mais 3 poções.",
+        "Quantas poções tem no total?"
+      ],
+      "correct": 7,
+      "hints": [
+        "Dois passos: tirar e depois somar.",
+        "6 - 2 = 4. Depois 4 + 3.",
+        "4 + 3 = 7 poções!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "3 varinhas + 4 varinhas = ?",
+      "illustration": "🪄",
+      "options": [6, 7, 8],
+      "correct": 7,
+      "hints": ["Junte: 3 + 4.", "3, depois mais 4.", "3 + 4 = 7!"]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "Conte de 2 em 2. Qual é o próximo?",
+      "illustration": "🫧",
+      "sequence": [2, 4, 6, "?"],
+      "options": [7, 8, 9],
+      "correct": 8,
+      "hints": ["Cada passo soma 2.", "6 + 2.", "6 + 2 = 8!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "Cada frasco tem 3 bolhas. 3 frascos têm quantas bolhas?",
+      "illustration": "🧪",
+      "options": [6, 8, 9],
+      "correct": 9,
+      "hints": ["3 + 3 + 3.", "Três vezes três.", "3 × 3 = 9!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "👑 CHEFE! A Bruxa Estrela tem 5 bolhas e a Fada dá mais 4. Depois 1 bolha estoura. Quantas sobraram?",
+      "illustration": "👑",
+      "options": [7, 8, 9, 10],
+      "correct": 8,
+      "hints": [
+        "Dois passos: somar e tirar.",
+        "5 + 4 = 9. Depois 9 - 1.",
+        "9 - 1 = 8 bolhas! Chefe derrotado!"
+      ]
     }
   ]
 }

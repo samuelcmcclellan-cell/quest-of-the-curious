@@ -1,6 +1,7 @@
 import { ChallengeBase } from './challenge-base.js';
 import * as sound from '../engine/sound.js';
-import { correctExplosion, splashEffect } from '../engine/particles.js';
+import { bigCorrectCelebration, splashEffect } from '../engine/particles.js';
+import { pickCorrectPhrase } from '../engine/profile-theme.js';
 
 export class MultipleChoice extends ChallengeBase {
     constructor(data, container) {
@@ -53,7 +54,7 @@ export class MultipleChoice extends ChallengeBase {
             btn.classList.add('choice-btn-correct', 'anim-bounce');
 
             // Big celebration on the correct button
-            correctExplosion(btn);
+            bigCorrectCelebration(btn, pickCorrectPhrase());
             sound.correct();
 
             // Disable all buttons

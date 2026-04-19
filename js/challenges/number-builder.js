@@ -1,7 +1,8 @@
 import { ChallengeBase } from './challenge-base.js';
 import { InteractionManager } from '../engine/interaction.js';
 import * as sound from '../engine/sound.js';
-import { correctExplosion, splashEffect, goldenGlow } from '../engine/particles.js';
+import { bigCorrectCelebration, splashEffect, goldenGlow } from '../engine/particles.js';
+import { pickCorrectPhrase } from '../engine/profile-theme.js';
 
 export class NumberBuilder extends ChallengeBase {
     constructor(data, container) {
@@ -93,7 +94,7 @@ export class NumberBuilder extends ChallengeBase {
             if (result.correct) {
                 this.recordCorrect();
                 const slotsContainer = this.container.querySelector('#slots');
-                correctExplosion(slotsContainer);
+                bigCorrectCelebration(slotsContainer, pickCorrectPhrase());
                 sound.correct();
 
                 this.correctDigits.forEach((_, i) => {

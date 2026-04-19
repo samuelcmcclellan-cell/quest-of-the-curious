@@ -2,7 +2,7 @@ import { getState, updateState, getIslandProgress, getAllIslandSlugs, getCurrent
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import { confetti, starBurst } from '../engine/particles.js';
-import { renderCharacter } from '../engine/character.js';
+import { renderCharacter, FRAMES, ACCESSORY_EMOJI } from '../engine/character.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
 
 const ISLAND_META = {
@@ -31,6 +31,20 @@ const FACES = [
     { id: '🦸', cost: 40 },
     { id: '🧙', cost: 50 },
 ];
+
+// Accessories and frames are free — part of the builder, not a shop.
+const ACCESSORIES = [
+    { id: 'none',       label: 'Nenhum' },
+    { id: 'glasses',    label: 'Óculos' },
+    { id: 'sunglasses', label: 'Escuros' },
+    { id: 'bowtie',     label: 'Laço' },
+    { id: 'scarf',      label: 'Cachecol' },
+    { id: 'mustache',   label: 'Bigode' },
+    { id: 'medal',      label: 'Medalha' },
+    { id: 'star',       label: 'Estrela' }
+];
+
+const FRAME_ORDER = ['default', 'ocean', 'rose', 'forest', 'violet', 'sunset', 'night', 'rainbow'];
 
 const ACHIEVEMENTS = [
     { id: 'first-solve', label: 'Primeiros Passos', emoji: '🌟', desc: 'Complete seu primeiro desafio' },
@@ -87,10 +101,22 @@ export function enter(container) {
                 </div>
             </div>
 
+            <!-- Frame (background colour) -->
+            <div class="card" style="margin-bottom:16px;">
+                <h3 style="margin-bottom:12px;">Escolha Sua Moldura <span style="font-size:0.8rem;color:var(--text-light);">(grátis)</span></h3>
+                <div id="frame-grid" class="avatar-builder-grid"></div>
+            </div>
+
             <!-- Face Shop -->
             <div class="card" style="margin-bottom:16px;">
                 <h3 style="margin-bottom:12px;">Escolha Seu Rosto <span style="font-size:0.8rem;color:var(--text-light);">(compre com 💰)</span></h3>
                 <div id="face-grid" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;"></div>
+            </div>
+
+            <!-- Accessory (free) -->
+            <div class="card" style="margin-bottom:16px;">
+                <h3 style="margin-bottom:12px;">Escolha um Acessório <span style="font-size:0.8rem;color:var(--text-light);">(grátis)</span></h3>
+                <div id="accessory-grid" class="avatar-builder-grid"></div>
             </div>
 
             <!-- Hat Shop -->
@@ -110,6 +136,45 @@ export function enter(container) {
     // Character display (stacked face + hat)
     const charDisplay = container.querySelector('#character-display');
     charDisplay.appendChild(renderCharacter({ character: state.character, size: 96 }));
+
+    // Frame picker (free)
+    const frameGrid = container.querySelector('#frame-grid');
+    FRAME_ORDER.forEach(frameId => {
+        const frame = FRAMES[frameId];
+        if (!frame) return;
+        const selected = (state.character.frame || 'default') === frameId;
+
+        const btn = document.createElement('button');
+        btn.className = 'avatar-builder-chip' + (selected ? ' avatar-builder-chip-selected' : '');
+        btn.innerHTML = `
+            <span class="avatar-builder-chip-swatch" style="background:${frame.gradient};"></span>
+            <span class="avatar-builder-chip-label">${frame.label}</span>
+        `;
+        btn.addEventListener('click', () => {
+            updateState(s => { s.character.frame = frameId; });
+            sound.tap();
+            enter(container);
+        });
+        frameGrid.appendChild(btn);
+    });
+
+    // Accessory picker (free)
+    const accGrid = container.querySelector('#accessory-grid');
+    ACCESSORIES.forEach(acc => {
+        const selected = (state.character.accessory || 'none') === acc.id;
+        const btn = document.createElement('button');
+        btn.className = 'avatar-builder-chip' + (selected ? ' avatar-builder-chip-selected' : '');
+        btn.innerHTML = `
+            <span>${ACCESSORY_EMOJI[acc.id] || '—'}</span>
+            <span class="avatar-builder-chip-label">${acc.label}</span>
+        `;
+        btn.addEventListener('click', () => {
+            updateState(s => { s.character.accessory = acc.id; });
+            sound.tap();
+            enter(container);
+        });
+        accGrid.appendChild(btn);
+    });
 
     // Face selection (coin-based)
     const faceGrid = container.querySelector('#face-grid');

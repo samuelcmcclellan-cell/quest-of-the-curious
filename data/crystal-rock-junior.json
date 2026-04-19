@@ -28,7 +28,7 @@
       "sequence": ["🎸", "🎤", "🎸", "🎤", "?"],
       "options": ["🎸", "🎤", "🥁"],
       "correct": "🎸",
-      "hints": ["Guitarra, microfone, guitarra, microfone...", "O próximo é uma guitarra.", "🎸!"]
+      "hints": ["Guitarra, microfone, guitarra, microfone...", "Depois do microfone vem a guitarra.", "🎸!"]
     },
     {
       "type": "multiple-choice",
@@ -41,7 +41,7 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🎤 + 🎤🎤🎤 = ?",
       "illustration": "🎤",
       "options": [3, 4, 5],
@@ -50,7 +50,7 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🎧🎧🎧🎧🎧 - 🎧 = ?",
       "illustration": "🎧",
       "options": [3, 4, 5],
@@ -58,17 +58,24 @@
       "hints": ["Um sai.", "5 - 1.", "Quatro!"]
     },
     {
-      "type": "multiple-choice",
-      "difficulty": 1,
-      "question": "O maior?",
-      "illustration": "🎵",
-      "options": [2, 5, 9],
-      "correct": 9,
-      "hints": ["Maior quer dizer mais.", "9 vem depois de 5 e 2.", "9!"]
+      "type": "fraction-visual",
+      "difficulty": 2,
+      "question": "🎸 A guitarra tem 2 cordas iguais. Uma está tocada. Que fração?",
+      "illustration": "🎸",
+      "shape": "bar",
+      "numerator": 1,
+      "denominator": 2,
+      "options": ["1/2", "2/2", "1/4"],
+      "correct": "1/2",
+      "hints": [
+        "Conte as partes iguais.",
+        "1 tocada de 2 total.",
+        "1 de 2 = 1/2!"
+      ]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🎹🎹🎹 + 🎹🎹🎹 = ?",
       "illustration": "🎹",
       "options": [5, 6, 7],
@@ -77,22 +84,81 @@
     },
     {
       "type": "sequence-next",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "O que vem a seguir?",
       "illustration": "🔢",
-      "sequence": [4, 5, "?"],
-      "options": [3, 6, 7],
-      "correct": 6,
-      "hints": ["Depois do 5 vem...", "4, 5, e aí?", "6!"]
+      "sequence": [4, 5, 6, "?"],
+      "options": [5, 7, 8],
+      "correct": 7,
+      "hints": ["Depois do 6 vem...", "4, 5, 6, e aí?", "7!"]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 3,
       "question": "Quantas? 🎸🎸🎸🎸🎸🎸🎸",
       "illustration": "🎸",
       "options": [6, 7, 8],
       "correct": 7,
       "hints": ["Conte cada guitarra.", "1, 2, 3, 4, 5, 6, 7.", "Sete!"]
+    },
+    {
+      "type": "word-problem",
+      "difficulty": 4,
+      "question": "Aventura no show!",
+      "illustration": "🎸",
+      "steps": [
+        "Tinha 10 cristais.",
+        "Dei 3 ao baterista.",
+        "Depois ganhei mais 4 da plateia.",
+        "Quantos cristais tenho agora?"
+      ],
+      "correct": 11,
+      "hints": [
+        "Dois passos: tirar e depois somar.",
+        "10 - 3 = 7. Depois 7 + 4.",
+        "7 + 4 = 11 cristais!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "5 batidas + 5 batidas = ?",
+      "illustration": "🥁",
+      "options": [8, 10, 11],
+      "correct": 10,
+      "hints": ["Junte: 5 + 5.", "Dobrar o 5.", "5 + 5 = 10!"]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "Conte de 2 em 2. Próximo?",
+      "illustration": "🎵",
+      "sequence": [2, 4, 6, 8, "?"],
+      "options": [9, 10, 11],
+      "correct": 10,
+      "hints": ["Cada passo soma 2.", "8 + 2.", "8 + 2 = 10!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "Cada guitarra tem 3 cristais. 3 guitarras têm quantos cristais?",
+      "illustration": "🎸",
+      "options": [6, 8, 9],
+      "correct": 9,
+      "hints": ["3 + 3 + 3.", "Três vezes três.", "3 × 3 = 9 cristais!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "👑 CHEFE! A banda tem 6 fãs e chegam mais 5. Depois 2 vão embora. Quantos fãs ficaram?",
+      "illustration": "👑",
+      "options": [8, 9, 10, 13],
+      "correct": 9,
+      "hints": [
+        "Dois passos: somar e depois tirar.",
+        "6 + 5 = 11. Depois 11 - 2.",
+        "11 - 2 = 9 fãs! Chefe derrotado!"
+      ]
     }
   ]
 }

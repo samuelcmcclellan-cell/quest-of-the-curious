@@ -1,7 +1,8 @@
 import { ChallengeBase } from './challenge-base.js';
 import { InteractionManager } from '../engine/interaction.js';
 import * as sound from '../engine/sound.js';
-import { correctExplosion, goldenGlow } from '../engine/particles.js';
+import { bigCorrectCelebration, goldenGlow } from '../engine/particles.js';
+import { pickCorrectPhrase } from '../engine/profile-theme.js';
 
 export class BalanceScale extends ChallengeBase {
     constructor(data, container) {
@@ -105,7 +106,7 @@ export class BalanceScale extends ChallengeBase {
 
             // Big celebration
             const scaleEl = this.container.querySelector('#scale');
-            correctExplosion(scaleEl);
+            bigCorrectCelebration(scaleEl, pickCorrectPhrase());
             sound.correct();
 
             this.checkAnswer(this.leftValue);

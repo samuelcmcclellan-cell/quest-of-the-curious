@@ -6,16 +6,21 @@ import { renderCharacter } from '../engine/character.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
 
 const NODE_POSITIONS = [
-    { x: 50, y: 92 },
-    { x: 25, y: 82 },
-    { x: 72, y: 73 },
+    { x: 50, y: 95 },
+    { x: 25, y: 89 },
+    { x: 72, y: 83 },
+    { x: 28, y: 76 },
+    { x: 70, y: 70 },
     { x: 30, y: 63 },
-    { x: 65, y: 54 },
-    { x: 35, y: 44 },
-    { x: 70, y: 35 },
-    { x: 28, y: 26 },
-    { x: 60, y: 17 },
-    { x: 45, y: 7 },
+    { x: 68, y: 56 },
+    { x: 28, y: 49 },
+    { x: 70, y: 42 },
+    { x: 30, y: 35 },
+    { x: 68, y: 28 },
+    { x: 28, y: 22 },
+    { x: 70, y: 16 },
+    { x: 32, y: 10 },
+    { x: 50, y: 4 },
 ];
 
 const ISLAND_CONFIGS = {
@@ -35,7 +40,7 @@ const ISLAND_CONFIGS = {
             { emoji: '⚓', x: 90, y: 42, size: 1.3 },
             { emoji: '🐙', x: 8, y: 32, size: 1.7 },
             { emoji: '🏝️', x: 85, y: 20, size: 2 },
-            { emoji: '⭐', x: 52, y: 2, size: 1.8 },
+            { emoji: '⭐', x: 12, y: 2, size: 1.6 },
         ]
     },
     'purrfect-park': {
@@ -54,7 +59,7 @@ const ISLAND_CONFIGS = {
             { emoji: '🏠', x: 90, y: 42, size: 1.5 },
             { emoji: '🌳', x: 8, y: 32, size: 1.9 },
             { emoji: '🐾', x: 85, y: 20, size: 1.6 },
-            { emoji: '⭐', x: 52, y: 2, size: 1.8 },
+            { emoji: '⭐', x: 12, y: 2, size: 1.6 },
         ]
     },
     'bubble-magic': {
@@ -73,7 +78,7 @@ const ISLAND_CONFIGS = {
             { emoji: '🌙', x: 90, y: 40, size: 1.5 },
             { emoji: '🔮', x: 8, y: 30, size: 1.8 },
             { emoji: '🪄', x: 85, y: 20, size: 1.6 },
-            { emoji: '⭐', x: 52, y: 2, size: 1.8 },
+            { emoji: '⭐', x: 12, y: 2, size: 1.6 },
         ]
     },
     'crystal-rock': {
@@ -92,7 +97,7 @@ const ISLAND_CONFIGS = {
             { emoji: '🎹', x: 90, y: 40, size: 1.5 },
             { emoji: '🎧', x: 8, y: 28, size: 1.6 },
             { emoji: '🎵', x: 85, y: 18, size: 1.7 },
-            { emoji: '⭐', x: 52, y: 2, size: 1.8 },
+            { emoji: '⭐', x: 12, y: 2, size: 1.6 },
         ]
     }
 };
@@ -193,9 +198,11 @@ export function enter(container, params) {
         const isAvailable = i === nextAvailable;
         const isCompleted = challenge.completed;
         const isLocked = !isAvailable && !isCompleted;
+        const isBoss = i === total - 1;
 
         const node = document.createElement('button');
         node.className = 'map-node';
+        if (isBoss) node.classList.add('map-node-boss');
 
         if (isCompleted) {
             node.classList.add('map-node-completed');
@@ -208,10 +215,17 @@ export function enter(container, params) {
             }
         } else if (isAvailable) {
             node.classList.add('map-node-available');
-            node.textContent = i + 1;
+            node.textContent = isBoss ? '👑' : (i + 1);
         } else {
             node.classList.add('map-node-locked');
-            node.textContent = '🔒';
+            node.textContent = isBoss ? '👑' : '🔒';
+        }
+
+        if (isBoss) {
+            const ribbon = document.createElement('span');
+            ribbon.className = 'map-node-boss-ribbon';
+            ribbon.textContent = 'Chefe';
+            node.appendChild(ribbon);
         }
 
         node.style.left = pos.x + '%';

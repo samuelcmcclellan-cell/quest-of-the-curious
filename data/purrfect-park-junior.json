@@ -18,7 +18,7 @@
       "illustration": "🥅",
       "options": [4, 5, 6],
       "correct": 5,
-      "hints": ["Duas bolas e três.", "2 + 3.", "Cinco!"]
+      "hints": ["Duas e três.", "2 + 3.", "Cinco!"]
     },
     {
       "type": "sequence-next",
@@ -28,7 +28,7 @@
       "sequence": ["🐱", "⚽", "🐱", "⚽", "?"],
       "options": ["🐱", "⚽", "🥅"],
       "correct": "🐱",
-      "hints": ["Gato, bola, gato, bola...", "O próximo é um gato.", "🐱!"]
+      "hints": ["Gato, bola, gato, bola...", "Depois da bola vem o gato.", "🐱!"]
     },
     {
       "type": "multiple-choice",
@@ -41,7 +41,7 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "Quantas? 👟👟👟👟👟👟",
       "illustration": "👟",
       "options": [5, 6, 7],
@@ -50,25 +50,32 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "🐱🐱🐱🐱🐱 - 🐱 = ?",
       "illustration": "😴",
       "options": [3, 4, 5],
       "correct": 4,
-      "hints": ["Um gatinho cochila.", "5 - 1.", "Sobraram quatro!"]
+      "hints": ["Um sai.", "5 - 1.", "Quatro!"]
+    },
+    {
+      "type": "fraction-visual",
+      "difficulty": 2,
+      "question": "🍕 Uma pizza está em 2 pedaços iguais. Um pedaço foi comido. Qual fração sobra?",
+      "illustration": "🍕",
+      "shape": "pie",
+      "numerator": 1,
+      "denominator": 2,
+      "options": ["1/2", "2/2", "1/4"],
+      "correct": "1/2",
+      "hints": [
+        "Conte as partes iguais.",
+        "Um pedaço sobra de 2 pedaços.",
+        "1 de 2 = 1/2!"
+      ]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
-      "question": "Maior?",
-      "illustration": "🥅",
-      "options": [3, 5, 7],
-      "correct": 7,
-      "hints": ["Mais significa maior.", "7 vem depois de 5 e 3.", "7!"]
-    },
-    {
-      "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "⚽⚽⚽⚽ + ⚽⚽⚽⚽ = ?",
       "illustration": "⚽",
       "options": [7, 8, 9],
@@ -77,22 +84,81 @@
     },
     {
       "type": "sequence-next",
-      "difficulty": 1,
+      "difficulty": 2,
       "question": "O que vem a seguir?",
       "illustration": "🔢",
       "sequence": [5, 6, "?"],
       "options": [4, 7, 8],
       "correct": 7,
-      "hints": ["Depois do 6...", "5, 6, e depois?", "7!"]
+      "hints": ["Depois do 6 vem...", "5, 6, e aí?", "7!"]
     },
     {
       "type": "multiple-choice",
-      "difficulty": 1,
+      "difficulty": 3,
       "question": "🥅🥅🥅 + 🥅🥅 = ?",
       "illustration": "🥅",
       "options": [4, 5, 6],
       "correct": 5,
       "hints": ["Três e dois.", "3 + 2.", "Cinco!"]
+    },
+    {
+      "type": "word-problem",
+      "difficulty": 4,
+      "question": "Aventura no parque dos gatos!",
+      "illustration": "🍪",
+      "steps": [
+        "Tinha 10 biscoitos.",
+        "Comi 4 biscoitos.",
+        "Minha mãe me deu 2 biscoitos.",
+        "Quantos biscoitos tenho agora?"
+      ],
+      "correct": 8,
+      "hints": [
+        "Dois passos: tirar e depois somar.",
+        "10 - 4 = 6. Depois 6 + 2.",
+        "6 + 2 = 8 biscoitos!"
+      ]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "7 gatinhos + 3 gatinhos = ?",
+      "illustration": "🐱",
+      "options": [9, 10, 11],
+      "correct": 10,
+      "hints": ["Junte tudo.", "7 + 3.", "Dez gatinhos!"]
+    },
+    {
+      "type": "sequence-next",
+      "difficulty": 3,
+      "question": "Contagem por 2. O que vem a seguir?",
+      "illustration": "🐾",
+      "sequence": [2, 4, 6, "?"],
+      "options": [7, 8, 9],
+      "correct": 8,
+      "hints": ["Cada passo soma 2.", "2, 4, 6...", "6 + 2 = 8!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "Uma caixa tem 4 gatinhos. Duas caixas têm quantos gatinhos?",
+      "illustration": "📦",
+      "options": [6, 7, 8],
+      "correct": 8,
+      "hints": ["4 + 4 (duas caixas iguais).", "4 × 2.", "8 gatinhos!"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "question": "👑 CHEFE! A Rainha Gata tem 6 peixes e ganha mais 6 do amigo. Depois come 2. Quantos sobraram?",
+      "illustration": "👑",
+      "options": [8, 9, 10, 14],
+      "correct": 10,
+      "hints": [
+        "Dois passos: somar e depois tirar.",
+        "6 + 6 = 12. Agora tire 2: 12 - 2.",
+        "12 - 2 = 10 peixes! Chefe derrotado!"
+      ]
     }
   ]
 }

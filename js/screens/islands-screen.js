@@ -1,4 +1,4 @@
-import { getState, updateState, getIslandProgress, getCurrentProfileMeta } from '../state.js';
+import { getState, updateState, getIslandProgress, getCurrentProfileMeta, isDailyDoneToday, markDailyStarted, getNextAvailableChallenge, getAllIslandSlugs } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import { getCurrentTheme, scatterDecorations } from '../engine/profile-theme.js';
@@ -93,7 +93,14 @@ export function enter(container) {
                     ${cardsHtml}
                 </div>
                 <div class="islands-bottom">
+                    <button class="btn btn-secondary" id="daily-btn" ${isDailyDoneToday() ? 'disabled' : ''}>
+                        🌟 ${isDailyDoneToday() ? 'Desafio do Dia ✓' : 'Desafio do Dia'}
+                    </button>
                     <button class="btn btn-secondary" id="practice-btn">🎯 Praticar</button>
+                </div>
+                <div class="islands-bottom">
+                    <button class="btn btn-ghost" id="shop-btn">🛒 Loja</button>
+                    <button class="btn btn-ghost" id="trophies-btn">🏆 Troféus</button>
                     <button class="btn btn-ghost" id="profile-btn">😊 Perfil</button>
                 </div>
             </div>
@@ -124,6 +131,37 @@ export function enter(container) {
     container.querySelector('#profile-btn').addEventListener('click', () => {
         sound.tap();
         navigate('profile');
+    });
+    container.querySelector('#shop-btn').addEventListener('click', () => {
+        sound.tap();
+        navigate('shop');
+    });
+    container.querySelector('#trophies-btn').addEventListener('click', () => {
+        sound.tap();
+        navigate('trophies');
+    });
+    const dailyBtn = container.querySelector('#daily-btn');
+    dailyBtn.addEventListener('click', () => {
+        if (dailyBtn.disabled) return;
+        sound.tap();
+        // Pick a random island + challenge index that the player has NOT yet completed.
+        const slugs = getAllIslandSlugs();
+        const candidates = [];
+        for (const slug of slugs) {
+            const ch = getState().islands[slug]?.challenges || [];
+            ch.forEach((c, i) => { if (!c.completed) candidates.push({ slug, i }); });
+        }
+        if (candidates.length === 0) {
+            // All done — pick any random challenge for practice value, no reward stacking on fresh state
+            for (const slug of slugs) {
+                const ch = getState().islands[slug]?.challenges || [];
+                ch.forEach((_, i) => candidates.push({ slug, i }));
+            }
+        }
+        const pick = candidates[Math.floor(Math.random() * candidates.length)];
+        sessionStorage.setItem('quest:daily-mode', '1');
+        markDailyStarted();
+        navigate(`challenge/${pick.slug}/${pick.i}`);
     });
 }
 

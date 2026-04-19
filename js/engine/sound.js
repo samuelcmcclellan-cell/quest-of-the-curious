@@ -99,35 +99,63 @@ export function correct() {
 }
 
 // ---------------------------------------------------------------------------
-// Wrong  --  soft underwater bubble pop  (NOT punishing)
+// Wrong  --  game-show buzzer: dissonant descending honk + noise burst.
+//            More alarming than before, still short and kid-safe.
 // ---------------------------------------------------------------------------
 export function wrong() {
     if (!enabled) return;
     const ctx = getCtx();
     const now = ctx.currentTime;
 
-    // Descending "bloop" tone
-    const osc = ctx.createOscillator();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(400, now);
-    osc.frequency.exponentialRampToValueAtTime(120, now + 0.25);
+    // Two-stage descent: sharp buzz -> deep thud
+    // Stage 1: buzzy square "eh-eh" at dissonant interval (minor 2nd: F#3 + G3)
+    const buzzGain = ctx.createGain();
+    buzzGain.gain.setValueAtTime(0.0001, now);
+    buzzGain.gain.exponentialRampToValueAtTime(0.28, now + 0.02);
+    buzzGain.gain.setValueAtTime(0.28, now + 0.22);
+    buzzGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
 
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 800;
+    const lpFilter = ctx.createBiquadFilter();
+    lpFilter.type = 'lowpass';
+    lpFilter.frequency.value = 1500;
+    lpFilter.Q.value = 0.9;
 
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0.15, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+    buzzGain.connect(lpFilter);
+    lpFilter.connect(ctx.destination);
 
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.3);
+    // Saw at 185 Hz (F#3) — growly bottom
+    const osc1 = ctx.createOscillator();
+    osc1.type = 'sawtooth';
+    osc1.frequency.setValueAtTime(185, now);
+    osc1.frequency.exponentialRampToValueAtTime(110, now + 0.4);
+    osc1.connect(buzzGain);
+    osc1.start(now);
+    osc1.stop(now + 0.5);
 
-    // Filtered noise bubble texture
-    noiseBurst(ctx, now, 0.12, 0.06, 600, 'bandpass');
+    // Square at 196 Hz (G3) — dissonant buzz
+    const osc2 = ctx.createOscillator();
+    osc2.type = 'square';
+    osc2.frequency.setValueAtTime(196, now);
+    osc2.frequency.exponentialRampToValueAtTime(117, now + 0.4);
+    osc2.connect(buzzGain);
+    osc2.start(now);
+    osc2.stop(now + 0.5);
+
+    // LFO "wobble" on osc1 frequency for an angry vibrato
+    const lfo = ctx.createOscillator();
+    lfo.type = 'sine';
+    lfo.frequency.value = 18; // fast wobble
+    const lfoGain = ctx.createGain();
+    lfoGain.gain.value = 10; // ±10 Hz
+    lfo.connect(lfoGain);
+    lfoGain.connect(osc1.frequency);
+    lfo.start(now);
+    lfo.stop(now + 0.5);
+
+    // Stage 2: percussive noise "thud" at the tail
+    noiseBurst(ctx, now + 0.02, 0.15, 0.12, 500, 'lowpass');
+    // High-band rasp layered for extra grit
+    noiseBurst(ctx, now, 0.08, 0.06, 2500, 'bandpass');
 }
 
 // ---------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 import { ChallengeBase } from './challenge-base.js';
 import * as sound from '../engine/sound.js';
-import { correctExplosion, splashEffect } from '../engine/particles.js';
+import { bigCorrectCelebration, splashEffect } from '../engine/particles.js';
+import { pickCorrectPhrase } from '../engine/profile-theme.js';
 
 export class SequenceNext extends ChallengeBase {
     constructor(data, container) {
@@ -64,7 +65,9 @@ export class SequenceNext extends ChallengeBase {
                 blankEl.textContent = answer;
                 blankEl.classList.remove('seq-item-blank');
                 blankEl.classList.add('seq-item-filled', 'seq-item-correct', 'anim-bounce');
-                correctExplosion(blankEl);
+                bigCorrectCelebration(blankEl, pickCorrectPhrase());
+            } else {
+                bigCorrectCelebration(btn, pickCorrectPhrase());
             }
 
             sound.correct();
