@@ -66,6 +66,7 @@ export function enter(container) {
             const id = card.dataset.profile;
             sound.tap();
             if (switchProfile(id)) {
+                sessionStorage.removeItem('quest:correctStreakSession');
                 applyProfileTheme(id);
                 navigate('islands');
             }

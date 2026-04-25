@@ -18,6 +18,7 @@ function formatMMSS(ms) {
 
 export function enter(container) {
     released = false;
+    sessionStorage.removeItem('quest:correctStreakSession');
     const profile = getCurrentProfileMeta();
     const theme = getCurrentTheme();
     const encouragement = pickRandom(STRINGS.lockout.encouragements);

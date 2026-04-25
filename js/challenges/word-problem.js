@@ -110,7 +110,7 @@ export class WordProblem extends ChallengeBase {
 
                 setTimeout(() => {
                     if (this.onComplete) this.onComplete(this.getScore());
-                }, 1000);
+                }, 600);
             } else {
                 this.recordWrong();
                 sound.wrong();

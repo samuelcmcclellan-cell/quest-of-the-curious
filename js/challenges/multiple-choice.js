@@ -65,7 +65,7 @@ export class MultipleChoice extends ChallengeBase {
 
             setTimeout(() => {
                 if (this.onComplete) this.onComplete(this.getScore());
-            }, 1000);
+            }, 600);
         } else {
             btn.classList.add('choice-btn-wrong', 'anim-shake');
             splashEffect(btn);

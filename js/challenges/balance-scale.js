@@ -114,7 +114,7 @@ export class BalanceScale extends ChallengeBase {
 
             setTimeout(() => {
                 if (this.onComplete) this.onComplete(this.getScore());
-            }, 1000);
+            }, 600);
         }
     }
 

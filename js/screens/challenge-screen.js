@@ -1,4 +1,4 @@
-import { getState, updateState, getCurrentProfileMeta, getWrongAnswerCount, LOCKOUT_THRESHOLD, consumePowerUp, getPowerUpInventory, markDailyCompleted } from '../state.js';
+import { getState, updateState, getCurrentProfileMeta, getWrongAnswerCount, LOCKOUT_THRESHOLD, consumePowerUp, getPowerUpInventory, markDailyCompleted, getNextAvailableChallenge } from '../state.js';
 import { navigate } from '../router.js';
 import { MultipleChoice } from '../challenges/multiple-choice.js';
 import { NumberBuilder } from '../challenges/number-builder.js';
@@ -268,8 +268,22 @@ export async function enter(container, params) {
             sessionStorage.setItem('quest:just-unlocked', JSON.stringify(unlocked.map(a => a.id)));
         }
 
-        const flagPart = flags.length ? '/' + flags.join(',') : '';
-        navigate(`results/${islandSlug}/${challengeIndex}/${stars}${flagPart}`);
+        // Increment session correct-answer counter (used for the every-5 milestone screen).
+        const sessionCounter = (parseInt(sessionStorage.getItem('quest:correctStreakSession') || '0', 10) || 0) + 1;
+        sessionStorage.setItem('quest:correctStreakSession', String(sessionCounter));
+
+        const nextIdx = getNextAvailableChallenge(islandSlug);
+        const islandComplete = nextIdx === -1;
+        const isSpecial = islandComplete || gotSpeed || unlocked.length > 0 || dailyMode;
+
+        if (isSpecial) {
+            const flagPart = flags.length ? '/' + flags.join(',') : '';
+            navigate(`results/${islandSlug}/${challengeIndex}/${stars}${flagPart}`);
+        } else if (sessionCounter % 5 === 0) {
+            navigate(`progress/${islandSlug}`);
+        } else {
+            navigate(`challenge/${islandSlug}/${nextIdx}`);
+        }
     };
 
     // Wrong / correct event listeners
