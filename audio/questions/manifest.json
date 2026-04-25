@@ -1,0 +1,362 @@
+{
+  "64057b458c86a998": {
+    "text": "🧙‍♀️ Uma bruxa prepara 6 poções de manhã e 8 à tarde. Quantas poções no total?",
+    "sources": [
+      "bubble-magic.json#0"
+    ]
+  },
+  "c2c0b01d1e7d9dc3": {
+    "text": "🫧 Uma bolha estoura em 3 bolhinhas. Se há 5 bolhas e todas estouram, quantas bolhinhas?",
+    "sources": [
+      "bubble-magic.json#1"
+    ]
+  },
+  "b3c6c064797605cf": {
+    "text": "🫧 As bolhas mágicas crescem! Cada passo soma 10. O que vem a seguir?",
+    "sources": [
+      "bubble-magic.json#2"
+    ]
+  },
+  "af3841d519e82ca2": {
+    "text": "🧚 Uma fada dobra cada bolha que toca. Ela tem 7 bolhas. Quantas depois de dobrar?",
+    "sources": [
+      "bubble-magic.json#3"
+    ]
+  },
+  "443136f3231afe16": {
+    "text": "⏰ O feitiço começa às 2:00 e dura 3 horas. Que horas termina?",
+    "sources": [
+      "bubble-magic.json#4"
+    ]
+  },
+  "edc1cd7e5b299dc1": {
+    "text": "🔮 Um mago lança um feitiço de subtração: 63 menos 27. Monte a resposta!",
+    "sources": [
+      "bubble-magic.json#5"
+    ]
+  },
+  "54ffd9dca38b959f": {
+    "text": "🧪 O frasco da poção está dividido em 4 partes iguais e 3 partes já estão cheias. Qual fração está cheia?",
+    "sources": [
+      "bubble-magic.json#6"
+    ]
+  },
+  "f81491d502293bc6": {
+    "text": "✨ O cristal encantado pesa 18. Equilibre com dois números!",
+    "sources": [
+      "bubble-magic.json#7"
+    ]
+  },
+  "12ee2ccc6e53a72d": {
+    "text": "Aventura mágica das poções!",
+    "sources": [
+      "bubble-magic.json#8"
+    ]
+  },
+  "ceaccdf22d1dfc4e": {
+    "text": "🌙 Cada bolha dobra de tamanho. Qual vem a seguir?",
+    "sources": [
+      "bubble-magic.json#9"
+    ]
+  },
+  "914cd7b4861c350f": {
+    "text": "📜 O livro de feitiços diz: 145 + 78. Monte a resposta!",
+    "sources": [
+      "bubble-magic.json#10"
+    ]
+  },
+  "f4943bce0067bcb8": {
+    "text": "🧙 Um mago divide 42 cristais igualmente entre 6 alunos. Quantos cristais cada aluno recebe?",
+    "sources": [
+      "bubble-magic.json#11"
+    ]
+  },
+  "d6d6594432e4123a": {
+    "text": "🔮 A bola de cristal conta de 10 em 10 para trás. O que vem a seguir?",
+    "sources": [
+      "bubble-magic.json#12"
+    ]
+  },
+  "650252a4dd2914e7": {
+    "text": "💎 O medalhão dourado pesa 28. Escolha dois que somem 28!",
+    "sources": [
+      "bubble-magic.json#13"
+    ]
+  },
+  "e1509b2e51405224": {
+    "text": "👑 CHEFE! A Grande Maga prepara 5 poções, cada uma com 4 ingredientes. Depois ela guarda 3 ingredientes. Quantos ingredientes usou no total?",
+    "sources": [
+      "bubble-magic.json#14"
+    ]
+  },
+  "9b8600a68cab4806": {
+    "text": "🎸 A banda tem 4 guitarras e 3 baixos. Quantos instrumentos de corda no total?",
+    "sources": [
+      "crystal-rock.json#0"
+    ]
+  },
+  "1692c454f8d7ce40": {
+    "text": "💎 Eu tinha 9 cristais e dei 4 ao meu amigo. Quantos cristais tenho agora?",
+    "sources": [
+      "crystal-rock.json#1"
+    ]
+  },
+  "d522b0be452d9327": {
+    "text": "🥁 O baterista toca 5 batidas por segundo durante 6 segundos. Quantas batidas no total?",
+    "sources": [
+      "crystal-rock.json#2"
+    ]
+  },
+  "251c5b16637ab647": {
+    "text": "🎵 O ritmo conta de 4 em 4. O que vem a seguir?",
+    "sources": [
+      "crystal-rock.json#3"
+    ]
+  },
+  "dc73202924a5a27c": {
+    "text": "💎 O palco tem 148 cristais, e adicionam mais 36. Quantos cristais brilham agora?",
+    "sources": [
+      "crystal-rock.json#4"
+    ]
+  },
+  "f795c9b347fcf160": {
+    "text": "🎸 O palco foi pintado em 4 partes iguais e 2 partes estão pintadas. Qual fração está pintada?",
+    "sources": [
+      "crystal-rock.json#5"
+    ]
+  },
+  "466afed95f198cdf": {
+    "text": "🎧 Uma música tem 3 minutos. Quantos segundos? (1 min = 60 s)",
+    "sources": [
+      "crystal-rock.json#6"
+    ]
+  },
+  "565d377f96139ce2": {
+    "text": "🎹 Um piano pesa 25 cristais. Equilibre — arraste dois números que somem 25!",
+    "sources": [
+      "crystal-rock.json#7"
+    ]
+  },
+  "19d4005ae8922d41": {
+    "text": "Aventura no show de rock!",
+    "sources": [
+      "crystal-rock.json#8"
+    ]
+  },
+  "979e2e8a90a54128": {
+    "text": "🎵 A batida da bateria triplica a cada compasso! O que vem a seguir?",
+    "sources": [
+      "crystal-rock.json#9"
+    ]
+  },
+  "ccfeb79e47b433cd": {
+    "text": "🎸 Uma turnê tocou 217 músicas. Mais 48 no bis. Quantas no total? Monte a resposta!",
+    "sources": [
+      "crystal-rock.json#10"
+    ]
+  },
+  "9b43914ecc33b58a": {
+    "text": "🎹 Um show tem 72 pessoas em 8 fileiras iguais. Quantas pessoas por fileira?",
+    "sources": [
+      "crystal-rock.json#11"
+    ]
+  },
+  "20d480d42096832d": {
+    "text": "🎤 Cada bis dobra os fãs e tira 1. O que vem a seguir?",
+    "sources": [
+      "crystal-rock.json#12"
+    ]
+  },
+  "7d702b8bcce38855": {
+    "text": "💎 A coroa do rockstar pesa 30 cristais. Escolha dois que somem 30!",
+    "sources": [
+      "crystal-rock.json#13"
+    ]
+  },
+  "3d1514a62af2a456": {
+    "text": "👑 CHEFE! A Rainha do Rock precisa de 8 cristais para cada música e vai tocar 7 músicas. Se ela já tem 20 cristais, quantos mais precisa?",
+    "sources": [
+      "crystal-rock.json#14"
+    ]
+  },
+  "8d5ddb8a583b5549": {
+    "text": "Você achou 3 conchas lindas na praia e depois mais 5 numa poça da maré! Quantas conchas você tem agora?",
+    "sources": [
+      "numbers-reef.json#0"
+    ]
+  },
+  "30dd6c2978540d9c": {
+    "text": "Uma estrela-do-mar tem 12 pintinhas e encontra mais 15! Arraste os dígitos para montar o total de pintinhas.",
+    "sources": [
+      "numbers-reef.json#1"
+    ]
+  },
+  "7b436a4f1caf9bf4": {
+    "text": "Há 5 peixes num cardume e cada peixe tem 2 listras. Quantas listras no total?",
+    "sources": [
+      "numbers-reef.json#2"
+    ]
+  },
+  "e7824c98e8ea6c73": {
+    "text": "Um caranguejo juntou 4 saquinhos de bolachas-da-praia com 3 em cada saquinho. Quantas bolachas o caranguejo tem?",
+    "sources": [
+      "numbers-reef.json#3"
+    ]
+  },
+  "cadc0988e3bb2050": {
+    "text": "🐠 O aquário foi pintado em 4 partes iguais e 2 delas já estão coloridas. Que fração está pintada?",
+    "sources": [
+      "numbers-reef.json#4"
+    ]
+  },
+  "1cf39115d2776946": {
+    "text": "Um golfinho nadou 25 metros de manhã e 30 metros à tarde. Monte o total!",
+    "sources": [
+      "numbers-reef.json#5"
+    ]
+  },
+  "9a9a1d8f0a70ebed": {
+    "text": "Há 6 barcos no cais. Cada barco leva 5 marinheiros. Quantos marinheiros no total?",
+    "sources": [
+      "numbers-reef.json#6"
+    ]
+  },
+  "e341f738e48becc0": {
+    "text": "Deixe os dois lados iguais! O lado esquerdo mostra 14.",
+    "sources": [
+      "numbers-reef.json#7"
+    ]
+  },
+  "706bc58296eac865": {
+    "text": "Um barco pescou 24 peixes e precisa dividir igualmente em 4 baldes. Quantos peixes em cada balde?",
+    "sources": [
+      "numbers-reef.json#8"
+    ]
+  },
+  "f8304c53807d0c9f": {
+    "text": "🔮 A bola de cristal do oráculo do oceano brilha: cada número é o dobro do anterior. O que vem a seguir?",
+    "sources": [
+      "numbers-reef.json#9"
+    ]
+  },
+  "44143d34e71391ce": {
+    "text": "Resolva a aventura do tesouro!",
+    "sources": [
+      "numbers-reef.json#10"
+    ]
+  },
+  "d15771926934e9b0": {
+    "text": "Uma tartaruga marinha faz 15 voltas na baía e cada volta tem 4 metros. Quantos metros ela nadou? Monte a resposta!",
+    "sources": [
+      "numbers-reef.json#11"
+    ]
+  },
+  "c4b2d30e9edf66b1": {
+    "text": "As algas crescem triplicando! O que vem a seguir?",
+    "sources": [
+      "numbers-reef.json#12"
+    ]
+  },
+  "f0724b69b9328be2": {
+    "text": "O baú do pirata pesa 25 pérolas. Equilibre com dois números!",
+    "sources": [
+      "numbers-reef.json#13"
+    ]
+  },
+  "66cd8ba98f9291e3": {
+    "text": "🏴‍☠️ CHEFE! O Polvo Tesouro divide 48 pérolas em 6 conchas iguais, e depois coloca 4 pérolas bônus em cada concha. Quantas pérolas tem cada concha agora?",
+    "sources": [
+      "numbers-reef.json#14"
+    ]
+  },
+  "fae3bfc7459ff666": {
+    "text": "9 gatos brincalhões perseguem borboletas, mas 4 se enroscam para cochilar. Quantos gatos ainda brincam?",
+    "sources": [
+      "purrfect-park.json#0"
+    ]
+  },
+  "796bcaf2af8d5a9c": {
+    "text": "A gata Mittens tinha 8 peixinhos na tigela e comeu 3. Quantos sobraram?",
+    "sources": [
+      "purrfect-park.json#1"
+    ]
+  },
+  "05b9ab32291fcf72": {
+    "text": "A Whiskers conta as pegadas de 5 em 5. Qual número vem a seguir?",
+    "sources": [
+      "purrfect-park.json#2"
+    ]
+  },
+  "1a0f2bd7b7bb9a47": {
+    "text": "A Luna e o Leo dividem 8 peixes igualmente. Quantos peixes cada gato recebe?",
+    "sources": [
+      "purrfect-park.json#3"
+    ]
+  },
+  "fd2cf0856fb6e731": {
+    "text": "A gata Mittens tinha 23 peixinhos e devorou 7. Quantos sobraram?",
+    "sources": [
+      "purrfect-park.json#4"
+    ]
+  },
+  "8b1572abaad3c2e3": {
+    "text": "4 fileiras de pegadas com 12 patinhas em cada fileira. Quantas pegadas no total? Monte a resposta!",
+    "sources": [
+      "purrfect-park.json#5"
+    ]
+  },
+  "1a9b616217d97b7f": {
+    "text": "Um ratinho de brinquedo custa 7 centavos. O Tom paga com uma moeda de 10. Quanto de troco?",
+    "sources": [
+      "purrfect-park.json#6"
+    ]
+  },
+  "fb639541cd456c93": {
+    "text": "Um novelo de lã pesa 15. Arraste dois números para equilibrar a balança!",
+    "sources": [
+      "purrfect-park.json#7"
+    ]
+  },
+  "970f94bcfa472ed4": {
+    "text": "🐾 A tigela do gato está dividida em 4 partes iguais e 3 partes estão cheias de ração. Qual fração está cheia?",
+    "sources": [
+      "purrfect-park.json#8"
+    ]
+  },
+  "84cae934aa567af1": {
+    "text": "🔮 Madame Whiskers vê gatos chegando num padrão mágico: cada número soma 3. Qual número é o próximo?",
+    "sources": [
+      "purrfect-park.json#9"
+    ]
+  },
+  "8c841318e2d35c7a": {
+    "text": "A Casa dos Gatos A tem 124 gatos, e a Casa B tem 58. Quantos gatos nas duas casas? Monte a resposta!",
+    "sources": [
+      "purrfect-park.json#10"
+    ]
+  },
+  "115f3770fcf64d12": {
+    "text": "Aventura na loja de gatos!",
+    "sources": [
+      "purrfect-park.json#11"
+    ]
+  },
+  "198d6204492b1593": {
+    "text": "Um gato pula de 7 em 7 pelas pedrinhas. Qual pedra é a próxima?",
+    "sources": [
+      "purrfect-park.json#12"
+    ]
+  },
+  "546d5f169347546f": {
+    "text": "O rei do parque pesa 22 gatinhos. Escolha dois que somem 22 para equilibrar!",
+    "sources": [
+      "purrfect-park.json#13"
+    ]
+  },
+  "f5c3d18a0bfa068a": {
+    "text": "👑 CHEFE! Gato-Rei tem 36 peixes e quer dar a mesma quantidade para 6 gatinhos, mas primeiro guarda 6 para si. Quantos peixes cada gatinho recebe?",
+    "sources": [
+      "purrfect-park.json#14"
+    ]
+  }
+}

@@ -7,6 +7,7 @@ import { SequenceNext } from '../challenges/sequence-next.js';
 import { FractionVisual } from '../challenges/fraction-visual.js';
 import { WordProblem } from '../challenges/word-problem.js';
 import * as sound from '../engine/sound.js';
+import * as speech from '../engine/speech.js';
 import { getCurrentTheme, pickCorrectPhrase, pickWrongPhrase } from '../engine/profile-theme.js';
 import { checkAchievements } from '../engine/achievements.js';
 import { STRINGS } from '../i18n.js';
@@ -121,6 +122,7 @@ function startTimer(container) {
 }
 
 export async function enter(container, params) {
+    speech.cancel();
     const { islandSlug, index: challengeIndex } = parseParams(params);
     const state = getState();
     const profile = getCurrentProfileMeta();
@@ -307,6 +309,24 @@ export async function enter(container, params) {
     sound.whoosh();
     startTimer(container);
 
+    // Voice reader (Ziva only for now): auto-read the question + tap-to-repeat 🔊 button.
+    if (profile.id === 'ziva' && speech.isSupported() && challenge.question) {
+        const questionEl = bodyEl.querySelector('.challenge-question p');
+        if (questionEl) {
+            const speakBtn = document.createElement('button');
+            speakBtn.type = 'button';
+            speakBtn.className = 'speak-btn';
+            speakBtn.setAttribute('aria-label', 'Ouvir de novo');
+            speakBtn.textContent = '🔊';
+            speakBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                speech.speakQuestion(challenge.question);
+            });
+            questionEl.appendChild(speakBtn);
+        }
+        speech.speakQuestion(challenge.question);
+    }
+
     // Power-up: extra hint → reveal next hint even past maxHints
     const bonusHintBtn = container.querySelector('#use-bonus-hint');
     if (bonusHintBtn) {
@@ -376,6 +396,7 @@ function handleReveal(container) {
 }
 
 export function exit() {
+    speech.cancel();
     if (timerInterval) {
         clearInterval(timerInterval);
         timerInterval = null;
