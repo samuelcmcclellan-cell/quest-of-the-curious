@@ -1,18 +1,21 @@
 {
   "d5f8027eb89d4aa9": {
     "text": "Quantas? 🫧🫧🫧",
+    "spoken": "Quantas? três",
     "sources": [
       "bubble-magic-junior.json#0"
     ]
   },
   "3503c3ccc5cc8402": {
     "text": "🧪 + 🧪🧪 = ?",
+    "spoken": "um mais dois igual ?",
     "sources": [
       "bubble-magic-junior.json#1"
     ]
   },
   "83427e7b10a9365f": {
     "text": "O que vem a seguir?",
+    "spoken": "O que vem a seguir?",
     "sources": [
       "bubble-magic-junior.json#2",
       "bubble-magic-junior.json#8",
@@ -26,72 +29,84 @@
   },
   "afd34a7956f6d835": {
     "text": "Quantas? 🪄🪄🪄🪄",
+    "spoken": "Quantas? quatro",
     "sources": [
       "bubble-magic-junior.json#3"
     ]
   },
   "12e83f625dde98c6": {
     "text": "🧙 + 🧙🧙 = ?",
+    "spoken": "um mais dois igual ?",
     "sources": [
       "bubble-magic-junior.json#4"
     ]
   },
   "68459d8fe9fff730": {
     "text": "🫧🫧🫧🫧🫧 - 🫧 = ?",
+    "spoken": "cinco menos um igual ?",
     "sources": [
       "bubble-magic-junior.json#5"
     ]
   },
   "4cfb768512d36e96": {
     "text": "🧪 O frasco da poção está em 2 partes iguais. Uma parte está cheia. Que fração está cheia?",
+    "spoken": "O frasco da poção está em 2 partes iguais. Uma parte está cheia. Que fração está cheia?",
     "sources": [
       "bubble-magic-junior.json#6"
     ]
   },
   "0e64adb52aa38e5c": {
     "text": "✨✨✨ + ✨✨ = ?",
+    "spoken": "três mais dois igual ?",
     "sources": [
       "bubble-magic-junior.json#7"
     ]
   },
   "5249ddbeac4fbfb9": {
     "text": "🪄🪄🪄🪄 + 🪄🪄🪄🪄 = ?",
+    "spoken": "quatro mais quatro igual ?",
     "sources": [
       "bubble-magic-junior.json#9"
     ]
   },
   "f18899f026faa109": {
     "text": "Aventura da bruxinha!",
+    "spoken": "Aventura da bruxinha!",
     "sources": [
       "bubble-magic-junior.json#10"
     ]
   },
   "f37ffd873c316526": {
     "text": "3 varinhas + 4 varinhas = ?",
+    "spoken": "3 varinhas mais 4 varinhas igual ?",
     "sources": [
       "bubble-magic-junior.json#11"
     ]
   },
   "74c7ebaff255b793": {
     "text": "Conte de 2 em 2. Qual é o próximo?",
+    "spoken": "Conte de 2 em 2. Qual é o próximo?",
     "sources": [
       "bubble-magic-junior.json#12"
     ]
   },
   "b7dd0fe0f3ea1e64": {
     "text": "Cada frasco tem 3 bolhas. 3 frascos têm quantas bolhas?",
+    "spoken": "Cada frasco tem 3 bolhas. 3 frascos têm quantas bolhas?",
     "sources": [
       "bubble-magic-junior.json#13"
     ]
   },
   "9d288c7f499c27c9": {
     "text": "👑 CHEFE! A Bruxa Estrela tem 5 bolhas e a Fada dá mais 4. Depois 1 bolha estoura. Quantas sobraram?",
+    "spoken": "CHEFE! A Bruxa Estrela tem 5 bolhas e a Fada dá mais 4. Depois 1 bolha estoura. Quantas sobraram?",
     "sources": [
       "bubble-magic-junior.json#14"
     ]
   },
   "144ce5a7af6cd1fb": {
     "text": "👉 mais?",
+    "spoken": "mais?",
     "sources": [
       "bubble-magic-toddler.json#8",
       "bubble-magic-toddler.json#13",
@@ -106,372 +121,434 @@
   },
   "f25a1409911c8b87": {
     "text": "🍩 Metade?",
+    "spoken": "Metade?",
     "sources": [
       "bubble-magic-toddler.json#12"
     ]
   },
   "9bb3f28f088e36f6": {
     "text": "CHEFE 👑 Quantos? 🫧🫧🫧🫧🫧🫧🫧🫧🫧🫧",
+    "spoken": "CHEFE Quantos? dez",
     "sources": [
       "bubble-magic-toddler.json#14"
     ]
   },
   "64057b458c86a998": {
     "text": "🧙‍♀️ Uma bruxa prepara 6 poções de manhã e 8 à tarde. Quantas poções no total?",
+    "spoken": "Uma bruxa prepara 6 poções de manhã e 8 à tarde. Quantas poções no total?",
     "sources": [
       "bubble-magic.json#0"
     ]
   },
   "c2c0b01d1e7d9dc3": {
     "text": "🫧 Uma bolha estoura em 3 bolhinhas. Se há 5 bolhas e todas estouram, quantas bolhinhas?",
+    "spoken": "Uma bolha estoura em 3 bolhinhas. Se há 5 bolhas e todas estouram, quantas bolhinhas?",
     "sources": [
       "bubble-magic.json#1"
     ]
   },
   "b3c6c064797605cf": {
     "text": "🫧 As bolhas mágicas crescem! Cada passo soma 10. O que vem a seguir?",
+    "spoken": "As bolhas mágicas crescem! Cada passo soma 10. O que vem a seguir?",
     "sources": [
       "bubble-magic.json#2"
     ]
   },
   "af3841d519e82ca2": {
     "text": "🧚 Uma fada dobra cada bolha que toca. Ela tem 7 bolhas. Quantas depois de dobrar?",
+    "spoken": "Uma fada dobra cada bolha que toca. Ela tem 7 bolhas. Quantas depois de dobrar?",
     "sources": [
       "bubble-magic.json#3"
     ]
   },
   "443136f3231afe16": {
     "text": "⏰ O feitiço começa às 2:00 e dura 3 horas. Que horas termina?",
+    "spoken": "O feitiço começa às 2:00 e dura 3 horas. Que horas termina?",
     "sources": [
       "bubble-magic.json#4"
     ]
   },
   "edc1cd7e5b299dc1": {
     "text": "🔮 Um mago lança um feitiço de subtração: 63 menos 27. Monte a resposta!",
+    "spoken": "Um mago lança um feitiço de subtração: 63 menos 27. Monte a resposta!",
     "sources": [
       "bubble-magic.json#5"
     ]
   },
   "54ffd9dca38b959f": {
     "text": "🧪 O frasco da poção está dividido em 4 partes iguais e 3 partes já estão cheias. Qual fração está cheia?",
+    "spoken": "O frasco da poção está dividido em 4 partes iguais e 3 partes já estão cheias. Qual fração está cheia?",
     "sources": [
       "bubble-magic.json#6"
     ]
   },
   "f81491d502293bc6": {
     "text": "✨ O cristal encantado pesa 18. Equilibre com dois números!",
+    "spoken": "O cristal encantado pesa 18. Equilibre com dois números!",
     "sources": [
       "bubble-magic.json#7"
     ]
   },
   "12ee2ccc6e53a72d": {
     "text": "Aventura mágica das poções!",
+    "spoken": "Aventura mágica das poções!",
     "sources": [
       "bubble-magic.json#8"
     ]
   },
   "ceaccdf22d1dfc4e": {
     "text": "🌙 Cada bolha dobra de tamanho. Qual vem a seguir?",
+    "spoken": "Cada bolha dobra de tamanho. Qual vem a seguir?",
     "sources": [
       "bubble-magic.json#9"
     ]
   },
   "914cd7b4861c350f": {
     "text": "📜 O livro de feitiços diz: 145 + 78. Monte a resposta!",
+    "spoken": "um O livro de feitiços diz: 145 mais 78. Monte a resposta!",
     "sources": [
       "bubble-magic.json#10"
     ]
   },
   "f4943bce0067bcb8": {
     "text": "🧙 Um mago divide 42 cristais igualmente entre 6 alunos. Quantos cristais cada aluno recebe?",
+    "spoken": "Um mago divide 42 cristais igualmente entre 6 alunos. Quantos cristais cada aluno recebe?",
     "sources": [
       "bubble-magic.json#11"
     ]
   },
   "d6d6594432e4123a": {
     "text": "🔮 A bola de cristal conta de 10 em 10 para trás. O que vem a seguir?",
+    "spoken": "A bola de cristal conta de 10 em 10 para trás. O que vem a seguir?",
     "sources": [
       "bubble-magic.json#12"
     ]
   },
   "650252a4dd2914e7": {
     "text": "💎 O medalhão dourado pesa 28. Escolha dois que somem 28!",
+    "spoken": "O medalhão dourado pesa 28. Escolha dois que somem 28!",
     "sources": [
       "bubble-magic.json#13"
     ]
   },
   "e1509b2e51405224": {
     "text": "👑 CHEFE! A Grande Maga prepara 5 poções, cada uma com 4 ingredientes. Depois ela guarda 3 ingredientes. Quantos ingredientes usou no total?",
+    "spoken": "CHEFE! A Grande Maga prepara 5 poções, cada uma com 4 ingredientes. Depois ela guarda 3 ingredientes. Quantos ingredientes usou no total?",
     "sources": [
       "bubble-magic.json#14"
     ]
   },
   "80752b1b7ead768e": {
     "text": "Quantas? 🎸🎸🎸🎸",
+    "spoken": "Quantas? quatro",
     "sources": [
       "crystal-rock-junior.json#0"
     ]
   },
   "122e1981ff32465b": {
     "text": "🥁 + 🥁🥁 = ?",
+    "spoken": "um mais dois igual ?",
     "sources": [
       "crystal-rock-junior.json#1"
     ]
   },
   "31af9348e7e508d3": {
     "text": "Quantas? 💎💎💎💎💎",
+    "spoken": "Quantas? cinco",
     "sources": [
       "crystal-rock-junior.json#3"
     ]
   },
   "f577460c5938304d": {
     "text": "🎤 + 🎤🎤🎤 = ?",
+    "spoken": "um mais três igual ?",
     "sources": [
       "crystal-rock-junior.json#4"
     ]
   },
   "116db3c0b1d17a43": {
     "text": "🎧🎧🎧🎧🎧 - 🎧 = ?",
+    "spoken": "cinco menos um igual ?",
     "sources": [
       "crystal-rock-junior.json#5"
     ]
   },
   "2f144359db717aaf": {
     "text": "🎸 A guitarra tem 2 cordas iguais. Uma está tocada. Que fração?",
+    "spoken": "A guitarra tem 2 cordas iguais. Uma está tocada. Que fração?",
     "sources": [
       "crystal-rock-junior.json#6"
     ]
   },
   "b5d4acacd1256951": {
     "text": "🎹🎹🎹 + 🎹🎹🎹 = ?",
+    "spoken": "três mais três igual ?",
     "sources": [
       "crystal-rock-junior.json#7"
     ]
   },
   "7b87fff95e3e13f8": {
     "text": "Quantas? 🎸🎸🎸🎸🎸🎸🎸",
+    "spoken": "Quantas? sete",
     "sources": [
       "crystal-rock-junior.json#9"
     ]
   },
   "0c87ba76d62d55cc": {
     "text": "Aventura no show!",
+    "spoken": "Aventura no show!",
     "sources": [
       "crystal-rock-junior.json#10"
     ]
   },
   "2b008afe93ba0ce4": {
     "text": "5 batidas + 5 batidas = ?",
+    "spoken": "5 batidas mais 5 batidas igual ?",
     "sources": [
       "crystal-rock-junior.json#11"
     ]
   },
   "cc8e051b579b380c": {
     "text": "Conte de 2 em 2. Próximo?",
+    "spoken": "Conte de 2 em 2. Próximo?",
     "sources": [
       "crystal-rock-junior.json#12"
     ]
   },
   "cf611f1d104ca89a": {
     "text": "Cada guitarra tem 3 cristais. 3 guitarras têm quantos cristais?",
+    "spoken": "Cada guitarra tem 3 cristais. 3 guitarras têm quantos cristais?",
     "sources": [
       "crystal-rock-junior.json#13"
     ]
   },
   "01398f6846df3af9": {
     "text": "👑 CHEFE! A banda tem 6 fãs e chegam mais 5. Depois 2 vão embora. Quantos fãs ficaram?",
+    "spoken": "CHEFE! A banda tem 6 fãs e chegam mais 5. Depois 2 vão embora. Quantos fãs ficaram?",
     "sources": [
       "crystal-rock-junior.json#14"
     ]
   },
   "224b0b4dae4cca3f": {
     "text": "🍕 Metade?",
+    "spoken": "Metade?",
     "sources": [
       "crystal-rock-toddler.json#12"
     ]
   },
   "6453d90650aca0dd": {
     "text": "CHEFE 👑 Quantos? 🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸",
+    "spoken": "CHEFE Quantos? dez",
     "sources": [
       "crystal-rock-toddler.json#14"
     ]
   },
   "9b8600a68cab4806": {
     "text": "🎸 A banda tem 4 guitarras e 3 baixos. Quantos instrumentos de corda no total?",
+    "spoken": "A banda tem 4 guitarras e 3 baixos. Quantos instrumentos de corda no total?",
     "sources": [
       "crystal-rock.json#0"
     ]
   },
   "1692c454f8d7ce40": {
     "text": "💎 Eu tinha 9 cristais e dei 4 ao meu amigo. Quantos cristais tenho agora?",
+    "spoken": "Eu tinha 9 cristais e dei 4 ao meu amigo. Quantos cristais tenho agora?",
     "sources": [
       "crystal-rock.json#1"
     ]
   },
   "d522b0be452d9327": {
     "text": "🥁 O baterista toca 5 batidas por segundo durante 6 segundos. Quantas batidas no total?",
+    "spoken": "O baterista toca 5 batidas por segundo durante 6 segundos. Quantas batidas no total?",
     "sources": [
       "crystal-rock.json#2"
     ]
   },
   "251c5b16637ab647": {
     "text": "🎵 O ritmo conta de 4 em 4. O que vem a seguir?",
+    "spoken": "O ritmo conta de 4 em 4. O que vem a seguir?",
     "sources": [
       "crystal-rock.json#3"
     ]
   },
   "dc73202924a5a27c": {
     "text": "💎 O palco tem 148 cristais, e adicionam mais 36. Quantos cristais brilham agora?",
+    "spoken": "O palco tem 148 cristais, e adicionam mais 36. Quantos cristais brilham agora?",
     "sources": [
       "crystal-rock.json#4"
     ]
   },
   "f795c9b347fcf160": {
     "text": "🎸 O palco foi pintado em 4 partes iguais e 2 partes estão pintadas. Qual fração está pintada?",
+    "spoken": "O palco foi pintado em 4 partes iguais e 2 partes estão pintadas. Qual fração está pintada?",
     "sources": [
       "crystal-rock.json#5"
     ]
   },
   "466afed95f198cdf": {
     "text": "🎧 Uma música tem 3 minutos. Quantos segundos? (1 min = 60 s)",
+    "spoken": "um Uma música tem 3 minutos. Quantos segundos? (1 min igual 60 s)",
     "sources": [
       "crystal-rock.json#6"
     ]
   },
   "565d377f96139ce2": {
     "text": "🎹 Um piano pesa 25 cristais. Equilibre — arraste dois números que somem 25!",
+    "spoken": "Um piano pesa 25 cristais. Equilibre — arraste dois números que somem 25!",
     "sources": [
       "crystal-rock.json#7"
     ]
   },
   "19d4005ae8922d41": {
     "text": "Aventura no show de rock!",
+    "spoken": "Aventura no show de rock!",
     "sources": [
       "crystal-rock.json#8"
     ]
   },
   "979e2e8a90a54128": {
     "text": "🎵 A batida da bateria triplica a cada compasso! O que vem a seguir?",
+    "spoken": "A batida da bateria triplica a cada compasso! O que vem a seguir?",
     "sources": [
       "crystal-rock.json#9"
     ]
   },
   "ccfeb79e47b433cd": {
     "text": "🎸 Uma turnê tocou 217 músicas. Mais 48 no bis. Quantas no total? Monte a resposta!",
+    "spoken": "Uma turnê tocou 217 músicas. Mais 48 no bis. Quantas no total? Monte a resposta!",
     "sources": [
       "crystal-rock.json#10"
     ]
   },
   "9b43914ecc33b58a": {
     "text": "🎹 Um show tem 72 pessoas em 8 fileiras iguais. Quantas pessoas por fileira?",
+    "spoken": "Um show tem 72 pessoas em 8 fileiras iguais. Quantas pessoas por fileira?",
     "sources": [
       "crystal-rock.json#11"
     ]
   },
   "20d480d42096832d": {
     "text": "🎤 Cada bis dobra os fãs e tira 1. O que vem a seguir?",
+    "spoken": "Cada bis dobra os fãs e tira 1. O que vem a seguir?",
     "sources": [
       "crystal-rock.json#12"
     ]
   },
   "7d702b8bcce38855": {
     "text": "💎 A coroa do rockstar pesa 30 cristais. Escolha dois que somem 30!",
+    "spoken": "A coroa do rockstar pesa 30 cristais. Escolha dois que somem 30!",
     "sources": [
       "crystal-rock.json#13"
     ]
   },
   "3d1514a62af2a456": {
     "text": "👑 CHEFE! A Rainha do Rock precisa de 8 cristais para cada música e vai tocar 7 músicas. Se ela já tem 20 cristais, quantos mais precisa?",
+    "spoken": "CHEFE! A Rainha do Rock precisa de 8 cristais para cada música e vai tocar 7 músicas. Se ela já tem 20 cristais, quantos mais precisa?",
     "sources": [
       "crystal-rock.json#14"
     ]
   },
   "bdd4b58c6e6172bc": {
     "text": "Quantas? 🌊🌊🌊",
+    "spoken": "Quantas? três",
     "sources": [
       "numbers-reef-junior.json#0"
     ]
   },
   "a5d596b9fd49efe6": {
     "text": "Quantas? 🐚🐚🐚🐚🐚",
+    "spoken": "Quantas? cinco",
     "sources": [
       "numbers-reef-junior.json#1"
     ]
   },
   "6dc9434e9bfa7929": {
     "text": "🐠 + 🐠 = ?",
+    "spoken": "um mais um igual ?",
     "sources": [
       "numbers-reef-junior.json#2"
     ]
   },
   "041d55de35a40661": {
     "text": "🏰🏰 + 🏰🏰 = ?",
+    "spoken": "dois mais dois igual ?",
     "sources": [
       "numbers-reef-junior.json#3"
     ]
   },
   "0d288fc2049f2ba9": {
     "text": "🌊🌊🌊 + 🌊🌊 = ?",
+    "spoken": "três mais dois igual ?",
     "sources": [
       "numbers-reef-junior.json#5"
     ]
   },
   "6dd593f9878f0ef8": {
     "text": "Quantas? ⭐⭐⭐⭐⭐⭐⭐",
+    "spoken": "Quantas? sete",
     "sources": [
       "numbers-reef-junior.json#6"
     ]
   },
   "e618d81f4e6ad21d": {
     "text": "Qual baldinho tem MAIS conchas?",
+    "spoken": "Qual baldinho tem MAIS conchas?",
     "sources": [
       "numbers-reef-junior.json#7"
     ]
   },
   "0eceb122ec448f26": {
     "text": "🌊🌊🌊🌊 + 🌊 = ?",
+    "spoken": "quatro mais um igual ?",
     "sources": [
       "numbers-reef-junior.json#8"
     ]
   },
   "50c242f71922c7b3": {
     "text": "Quantas? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
+    "spoken": "Quantas? dez",
     "sources": [
       "numbers-reef-junior.json#9"
     ]
   },
   "b612d47daa00a088": {
     "text": "Qual parte da pizza do peixe está comida?",
+    "spoken": "Qual parte da pizza do peixe está comida?",
     "sources": [
       "numbers-reef-junior.json#10"
     ]
   },
   "c86051ab11bdd90c": {
     "text": "🐟🐟🐟🐟🐟 + 🐟🐟🐟🐟🐟 = ?",
+    "spoken": "cinco mais cinco igual ?",
     "sources": [
       "numbers-reef-junior.json#11"
     ]
   },
   "d743ce3db1339197": {
     "text": "Aventura na praia!",
+    "spoken": "Aventura na praia!",
     "sources": [
       "numbers-reef-junior.json#13"
     ]
   },
   "dce9a867158c4359": {
     "text": "🏴‍☠️ CHEFE! O capitão acha 7 moedas na praia e depois mais 6 na areia. Quantas moedas ele tem?",
+    "spoken": "CHEFE! O capitão acha 7 moedas na praia e depois mais 6 na areia. Quantas moedas ele tem?",
     "sources": [
       "numbers-reef-junior.json#14"
     ]
   },
   "888299fed1251bf5": {
     "text": "🍪 Metade?",
+    "spoken": "Metade?",
     "sources": [
       "numbers-reef-toddler.json#12"
     ]
   },
   "5c2286230e63c722": {
     "text": "CHEFE 👑 Quantos? 🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕",
+    "spoken": "CHEFE Quantos? dez",
     "sources": [
       "numbers-reef-toddler.json#14",
       "purrfect-park-toddler.json#14"
@@ -479,264 +556,308 @@
   },
   "8d5ddb8a583b5549": {
     "text": "Você achou 3 conchas lindas na praia e depois mais 5 numa poça da maré! Quantas conchas você tem agora?",
+    "spoken": "Você achou 3 conchas lindas na praia e depois mais 5 numa poça da maré! Quantas conchas você tem agora?",
     "sources": [
       "numbers-reef.json#0"
     ]
   },
   "30dd6c2978540d9c": {
     "text": "Uma estrela-do-mar tem 12 pintinhas e encontra mais 15! Arraste os dígitos para montar o total de pintinhas.",
+    "spoken": "Uma estrela-do-mar tem 12 pintinhas e encontra mais 15! Arraste os dígitos para montar o total de pintinhas.",
     "sources": [
       "numbers-reef.json#1"
     ]
   },
   "7b436a4f1caf9bf4": {
     "text": "Há 5 peixes num cardume e cada peixe tem 2 listras. Quantas listras no total?",
+    "spoken": "Há 5 peixes num cardume e cada peixe tem 2 listras. Quantas listras no total?",
     "sources": [
       "numbers-reef.json#2"
     ]
   },
   "e7824c98e8ea6c73": {
     "text": "Um caranguejo juntou 4 saquinhos de bolachas-da-praia com 3 em cada saquinho. Quantas bolachas o caranguejo tem?",
+    "spoken": "Um caranguejo juntou 4 saquinhos de bolachas-da-praia com 3 em cada saquinho. Quantas bolachas o caranguejo tem?",
     "sources": [
       "numbers-reef.json#3"
     ]
   },
   "cadc0988e3bb2050": {
     "text": "🐠 O aquário foi pintado em 4 partes iguais e 2 delas já estão coloridas. Que fração está pintada?",
+    "spoken": "O aquário foi pintado em 4 partes iguais e 2 delas já estão coloridas. Que fração está pintada?",
     "sources": [
       "numbers-reef.json#4"
     ]
   },
   "1cf39115d2776946": {
     "text": "Um golfinho nadou 25 metros de manhã e 30 metros à tarde. Monte o total!",
+    "spoken": "Um golfinho nadou 25 metros de manhã e 30 metros à tarde. Monte o total!",
     "sources": [
       "numbers-reef.json#5"
     ]
   },
   "9a9a1d8f0a70ebed": {
     "text": "Há 6 barcos no cais. Cada barco leva 5 marinheiros. Quantos marinheiros no total?",
+    "spoken": "Há 6 barcos no cais. Cada barco leva 5 marinheiros. Quantos marinheiros no total?",
     "sources": [
       "numbers-reef.json#6"
     ]
   },
   "e341f738e48becc0": {
     "text": "Deixe os dois lados iguais! O lado esquerdo mostra 14.",
+    "spoken": "Deixe os dois lados iguais! O lado esquerdo mostra 14.",
     "sources": [
       "numbers-reef.json#7"
     ]
   },
   "706bc58296eac865": {
     "text": "Um barco pescou 24 peixes e precisa dividir igualmente em 4 baldes. Quantos peixes em cada balde?",
+    "spoken": "Um barco pescou 24 peixes e precisa dividir igualmente em 4 baldes. Quantos peixes em cada balde?",
     "sources": [
       "numbers-reef.json#8"
     ]
   },
   "f8304c53807d0c9f": {
     "text": "🔮 A bola de cristal do oráculo do oceano brilha: cada número é o dobro do anterior. O que vem a seguir?",
+    "spoken": "A bola de cristal do oráculo do oceano brilha: cada número é o dobro do anterior. O que vem a seguir?",
     "sources": [
       "numbers-reef.json#9"
     ]
   },
   "44143d34e71391ce": {
     "text": "Resolva a aventura do tesouro!",
+    "spoken": "Resolva a aventura do tesouro!",
     "sources": [
       "numbers-reef.json#10"
     ]
   },
   "d15771926934e9b0": {
     "text": "Uma tartaruga marinha faz 15 voltas na baía e cada volta tem 4 metros. Quantos metros ela nadou? Monte a resposta!",
+    "spoken": "Uma tartaruga marinha faz 15 voltas na baía e cada volta tem 4 metros. Quantos metros ela nadou? Monte a resposta!",
     "sources": [
       "numbers-reef.json#11"
     ]
   },
   "c4b2d30e9edf66b1": {
     "text": "As algas crescem triplicando! O que vem a seguir?",
+    "spoken": "As algas crescem triplicando! O que vem a seguir?",
     "sources": [
       "numbers-reef.json#12"
     ]
   },
   "f0724b69b9328be2": {
     "text": "O baú do pirata pesa 25 pérolas. Equilibre com dois números!",
+    "spoken": "O baú do pirata pesa 25 pérolas. Equilibre com dois números!",
     "sources": [
       "numbers-reef.json#13"
     ]
   },
   "66cd8ba98f9291e3": {
     "text": "🏴‍☠️ CHEFE! O Polvo Tesouro divide 48 pérolas em 6 conchas iguais, e depois coloca 4 pérolas bônus em cada concha. Quantas pérolas tem cada concha agora?",
+    "spoken": "CHEFE! O Polvo Tesouro divide 48 pérolas em 6 conchas iguais, e depois coloca 4 pérolas bônus em cada concha. Quantas pérolas tem cada concha agora?",
     "sources": [
       "numbers-reef.json#14"
     ]
   },
   "ebdbf4774e152777": {
     "text": "Quantas? ⚽⚽⚽⚽",
+    "spoken": "Quantas? quatro",
     "sources": [
       "purrfect-park-junior.json#0"
     ]
   },
   "2e81e6cd9fe1ed45": {
     "text": "⚽⚽ + ⚽⚽⚽ = ?",
+    "spoken": "dois mais três igual ?",
     "sources": [
       "purrfect-park-junior.json#1"
     ]
   },
   "5cfa0ad895759d98": {
     "text": "🐱🐱🐱🐱🐱 + 🐱 = ?",
+    "spoken": "cinco mais um igual ?",
     "sources": [
       "purrfect-park-junior.json#3"
     ]
   },
   "350159ed511402d7": {
     "text": "Quantas? 👟👟👟👟👟👟",
+    "spoken": "Quantas? seis",
     "sources": [
       "purrfect-park-junior.json#4"
     ]
   },
   "cf0cd83986d016e4": {
     "text": "🐱🐱🐱🐱🐱 - 🐱 = ?",
+    "spoken": "cinco menos um igual ?",
     "sources": [
       "purrfect-park-junior.json#5"
     ]
   },
   "e47bac85d5965d05": {
     "text": "🍕 Uma pizza está em 2 pedaços iguais. Um pedaço foi comido. Qual fração sobra?",
+    "spoken": "Uma pizza está em 2 pedaços iguais. Um pedaço foi comido. Qual fração sobra?",
     "sources": [
       "purrfect-park-junior.json#6"
     ]
   },
   "f1125a91276b74fe": {
     "text": "⚽⚽⚽⚽ + ⚽⚽⚽⚽ = ?",
+    "spoken": "quatro mais quatro igual ?",
     "sources": [
       "purrfect-park-junior.json#7"
     ]
   },
   "36dddaf05e1fc267": {
     "text": "🥅🥅🥅 + 🥅🥅 = ?",
+    "spoken": "três mais dois igual ?",
     "sources": [
       "purrfect-park-junior.json#9"
     ]
   },
   "e948724875682189": {
     "text": "Aventura no parque dos gatos!",
+    "spoken": "Aventura no parque dos gatos!",
     "sources": [
       "purrfect-park-junior.json#10"
     ]
   },
   "eecafebd1555122e": {
     "text": "7 gatinhos + 3 gatinhos = ?",
+    "spoken": "7 gatinhos mais 3 gatinhos igual ?",
     "sources": [
       "purrfect-park-junior.json#11"
     ]
   },
   "02616c990e555d71": {
     "text": "Contagem por 2. O que vem a seguir?",
+    "spoken": "Contagem por 2. O que vem a seguir?",
     "sources": [
       "purrfect-park-junior.json#12"
     ]
   },
   "a88278e6cfdf21df": {
     "text": "Uma caixa tem 4 gatinhos. Duas caixas têm quantos gatinhos?",
+    "spoken": "Uma caixa tem 4 gatinhos. Duas caixas têm quantos gatinhos?",
     "sources": [
       "purrfect-park-junior.json#13"
     ]
   },
   "34a0b38ad0a50ad5": {
     "text": "👑 CHEFE! A Rainha Gata tem 6 peixes e ganha mais 6 do amigo. Depois come 2. Quantos sobraram?",
+    "spoken": "CHEFE! A Rainha Gata tem 6 peixes e ganha mais 6 do amigo. Depois come 2. Quantos sobraram?",
     "sources": [
       "purrfect-park-junior.json#14"
     ]
   },
   "999866794192921d": {
     "text": "🍎 Metade?",
+    "spoken": "Metade?",
     "sources": [
       "purrfect-park-toddler.json#12"
     ]
   },
   "fae3bfc7459ff666": {
     "text": "9 gatos brincalhões perseguem borboletas, mas 4 se enroscam para cochilar. Quantos gatos ainda brincam?",
+    "spoken": "9 gatos brincalhões perseguem borboletas, mas 4 se enroscam para cochilar. Quantos gatos ainda brincam?",
     "sources": [
       "purrfect-park.json#0"
     ]
   },
   "796bcaf2af8d5a9c": {
     "text": "A gata Mittens tinha 8 peixinhos na tigela e comeu 3. Quantos sobraram?",
+    "spoken": "A gata Mittens tinha 8 peixinhos na tigela e comeu 3. Quantos sobraram?",
     "sources": [
       "purrfect-park.json#1"
     ]
   },
   "05b9ab32291fcf72": {
     "text": "A Whiskers conta as pegadas de 5 em 5. Qual número vem a seguir?",
+    "spoken": "A Whiskers conta as pegadas de 5 em 5. Qual número vem a seguir?",
     "sources": [
       "purrfect-park.json#2"
     ]
   },
   "1a0f2bd7b7bb9a47": {
     "text": "A Luna e o Leo dividem 8 peixes igualmente. Quantos peixes cada gato recebe?",
+    "spoken": "A Luna e o Leo dividem 8 peixes igualmente. Quantos peixes cada gato recebe?",
     "sources": [
       "purrfect-park.json#3"
     ]
   },
   "fd2cf0856fb6e731": {
     "text": "A gata Mittens tinha 23 peixinhos e devorou 7. Quantos sobraram?",
+    "spoken": "A gata Mittens tinha 23 peixinhos e devorou 7. Quantos sobraram?",
     "sources": [
       "purrfect-park.json#4"
     ]
   },
   "8b1572abaad3c2e3": {
     "text": "4 fileiras de pegadas com 12 patinhas em cada fileira. Quantas pegadas no total? Monte a resposta!",
+    "spoken": "4 fileiras de pegadas com 12 patinhas em cada fileira. Quantas pegadas no total? Monte a resposta!",
     "sources": [
       "purrfect-park.json#5"
     ]
   },
   "1a9b616217d97b7f": {
     "text": "Um ratinho de brinquedo custa 7 centavos. O Tom paga com uma moeda de 10. Quanto de troco?",
+    "spoken": "Um ratinho de brinquedo custa 7 centavos. O Tom paga com uma moeda de 10. Quanto de troco?",
     "sources": [
       "purrfect-park.json#6"
     ]
   },
   "fb639541cd456c93": {
     "text": "Um novelo de lã pesa 15. Arraste dois números para equilibrar a balança!",
+    "spoken": "Um novelo de lã pesa 15. Arraste dois números para equilibrar a balança!",
     "sources": [
       "purrfect-park.json#7"
     ]
   },
   "970f94bcfa472ed4": {
     "text": "🐾 A tigela do gato está dividida em 4 partes iguais e 3 partes estão cheias de ração. Qual fração está cheia?",
+    "spoken": "A tigela do gato está dividida em 4 partes iguais e 3 partes estão cheias de ração. Qual fração está cheia?",
     "sources": [
       "purrfect-park.json#8"
     ]
   },
   "84cae934aa567af1": {
     "text": "🔮 Madame Whiskers vê gatos chegando num padrão mágico: cada número soma 3. Qual número é o próximo?",
+    "spoken": "Madame Whiskers vê gatos chegando num padrão mágico: cada número soma 3. Qual número é o próximo?",
     "sources": [
       "purrfect-park.json#9"
     ]
   },
   "8c841318e2d35c7a": {
     "text": "A Casa dos Gatos A tem 124 gatos, e a Casa B tem 58. Quantos gatos nas duas casas? Monte a resposta!",
+    "spoken": "A Casa dos Gatos A tem 124 gatos, e a Casa B tem 58. Quantos gatos nas duas casas? Monte a resposta!",
     "sources": [
       "purrfect-park.json#10"
     ]
   },
   "115f3770fcf64d12": {
     "text": "Aventura na loja de gatos!",
+    "spoken": "Aventura na loja de gatos!",
     "sources": [
       "purrfect-park.json#11"
     ]
   },
   "198d6204492b1593": {
     "text": "Um gato pula de 7 em 7 pelas pedrinhas. Qual pedra é a próxima?",
+    "spoken": "Um gato pula de 7 em 7 pelas pedrinhas. Qual pedra é a próxima?",
     "sources": [
       "purrfect-park.json#12"
     ]
   },
   "546d5f169347546f": {
     "text": "O rei do parque pesa 22 gatinhos. Escolha dois que somem 22 para equilibrar!",
+    "spoken": "O rei do parque pesa 22 gatinhos. Escolha dois que somem 22 para equilibrar!",
     "sources": [
       "purrfect-park.json#13"
     ]
   },
   "f5c3d18a0bfa068a": {
     "text": "👑 CHEFE! Gato-Rei tem 36 peixes e quer dar a mesma quantidade para 6 gatinhos, mas primeiro guarda 6 para si. Quantos peixes cada gatinho recebe?",
+    "spoken": "um CHEFE! Gato-Rei tem 36 peixes e quer dar a mesma quantidade para 6 gatinhos, mas primeiro guarda 6 para si. Quantos peixes cada gatinho recebe?",
     "sources": [
       "purrfect-park.json#14"
     ]

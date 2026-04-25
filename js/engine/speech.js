@@ -1,6 +1,8 @@
 // Speech wrapper: prefers a pre-generated ElevenLabs mp3 keyed by SHA-1(text);
 // falls back to the browser's SpeechSynthesis voice when no clip is available.
 
+import { toSpokenText } from '../utils/spoken-text.js';
+
 const AUDIO_BASE = './audio/questions';
 let preferredVoice = null;
 let voicesReady = false;
@@ -55,7 +57,9 @@ function stopCurrentAudio() {
 }
 
 function speakViaSynthesis(text, opts) {
-    const cleaned = text.trim();
+    // The browser TTS will read raw emoji as silence too — feed it the
+    // spoken form so the fallback path is also audible.
+    const cleaned = toSpokenText(text) || text.trim();
     if (!cleaned) return;
     const lang = opts.lang || 'pt-BR';
     if (typeof window === 'undefined' || !window.speechSynthesis) return;

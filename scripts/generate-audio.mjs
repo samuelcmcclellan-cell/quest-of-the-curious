@@ -18,8 +18,11 @@
 
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
+
+// Reuse the browser-side spoken-text transform so generator + runtime stay in sync.
+const { toSpokenText } = await import(pathToFileURL(resolve(dirname(fileURLToPath(import.meta.url)), '..', 'js', 'utils', 'spoken-text.js')).href);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -69,25 +72,25 @@ function listVoiceFiles() {
     return readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
 }
 
-// --- only voice questions that contain real Portuguese words (any Latin letter).
-//     Ella's toddler tier is mostly pure-emoji and shouldn't be voiced. ---
+// Toddler tier (Ella, age 4) is "look and count" — speaking the answer would
+// undercut the pedagogy. We only voice toddler questions whose original text
+// contains actual Portuguese words. For older tiers, the spoken-text transform
+// converts emoji runs into number words so emoji-math is also audible.
 const HAS_LETTER = /[a-zA-ZáéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇ]/;
-function hasReadableWords(text) {
-    return HAS_LETTER.test(text);
-}
 
 function collectQuestions() {
-    const seen = new Map(); // hash -> { text, sources: [] }
+    const seen = new Map(); // hash -> { text, spoken, sources: [] }
     for (const file of listVoiceFiles()) {
         const data = JSON.parse(readFileSync(join(DATA_DIR, file), 'utf8'));
-        // For Ella's toddler tier, only voice questions that have real words.
         const isToddler = file.includes('-toddler');
         for (const [i, c] of (data.challenges || []).entries()) {
             const text = (c.question || '').trim();
             if (!text) continue;
-            if (isToddler && !hasReadableWords(text)) continue;
+            if (isToddler && !HAS_LETTER.test(text)) continue;
+            const spoken = toSpokenText(text);
+            if (!spoken) continue;
             const h = hashQuestion(text);
-            if (!seen.has(h)) seen.set(h, { text, sources: [] });
+            if (!seen.has(h)) seen.set(h, { text, spoken, sources: [] });
             seen.get(h).sources.push(`${file}#${i}`);
         }
     }
@@ -171,20 +174,30 @@ async function main() {
     const questions = collectQuestions();
     console.log(`✓ Found ${questions.size} unique voiceable questions across all tiers`);
 
+    // Existing manifest lets us detect which mp3s were generated from a stale
+    // spoken form (e.g. before this transform existed) and only regenerate those.
+    const manifestPath = join(OUT_DIR, 'manifest.json');
+    const oldManifest = existsSync(manifestPath)
+        ? JSON.parse(readFileSync(manifestPath, 'utf8'))
+        : {};
+
     let generated = 0;
     let skipped = 0;
     let failed = 0;
     const manifest = {};
-    for (const [hash, { text, sources }] of questions) {
-        manifest[hash] = { text, sources };
+    for (const [hash, { text, spoken, sources }] of questions) {
+        manifest[hash] = { text, spoken, sources };
         const outPath = join(OUT_DIR, `${hash}.mp3`);
-        if (!FORCE && existsSync(outPath)) {
+        const prev = oldManifest[hash];
+        const stale = !prev || prev.spoken !== spoken;
+        if (!FORCE && !stale && existsSync(outPath)) {
             skipped++;
             continue;
         }
-        process.stdout.write(`  → ${hash}  ${text.slice(0, 60).replace(/\n/g, ' ')}${text.length > 60 ? '…' : ''}\n`);
+        const why = stale && existsSync(outPath) ? '↻' : '+';
+        process.stdout.write(`  ${why} ${hash}  ${spoken.slice(0, 60).replace(/\n/g, ' ')}${spoken.length > 60 ? '…' : ''}\n`);
         try {
-            const mp3 = await synthesize(voice.voice_id, text);
+            const mp3 = await synthesize(voice.voice_id, spoken);
             writeFileSync(outPath, mp3);
             generated++;
         } catch (e) {
@@ -195,10 +208,7 @@ async function main() {
         await new Promise(r => setTimeout(r, 150));
     }
 
-    writeFileSync(
-        join(OUT_DIR, 'manifest.json'),
-        JSON.stringify(manifest, null, 2)
-    );
+    writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
     console.log(`\nDone. generated=${generated}  skipped=${skipped}  failed=${failed}  total=${questions.size}`);
     if (failed > 0) process.exit(1);
