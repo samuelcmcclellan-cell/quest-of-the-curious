@@ -123,9 +123,9 @@ async function synthesize(voiceId, text) {
         model_id: MODEL_ID,
         language_code: 'pt',
         voice_settings: {
-            stability: 0.5,
-            similarity_boost: 0.75,
-            style: 0.0,
+            stability: 0.40,
+            similarity_boost: 0.80,
+            style: 0.35,
             use_speaker_boost: true
         }
     };
