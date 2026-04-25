@@ -64,16 +64,16 @@ function hashQuestion(text) {
     return createHash('sha1').update(text.trim()).digest('hex').slice(0, 16);
 }
 
-// --- pick Ziva-tier files only (no -junior / -toddler suffix) ---
-function listZivaFiles() {
+// --- pick Ziva + Ava tier files (skip Ella's wordless toddler tier) ---
+function listVoiceFiles() {
     return readdirSync(DATA_DIR)
         .filter(f => f.endsWith('.json'))
-        .filter(f => !f.includes('-junior') && !f.includes('-toddler'));
+        .filter(f => !f.includes('-toddler'));
 }
 
 function collectQuestions() {
     const seen = new Map(); // hash -> { text, sources: [] }
-    for (const file of listZivaFiles()) {
+    for (const file of listVoiceFiles()) {
         const data = JSON.parse(readFileSync(join(DATA_DIR, file), 'utf8'));
         for (const [i, c] of (data.challenges || []).entries()) {
             const text = (c.question || '').trim();
@@ -161,7 +161,7 @@ async function main() {
     console.log(`✓ Voice: ${voice.name} (${voice.voice_id})  Model: ${MODEL_ID}`);
 
     const questions = collectQuestions();
-    console.log(`✓ Found ${questions.size} unique questions across Ziva-tier files`);
+    console.log(`✓ Found ${questions.size} unique questions across Ziva + Ava tier files`);
 
     let generated = 0;
     let skipped = 0;

@@ -855,26 +855,26 @@ export function sparkles(container) {
 }
 
 /**
- * soccerBalls(container)
- * Small soccer balls arcing across the container bottom. Returns cleanup fn.
+ * wolfPaws(container)
+ * Drifting paw prints + occasional moon/star at night for the wolf theme.
+ * Returns cleanup fn.
  */
-export function soccerBalls(container) {
+export function wolfPaws(container) {
     _ensureThemeStyles();
     const items = [];
     let stopped = false;
 
-    function spawn() {
+    function spawnPaw() {
         if (stopped) return;
         const el = document.createElement('div');
-        el.className = 'ambient-soccer';
-        el.textContent = pick(['⚽', '🏐', '⚽']);
-        const goRight = Math.random() > 0.5;
-        const startX = goRight ? -20 : 110;
-        const dx = goRight ? rand(110, 140) : rand(-110, -140);
-        el.style.left = startX + 'vw';
-        el.style.fontSize = rand(1.1, 1.6) + 'rem';
-        el.style.setProperty('--dx', dx + 'vw');
-        el.style.animationDuration = rand(4.5, 7.5) + 's';
+        el.className = 'ambient-footprint';
+        el.textContent = pick(['🐾', '🐾', '🐺']);
+        el.style.left = '-20px';
+        el.style.top = rand(20, 85) + '%';
+        el.style.fontSize = rand(1.0, 1.5) + 'rem';
+        el.style.setProperty('--dx', 'calc(100vw + 40px)');
+        el.style.setProperty('--rot', rand(-20, 20) + 'deg');
+        el.style.animationDuration = rand(8, 14) + 's';
         container.appendChild(el);
         items.push(el);
 
@@ -884,13 +884,36 @@ export function soccerBalls(container) {
             if (i !== -1) items.splice(i, 1);
         });
 
-        timeoutId = setTimeout(spawn, rand(2500, 5000));
+        pawTimer = setTimeout(spawnPaw, rand(2200, 4200));
     }
 
-    let timeoutId = setTimeout(spawn, rand(400, 1200));
+    function spawnSky() {
+        if (stopped) return;
+        const sky = document.createElement('div');
+        sky.className = 'ambient-leaf';
+        sky.textContent = pick(['🌙', '⭐', '✨', '🌲']);
+        sky.style.left = rand(0, 95) + '%';
+        sky.style.fontSize = rand(0.9, 1.4) + 'rem';
+        sky.style.setProperty('--drift', rand(-40, 40) + 'px');
+        sky.style.animationDuration = rand(9, 15) + 's';
+        container.appendChild(sky);
+        items.push(sky);
+
+        sky.addEventListener('animationend', () => {
+            sky.remove();
+            const i = items.indexOf(sky);
+            if (i !== -1) items.splice(i, 1);
+        });
+
+        skyTimer = setTimeout(spawnSky, rand(2000, 3800));
+    }
+
+    let pawTimer = setTimeout(spawnPaw, rand(400, 1200));
+    let skyTimer = setTimeout(spawnSky, rand(800, 1800));
     return function cleanup() {
         stopped = true;
-        clearTimeout(timeoutId);
+        clearTimeout(pawTimer);
+        clearTimeout(skyTimer);
         items.forEach(i => i.remove());
         items.length = 0;
     };
@@ -968,7 +991,7 @@ export function dinoFootprints(container) {
 export function startThemeAmbient(layer, profileId) {
     if (!layer) return () => {};
     if (profileId === 'ziva') return sparkles(layer);
-    if (profileId === 'ava')  return soccerBalls(layer);
+    if (profileId === 'ava')  return wolfPaws(layer);
     if (profileId === 'ella') return dinoFootprints(layer);
     return () => {};
 }

@@ -16,14 +16,14 @@ export const PROFILE_THEMES = {
     },
     ava: {
         name: 'Ava',
-        displayAvatar: '⚽',
-        sidekick: '🦁',
-        accentEmoji: '⚽',
-        decorations: ['⚽', '🥅', '🏆', '👟', '🎽', '🏟️'],
-        ambient: 'soccerBalls',
-        cursorTrail: 'grassPuffs',
-        lockoutBg: 'theme-bg-pitch',
-        bgPattern: 'grass-stripes',
+        displayAvatar: '🐺',
+        sidekick: '🌙',
+        accentEmoji: '🐾',
+        decorations: ['🐺', '🌙', '🐾', '🌲', '⭐', '🌌'],
+        ambient: 'wolfPaws',
+        cursorTrail: 'pawPrints',
+        lockoutBg: 'theme-bg-forest',
+        bgPattern: 'forest-night',
         themeClass: 'theme-ava'
     },
     ella: {

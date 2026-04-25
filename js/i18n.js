@@ -25,7 +25,7 @@ export const STRINGS = {
     },
     results3starByProfile: {
         ziva: 'PURA MAGIA! Nota máxima! ✨',
-        ava:  'GOL DE PLACA! Nota máxima! ⚽',
+        ava:  'UIVO PERFEITO! Nota máxima! 🐺',
         ella: 'RUGIDO PERFEITO! Nota máxima! 🦖'
     },
     islandsGreeting: (accent, name) => `Olá ${accent} ${name}! Escolha uma ilha para explorar.`,
@@ -35,8 +35,8 @@ export const STRINGS = {
             wrongPhrases:   ['A bola de cristal vê grandeza — tente de novo!', 'Até feiticeiras treinam!', 'Sua magia está crescendo — continue!']
         },
         ava: {
-            correctPhrases: ['GOL!', 'Chute perfeito!', 'Na rede!', 'Craque!', 'Classe mundial!'],
-            wrongPhrases:   ['Bateu na trave — tente outra vez!', 'Boa tentativa!', 'O próximo chute é seu!']
+            correctPhrases: ['AUUUUU!', 'Loba esperta!', 'Faro certeiro!', 'Olfato de loba!', 'Uivo da vitória! 🐺'],
+            wrongPhrases:   ['A alcateia confia em você — tente de novo!', 'Lobas também treinam!', 'Sinta o caminho — outra tentativa!']
         },
         ella: {
             correctPhrases: ['Rugidoso!', 'Dino-mite!', 'Estupendossauro!', 'Trabalho jurássico!', 'Perfeição pré-histórica!'],

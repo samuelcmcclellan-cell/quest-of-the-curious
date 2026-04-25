@@ -5,7 +5,7 @@ const CHALLENGES_PER_ISLAND = 15;
 
 const PROFILE_DEFS = [
     { id: 'ziva', name: 'Ziva', age: 8, avatar: '🔮', color: '#E91E63' },
-    { id: 'ava',  name: 'Ava',  age: 5, avatar: '⚽', color: '#00BCD4' },
+    { id: 'ava',  name: 'Ava',  age: 5, avatar: '🐺', color: '#00BCD4' },
     { id: 'ella', name: 'Ella', age: 4, avatar: '🦕', color: '#66BB6A' }
 ];
 

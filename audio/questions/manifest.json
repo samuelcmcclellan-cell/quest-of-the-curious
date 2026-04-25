@@ -1,4 +1,95 @@
 {
+  "d5f8027eb89d4aa9": {
+    "text": "Quantas? 🫧🫧🫧",
+    "sources": [
+      "bubble-magic-junior.json#0"
+    ]
+  },
+  "3503c3ccc5cc8402": {
+    "text": "🧪 + 🧪🧪 = ?",
+    "sources": [
+      "bubble-magic-junior.json#1"
+    ]
+  },
+  "83427e7b10a9365f": {
+    "text": "O que vem a seguir?",
+    "sources": [
+      "bubble-magic-junior.json#2",
+      "bubble-magic-junior.json#8",
+      "crystal-rock-junior.json#2",
+      "crystal-rock-junior.json#8",
+      "numbers-reef-junior.json#4",
+      "numbers-reef-junior.json#12",
+      "purrfect-park-junior.json#2",
+      "purrfect-park-junior.json#8"
+    ]
+  },
+  "afd34a7956f6d835": {
+    "text": "Quantas? 🪄🪄🪄🪄",
+    "sources": [
+      "bubble-magic-junior.json#3"
+    ]
+  },
+  "12e83f625dde98c6": {
+    "text": "🧙 + 🧙🧙 = ?",
+    "sources": [
+      "bubble-magic-junior.json#4"
+    ]
+  },
+  "68459d8fe9fff730": {
+    "text": "🫧🫧🫧🫧🫧 - 🫧 = ?",
+    "sources": [
+      "bubble-magic-junior.json#5"
+    ]
+  },
+  "4cfb768512d36e96": {
+    "text": "🧪 O frasco da poção está em 2 partes iguais. Uma parte está cheia. Que fração está cheia?",
+    "sources": [
+      "bubble-magic-junior.json#6"
+    ]
+  },
+  "0e64adb52aa38e5c": {
+    "text": "✨✨✨ + ✨✨ = ?",
+    "sources": [
+      "bubble-magic-junior.json#7"
+    ]
+  },
+  "5249ddbeac4fbfb9": {
+    "text": "🪄🪄🪄🪄 + 🪄🪄🪄🪄 = ?",
+    "sources": [
+      "bubble-magic-junior.json#9"
+    ]
+  },
+  "f18899f026faa109": {
+    "text": "Aventura da bruxinha!",
+    "sources": [
+      "bubble-magic-junior.json#10"
+    ]
+  },
+  "f37ffd873c316526": {
+    "text": "3 varinhas + 4 varinhas = ?",
+    "sources": [
+      "bubble-magic-junior.json#11"
+    ]
+  },
+  "74c7ebaff255b793": {
+    "text": "Conte de 2 em 2. Qual é o próximo?",
+    "sources": [
+      "bubble-magic-junior.json#12"
+    ]
+  },
+  "b7dd0fe0f3ea1e64": {
+    "text": "Cada frasco tem 3 bolhas. 3 frascos têm quantas bolhas?",
+    "sources": [
+      "bubble-magic-junior.json#13"
+    ]
+  },
+  "9d288c7f499c27c9": {
+    "text": "👑 CHEFE! A Bruxa Estrela tem 5 bolhas e a Fada dá mais 4. Depois 1 bolha estoura. Quantas sobraram?",
+    "sources": [
+      "bubble-magic-junior.json#14"
+    ]
+  },
   "64057b458c86a998": {
     "text": "🧙‍♀️ Uma bruxa prepara 6 poções de manhã e 8 à tarde. Quantas poções no total?",
     "sources": [
@@ -87,6 +178,84 @@
     "text": "👑 CHEFE! A Grande Maga prepara 5 poções, cada uma com 4 ingredientes. Depois ela guarda 3 ingredientes. Quantos ingredientes usou no total?",
     "sources": [
       "bubble-magic.json#14"
+    ]
+  },
+  "80752b1b7ead768e": {
+    "text": "Quantas? 🎸🎸🎸🎸",
+    "sources": [
+      "crystal-rock-junior.json#0"
+    ]
+  },
+  "122e1981ff32465b": {
+    "text": "🥁 + 🥁🥁 = ?",
+    "sources": [
+      "crystal-rock-junior.json#1"
+    ]
+  },
+  "31af9348e7e508d3": {
+    "text": "Quantas? 💎💎💎💎💎",
+    "sources": [
+      "crystal-rock-junior.json#3"
+    ]
+  },
+  "f577460c5938304d": {
+    "text": "🎤 + 🎤🎤🎤 = ?",
+    "sources": [
+      "crystal-rock-junior.json#4"
+    ]
+  },
+  "116db3c0b1d17a43": {
+    "text": "🎧🎧🎧🎧🎧 - 🎧 = ?",
+    "sources": [
+      "crystal-rock-junior.json#5"
+    ]
+  },
+  "2f144359db717aaf": {
+    "text": "🎸 A guitarra tem 2 cordas iguais. Uma está tocada. Que fração?",
+    "sources": [
+      "crystal-rock-junior.json#6"
+    ]
+  },
+  "b5d4acacd1256951": {
+    "text": "🎹🎹🎹 + 🎹🎹🎹 = ?",
+    "sources": [
+      "crystal-rock-junior.json#7"
+    ]
+  },
+  "7b87fff95e3e13f8": {
+    "text": "Quantas? 🎸🎸🎸🎸🎸🎸🎸",
+    "sources": [
+      "crystal-rock-junior.json#9"
+    ]
+  },
+  "0c87ba76d62d55cc": {
+    "text": "Aventura no show!",
+    "sources": [
+      "crystal-rock-junior.json#10"
+    ]
+  },
+  "2b008afe93ba0ce4": {
+    "text": "5 batidas + 5 batidas = ?",
+    "sources": [
+      "crystal-rock-junior.json#11"
+    ]
+  },
+  "cc8e051b579b380c": {
+    "text": "Conte de 2 em 2. Próximo?",
+    "sources": [
+      "crystal-rock-junior.json#12"
+    ]
+  },
+  "cf611f1d104ca89a": {
+    "text": "Cada guitarra tem 3 cristais. 3 guitarras têm quantos cristais?",
+    "sources": [
+      "crystal-rock-junior.json#13"
+    ]
+  },
+  "01398f6846df3af9": {
+    "text": "👑 CHEFE! A banda tem 6 fãs e chegam mais 5. Depois 2 vão embora. Quantos fãs ficaram?",
+    "sources": [
+      "crystal-rock-junior.json#14"
     ]
   },
   "9b8600a68cab4806": {
@@ -179,6 +348,84 @@
       "crystal-rock.json#14"
     ]
   },
+  "bdd4b58c6e6172bc": {
+    "text": "Quantas? 🌊🌊🌊",
+    "sources": [
+      "numbers-reef-junior.json#0"
+    ]
+  },
+  "a5d596b9fd49efe6": {
+    "text": "Quantas? 🐚🐚🐚🐚🐚",
+    "sources": [
+      "numbers-reef-junior.json#1"
+    ]
+  },
+  "6dc9434e9bfa7929": {
+    "text": "🐠 + 🐠 = ?",
+    "sources": [
+      "numbers-reef-junior.json#2"
+    ]
+  },
+  "041d55de35a40661": {
+    "text": "🏰🏰 + 🏰🏰 = ?",
+    "sources": [
+      "numbers-reef-junior.json#3"
+    ]
+  },
+  "0d288fc2049f2ba9": {
+    "text": "🌊🌊🌊 + 🌊🌊 = ?",
+    "sources": [
+      "numbers-reef-junior.json#5"
+    ]
+  },
+  "6dd593f9878f0ef8": {
+    "text": "Quantas? ⭐⭐⭐⭐⭐⭐⭐",
+    "sources": [
+      "numbers-reef-junior.json#6"
+    ]
+  },
+  "e618d81f4e6ad21d": {
+    "text": "Qual baldinho tem MAIS conchas?",
+    "sources": [
+      "numbers-reef-junior.json#7"
+    ]
+  },
+  "0eceb122ec448f26": {
+    "text": "🌊🌊🌊🌊 + 🌊 = ?",
+    "sources": [
+      "numbers-reef-junior.json#8"
+    ]
+  },
+  "50c242f71922c7b3": {
+    "text": "Quantas? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
+    "sources": [
+      "numbers-reef-junior.json#9"
+    ]
+  },
+  "b612d47daa00a088": {
+    "text": "Qual parte da pizza do peixe está comida?",
+    "sources": [
+      "numbers-reef-junior.json#10"
+    ]
+  },
+  "c86051ab11bdd90c": {
+    "text": "🐟🐟🐟🐟🐟 + 🐟🐟🐟🐟🐟 = ?",
+    "sources": [
+      "numbers-reef-junior.json#11"
+    ]
+  },
+  "d743ce3db1339197": {
+    "text": "Aventura na praia!",
+    "sources": [
+      "numbers-reef-junior.json#13"
+    ]
+  },
+  "dce9a867158c4359": {
+    "text": "🏴‍☠️ CHEFE! O capitão acha 7 moedas na praia e depois mais 6 na areia. Quantas moedas ele tem?",
+    "sources": [
+      "numbers-reef-junior.json#14"
+    ]
+  },
   "8d5ddb8a583b5549": {
     "text": "Você achou 3 conchas lindas na praia e depois mais 5 numa poça da maré! Quantas conchas você tem agora?",
     "sources": [
@@ -267,6 +514,84 @@
     "text": "🏴‍☠️ CHEFE! O Polvo Tesouro divide 48 pérolas em 6 conchas iguais, e depois coloca 4 pérolas bônus em cada concha. Quantas pérolas tem cada concha agora?",
     "sources": [
       "numbers-reef.json#14"
+    ]
+  },
+  "ebdbf4774e152777": {
+    "text": "Quantas? ⚽⚽⚽⚽",
+    "sources": [
+      "purrfect-park-junior.json#0"
+    ]
+  },
+  "2e81e6cd9fe1ed45": {
+    "text": "⚽⚽ + ⚽⚽⚽ = ?",
+    "sources": [
+      "purrfect-park-junior.json#1"
+    ]
+  },
+  "5cfa0ad895759d98": {
+    "text": "🐱🐱🐱🐱🐱 + 🐱 = ?",
+    "sources": [
+      "purrfect-park-junior.json#3"
+    ]
+  },
+  "350159ed511402d7": {
+    "text": "Quantas? 👟👟👟👟👟👟",
+    "sources": [
+      "purrfect-park-junior.json#4"
+    ]
+  },
+  "cf0cd83986d016e4": {
+    "text": "🐱🐱🐱🐱🐱 - 🐱 = ?",
+    "sources": [
+      "purrfect-park-junior.json#5"
+    ]
+  },
+  "e47bac85d5965d05": {
+    "text": "🍕 Uma pizza está em 2 pedaços iguais. Um pedaço foi comido. Qual fração sobra?",
+    "sources": [
+      "purrfect-park-junior.json#6"
+    ]
+  },
+  "f1125a91276b74fe": {
+    "text": "⚽⚽⚽⚽ + ⚽⚽⚽⚽ = ?",
+    "sources": [
+      "purrfect-park-junior.json#7"
+    ]
+  },
+  "36dddaf05e1fc267": {
+    "text": "🥅🥅🥅 + 🥅🥅 = ?",
+    "sources": [
+      "purrfect-park-junior.json#9"
+    ]
+  },
+  "e948724875682189": {
+    "text": "Aventura no parque dos gatos!",
+    "sources": [
+      "purrfect-park-junior.json#10"
+    ]
+  },
+  "eecafebd1555122e": {
+    "text": "7 gatinhos + 3 gatinhos = ?",
+    "sources": [
+      "purrfect-park-junior.json#11"
+    ]
+  },
+  "02616c990e555d71": {
+    "text": "Contagem por 2. O que vem a seguir?",
+    "sources": [
+      "purrfect-park-junior.json#12"
+    ]
+  },
+  "a88278e6cfdf21df": {
+    "text": "Uma caixa tem 4 gatinhos. Duas caixas têm quantos gatinhos?",
+    "sources": [
+      "purrfect-park-junior.json#13"
+    ]
+  },
+  "34a0b38ad0a50ad5": {
+    "text": "👑 CHEFE! A Rainha Gata tem 6 peixes e ganha mais 6 do amigo. Depois come 2. Quantos sobraram?",
+    "sources": [
+      "purrfect-park-junior.json#14"
     ]
   },
   "fae3bfc7459ff666": {

@@ -309,8 +309,8 @@ export async function enter(container, params) {
     sound.whoosh();
     startTimer(container);
 
-    // Voice reader (Ziva only for now): auto-read the question + tap-to-repeat 🔊 button.
-    if (profile.id === 'ziva' && speech.isSupported() && challenge.question) {
+    // Voice reader (Ziva + Ava): auto-read the question + tap-to-repeat 🔊 button.
+    if ((profile.id === 'ziva' || profile.id === 'ava') && speech.isSupported() && challenge.question) {
         const questionEl = bodyEl.querySelector('.challenge-question p');
         if (questionEl) {
             const speakBtn = document.createElement('button');

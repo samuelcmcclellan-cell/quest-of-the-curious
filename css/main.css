@@ -506,6 +506,9 @@ p {
 .theme-bg-pitch {
     background: linear-gradient(160deg, #1B5E20 0%, #388E3C 40%, #81C784 100%);
 }
+.theme-bg-forest {
+    background: linear-gradient(160deg, #0D1B2A 0%, #1B263B 35%, #2E4057 70%, #4A6741 100%);
+}
 .theme-bg-jungle {
     background: linear-gradient(160deg, #3E2723 0%, #5D4037 30%, #6D8E4B 70%, #8BC34A 100%);
 }
