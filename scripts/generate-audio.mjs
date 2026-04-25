@@ -64,20 +64,28 @@ function hashQuestion(text) {
     return createHash('sha1').update(text.trim()).digest('hex').slice(0, 16);
 }
 
-// --- pick Ziva + Ava tier files (skip Ella's wordless toddler tier) ---
+// --- include all challenge tiers; we'll filter individual questions later ---
 function listVoiceFiles() {
-    return readdirSync(DATA_DIR)
-        .filter(f => f.endsWith('.json'))
-        .filter(f => !f.includes('-toddler'));
+    return readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
+}
+
+// --- only voice questions that contain real Portuguese words (any Latin letter).
+//     Ella's toddler tier is mostly pure-emoji and shouldn't be voiced. ---
+const HAS_LETTER = /[a-zA-ZáéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇ]/;
+function hasReadableWords(text) {
+    return HAS_LETTER.test(text);
 }
 
 function collectQuestions() {
     const seen = new Map(); // hash -> { text, sources: [] }
     for (const file of listVoiceFiles()) {
         const data = JSON.parse(readFileSync(join(DATA_DIR, file), 'utf8'));
+        // For Ella's toddler tier, only voice questions that have real words.
+        const isToddler = file.includes('-toddler');
         for (const [i, c] of (data.challenges || []).entries()) {
             const text = (c.question || '').trim();
             if (!text) continue;
+            if (isToddler && !hasReadableWords(text)) continue;
             const h = hashQuestion(text);
             if (!seen.has(h)) seen.set(h, { text, sources: [] });
             seen.get(h).sources.push(`${file}#${i}`);
@@ -161,7 +169,7 @@ async function main() {
     console.log(`✓ Voice: ${voice.name} (${voice.voice_id})  Model: ${MODEL_ID}`);
 
     const questions = collectQuestions();
-    console.log(`✓ Found ${questions.size} unique questions across Ziva + Ava tier files`);
+    console.log(`✓ Found ${questions.size} unique voiceable questions across all tiers`);
 
     let generated = 0;
     let skipped = 0;

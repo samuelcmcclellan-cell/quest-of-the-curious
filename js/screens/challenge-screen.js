@@ -309,8 +309,13 @@ export async function enter(container, params) {
     sound.whoosh();
     startTimer(container);
 
-    // Voice reader (Ziva + Ava): auto-read the question + tap-to-repeat 🔊 button.
-    if ((profile.id === 'ziva' || profile.id === 'ava') && speech.isSupported() && challenge.question) {
+    // Voice reader: auto-read the question + tap-to-repeat 🔊 button.
+    // Ziva and Ava get voiced on every question; Ella only on questions that
+    // contain real Portuguese words (her tier is mostly pure-emoji).
+    const HAS_LETTER = /[a-zA-ZáéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇ]/;
+    const profileWantsVoice = profile.id === 'ziva' || profile.id === 'ava' ||
+        (profile.id === 'ella' && challenge.question && HAS_LETTER.test(challenge.question));
+    if (profileWantsVoice && speech.isSupported() && challenge.question) {
         const questionEl = bodyEl.querySelector('.challenge-question p');
         if (questionEl) {
             const speakBtn = document.createElement('button');

@@ -90,6 +90,32 @@
       "bubble-magic-junior.json#14"
     ]
   },
+  "144ce5a7af6cd1fb": {
+    "text": "👉 mais?",
+    "sources": [
+      "bubble-magic-toddler.json#8",
+      "bubble-magic-toddler.json#13",
+      "crystal-rock-toddler.json#8",
+      "crystal-rock-toddler.json#13",
+      "numbers-reef-toddler.json#8",
+      "numbers-reef-toddler.json#13",
+      "purrfect-park-toddler.json#5",
+      "purrfect-park-toddler.json#9",
+      "purrfect-park-toddler.json#13"
+    ]
+  },
+  "f25a1409911c8b87": {
+    "text": "🍩 Metade?",
+    "sources": [
+      "bubble-magic-toddler.json#12"
+    ]
+  },
+  "9bb3f28f088e36f6": {
+    "text": "CHEFE 👑 Quantos? 🫧🫧🫧🫧🫧🫧🫧🫧🫧🫧",
+    "sources": [
+      "bubble-magic-toddler.json#14"
+    ]
+  },
   "64057b458c86a998": {
     "text": "🧙‍♀️ Uma bruxa prepara 6 poções de manhã e 8 à tarde. Quantas poções no total?",
     "sources": [
@@ -256,6 +282,18 @@
     "text": "👑 CHEFE! A banda tem 6 fãs e chegam mais 5. Depois 2 vão embora. Quantos fãs ficaram?",
     "sources": [
       "crystal-rock-junior.json#14"
+    ]
+  },
+  "224b0b4dae4cca3f": {
+    "text": "🍕 Metade?",
+    "sources": [
+      "crystal-rock-toddler.json#12"
+    ]
+  },
+  "6453d90650aca0dd": {
+    "text": "CHEFE 👑 Quantos? 🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸",
+    "sources": [
+      "crystal-rock-toddler.json#14"
     ]
   },
   "9b8600a68cab4806": {
@@ -426,6 +464,19 @@
       "numbers-reef-junior.json#14"
     ]
   },
+  "888299fed1251bf5": {
+    "text": "🍪 Metade?",
+    "sources": [
+      "numbers-reef-toddler.json#12"
+    ]
+  },
+  "5c2286230e63c722": {
+    "text": "CHEFE 👑 Quantos? 🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕",
+    "sources": [
+      "numbers-reef-toddler.json#14",
+      "purrfect-park-toddler.json#14"
+    ]
+  },
   "8d5ddb8a583b5549": {
     "text": "Você achou 3 conchas lindas na praia e depois mais 5 numa poça da maré! Quantas conchas você tem agora?",
     "sources": [
@@ -592,6 +643,12 @@
     "text": "👑 CHEFE! A Rainha Gata tem 6 peixes e ganha mais 6 do amigo. Depois come 2. Quantos sobraram?",
     "sources": [
       "purrfect-park-junior.json#14"
+    ]
+  },
+  "999866794192921d": {
+    "text": "🍎 Metade?",
+    "sources": [
+      "purrfect-park-toddler.json#12"
     ]
   },
   "fae3bfc7459ff666": {
