@@ -316,6 +316,7 @@ export async function enter(container, params) {
     const profileWantsVoice = profile.id === 'ziva' || profile.id === 'ava' ||
         (profile.id === 'ella' && challenge.question && HAS_LETTER.test(challenge.question));
     if (profileWantsVoice && speech.isSupported() && challenge.question) {
+        const speakOpts = { toddlerMode: profile.id === 'ella' };
         const questionEl = bodyEl.querySelector('.challenge-question p');
         if (questionEl) {
             const speakBtn = document.createElement('button');
@@ -325,11 +326,11 @@ export async function enter(container, params) {
             speakBtn.textContent = '🔊';
             speakBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                speech.speakQuestion(challenge.question);
+                speech.speakQuestion(challenge.question, speakOpts);
             });
             questionEl.appendChild(speakBtn);
         }
-        speech.speakQuestion(challenge.question);
+        speech.speakQuestion(challenge.question, speakOpts);
     }
 
     // Power-up: extra hint → reveal next hint even past maxHints

@@ -87,7 +87,7 @@ function collectQuestions() {
             const text = (c.question || '').trim();
             if (!text) continue;
             if (isToddler && !HAS_LETTER.test(text)) continue;
-            const spoken = toSpokenText(text);
+            const spoken = toSpokenText(text, { toddlerMode: isToddler });
             if (!spoken) continue;
             const h = hashQuestion(text);
             if (!seen.has(h)) seen.set(h, { text, spoken, sources: [] });

@@ -127,10 +127,10 @@
     {
       "type": "multiple-choice",
       "difficulty": 2,
-      "question": "👉 mais?",
-      "illustration": "🔍",
-      "options": ["🦕🦕🦕", "🦕🦕🦕🦕🦕🦕🦕"],
-      "correct": "🦕🦕🦕🦕🦕🦕🦕",
+      "question": "Maior?",
+      "illustration": "🌊",
+      "options": ["🌊🌊", "🌊🌊🌊🌊🌊🌊🌊"],
+      "correct": "🌊🌊🌊🌊🌊🌊🌊",
       "hints": ["➡️", "➡️", "➡️"]
     },
     {

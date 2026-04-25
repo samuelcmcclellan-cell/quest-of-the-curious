@@ -11,6 +11,10 @@
 //     ÷ → "dividido", = → "igual").
 //   • Multiple spaces collapse, edges trim.
 //
+// Toddler mode (`{ toddlerMode: true }`) drops every emoji instead of
+// counting them, so prompts like "Conta! 🦕🦕🦕" don't say "Conta! três"
+// and reveal the answer. The toddler tier is a "look and count" pedagogy.
+//
 // Returns '' when the spoken form has no readable letters (e.g. emoji-only
 // counting prompts for the toddler tier) — callers can use that to skip
 // voice entirely.
@@ -51,12 +55,14 @@ const OP_MAP = {
     '=': ' igual '
 };
 
-export function toSpokenText(text) {
+export function toSpokenText(text, { toddlerMode = false } = {}) {
     if (!text) return '';
     const isMathy = HAS_MATH.test(text);
 
     // 1) Replace emoji runs with counts (or drop solitary decoration emoji).
+    //    In toddler mode every emoji is dropped so we never speak the answer.
     let out = text.replace(EMOJI_RUN, (run) => {
+        if (toddlerMode) return ' ';
         const count = countGraphemes(run);
         if (count === 0) return ' ';
         if (count === 1) {

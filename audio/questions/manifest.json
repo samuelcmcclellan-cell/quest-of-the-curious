@@ -109,14 +109,10 @@
     "spoken": "mais?",
     "sources": [
       "bubble-magic-toddler.json#8",
-      "bubble-magic-toddler.json#13",
       "crystal-rock-toddler.json#8",
-      "crystal-rock-toddler.json#13",
       "numbers-reef-toddler.json#8",
-      "numbers-reef-toddler.json#13",
       "purrfect-park-toddler.json#5",
-      "purrfect-park-toddler.json#9",
-      "purrfect-park-toddler.json#13"
+      "purrfect-park-toddler.json#9"
     ]
   },
   "f25a1409911c8b87": {
@@ -126,9 +122,16 @@
       "bubble-magic-toddler.json#12"
     ]
   },
+  "545c8d139a2e5d89": {
+    "text": "Menor?",
+    "spoken": "Menor?",
+    "sources": [
+      "bubble-magic-toddler.json#13"
+    ]
+  },
   "9bb3f28f088e36f6": {
     "text": "CHEFE 👑 Quantos? 🫧🫧🫧🫧🫧🫧🫧🫧🫧🫧",
-    "spoken": "CHEFE Quantos? dez",
+    "spoken": "CHEFE Quantos?",
     "sources": [
       "bubble-magic-toddler.json#14"
     ]
@@ -336,9 +339,16 @@
       "crystal-rock-toddler.json#12"
     ]
   },
+  "66680474ec123f2b": {
+    "text": "Conta! 💎💎💎💎💎💎💎",
+    "spoken": "Conta!",
+    "sources": [
+      "crystal-rock-toddler.json#13"
+    ]
+  },
   "6453d90650aca0dd": {
     "text": "CHEFE 👑 Quantos? 🎸🎸🎸🎸🎸🎸🎸🎸🎸🎸",
-    "spoken": "CHEFE Quantos? dez",
+    "spoken": "CHEFE Quantos?",
     "sources": [
       "crystal-rock-toddler.json#14"
     ]
@@ -546,9 +556,16 @@
       "numbers-reef-toddler.json#12"
     ]
   },
+  "51059430464293cf": {
+    "text": "Maior?",
+    "spoken": "Maior?",
+    "sources": [
+      "numbers-reef-toddler.json#13"
+    ]
+  },
   "5c2286230e63c722": {
     "text": "CHEFE 👑 Quantos? 🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕",
-    "spoken": "CHEFE Quantos? dez",
+    "spoken": "CHEFE Quantos?",
     "sources": [
       "numbers-reef-toddler.json#14",
       "purrfect-park-toddler.json#14"
@@ -755,6 +772,13 @@
     "spoken": "Metade?",
     "sources": [
       "purrfect-park-toddler.json#12"
+    ]
+  },
+  "c510c0bc7544b52a": {
+    "text": "Olha!",
+    "spoken": "Olha!",
+    "sources": [
+      "purrfect-park-toddler.json#13"
     ]
   },
   "fae3bfc7459ff666": {

@@ -126,12 +126,12 @@
     },
     {
       "type": "multiple-choice",
-      "difficulty": 2,
-      "question": "👉 mais?",
-      "illustration": "🔍",
-      "options": ["🦕🦕🦕🦕", "🦕🦕🦕🦕🦕🦕🦕🦕"],
-      "correct": "🦕🦕🦕🦕🦕🦕🦕🦕",
-      "hints": ["➡️", "➡️", "➡️"]
+      "difficulty": 1,
+      "question": "Olha!",
+      "illustration": "🦕",
+      "options": ["🦖", "🦕", "🥚"],
+      "correct": "🦕",
+      "hints": ["🦕", "🦕", "🦕"]
     },
     {
       "type": "multiple-choice",

@@ -59,7 +59,7 @@ function stopCurrentAudio() {
 function speakViaSynthesis(text, opts) {
     // The browser TTS will read raw emoji as silence too — feed it the
     // spoken form so the fallback path is also audible.
-    const cleaned = toSpokenText(text) || text.trim();
+    const cleaned = toSpokenText(text, { toddlerMode: !!opts.toddlerMode }) || text.trim();
     if (!cleaned) return;
     const lang = opts.lang || 'pt-BR';
     if (typeof window === 'undefined' || !window.speechSynthesis) return;
