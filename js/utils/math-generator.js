@@ -139,17 +139,14 @@ function level3() {
             [`Pense: qual número vezes ${b} é igual a ${a}?`, `${b} × ? = ${a}`, `${a} ÷ ${b} = ${answer}`]
         );
     } else {
-        // Number builder with 2-digit + 2-digit
+        // 2-digit + 2-digit addition
         const a = randomInt(20, 60);
         const b = randomInt(20, 60);
         const answer = a + b;
-        return {
-            type: 'number-builder',
-            question: `Monte a resposta: ${a} + ${b} = ?`,
-            illustration: '🧮',
-            correct: answer,
-            hints: [`Some as unidades primeiro: ${a % 10} + ${b % 10}`, `Depois some as dezenas. Não esqueça de levar!`, `${a} + ${b} = ${answer}`],
-        };
+        return makeMultipleChoice(
+            `Quanto é ${a} + ${b}?`, answer, '🧮',
+            [`Some as unidades primeiro: ${a % 10} + ${b % 10}`, `Depois some as dezenas. Não esqueça de levar!`, `${a} + ${b} = ${answer}`]
+        );
     }
 }
 

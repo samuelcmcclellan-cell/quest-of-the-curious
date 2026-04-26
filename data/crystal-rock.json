@@ -56,10 +56,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 3,
       "question": "💎 O palco tem 148 cristais, e adicionam mais 36. Quantos cristais brilham agora?",
       "illustration": "💎",
+      "options": [174, 184, 192, 200],
       "correct": 184,
       "hints": [
         "Some 148 + 36.",
@@ -144,10 +145,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "🎸 Uma turnê tocou 217 músicas. Mais 48 no bis. Quantas no total? Monte a resposta!",
+      "question": "🎸 Uma turnê tocou 217 músicas. Mais 48 no bis. Quantas no total?",
       "illustration": "🎸",
+      "options": [255, 265, 275, 285],
       "correct": 265,
       "hints": [
         "Some 217 + 48.",

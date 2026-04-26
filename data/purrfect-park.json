@@ -69,10 +69,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 3,
-      "question": "4 fileiras de pegadas com 12 patinhas em cada fileira. Quantas pegadas no total? Monte a resposta!",
+      "question": "4 fileiras de pegadas com 12 patinhas em cada fileira. Quantas pegadas no total?",
       "illustration": "🐾",
+      "options": [44, 48, 52, 56],
       "correct": 48,
       "hints": [
         "4 × 12. Separe o 12: (4 × 10) + (4 × 2).",
@@ -139,10 +140,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "A Casa dos Gatos A tem 124 gatos, e a Casa B tem 58. Quantos gatos nas duas casas? Monte a resposta!",
+      "question": "A Casa dos Gatos A tem 124 gatos, e a Casa B tem 58. Quantos gatos nas duas casas?",
       "illustration": "🏠",
+      "options": [172, 182, 188, 192],
       "correct": 182,
       "hints": [
         "Some 124 + 58.",

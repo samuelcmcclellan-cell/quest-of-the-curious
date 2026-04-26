@@ -16,10 +16,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 1,
-      "question": "Uma estrela-do-mar tem 12 pintinhas e encontra mais 15! Arraste os dígitos para montar o total de pintinhas.",
+      "question": "Uma estrela-do-mar tem 12 pintinhas e encontra mais 15! Quantas pintinhas no total?",
       "illustration": "⭐",
+      "options": [25, 27, 29, 32],
       "correct": 27,
       "hints": [
         "Some 12 + 15. Comece pelas unidades: 2 + 5 = 7.",
@@ -70,10 +71,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 3,
-      "question": "Um golfinho nadou 25 metros de manhã e 30 metros à tarde. Monte o total!",
+      "question": "Um golfinho nadou 25 metros de manhã e 30 metros à tarde. Quantos metros no total?",
       "illustration": "🐬",
+      "options": [50, 53, 55, 60],
       "correct": 55,
       "hints": [
         "Some 25 + 30. Unidades: 5 + 0 = 5.",
@@ -155,10 +157,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Uma tartaruga marinha faz 15 voltas na baía e cada volta tem 4 metros. Quantos metros ela nadou? Monte a resposta!",
+      "question": "Uma tartaruga marinha faz 15 voltas na baía e cada volta tem 4 metros. Quantos metros ela nadou?",
       "illustration": "🐢",
+      "options": [54, 60, 64, 70],
       "correct": 60,
       "hints": [
         "15 × 4. Separe o 15: (10 × 4) + (5 × 4).",

@@ -1,14 +1,14 @@
 {
   "d5f8027eb89d4aa9": {
     "text": "Quantas? 🫧🫧🫧",
-    "spoken": "Quantas? três",
+    "spoken": "Quantas?",
     "sources": [
       "bubble-magic-junior.json#0"
     ]
   },
   "3503c3ccc5cc8402": {
     "text": "🧪 + 🧪🧪 = ?",
-    "spoken": "um mais dois igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "bubble-magic-junior.json#1"
     ]
@@ -29,21 +29,21 @@
   },
   "afd34a7956f6d835": {
     "text": "Quantas? 🪄🪄🪄🪄",
-    "spoken": "Quantas? quatro",
+    "spoken": "Quantas?",
     "sources": [
       "bubble-magic-junior.json#3"
     ]
   },
   "12e83f625dde98c6": {
     "text": "🧙 + 🧙🧙 = ?",
-    "spoken": "um mais dois igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "bubble-magic-junior.json#4"
     ]
   },
   "68459d8fe9fff730": {
     "text": "🫧🫧🫧🫧🫧 - 🫧 = ?",
-    "spoken": "cinco menos um igual ?",
+    "spoken": "menos igual ?",
     "sources": [
       "bubble-magic-junior.json#5"
     ]
@@ -57,14 +57,14 @@
   },
   "0e64adb52aa38e5c": {
     "text": "✨✨✨ + ✨✨ = ?",
-    "spoken": "três mais dois igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "bubble-magic-junior.json#7"
     ]
   },
   "5249ddbeac4fbfb9": {
     "text": "🪄🪄🪄🪄 + 🪄🪄🪄🪄 = ?",
-    "spoken": "quatro mais quatro igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "bubble-magic-junior.json#9"
     ]
@@ -243,35 +243,35 @@
   },
   "80752b1b7ead768e": {
     "text": "Quantas? 🎸🎸🎸🎸",
-    "spoken": "Quantas? quatro",
+    "spoken": "Quantas?",
     "sources": [
       "crystal-rock-junior.json#0"
     ]
   },
   "122e1981ff32465b": {
     "text": "🥁 + 🥁🥁 = ?",
-    "spoken": "um mais dois igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "crystal-rock-junior.json#1"
     ]
   },
   "31af9348e7e508d3": {
     "text": "Quantas? 💎💎💎💎💎",
-    "spoken": "Quantas? cinco",
+    "spoken": "Quantas?",
     "sources": [
       "crystal-rock-junior.json#3"
     ]
   },
   "f577460c5938304d": {
     "text": "🎤 + 🎤🎤🎤 = ?",
-    "spoken": "um mais três igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "crystal-rock-junior.json#4"
     ]
   },
   "116db3c0b1d17a43": {
     "text": "🎧🎧🎧🎧🎧 - 🎧 = ?",
-    "spoken": "cinco menos um igual ?",
+    "spoken": "menos igual ?",
     "sources": [
       "crystal-rock-junior.json#5"
     ]
@@ -285,14 +285,14 @@
   },
   "b5d4acacd1256951": {
     "text": "🎹🎹🎹 + 🎹🎹🎹 = ?",
-    "spoken": "três mais três igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "crystal-rock-junior.json#7"
     ]
   },
   "7b87fff95e3e13f8": {
     "text": "Quantas? 🎸🎸🎸🎸🎸🎸🎸",
-    "spoken": "Quantas? sete",
+    "spoken": "Quantas?",
     "sources": [
       "crystal-rock-junior.json#9"
     ]
@@ -460,42 +460,42 @@
   },
   "bdd4b58c6e6172bc": {
     "text": "Quantas? 🌊🌊🌊",
-    "spoken": "Quantas? três",
+    "spoken": "Quantas?",
     "sources": [
       "numbers-reef-junior.json#0"
     ]
   },
   "a5d596b9fd49efe6": {
     "text": "Quantas? 🐚🐚🐚🐚🐚",
-    "spoken": "Quantas? cinco",
+    "spoken": "Quantas?",
     "sources": [
       "numbers-reef-junior.json#1"
     ]
   },
   "6dc9434e9bfa7929": {
     "text": "🐠 + 🐠 = ?",
-    "spoken": "um mais um igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "numbers-reef-junior.json#2"
     ]
   },
   "041d55de35a40661": {
     "text": "🏰🏰 + 🏰🏰 = ?",
-    "spoken": "dois mais dois igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "numbers-reef-junior.json#3"
     ]
   },
   "0d288fc2049f2ba9": {
     "text": "🌊🌊🌊 + 🌊🌊 = ?",
-    "spoken": "três mais dois igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "numbers-reef-junior.json#5"
     ]
   },
   "6dd593f9878f0ef8": {
     "text": "Quantas? ⭐⭐⭐⭐⭐⭐⭐",
-    "spoken": "Quantas? sete",
+    "spoken": "Quantas?",
     "sources": [
       "numbers-reef-junior.json#6"
     ]
@@ -509,14 +509,14 @@
   },
   "0eceb122ec448f26": {
     "text": "🌊🌊🌊🌊 + 🌊 = ?",
-    "spoken": "quatro mais um igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "numbers-reef-junior.json#8"
     ]
   },
   "50c242f71922c7b3": {
     "text": "Quantas? 🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊",
-    "spoken": "Quantas? dez",
+    "spoken": "Quantas?",
     "sources": [
       "numbers-reef-junior.json#9"
     ]
@@ -530,7 +530,7 @@
   },
   "c86051ab11bdd90c": {
     "text": "🐟🐟🐟🐟🐟 + 🐟🐟🐟🐟🐟 = ?",
-    "spoken": "cinco mais cinco igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "numbers-reef-junior.json#11"
     ]
@@ -678,35 +678,35 @@
   },
   "ebdbf4774e152777": {
     "text": "Quantas? ⚽⚽⚽⚽",
-    "spoken": "Quantas? quatro",
+    "spoken": "Quantas?",
     "sources": [
       "purrfect-park-junior.json#0"
     ]
   },
   "2e81e6cd9fe1ed45": {
     "text": "⚽⚽ + ⚽⚽⚽ = ?",
-    "spoken": "dois mais três igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "purrfect-park-junior.json#1"
     ]
   },
   "5cfa0ad895759d98": {
     "text": "🐱🐱🐱🐱🐱 + 🐱 = ?",
-    "spoken": "cinco mais um igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "purrfect-park-junior.json#3"
     ]
   },
   "350159ed511402d7": {
     "text": "Quantas? 👟👟👟👟👟👟",
-    "spoken": "Quantas? seis",
+    "spoken": "Quantas?",
     "sources": [
       "purrfect-park-junior.json#4"
     ]
   },
   "cf0cd83986d016e4": {
     "text": "🐱🐱🐱🐱🐱 - 🐱 = ?",
-    "spoken": "cinco menos um igual ?",
+    "spoken": "menos igual ?",
     "sources": [
       "purrfect-park-junior.json#5"
     ]
@@ -720,14 +720,14 @@
   },
   "f1125a91276b74fe": {
     "text": "⚽⚽⚽⚽ + ⚽⚽⚽⚽ = ?",
-    "spoken": "quatro mais quatro igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "purrfect-park-junior.json#7"
     ]
   },
   "36dddaf05e1fc267": {
     "text": "🥅🥅🥅 + 🥅🥅 = ?",
-    "spoken": "três mais dois igual ?",
+    "spoken": "mais igual ?",
     "sources": [
       "purrfect-park-junior.json#9"
     ]

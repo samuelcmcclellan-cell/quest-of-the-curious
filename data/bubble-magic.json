@@ -69,10 +69,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 3,
-      "question": "🔮 Um mago lança um feitiço de subtração: 63 menos 27. Monte a resposta!",
+      "question": "🔮 Um mago lança um feitiço de subtração: 63 menos 27. Quanto é?",
       "illustration": "🔮",
+      "options": [34, 36, 38, 40],
       "correct": 36,
       "hints": [
         "63 - 27.",
@@ -144,10 +145,11 @@
       ]
     },
     {
-      "type": "number-builder",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "📜 O livro de feitiços diz: 145 + 78. Monte a resposta!",
+      "question": "📜 O livro de feitiços diz: 145 + 78. Quanto é?",
       "illustration": "📜",
+      "options": [213, 223, 233, 243],
       "correct": 223,
       "hints": [
         "Unidades: 5 + 8 = 13 (vai 1).",

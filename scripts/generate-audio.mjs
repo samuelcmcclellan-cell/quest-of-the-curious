@@ -72,22 +72,23 @@ function listVoiceFiles() {
     return readdirSync(DATA_DIR).filter(f => f.endsWith('.json'));
 }
 
-// Toddler tier (Ella, age 4) is "look and count" — speaking the answer would
-// undercut the pedagogy. We only voice toddler questions whose original text
-// contains actual Portuguese words. For older tiers, the spoken-text transform
-// converts emoji runs into number words so emoji-math is also audible.
+// Toddler (Ella, age 4) and junior (Ava, age 5) tiers are "look and count" —
+// speaking emoji counts would undercut the pedagogy. We only voice those
+// questions whose original text contains actual Portuguese words, and run them
+// through toddlerMode so emoji runs are dropped instead of read as numbers.
+// Older tiers convert emoji runs into number words so emoji-math is audible.
 const HAS_LETTER = /[a-zA-ZáéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇ]/;
 
 function collectQuestions() {
     const seen = new Map(); // hash -> { text, spoken, sources: [] }
     for (const file of listVoiceFiles()) {
         const data = JSON.parse(readFileSync(join(DATA_DIR, file), 'utf8'));
-        const isToddler = file.includes('-toddler');
+        const dropEmojiCounts = file.includes('-toddler') || file.includes('-junior');
         for (const [i, c] of (data.challenges || []).entries()) {
             const text = (c.question || '').trim();
             if (!text) continue;
-            if (isToddler && !HAS_LETTER.test(text)) continue;
-            const spoken = toSpokenText(text, { toddlerMode: isToddler });
+            if (dropEmojiCounts && !HAS_LETTER.test(text)) continue;
+            const spoken = toSpokenText(text, { toddlerMode: dropEmojiCounts });
             if (!spoken) continue;
             const h = hashQuestion(text);
             if (!seen.has(h)) seen.set(h, { text, spoken, sources: [] });
