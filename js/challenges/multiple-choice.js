@@ -2,6 +2,7 @@ import { ChallengeBase } from './challenge-base.js';
 import * as sound from '../engine/sound.js';
 import { bigCorrectCelebration, splashEffect } from '../engine/particles.js';
 import { pickCorrectPhrase } from '../engine/profile-theme.js';
+import { getCurrentProfileMeta, isJuniorTier } from '../state.js';
 
 export class MultipleChoice extends ChallengeBase {
     constructor(data, container) {
@@ -12,6 +13,7 @@ export class MultipleChoice extends ChallengeBase {
     }
 
     render() {
+        const isJunior = isJuniorTier(getCurrentProfileMeta());
         this.container.innerHTML = `
             <div class="challenge-question">
                 <div class="challenge-illustration anim-float">${this.data.illustration || '🔢'}</div>
@@ -33,7 +35,15 @@ export class MultipleChoice extends ChallengeBase {
         this.data.options.forEach(option => {
             const btn = document.createElement('button');
             btn.className = 'choice-btn';
-            btn.textContent = option;
+            // For junior tier, augment numeric answers with a discrete dot
+            // count below the numeral so a 5-year-old can verify by sight.
+            const numericVal = Number(option);
+            const isCountable = isJunior && Number.isInteger(numericVal) && numericVal > 0 && numericVal <= 10;
+            if (isCountable) {
+                btn.innerHTML = `<span class="choice-num">${option}</span><span class="choice-dots">${'•'.repeat(numericVal)}</span>`;
+            } else {
+                btn.textContent = option;
+            }
             btn.addEventListener('click', () => this.handleChoice(option, btn));
             choicesEl.appendChild(btn);
             this.buttons.push(btn);
@@ -77,6 +87,9 @@ export class MultipleChoice extends ChallengeBase {
                 btn.classList.remove('choice-btn-wrong', 'anim-shake');
                 btn.classList.add('choice-btn-eliminated');
                 this.locked = false;
+                if (isJuniorTier(getCurrentProfileMeta()) && this.attempts === 1 && this.hintsUsed === 0) {
+                    this.handleHint();
+                }
             }, 600);
         }
     }

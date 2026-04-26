@@ -23,6 +23,20 @@
 .map-container.map-bg-crystal {
     background: linear-gradient(180deg, #FFF176 0%, #FF8A65 35%, #EC407A 70%, #7B1FA2 100%);
 }
+/* Ella-only: warm volcano dusk — deep ember-orange melting into charcoal sky */
+.map-container.map-bg-volcano {
+    background:
+        radial-gradient(ellipse at 50% 105%, rgba(255, 167, 38, 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse at 20% 90%, rgba(255, 87, 34, 0.30) 0%, transparent 50%),
+        linear-gradient(180deg, #1A1626 0%, #3E2723 25%, #6D2D1A 55%, #BF360C 80%, #FF8A50 100%);
+}
+/* Ella-only: lush jungle canopy — dappled emerald-to-deep-green */
+.map-container.map-bg-jungle {
+    background:
+        radial-gradient(ellipse at 80% 12%, rgba(255, 241, 118, 0.18) 0%, transparent 45%),
+        radial-gradient(ellipse at 20% 90%, rgba(27, 94, 32, 0.40) 0%, transparent 60%),
+        linear-gradient(180deg, #C8E6C9 0%, #81C784 22%, #43A047 50%, #2E7D32 78%, #1B5E20 100%);
+}
 
 /* Per-island map headers */
 .map-header {
@@ -40,6 +54,14 @@
 }
 .map-header.map-header-crystal {
     background: linear-gradient(180deg, #B71C1C, #D500F9 40%, #FF5252);
+}
+.map-header.map-header-volcano {
+    background: linear-gradient(180deg, #3E2723 0%, #BF360C 60%, #FF6E40 100%);
+    box-shadow: 0 4px 16px rgba(191, 54, 12, 0.35);
+}
+.map-header.map-header-jungle {
+    background: linear-gradient(180deg, #1B5E20 0%, #2E7D32 50%, #66BB6A 100%);
+    box-shadow: 0 4px 16px rgba(27, 94, 32, 0.35);
 }
 
 .map-header h2 {

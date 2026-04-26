@@ -237,3 +237,102 @@ another contributor) can orient quickly without reading the commit log.
   movement.
 - No framework, no bundler: plain ES modules, hash router,
   `localStorage` with per-profile migration.
+
+---
+
+## 2026-04-26 — Ella island routing fix, Amanda Kelly voice everywhere, Ava junior-tier UX
+
+Three problems fixed in one pass.
+
+### 0. Ella's `volcano-tots` and `jungle-tots` islands were silently
+    redirecting to `numbers-reef`
+
+`js/screens/map-screen.js` had a local `ISLAND_CONFIGS` map with only
+the four shared islands. An unknown slug fell through a silent fallback
+that *also* persisted `numbers-reef` to `state.currentIsland`, so the
+mistake was self-healing — Ella never saw her islands.
+
+- Added `volcano-tots` and `jungle-tots` configs (mascot, decorations,
+  ambient, header + bg classes).
+- Added `.map-bg-volcano` / `.map-bg-jungle` plus header variants in
+  `css/map.css`.
+- New `ambientEmbers()` particle helper (`js/engine/particles.js`) with
+  warm rising-glow specks for the volcano island.
+- The fallback now only logs a `console.warn` so future missing slugs
+  surface in the console instead of silently rewriting state.
+
+### 1. All voices now route through the pre-rendered Amanda Kelly mp3s
+
+Previously several screens called `speech.speak()` directly, which fell
+through to the browser's default TTS and broke the Amanda Kelly
+illusion the moment the user navigated past a challenge.
+
+- `js/engine/speech.js`: extracted `speakPrerendered()` and added
+  `speakPhrase()` for non-question lines (mascot speech bubbles,
+  encouragement, results reactions, progress headlines). Logs a
+  one-shot `console.warn` when an expected hash is missing so the audio
+  pipeline can be regenerated.
+- `js/i18n.js`: added `STRINGS.resultsByStars` (replacing the inline
+  literal in `results-screen.js`) and `STRINGS.progressHeadlineByName`
+  (per-name pre-rendered strings — no template substitution at runtime
+  so the spoken text matches the visible text exactly).
+- `scripts/generate-audio.mjs`: generalized with a `collectPhrases()`
+  pass that yields theme correct/wrong, lockout encouragements,
+  results-3-star-by-profile, results-by-stars, and the per-name
+  progress headlines. Manifest entries now carry
+  `kind: 'question' | 'phrase'`. New `--phrases-only` flag re-renders
+  only phrase mp3s while preserving `kind: 'question'` entries.
+- All `speech.speak()` callers in `challenge-screen.js`,
+  `results-screen.js`, `progress-screen.js`, `lockout-screen.js`
+  swapped to `speech.speakPhrase()`.
+
+### 2. Ava's junior-tier UX redesigned — audio-first, finger-friendly,
+    decision-light
+
+`js/state.js` exposes `isToddlerTier(profile)` and
+`isJuniorTier(profile)` so the rest of the codebase stops branching on
+raw ages.
+
+UI scoped under `.tier-junior` so Ziva's flow is unaffected:
+
+- Big pulsing **🔊 Ouvir** button on every challenge — junior tier
+  treats audio as primary, not optional. Pulse animation stops once
+  the kid taps, so it stays a hint rather than a nag.
+- 96px answer chips (vs. 68px), 4px border, 24px radius.
+- Numeric multiple-choice options ≤10 are augmented with a discrete
+  dot count below the numeral, so a 5-year-old can verify by sight.
+- First wrong answer on a junior challenge auto-surfaces the first
+  hint (rather than waiting for the kid to ask).
+- Word-problem keypad keys grow to 72px+, scratchpad is hidden
+  entirely.
+- Fraction-visual stage scales 1.25× so the slices dominate.
+- Auto-advance delays on results / progress screens are
+  ~2.2s longer for junior so the kid has time to register the win.
+- `theme-ava` results / progress containers now render against a
+  moonlit-forest gradient with high-contrast text + tinted reward
+  badges, so the celebration feels continuous with Ava's island
+  theme. (`theme-ziva` and `theme-ella` got matching tinted
+  surrounds for parity.)
+
+### Files touched (this pass)
+
+- `js/screens/map-screen.js` — island configs + warn fallback +
+  embers ambient.
+- `js/engine/particles.js` — `ambientEmbers()`.
+- `css/map.css` — volcano + jungle map backgrounds.
+- `js/state.js` — `isToddlerTier()` / `isJuniorTier()`.
+- `js/engine/speech.js` — `speakPhrase()` + missing-audio warn.
+- `js/i18n.js` — `resultsByStars` + `progressHeadlineByName`.
+- `scripts/generate-audio.mjs` — `--phrases-only`, `collectPhrases()`.
+- `js/screens/challenge-screen.js`, `practice-screen.js`,
+  `results-screen.js`, `progress-screen.js`, `lockout-screen.js` —
+  swap to `speakPhrase()`, apply `tier-junior` class, longer
+  junior auto-advance.
+- `js/challenges/multiple-choice.js`, `sequence-next.js`,
+  `fraction-visual.js`, `word-problem.js`, `number-builder.js` —
+  auto-hint after first wrong + dot-count for junior multiple-choice.
+- `css/challenge.css` — `.tier-junior` section: pulsing 🔊 button,
+  big chips, finger-friendly keypad, scratchpad hidden, larger
+  fraction stage and continue buttons.
+- `css/main.css` — themed results-container backgrounds for
+  `theme-ava` / `theme-ziva` / `theme-ella`.

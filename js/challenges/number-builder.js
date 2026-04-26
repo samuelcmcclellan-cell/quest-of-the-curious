@@ -3,6 +3,7 @@ import { InteractionManager } from '../engine/interaction.js';
 import * as sound from '../engine/sound.js';
 import { bigCorrectCelebration, splashEffect, goldenGlow } from '../engine/particles.js';
 import { pickCorrectPhrase } from '../engine/profile-theme.js';
+import { getCurrentProfileMeta, isJuniorTier } from '../state.js';
 
 export class NumberBuilder extends ChallengeBase {
     constructor(data, container) {
@@ -132,6 +133,10 @@ export class NumberBuilder extends ChallengeBase {
                         }
                     });
                     checkBtn.style.display = 'none';
+                    if (isJuniorTier(getCurrentProfileMeta()) && this.attempts === 1 && this.hintsUsed === 0) {
+                        const hintBtn = this.container.querySelector('#hint-btn');
+                        if (hintBtn) hintBtn.click();
+                    }
                 }, 500);
             }
         });

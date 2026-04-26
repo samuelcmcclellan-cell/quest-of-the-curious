@@ -1,4 +1,4 @@
-import { getState, updateState, getCurrentProfileMeta, getWrongAnswerCount, LOCKOUT_THRESHOLD, consumePowerUp, getPowerUpInventory, markDailyCompleted, getNextAvailableChallenge } from '../state.js';
+import { getState, updateState, getCurrentProfileMeta, getWrongAnswerCount, LOCKOUT_THRESHOLD, consumePowerUp, getPowerUpInventory, markDailyCompleted, getNextAvailableChallenge, isJuniorTier, isToddlerTier } from '../state.js';
 import { navigate } from '../router.js';
 import { MultipleChoice } from '../challenges/multiple-choice.js';
 import { NumberBuilder } from '../challenges/number-builder.js';
@@ -38,8 +38,8 @@ let timerInterval = null;
 const dataCache = new Map();
 
 async function loadChallengeData(islandSlug) {
-    const age = getCurrentProfileMeta().age || 8;
-    const variant = age <= 4 ? '-toddler' : age <= 6 ? '-junior' : '';
+    const profile = getCurrentProfileMeta();
+    const variant = isToddlerTier(profile) ? '-toddler' : isJuniorTier(profile) ? '-junior' : '';
     const key = islandSlug + variant;
     if (dataCache.has(key)) return dataCache.get(key);
     const response = await fetch(`./data/${islandSlug}${variant}.json`);
@@ -87,8 +87,8 @@ function showSpeech(container, text) {
     bubble.style.opacity = '1';
     if (speech.isSupported() && text) {
         const profile = getCurrentProfileMeta();
-        const dropEmojiCounts = profile?.id === 'ella' || profile?.id === 'ava';
-        speech.speak(text, { toddlerMode: dropEmojiCounts });
+        const dropEmojiCounts = isToddlerTier(profile) || isJuniorTier(profile);
+        speech.speakPhrase(text, { toddlerMode: dropEmojiCounts });
     }
     if (speechTimer) clearTimeout(speechTimer);
     speechTimer = setTimeout(() => {
@@ -157,9 +157,11 @@ export async function enter(container, params) {
     const initialWrong = getWrongAnswerCount();
     const dailyMode = sessionStorage.getItem('quest:daily-mode') === '1';
     const inventory = getPowerUpInventory();
+    const tierClass = isToddlerTier(profile) ? 'tier-toddler'
+        : isJuniorTier(profile) ? 'tier-junior' : 'tier-older';
 
     container.innerHTML = `
-        <div class="challenge-screen ${bgClass} ${theme.themeClass}">
+        <div class="challenge-screen ${bgClass} ${theme.themeClass} ${tierClass}">
             <div class="challenge-header">
                 <button class="btn btn-small btn-ghost" id="back-btn">← Mapa</button>
                 <div class="challenge-header-center">
@@ -331,24 +333,33 @@ export async function enter(container, params) {
     startTimer(container);
 
     // Voice reader: auto-read the question + tap-to-repeat 🔊 button.
-    // Ziva and Ava get voiced on every question; Ella only on questions that
-    // contain real Portuguese words (her tier is mostly pure-emoji).
+    // Ziva (older) and Ava (junior) get voiced on every question; Ella
+    // (toddler) only on questions that contain real Portuguese words —
+    // her tier is mostly pure-emoji "look and count" pedagogy.
     const HAS_LETTER = /[a-zA-ZáéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇ]/;
-    const profileWantsVoice = profile.id === 'ziva' || profile.id === 'ava' ||
-        (profile.id === 'ella' && challenge.question && HAS_LETTER.test(challenge.question));
+    const isToddler = isToddlerTier(profile);
+    const isJunior = isJuniorTier(profile);
+    const profileWantsVoice = !isToddler ||
+        (challenge.question && HAS_LETTER.test(challenge.question));
     if (profileWantsVoice && speech.isSupported() && challenge.question) {
-        const speakOpts = { toddlerMode: profile.id === 'ella' || profile.id === 'ava' };
+        const speakOpts = { toddlerMode: isToddler || isJunior };
         const questionEl = bodyEl.querySelector('.challenge-question p');
         if (questionEl) {
             const speakBtn = document.createElement('button');
             speakBtn.type = 'button';
-            speakBtn.className = 'speak-btn';
+            // Junior tier gets the bigger pulsing "Ouvir" button (styled
+            // via .tier-junior .speak-btn-large in challenge.css). Older
+            // tiers keep the compact 🔊 chip.
+            speakBtn.className = isJunior ? 'speak-btn speak-btn-large' : 'speak-btn';
             speakBtn.setAttribute('aria-label', 'Ouvir de novo');
-            speakBtn.textContent = '🔊';
+            speakBtn.innerHTML = isJunior ? '🔊 <span class="speak-btn-label">Ouvir</span>' : '🔊';
             speakBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                // Stop the pulse once the kid has tapped at least once.
+                speakBtn.classList.remove('speak-btn-pulse');
                 speech.speakQuestion(challenge.question, speakOpts);
             });
+            if (isJunior) speakBtn.classList.add('speak-btn-pulse');
             questionEl.appendChild(speakBtn);
         }
         speech.speakQuestion(challenge.question, speakOpts);

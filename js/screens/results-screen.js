@@ -1,4 +1,4 @@
-import { getState, getNextAvailableChallenge, getIslandProgress, getAllIslandSlugs, getCurrentProfileMeta } from '../state.js';
+import { getState, getNextAvailableChallenge, getIslandProgress, getAllIslandSlugs, getCurrentProfileMeta, isToddlerTier, isJuniorTier } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
 import * as speech from '../engine/speech.js';
@@ -18,12 +18,9 @@ const ISLAND_META = {
     'jungle-tots':   { name: 'Selva dos Pequenos',  mascot: '🦕', emoji: '🌴' }
 };
 
-const REACTION_BY_STARS = {
-    3: 'INCRÍVEL! Nota máxima! Você é uma estrela da matemática!',
-    2: 'Ótimo trabalho, explorador! Quase perfeito!',
-    1: 'Bom trabalho! Você resolveu! Continue praticando!',
-    0: 'Continue tentando! Você vai conseguir!'
-};
+// Reaction text by star count lives in STRINGS.resultsByStars so the audio
+// generator and the runtime read from one source of truth.
+const REACTION_BY_STARS = STRINGS.resultsByStars;
 
 function parseParams(params) {
     // Shapes:
@@ -97,8 +94,11 @@ export function enter(container, params) {
     const totalSlugs = getAllIslandSlugs();
     const allDone = totalSlugs.every(s => getIslandProgress(s).isComplete);
 
+    const tierClass = isToddlerTier(profile) ? 'tier-toddler'
+        : isJuniorTier(profile) ? 'tier-junior' : 'tier-older';
+
     container.innerHTML = `
-        <div class="results-container ${theme.themeClass}">
+        <div class="results-container ${theme.themeClass} ${tierClass}">
             <div class="results-mascot-stack">
                 <div class="guide-character guide-celebrate anim-float" style="font-size:4rem;">${meta.mascot}🎉</div>
                 <div class="results-sidekick anim-float" style="font-size:2.6rem;">${theme.sidekick}</div>
@@ -138,7 +138,7 @@ export function enter(container, params) {
     }, 600);
 
     if (speech.isSupported() && reactionMsg) {
-        speech.speak(reactionMsg, { toddlerMode: profile?.id === 'ella' });
+        speech.speakPhrase(reactionMsg, { toddlerMode: isToddlerTier(profile) });
     }
 
     // Coin reward animation
@@ -192,7 +192,9 @@ export function enter(container, params) {
 
     // Auto-advance to the next challenge (no manual button needed).
     if (!islandComplete) {
-        const delay = stars === 3 ? 2400 : 1800;
+        const isJuniorish = isJuniorTier(profile) || isToddlerTier(profile);
+        const baseDelay = stars === 3 ? 2400 : 1800;
+        const delay = isJuniorish ? baseDelay + 2200 : baseDelay;
         const bar = container.querySelector('#auto-advance-bar-fill');
         if (bar) {
             requestAnimationFrame(() => {

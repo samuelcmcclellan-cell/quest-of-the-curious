@@ -23,6 +23,8 @@ import { dirname, join, resolve } from 'node:path';
 
 // Reuse the browser-side spoken-text transform so generator + runtime stay in sync.
 const { toSpokenText } = await import(pathToFileURL(resolve(dirname(fileURLToPath(import.meta.url)), '..', 'js', 'utils', 'spoken-text.js')).href);
+// Pull the phrase pools from the same i18n module the runtime reads.
+const { STRINGS } = await import(pathToFileURL(resolve(dirname(fileURLToPath(import.meta.url)), '..', 'js', 'i18n.js')).href);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -56,6 +58,7 @@ const MODEL_ID = process.env.ELEVENLABS_MODEL || 'eleven_multilingual_v2';
 const args = process.argv.slice(2);
 const FORCE = args.includes('--force');
 const LIST_ONLY = args.includes('--list');
+const PHRASES_ONLY = args.includes('--phrases-only');
 
 if (!API_KEY) {
     console.error('✗ ELEVENLABS_API_KEY missing. Add it to .env at repo root.');
@@ -80,7 +83,7 @@ function listVoiceFiles() {
 const HAS_LETTER = /[a-zA-ZáéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇ]/;
 
 function collectQuestions() {
-    const seen = new Map(); // hash -> { text, spoken, sources: [] }
+    const seen = new Map(); // hash -> { text, spoken, sources: [], kind: 'question' }
     for (const file of listVoiceFiles()) {
         const data = JSON.parse(readFileSync(join(DATA_DIR, file), 'utf8'));
         const dropEmojiCounts = file.includes('-toddler') || file.includes('-junior');
@@ -91,10 +94,54 @@ function collectQuestions() {
             const spoken = toSpokenText(text, { toddlerMode: dropEmojiCounts });
             if (!spoken) continue;
             const h = hashQuestion(text);
-            if (!seen.has(h)) seen.set(h, { text, spoken, sources: [] });
+            if (!seen.has(h)) seen.set(h, { text, spoken, sources: [], kind: 'question' });
             seen.get(h).sources.push(`${file}#${i}`);
         }
     }
+    return seen;
+}
+
+// Every fixed UI string the app may speak between questions: mascot
+// reactions, lockout encouragements, results headlines, progress headline,
+// and the per-name progress lookup. Mirror the runtime call sites — if a
+// string is missing here, the runtime will fall back to browser TTS and
+// the player hears a non-Amanda voice.
+function collectPhrases() {
+    const seen = new Map(); // hash -> { text, spoken, sources: [], kind: 'phrase' }
+    const add = (text, source) => {
+        const t = (text || '').toString().trim();
+        if (!t) return;
+        // Phrases are short stand-alone strings — never look-and-count
+        // pedagogy — so toddlerMode stays false here. The transform is
+        // mostly a no-op for these.
+        const spoken = toSpokenText(t, { toddlerMode: false });
+        if (!spoken) return;
+        const h = hashQuestion(t);
+        if (!seen.has(h)) seen.set(h, { text: t, spoken, sources: [], kind: 'phrase' });
+        seen.get(h).sources.push(source);
+    };
+
+    for (const profileId of ['ziva', 'ava', 'ella']) {
+        const theme = STRINGS.themes?.[profileId];
+        if (!theme) continue;
+        for (const p of theme.correctPhrases || []) add(p, `themes.${profileId}.correctPhrases`);
+        for (const p of theme.wrongPhrases   || []) add(p, `themes.${profileId}.wrongPhrases`);
+    }
+
+    add(STRINGS.mascot?.genericWrong, 'mascot.genericWrong');
+
+    for (const p of STRINGS.lockout?.encouragements || []) add(p, 'lockout.encouragements');
+
+    for (const [profileId, msg] of Object.entries(STRINGS.results3starByProfile || {})) {
+        add(msg, `results3starByProfile.${profileId}`);
+    }
+    for (const [stars, msg] of Object.entries(STRINGS.resultsByStars || {})) {
+        add(msg, `resultsByStars.${stars}`);
+    }
+    for (const [name, msg] of Object.entries(STRINGS.progressHeadlineByName || {})) {
+        add(msg, `progressHeadlineByName.${name}`);
+    }
+
     return seen;
 }
 
@@ -172,8 +219,25 @@ async function main() {
     }
     console.log(`✓ Voice: ${voice.name} (${voice.voice_id})  Model: ${MODEL_ID}`);
 
-    const questions = collectQuestions();
-    console.log(`✓ Found ${questions.size} unique voiceable questions across all tiers`);
+    const phrases = collectPhrases();
+    const questions = PHRASES_ONLY ? new Map() : collectQuestions();
+    if (PHRASES_ONLY) {
+        console.log(`✓ Phrases-only mode — skipping question pool`);
+    }
+    console.log(`✓ Found ${questions.size} unique question(s) and ${phrases.size} unique phrase(s)`);
+
+    // Merge phrases into the same map keyed by hash. If a phrase ever
+    // collides with a question hash (extremely unlikely with SHA-1) the
+    // question wins for source tracking — they share the same mp3 anyway.
+    const all = new Map(questions);
+    for (const [h, entry] of phrases) {
+        if (all.has(h)) {
+            const existing = all.get(h);
+            existing.sources = [...existing.sources, ...entry.sources];
+            continue;
+        }
+        all.set(h, entry);
+    }
 
     // Existing manifest lets us detect which mp3s were generated from a stale
     // spoken form (e.g. before this transform existed) and only regenerate those.
@@ -186,8 +250,17 @@ async function main() {
     let skipped = 0;
     let failed = 0;
     const manifest = {};
-    for (const [hash, { text, spoken, sources }] of questions) {
-        manifest[hash] = { text, spoken, sources };
+    // Preserve manifest entries we didn't regenerate this run (e.g. when
+    // running --phrases-only) so the file stays a complete index.
+    if (PHRASES_ONLY) {
+        for (const [h, entry] of Object.entries(oldManifest)) {
+            // Default kind 'question' for backward compatibility with old
+            // manifests that don't carry the field.
+            manifest[h] = { kind: 'question', ...entry };
+        }
+    }
+    for (const [hash, { text, spoken, sources, kind }] of all) {
+        manifest[hash] = { text, spoken, sources, kind: kind || 'question' };
         const outPath = join(OUT_DIR, `${hash}.mp3`);
         const prev = oldManifest[hash];
         const stale = !prev || prev.spoken !== spoken;
@@ -196,7 +269,8 @@ async function main() {
             continue;
         }
         const why = stale && existsSync(outPath) ? '↻' : '+';
-        process.stdout.write(`  ${why} ${hash}  ${spoken.slice(0, 60).replace(/\n/g, ' ')}${spoken.length > 60 ? '…' : ''}\n`);
+        const tag = (kind || 'question').slice(0, 1).toUpperCase();
+        process.stdout.write(`  ${why} [${tag}] ${hash}  ${spoken.slice(0, 60).replace(/\n/g, ' ')}${spoken.length > 60 ? '…' : ''}\n`);
         try {
             const mp3 = await synthesize(voice.voice_id, spoken);
             writeFileSync(outPath, mp3);
@@ -211,7 +285,7 @@ async function main() {
 
     writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
-    console.log(`\nDone. generated=${generated}  skipped=${skipped}  failed=${failed}  total=${questions.size}`);
+    console.log(`\nDone. generated=${generated}  skipped=${skipped}  failed=${failed}  total=${all.size}`);
     if (failed > 0) process.exit(1);
 }
 

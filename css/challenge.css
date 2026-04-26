@@ -1241,3 +1241,201 @@
     .wp-key:active { transform: none; }
     .fv-slice-filled { transition: none; }
 }
+
+/* ===========================
+   TIER: JUNIOR (ages 5–6, e.g. Ava)
+   Audio-first, finger-friendly, decision-light. Scoped under
+   .tier-junior so older tiers (Ziva) keep the compact layout.
+   =========================== */
+.tier-junior .challenge-question p {
+    font-size: 1.7rem;
+    line-height: 1.45;
+    font-weight: 700;
+}
+
+.tier-junior .challenge-illustration {
+    font-size: 4.4rem;
+    margin-bottom: 6px;
+}
+
+/* Big pulsing audio button — the primary affordance for junior */
+.speak-btn-large {
+    width: auto;
+    height: 64px;
+    padding: 0 22px;
+    border-radius: 32px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-left: 12px;
+    margin-top: 8px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFF3E0 100%);
+    box-shadow: 0 4px 0 rgba(255, 152, 0, 0.45), 0 6px 14px rgba(0, 0, 0, 0.16);
+    border: 3px solid #FFB74D;
+    color: #E65100;
+    gap: 8px;
+}
+
+.speak-btn-large .speak-btn-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+.speak-btn-large:hover {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFE0B2 100%);
+}
+
+@keyframes speak-btn-pulse-anim {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 0 rgba(255, 152, 0, 0.45), 0 6px 14px rgba(0, 0, 0, 0.16),
+                    0 0 0 0 rgba(255, 152, 0, 0.6);
+    }
+    50% {
+        transform: scale(1.06);
+        box-shadow: 0 4px 0 rgba(255, 152, 0, 0.45), 0 6px 14px rgba(0, 0, 0, 0.16),
+                    0 0 0 14px rgba(255, 152, 0, 0);
+    }
+}
+
+.speak-btn-pulse {
+    animation: speak-btn-pulse-anim 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .speak-btn-pulse { animation: none; }
+}
+
+/* Bigger answer chips, simpler grid */
+.tier-junior .choices {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 440px;
+}
+
+.tier-junior .choice-btn {
+    min-height: 96px;
+    padding: 22px 16px;
+    font-size: 2rem;
+    border-width: 4px;
+    border-radius: 24px;
+}
+
+.tier-junior .choice-btn-fraction {
+    min-height: 110px;
+}
+
+.tier-junior .choice-btn {
+    flex-direction: column;
+    line-height: 1;
+}
+
+.tier-junior .choice-btn .choice-num {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.tier-junior .choice-btn .choice-dots {
+    display: block;
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-top: 8px;
+    color: #455A64;
+    letter-spacing: 0.16em;
+}
+
+/* Hint button — bigger, friendlier */
+.tier-junior .hint-btn {
+    min-height: 60px;
+    font-size: 1.1rem;
+    padding: 14px 22px;
+    border-radius: 22px;
+}
+
+.tier-junior .hint-area {
+    font-size: 1.15rem;
+    padding: 16px 18px;
+}
+
+/* Sequence challenge — larger items so the pattern is obvious */
+.tier-junior .seq-item {
+    width: 72px;
+    height: 72px;
+    font-size: 2rem;
+}
+
+.tier-junior .seq-arrow {
+    font-size: 1.6rem;
+}
+
+/* Fraction visual — make it dominate the screen */
+.tier-junior .fraction-visual-stage {
+    transform: scale(1.25);
+    transform-origin: center top;
+    margin-bottom: 24px;
+}
+
+.tier-junior .fraction-visual-label {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+/* Number-builder — friendlier slot sizes */
+.tier-junior .nb-slot {
+    width: 78px;
+    height: 88px;
+    font-size: 2.6rem;
+}
+
+.tier-junior .nb-slot-label {
+    font-size: 0.85rem;
+}
+
+/* Word problem — drop the scratchpad, super-size the keys */
+.tier-junior .wp-scratch,
+.tier-junior .wp-scratch-toggle {
+    display: none !important;
+}
+
+.tier-junior .wp-keypad {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 320px;
+    gap: 12px;
+}
+
+.tier-junior .wp-key {
+    padding: 22px 0;
+    font-size: 1.8rem;
+    border-width: 3px;
+    border-radius: 16px;
+    min-height: 72px;
+}
+
+.tier-junior .wp-display {
+    font-size: 2.6rem;
+    min-height: 64px;
+    line-height: 64px;
+    border-radius: 18px;
+}
+
+.tier-junior #wp-check.btn {
+    font-size: 1.4rem;
+    padding: 18px 32px;
+    min-height: 64px;
+    border-radius: 24px;
+}
+
+/* Junior auto-advance — slower bar, bigger continue button */
+.tier-junior .auto-advance-note {
+    font-size: 1.1rem;
+}
+
+.tier-junior #continue-btn,
+.tier-junior #next-island-btn {
+    font-size: 1.45rem;
+    padding: 20px 32px;
+    min-height: 72px;
+    border-radius: 28px;
+}

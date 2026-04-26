@@ -174,6 +174,22 @@ function injectStyles() {
     animation: ambient-bubble-rise linear forwards;
 }
 
+/* ---- ambient embers ----------------------------------------------------- */
+@keyframes ambient-ember-rise {
+    0%   { transform: translate(0, 0) scale(0.5); opacity: 0; }
+    15%  { opacity: 0.95; }
+    75%  { opacity: 0.55; }
+    100% { transform: translate(var(--drift), -110%) scale(0.2); opacity: 0; }
+}
+.ambient-ember {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle at 40% 40%, rgba(255,236,179,0.95), rgba(255,143,0,0.7) 55%, rgba(191,54,12,0) 75%);
+    box-shadow: 0 0 8px rgba(255,143,0,0.55), 0 0 14px rgba(255,87,34,0.35);
+    animation: ambient-ember-rise linear forwards;
+}
+
 /* ---- ambient fish ------------------------------------------------------- */
 @keyframes fish-swim-right {
     0%   { transform: translate(-60px, 0); opacity: 0; }
@@ -615,6 +631,49 @@ export function ambientBubbles(container) {
         clearTimeout(timeoutId);
         bubbles.forEach(b => b.remove());
         bubbles.length = 0;
+    };
+}
+
+/**
+ * ambientEmbers(container)
+ * Warm glowing ember dots drift up gently — for the volcano-tots map.
+ * Returns a cleanup function.
+ */
+export function ambientEmbers(container) {
+    injectStyles();
+    const items = [];
+    let stopped = false;
+
+    function spawn() {
+        if (stopped) return;
+        const size = rand(5, 11);
+        const e = document.createElement('div');
+        e.className = 'ambient-ember';
+        e.style.width = size + 'px';
+        e.style.height = size + 'px';
+        e.style.left = rand(5, 92) + '%';
+        e.style.bottom = '0';
+        e.style.setProperty('--drift', rand(-40, 40) + 'px');
+        e.style.animationDuration = rand(4.5, 8.5) + 's';
+
+        container.appendChild(e);
+        items.push(e);
+
+        e.addEventListener('animationend', () => {
+            e.remove();
+            const i = items.indexOf(e);
+            if (i !== -1) items.splice(i, 1);
+        });
+
+        timeoutId = setTimeout(spawn, rand(700, 1600));
+    }
+
+    let timeoutId = setTimeout(spawn, rand(200, 800));
+    return function cleanup() {
+        stopped = true;
+        clearTimeout(timeoutId);
+        items.forEach(e => e.remove());
+        items.length = 0;
     };
 }
 

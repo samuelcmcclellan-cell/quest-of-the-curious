@@ -314,6 +314,19 @@ export function hasAnyProgress() {
     return getProfiles().some(p => p.hasProgress);
 }
 
+// Tier helpers — single source of truth for the age-based branching
+// scattered across screens and challenge classes. Pass either a profile
+// object (with .age) or omit to read the active profile.
+export function isToddlerTier(profile) {
+    const age = (profile?.age ?? getCurrentProfileMeta().age) || 8;
+    return age <= 4;
+}
+
+export function isJuniorTier(profile) {
+    const age = (profile?.age ?? getCurrentProfileMeta().age) || 8;
+    return age >= 5 && age <= 6;
+}
+
 // --- lockout API (per-profile wrong-answer time-out) ---
 
 export function getLockoutRemainingMs(profileId) {

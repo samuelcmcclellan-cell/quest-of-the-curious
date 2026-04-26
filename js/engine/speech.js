@@ -1,5 +1,8 @@
-// Speech wrapper: prefers a pre-generated ElevenLabs mp3 keyed by SHA-1(text);
-// falls back to the browser's SpeechSynthesis voice when no clip is available.
+// Speech wrapper: prefers a pre-generated ElevenLabs (Amanda Kelly) mp3
+// keyed by SHA-1(text); falls back to the browser's SpeechSynthesis voice
+// only when no clip is available — that fallback path is a safety net, not
+// a normal flow. Any string passed to speakPhrase() must also appear in
+// scripts/generate-audio.mjs's collectPhrases() so the mp3 exists.
 
 import { toSpokenText } from '../utils/spoken-text.js';
 
@@ -79,14 +82,18 @@ export function isSupported() {
         && (typeof window.speechSynthesis !== 'undefined' || typeof window.Audio !== 'undefined');
 }
 
+// Legacy direct-to-browser-TTS path. Avoid using this — prefer speakPhrase
+// or speakQuestion so the player hears Amanda Kelly. Kept only for cases
+// where pre-generation is genuinely impossible.
 export function speak(text, opts = {}) {
     cancel();
     speakViaSynthesis((text || '').toString(), opts);
 }
 
-// Preferred entry point for question text. Tries the pre-generated mp3 first
-// and falls back to SpeechSynthesis if it isn't there.
-export async function speakQuestion(text, opts = {}) {
+// Generic "play a pre-rendered Amanda Kelly mp3 for this exact text, fall
+// back to browser TTS if the file is missing" implementation. Both
+// speakQuestion and speakPhrase delegate here.
+async function speakPrerendered(text, opts = {}) {
     cancel();
     const cleaned = (text || '').toString().trim();
     if (!cleaned) return;
@@ -110,7 +117,15 @@ export async function speakQuestion(text, opts = {}) {
     currentAudio = audio;
 
     audio.addEventListener('error', () => {
-        missingAudio.add(hash);
+        if (!missingAudio.has(hash)) {
+            // Warn once per hash so we can spot drift between runtime
+            // strings and the generator's phrase pool.
+            console.warn(
+                `[speech] Missing pre-rendered audio for "${cleaned.slice(0, 80)}${cleaned.length > 80 ? '…' : ''}" (hash ${hash}). ` +
+                `Add the string to collectPhrases() in scripts/generate-audio.mjs and re-run the generator.`
+            );
+            missingAudio.add(hash);
+        }
         if (currentAudio === audio) currentAudio = null;
         speakViaSynthesis(cleaned, opts);
     }, { once: true });
@@ -119,6 +134,8 @@ export async function speakQuestion(text, opts = {}) {
         const playPromise = audio.play();
         if (playPromise && typeof playPromise.catch === 'function') {
             playPromise.catch(() => {
+                // play() rejection (often autoplay policy) — don't warn
+                // about missing audio here, just fall back silently.
                 missingAudio.add(hash);
                 if (currentAudio === audio) currentAudio = null;
                 speakViaSynthesis(cleaned, opts);
@@ -129,6 +146,20 @@ export async function speakQuestion(text, opts = {}) {
         currentAudio = null;
         speakViaSynthesis(cleaned, opts);
     }
+}
+
+// Preferred entry point for question text. Tries the pre-generated mp3
+// first and falls back to SpeechSynthesis if it isn't there.
+export function speakQuestion(text, opts = {}) {
+    return speakPrerendered(text, opts);
+}
+
+// Preferred entry point for fixed UI phrases (mascot reactions, lockout
+// encouragements, results headlines, etc). The string MUST also be present
+// in scripts/generate-audio.mjs#collectPhrases() — otherwise it'll fall
+// through to browser TTS and a console.warn will fire.
+export function speakPhrase(text, opts = {}) {
+    return speakPrerendered(text, opts);
 }
 
 export function cancel() {

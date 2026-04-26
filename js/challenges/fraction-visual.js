@@ -2,6 +2,7 @@ import { ChallengeBase } from './challenge-base.js';
 import * as sound from '../engine/sound.js';
 import { bigCorrectCelebration, splashEffect } from '../engine/particles.js';
 import { pickCorrectPhrase } from '../engine/profile-theme.js';
+import { getCurrentProfileMeta, isJuniorTier } from '../state.js';
 
 export class FractionVisual extends ChallengeBase {
     constructor(data, container) {
@@ -127,6 +128,9 @@ export class FractionVisual extends ChallengeBase {
                 btn.classList.remove('choice-btn-wrong', 'anim-shake');
                 btn.classList.add('choice-btn-eliminated');
                 this.locked = false;
+                if (isJuniorTier(getCurrentProfileMeta()) && this.attempts === 1 && this.hintsUsed === 0) {
+                    this._handleHint();
+                }
             }, 600);
         }
     }

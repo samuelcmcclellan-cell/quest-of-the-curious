@@ -1,4 +1,4 @@
-import { getState, updateState, getCurrentProfileMeta, getWrongAnswerCount, LOCKOUT_THRESHOLD } from '../state.js';
+import { getState, updateState, getCurrentProfileMeta, getWrongAnswerCount, LOCKOUT_THRESHOLD, isToddlerTier, isJuniorTier } from '../state.js';
 import { navigate } from '../router.js';
 import { generateChallenge } from '../utils/math-generator.js';
 import { DifficultyTracker } from '../utils/difficulty.js';
@@ -56,15 +56,14 @@ function showSpeech(container, text) {
 
 export function enter(container) {
     const state = getState();
-    const age = getCurrentProfileMeta().age || 8;
-    const maxLevel = age <= 4 ? 1 : age <= 6 ? 2 : 5;
+    const profile = getCurrentProfileMeta();
+    const maxLevel = isToddlerTier(profile) ? 1 : isJuniorTier(profile) ? 2 : 5;
     const startLevel = Math.min(state.practice.difficulty || 1, maxLevel);
     tracker = new DifficultyTracker(startLevel, maxLevel);
     stats = { total: 0, correct: 0, streak: 0 };
 
     renderWrapper(container);
 
-    const profile = getCurrentProfileMeta();
     wrongListener = (e) => {
         const { wrongCount, locked } = e.detail || {};
         updateHeartStrip(container, wrongCount || 0);
@@ -84,9 +83,12 @@ export function enter(container) {
 function renderWrapper(container) {
     const theme = getCurrentTheme();
     const initialWrong = getWrongAnswerCount();
+    const profile = getCurrentProfileMeta();
+    const tierClass = isToddlerTier(profile) ? 'tier-toddler'
+        : isJuniorTier(profile) ? 'tier-junior' : 'tier-older';
 
     container.innerHTML = `
-        <div class="challenge-screen challenge-bg-${tracker.getLevel()} ${theme.themeClass}">
+        <div class="challenge-screen challenge-bg-${tracker.getLevel()} ${theme.themeClass} ${tierClass}">
             <div class="challenge-header">
                 <button class="btn btn-small btn-ghost" id="back-btn">← Mapa</button>
                 <div class="challenge-header-center">
@@ -141,7 +143,10 @@ function updateStats(container) {
     const screen = container.querySelector('.challenge-screen');
     if (screen) {
         const theme = getCurrentTheme();
-        screen.className = `challenge-screen challenge-bg-${tracker.getLevel()} ${theme.themeClass}`;
+        const profile = getCurrentProfileMeta();
+        const tierClass = isToddlerTier(profile) ? 'tier-toddler'
+            : isJuniorTier(profile) ? 'tier-junior' : 'tier-older';
+        screen.className = `challenge-screen challenge-bg-${tracker.getLevel()} ${theme.themeClass} ${tierClass}`;
     }
 }
 

@@ -1,7 +1,7 @@
 import { getState, updateState, getIslandChallenges, getProfiles, getProfileIslandStars, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
-import { ambientBubbles, ambientFish, ambientButterflies, ambientLeaves, shimmerStars, startThemeAmbient } from '../engine/particles.js';
+import { ambientBubbles, ambientFish, ambientButterflies, ambientLeaves, ambientEmbers, shimmerStars, startThemeAmbient } from '../engine/particles.js';
 import { renderCharacter } from '../engine/character.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
 
@@ -99,6 +99,44 @@ const ISLAND_CONFIGS = {
             { emoji: '🎵', x: 85, y: 18, size: 1.7 },
             { emoji: '⭐', x: 12, y: 2, size: 1.6 },
         ]
+    },
+    'volcano-tots': {
+        slug: 'volcano-tots',
+        name: 'Vulcão dos Pequenos',
+        title: '🌋 Vulcão dos Pequenos',
+        mascot: '🦖',
+        bgClass: 'map-bg-volcano',
+        headerClass: 'map-header-volcano',
+        ambient: { bubbles: false, fish: false, butterflies: false, leaves: false, embers: true },
+        decorations: [
+            { emoji: '🦖', x: 85, y: 88, size: 2 },
+            { emoji: '🌋', x: 12, y: 76, size: 1.9 },
+            { emoji: '🥚', x: 88, y: 60, size: 1.5 },
+            { emoji: '🪨', x: 10, y: 50, size: 1.6 },
+            { emoji: '🔥', x: 90, y: 40, size: 1.5 },
+            { emoji: '🦴', x: 8, y: 28, size: 1.6 },
+            { emoji: '🌋', x: 85, y: 18, size: 1.7 },
+            { emoji: '⭐', x: 12, y: 2, size: 1.6 },
+        ]
+    },
+    'jungle-tots': {
+        slug: 'jungle-tots',
+        name: 'Selva dos Pequenos',
+        title: '🌴 Selva dos Pequenos',
+        mascot: '🦕',
+        bgClass: 'map-bg-jungle',
+        headerClass: 'map-header-jungle',
+        ambient: { bubbles: false, fish: false, butterflies: true, leaves: true },
+        decorations: [
+            { emoji: '🦕', x: 85, y: 88, size: 2 },
+            { emoji: '🌴', x: 12, y: 76, size: 1.9 },
+            { emoji: '🌿', x: 88, y: 60, size: 1.5 },
+            { emoji: '🪴', x: 10, y: 50, size: 1.6 },
+            { emoji: '🦋', x: 90, y: 40, size: 1.5 },
+            { emoji: '🥚', x: 8, y: 28, size: 1.6 },
+            { emoji: '🍃', x: 85, y: 18, size: 1.7 },
+            { emoji: '⭐', x: 12, y: 2, size: 1.6 },
+        ]
     }
 };
 
@@ -108,7 +146,10 @@ export function enter(container, params) {
     // Resolve island slug: param[0] if present, else state.currentIsland, else default.
     const state = getState();
     let islandSlug = params && params[0] ? params[0] : state.currentIsland || 'numbers-reef';
-    if (!ISLAND_CONFIGS[islandSlug]) islandSlug = 'numbers-reef';
+    if (!ISLAND_CONFIGS[islandSlug]) {
+        console.warn(`[map-screen] Unknown island slug "${islandSlug}" — falling back to numbers-reef. Add it to ISLAND_CONFIGS in js/screens/map-screen.js.`);
+        islandSlug = 'numbers-reef';
+    }
     const config = ISLAND_CONFIGS[islandSlug];
 
     // Persist current island
@@ -285,6 +326,7 @@ export function enter(container, params) {
     if (config.ambient.fish) cleanupFns.push(ambientFish(ambientLayer));
     if (config.ambient.butterflies) cleanupFns.push(ambientButterflies(ambientLayer));
     if (config.ambient.leaves) cleanupFns.push(ambientLeaves(ambientLayer));
+    if (config.ambient.embers) cleanupFns.push(ambientEmbers(ambientLayer));
 
     // Profile-themed ambient on top of island ambient (lighter touch)
     const themeAmbient = startThemeAmbient(ambientLayer, profile.id);

@@ -28,6 +28,22 @@ export const STRINGS = {
         ava:  'UIVO PERFEITO! Nota máxima! 🐺',
         ella: 'RUGIDO PERFEITO! Nota máxima! 🦖'
     },
+    // Star-based reaction phrases for the results screen.
+    // Pre-rendered to mp3 by scripts/generate-audio.mjs; runtime must look up
+    // by star count rather than build the string locally.
+    resultsByStars: {
+        3: 'INCRÍVEL! Nota máxima! Você é uma estrela da matemática!',
+        2: 'Ótimo trabalho, explorador! Quase perfeito!',
+        1: 'Bom trabalho! Você resolveu! Continue praticando!',
+        0: 'Continue tentando! Você vai conseguir!'
+    },
+    // Per-name pre-rendered progress headline. progress-screen.js looks up by
+    // playerName; never build this string with template literals at runtime.
+    progressHeadlineByName: {
+        Ziva: 'Boa, Ziva! Vamos continuar!',
+        Ava:  'Boa, Ava! Vamos continuar!',
+        Ella: 'Boa, Ella! Vamos continuar!'
+    },
     islandsGreeting: (accent, name) => `Olá ${accent} ${name}! Escolha uma ilha para explorar.`,
     themes: {
         ziva: {

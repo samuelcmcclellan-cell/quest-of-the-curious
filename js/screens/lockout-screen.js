@@ -1,4 +1,4 @@
-import { getCurrentProfileMeta, getLockoutRemainingMs, clearLockout, getLockoutDurationMs } from '../state.js';
+import { getCurrentProfileMeta, getLockoutRemainingMs, clearLockout, getLockoutDurationMs, isToddlerTier, isJuniorTier } from '../state.js';
 import { navigate } from '../router.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
 import { STRINGS, pickRandom } from '../i18n.js';
@@ -33,8 +33,11 @@ export function enter(container) {
 
     const initialLabel = formatMMSS(initialMs);
 
+    const tierClass = isToddlerTier(profile) ? 'tier-toddler'
+        : isJuniorTier(profile) ? 'tier-junior' : 'tier-older';
+
     container.innerHTML = `
-        <div class="lockout-screen ${theme.lockoutBg} ${theme.themeClass}">
+        <div class="lockout-screen ${theme.lockoutBg} ${theme.themeClass} ${tierClass}">
             <div class="lockout-ambient" id="lockout-ambient"></div>
 
             <div class="lockout-content">
@@ -131,7 +134,7 @@ export function enter(container) {
     ambientCleanup = startThemeAmbient(ambientLayer, profile.id);
 
     if (speech.isSupported() && encouragement) {
-        speech.speak(encouragement, { toddlerMode: profile.id === 'ella' });
+        speech.speakPhrase(encouragement, { toddlerMode: isToddlerTier(profile) });
     }
 }
 

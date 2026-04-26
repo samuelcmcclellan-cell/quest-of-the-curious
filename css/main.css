@@ -512,3 +512,56 @@ p {
 .theme-bg-jungle {
     background: linear-gradient(160deg, #3E2723 0%, #5D4037 30%, #6D8E4B 70%, #8BC34A 100%);
 }
+
+/* -------------------------------------------------------------------------
+   Theme-tinted results / progress card surrounds — keeps results screen on
+   theme so the celebration feels continuous with the island.
+   ------------------------------------------------------------------------- */
+.results-container.theme-ava {
+    background:
+        radial-gradient(ellipse at 50% -10%, rgba(255, 241, 118, 0.18) 0%, transparent 55%),
+        linear-gradient(180deg, #1B263B 0%, #2E4057 60%, #4A6741 100%);
+    color: #F5F5F0;
+}
+.results-container.theme-ava .results-message,
+.results-container.theme-ava p {
+    color: #F5F5F0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+}
+.results-container.theme-ava .reward-badge {
+    background: rgba(20, 30, 50, 0.55);
+    color: #FFF8E1;
+    border: 1.5px solid rgba(255, 235, 130, 0.4);
+}
+.results-container.theme-ziva {
+    background:
+        radial-gradient(ellipse at 50% -10%, rgba(206, 147, 216, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #4A148C 0%, #6A1B9A 60%, #9C27B0 100%);
+    color: #FFF8E1;
+}
+.results-container.theme-ziva .results-message,
+.results-container.theme-ziva p {
+    color: #FFF8E1;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.results-container.theme-ziva .reward-badge {
+    background: rgba(40, 10, 60, 0.55);
+    color: #FFF8E1;
+    border: 1.5px solid rgba(206, 147, 216, 0.5);
+}
+.results-container.theme-ella {
+    background:
+        radial-gradient(ellipse at 50% -10%, rgba(255, 204, 128, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #5D4037 0%, #6D8E4B 60%, #8BC34A 100%);
+    color: #FFFDE7;
+}
+.results-container.theme-ella .results-message,
+.results-container.theme-ella p {
+    color: #FFFDE7;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.results-container.theme-ella .reward-badge {
+    background: rgba(60, 30, 20, 0.55);
+    color: #FFF8E1;
+    border: 1.5px solid rgba(255, 204, 128, 0.45);
+}
