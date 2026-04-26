@@ -102,16 +102,11 @@
       "hints": ["Conte cada guitarra.", "1, 2, 3, 4, 5, 6, 7.", "Sete!"]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Aventura no show!",
+      "question": "Aventura no show! Tinha 10 cristais. Dei 3 ao baterista. Depois ganhei mais 4 da plateia. Quantos cristais tenho agora?",
       "illustration": "🎸",
-      "steps": [
-        "Tinha 10 cristais.",
-        "Dei 3 ao baterista.",
-        "Depois ganhei mais 4 da plateia.",
-        "Quantos cristais tenho agora?"
-      ],
+      "options": [7, 9, 11, 14],
       "correct": 11,
       "hints": [
         "Dois passos: tirar e depois somar.",

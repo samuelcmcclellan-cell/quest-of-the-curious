@@ -129,16 +129,11 @@
       "hints": ["Os números pulam de dois em dois.", "2, 4, 6, 8...", "8 + 2 = 10!"]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Aventura na praia!",
+      "question": "Aventura na praia! Eu tinha 10 conchas. Dei 3 à minha amiga. Depois achei mais 2 na areia. Quantas conchas tenho agora?",
       "illustration": "🏖️",
-      "steps": [
-        "Eu tinha 10 conchas.",
-        "Dei 3 à minha amiga.",
-        "Depois achei mais 2 na areia.",
-        "Quantas conchas tenho agora?"
-      ],
+      "options": [5, 7, 9, 11],
       "correct": 9,
       "hints": [
         "Dois passos: tirar e depois somar.",

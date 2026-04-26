@@ -102,16 +102,11 @@
       "hints": ["Três e dois.", "3 + 2.", "Cinco!"]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Aventura no parque dos gatos!",
+      "question": "Aventura no parque dos gatos! Tinha 10 biscoitos. Comi 4 biscoitos. Minha mãe me deu 2 biscoitos. Quantos biscoitos tenho agora?",
       "illustration": "🍪",
-      "steps": [
-        "Tinha 10 biscoitos.",
-        "Comi 4 biscoitos.",
-        "Minha mãe me deu 2 biscoitos.",
-        "Quantos biscoitos tenho agora?"
-      ],
+      "options": [4, 6, 8, 10],
       "correct": 8,
       "hints": [
         "Dois passos: tirar e depois somar.",

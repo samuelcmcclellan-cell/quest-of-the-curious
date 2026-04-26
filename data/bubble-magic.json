@@ -113,16 +113,11 @@
       ]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Aventura mágica das poções!",
+      "question": "Aventura mágica das poções! A bruxa tem 80 mL de poção. Ela usa 35 mL num feitiço. Depois acha um frasco com 12 mL e adiciona. Quantos mL de poção ela tem agora?",
       "illustration": "🧙‍♀️",
-      "steps": [
-        "A bruxa tem 80 mL de poção.",
-        "Ela usa 35 mL num feitiço.",
-        "Depois acha um frasco com 12 mL e adiciona.",
-        "Quantos mL de poção ela tem agora?"
-      ],
+      "options": [45, 53, 57, 67],
       "correct": 57,
       "hints": [
         "Dois passos: tirar e depois somar.",

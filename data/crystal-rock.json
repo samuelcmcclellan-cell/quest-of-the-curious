@@ -113,16 +113,11 @@
       ]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Aventura no show de rock!",
+      "question": "Aventura no show de rock! A banda vendeu 50 ingressos pela manhã. Depois vendeu mais 25 à tarde. 9 pessoas devolveram o ingresso. Quantos ingressos foram vendidos no total?",
       "illustration": "🎤",
-      "steps": [
-        "A banda vendeu 50 ingressos pela manhã.",
-        "Depois vendeu mais 25 à tarde.",
-        "9 pessoas devolveram o ingresso.",
-        "Quantos ingressos foram vendidos no total?"
-      ],
+      "options": [56, 66, 75, 84],
       "correct": 66,
       "hints": [
         "Dois passos: somar e depois tirar.",

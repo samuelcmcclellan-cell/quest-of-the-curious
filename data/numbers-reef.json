@@ -139,16 +139,11 @@
       ]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Resolva a aventura do tesouro!",
+      "question": "Resolva a aventura do tesouro! O baú tem 50 moedas de ouro. Um polvo pegou 18 moedas. Depois uma sereia devolveu 7 moedas. Quantas moedas há no baú agora?",
       "illustration": "🗺️",
-      "steps": [
-        "O baú tem 50 moedas de ouro.",
-        "Um polvo pegou 18 moedas.",
-        "Depois uma sereia devolveu 7 moedas.",
-        "Quantas moedas há no baú agora?"
-      ],
+      "options": [29, 32, 39, 45],
       "correct": 39,
       "hints": [
         "Faça por etapas: primeiro tire, depois some.",

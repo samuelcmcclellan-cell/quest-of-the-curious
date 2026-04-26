@@ -153,16 +153,11 @@
       ]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Aventura na loja de gatos!",
+      "question": "Aventura na loja de gatos! Um saquinho de ração custa 6 moedas. Mimi compra 4 saquinhos. Ela tem um cupom de 5 moedas de desconto. Quanto ela vai pagar no total?",
       "illustration": "🛍️",
-      "steps": [
-        "Um saquinho de ração custa 6 moedas.",
-        "Mimi compra 4 saquinhos.",
-        "Ela tem um cupom de 5 moedas de desconto.",
-        "Quanto ela vai pagar no total?"
-      ],
+      "options": [14, 18, 19, 24],
       "correct": 19,
       "hints": [
         "Dois passos: multiplicar e depois tirar o desconto.",

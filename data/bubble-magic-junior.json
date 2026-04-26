@@ -102,16 +102,11 @@
       "hints": ["Quatro e quatro.", "4 + 4.", "Oito!"]
     },
     {
-      "type": "word-problem",
+      "type": "multiple-choice",
       "difficulty": 4,
-      "question": "Aventura da bruxinha!",
+      "question": "Aventura da bruxinha! A bruxa fez 6 poções. Ela guardou 2 na prateleira. Depois fez mais 3 poções. Quantas poções tem no total?",
       "illustration": "🧙‍♀️",
-      "steps": [
-        "A bruxa fez 6 poções.",
-        "Ela guardou 2 na prateleira.",
-        "Depois fez mais 3 poções.",
-        "Quantas poções tem no total?"
-      ],
+      "options": [4, 5, 7, 11],
       "correct": 7,
       "hints": [
         "Dois passos: tirar e depois somar.",
