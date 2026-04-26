@@ -39,6 +39,24 @@ const ISLANDS = [
         tagline: 'Batidas de gemas rock\'n\'roll',
         gradient: 'linear-gradient(135deg, #FF5252 0%, #D500F9 100%)',
         mascot: '🎸'
+    },
+    {
+        slug: 'volcano-tots',
+        emoji: '🌋',
+        name: 'Vulcão dos Pequenos',
+        tagline: 'Mais e menos com dinos',
+        gradient: 'linear-gradient(135deg, #FF7043 0%, #BF360C 100%)',
+        mascot: '🦖',
+        profileOnly: 'ella'
+    },
+    {
+        slug: 'jungle-tots',
+        emoji: '🌴',
+        name: 'Selva dos Pequenos',
+        tagline: 'Quem tem mais? Quanto cabe?',
+        gradient: 'linear-gradient(135deg, #66BB6A 0%, #1B5E20 100%)',
+        mascot: '🦕',
+        profileOnly: 'ella'
     }
 ];
 
@@ -47,7 +65,9 @@ export function enter(container) {
     const profile = getCurrentProfileMeta();
     const theme = getCurrentTheme();
 
-    const cardsHtml = ISLANDS.map(island => {
+    const cardsHtml = ISLANDS
+        .filter(island => !island.profileOnly || island.profileOnly === profile.id)
+        .map(island => {
         const p = getIslandProgress(island.slug);
         const pct = p.total ? Math.round((p.completed / p.total) * 100) : 0;
         const starPct = p.total ? Math.round((p.stars / (p.total * 3)) * 100) : 0;

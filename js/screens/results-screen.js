@@ -1,6 +1,7 @@
 import { getState, getNextAvailableChallenge, getIslandProgress, getAllIslandSlugs, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
+import * as speech from '../engine/speech.js';
 import { confetti, starBurst, fireworks } from '../engine/particles.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
 import { getAchievementById } from '../engine/achievements.js';
@@ -12,7 +13,9 @@ const ISLAND_META = {
     'numbers-reef':  { name: 'Recife dos Números',  mascot: '🦉', emoji: '🏝️' },
     'purrfect-park': { name: 'Parque Purrfeito', mascot: '🐱', emoji: '🌳' },
     'bubble-magic':  { name: 'Magia das Bolhas',  mascot: '🧙‍♀️', emoji: '🫧' },
-    'crystal-rock':  { name: 'Rock dos Cristais',  mascot: '🎸', emoji: '💎' }
+    'crystal-rock':  { name: 'Rock dos Cristais',  mascot: '🎸', emoji: '💎' },
+    'volcano-tots':  { name: 'Vulcão dos Pequenos', mascot: '🦖', emoji: '🌋' },
+    'jungle-tots':   { name: 'Selva dos Pequenos',  mascot: '🦕', emoji: '🌴' }
 };
 
 const REACTION_BY_STARS = {
@@ -134,6 +137,10 @@ export function enter(container, params) {
         }
     }, 600);
 
+    if (speech.isSupported() && reactionMsg) {
+        speech.speak(reactionMsg, { toddlerMode: profile?.id === 'ella' });
+    }
+
     // Coin reward animation
     setTimeout(() => {
         const coinEl = container.querySelector('#coin-reward');
@@ -202,6 +209,7 @@ export function enter(container, params) {
 }
 
 export function exit() {
+    speech.cancel();
     if (autoAdvanceTimer) {
         clearTimeout(autoAdvanceTimer);
         autoAdvanceTimer = null;

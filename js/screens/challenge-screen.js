@@ -25,7 +25,9 @@ const ISLAND_MASCOTS = {
     'numbers-reef': '🦉',
     'purrfect-park': '🐱',
     'bubble-magic': '🧙‍♀️',
-    'crystal-rock': '🎸'
+    'crystal-rock': '🎸',
+    'volcano-tots': '🦖',
+    'jungle-tots': '🦕'
 };
 
 let currentChallenge = null;
@@ -83,6 +85,11 @@ function showSpeech(container, text) {
     void bubble.offsetWidth;
     bubble.classList.add('anim-fade-in');
     bubble.style.opacity = '1';
+    if (speech.isSupported() && text) {
+        const profile = getCurrentProfileMeta();
+        const dropEmojiCounts = profile?.id === 'ella' || profile?.id === 'ava';
+        speech.speak(text, { toddlerMode: dropEmojiCounts });
+    }
     if (speechTimer) clearTimeout(speechTimer);
     speechTimer = setTimeout(() => {
         bubble.style.opacity = '0';
@@ -314,7 +321,7 @@ export async function enter(container, params) {
         }
     };
     correctListener = () => {
-        updateHeartStrip(container, 0);
+        updateHeartStrip(container, getWrongAnswerCount());
     };
     document.addEventListener('quest:wrong-answer', wrongListener);
     document.addEventListener('quest:correct-answer', correctListener);
@@ -330,7 +337,7 @@ export async function enter(container, params) {
     const profileWantsVoice = profile.id === 'ziva' || profile.id === 'ava' ||
         (profile.id === 'ella' && challenge.question && HAS_LETTER.test(challenge.question));
     if (profileWantsVoice && speech.isSupported() && challenge.question) {
-        const speakOpts = { toddlerMode: profile.id === 'ella' };
+        const speakOpts = { toddlerMode: profile.id === 'ella' || profile.id === 'ava' };
         const questionEl = bodyEl.querySelector('.challenge-question p');
         if (questionEl) {
             const speakBtn = document.createElement('button');

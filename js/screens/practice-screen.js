@@ -74,7 +74,7 @@ export function enter(container) {
             setTimeout(() => navigate('lockout'), 600);
         }
     };
-    correctListener = () => updateHeartStrip(container, 0);
+    correctListener = () => updateHeartStrip(container, getWrongAnswerCount());
     document.addEventListener('quest:wrong-answer', wrongListener);
     document.addEventListener('quest:correct-answer', correctListener);
 

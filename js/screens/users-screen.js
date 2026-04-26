@@ -67,6 +67,7 @@ export function enter(container) {
             sound.tap();
             if (switchProfile(id)) {
                 sessionStorage.removeItem('quest:correctStreakSession');
+                sessionStorage.removeItem('quest:lockoutCountSession');
                 applyProfileTheme(id);
                 navigate('islands');
             }

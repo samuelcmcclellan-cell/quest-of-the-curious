@@ -1,6 +1,11 @@
 const STORAGE_KEY = 'quest-of-the-curious';
 
-const ISLAND_SLUGS = ['numbers-reef', 'purrfect-park', 'bubble-magic', 'crystal-rock'];
+const ISLAND_SLUGS_BY_PROFILE = {
+    ziva: ['numbers-reef', 'purrfect-park', 'bubble-magic', 'crystal-rock'],
+    ava:  ['numbers-reef', 'purrfect-park', 'bubble-magic', 'crystal-rock'],
+    ella: ['numbers-reef', 'purrfect-park', 'bubble-magic', 'crystal-rock', 'volcano-tots', 'jungle-tots']
+};
+const ISLAND_SLUGS = ISLAND_SLUGS_BY_PROFILE.ziva;
 const CHALLENGES_PER_ISLAND = 15;
 
 const PROFILE_DEFS = [
@@ -11,6 +16,12 @@ const PROFILE_DEFS = [
 
 const LOCKOUT_WRONG_THRESHOLD = 5;
 const LOCKOUT_DURATION_MS = 5 * 60 * 1000;
+const LOCKOUT_FIRST_DURATION_MS = 60 * 1000;
+const LOCKOUT_COUNT_KEY = 'quest:lockoutCountSession';
+
+function slugsFor(profileId) {
+    return ISLAND_SLUGS_BY_PROFILE[profileId] || ISLAND_SLUGS;
+}
 
 function makeChallenges(count) {
     return Array.from({ length: count }, () => ({
@@ -67,7 +78,8 @@ let root = loadRoot();
 let state = root.profiles[root.currentProfileId];
 
 // --- island-shape migration (run once per profile) ---
-function migrateProfileIslands(profile) {
+function migrateProfileIslands(profile, slugs) {
+    const slugList = slugs || ISLAND_SLUGS;
     if (profile.challenges && !profile.islands) {
         profile.islands = {
             'numbers-reef':  { challenges: profile.challenges },
@@ -77,7 +89,7 @@ function migrateProfileIslands(profile) {
         profile.currentIsland = 'numbers-reef';
     }
     if (!profile.islands) profile.islands = {};
-    for (const slug of ISLAND_SLUGS) {
+    for (const slug of slugList) {
         if (!profile.islands[slug]) {
             profile.islands[slug] = { challenges: makeChallenges(CHALLENGES_PER_ISLAND) };
             continue;
@@ -102,7 +114,7 @@ function mergeProfile(def, saved) {
     // populate islands['numbers-reef'].challenges without colliding with
     // the default empty islands.
     const savedCopy = saved ? JSON.parse(JSON.stringify(saved)) : {};
-    const migratedSaved = migrateProfileIslands(savedCopy);
+    const migratedSaved = migrateProfileIslands(savedCopy, slugsFor(def.id));
 
     // Step 2: overlay defaults for any fields the saved data is missing.
     const base = makeProfileDefaults(def);
@@ -245,7 +257,7 @@ export function getIslandProgress(slug) {
 }
 
 export function getAllIslandSlugs() {
-    return ISLAND_SLUGS.slice();
+    return slugsFor(root.currentProfileId).slice();
 }
 
 // --- profile API ---
@@ -255,7 +267,7 @@ export function getProfiles() {
         const p = root.profiles[def.id];
         const stars = p ? (p.totalStars || 0) : 0;
         const completed = p
-            ? ISLAND_SLUGS.reduce((sum, s) => sum + (p.islands[s]?.challenges || []).filter(c => c.completed).length, 0)
+            ? slugsFor(def.id).reduce((sum, s) => sum + (p.islands[s]?.challenges || []).filter(c => c.completed).length, 0)
             : 0;
         return {
             id: def.id,
@@ -318,20 +330,42 @@ export function isLockedOut(profileId) {
 /**
  * Record a wrong answer for the active profile.
  * Increments wrongCount; if threshold hit, sets lockedUntil and resets counter.
+ * Lockout duration escalates per session: first lockout = 1 min, every
+ * subsequent lockout in the same session = 5 min.
  * Returns { wrongCount, locked } — locked is true when this call triggered the lockout.
  */
 export function recordWrongAnswer() {
     let triggered = false;
+    let durationMs = LOCKOUT_DURATION_MS;
+    const wouldTrigger = ((state.lockout?.wrongCount || 0) + 1) >= LOCKOUT_WRONG_THRESHOLD;
+    if (wouldTrigger) {
+        let priorLockouts = 0;
+        try {
+            priorLockouts = parseInt(sessionStorage.getItem(LOCKOUT_COUNT_KEY) || '0', 10) || 0;
+        } catch (e) { /* sessionStorage unavailable */ }
+        durationMs = priorLockouts === 0 ? LOCKOUT_FIRST_DURATION_MS : LOCKOUT_DURATION_MS;
+    }
     updateState(s => {
         if (!s.lockout) s.lockout = { wrongCount: 0, lockedUntil: null };
         s.lockout.wrongCount = (s.lockout.wrongCount || 0) + 1;
         if (s.lockout.wrongCount >= LOCKOUT_WRONG_THRESHOLD) {
-            s.lockout.lockedUntil = Date.now() + LOCKOUT_DURATION_MS;
+            s.lockout.lockedUntil = Date.now() + durationMs;
+            s.lockout.lockoutDurationMs = durationMs;
             s.lockout.wrongCount = 0;
             triggered = true;
         }
     });
+    if (triggered) {
+        try {
+            const prior = parseInt(sessionStorage.getItem(LOCKOUT_COUNT_KEY) || '0', 10) || 0;
+            sessionStorage.setItem(LOCKOUT_COUNT_KEY, String(prior + 1));
+        } catch (e) { /* sessionStorage unavailable */ }
+    }
     return { wrongCount: state.lockout.wrongCount, locked: triggered };
+}
+
+export function getLockoutDurationMs() {
+    return state.lockout?.lockoutDurationMs || LOCKOUT_DURATION_MS;
 }
 
 export function resetWrongAnswers() {

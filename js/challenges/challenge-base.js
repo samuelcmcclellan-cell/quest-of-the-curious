@@ -1,4 +1,4 @@
-import { recordWrongAnswer, resetWrongAnswers, getWrongAnswerCount } from '../state.js';
+import { recordWrongAnswer, getWrongAnswerCount } from '../state.js';
 
 // Speed-star thresholds (ms) per difficulty tier.
 const SPEED_THRESHOLDS = { 1: 12000, 2: 18000, 3: 25000, 4: 35000, 5: 45000 };
@@ -61,12 +61,10 @@ export class ChallengeBase {
         return result;
     }
 
-    /**
-     * Reset wrong-answer counter (call on correct answers). Also
-     * dispatches 'quest:correct-answer' so the UI can clear heart pips.
-     */
+    // Wrong-answer counter is intentionally NOT reset on correct answers —
+    // 5 wrongs across the whole session triggers the lockout. The event is
+    // still dispatched so the UI can react (e.g. combo flame).
     recordCorrect() {
-        resetWrongAnswers();
         document.dispatchEvent(new CustomEvent('quest:correct-answer'));
     }
 

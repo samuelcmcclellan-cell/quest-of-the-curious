@@ -1,8 +1,9 @@
-import { getCurrentProfileMeta, getLockoutRemainingMs, clearLockout, LOCKOUT_MS } from '../state.js';
+import { getCurrentProfileMeta, getLockoutRemainingMs, clearLockout, getLockoutDurationMs } from '../state.js';
 import { navigate } from '../router.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
 import { STRINGS, pickRandom } from '../i18n.js';
 import * as sound from '../engine/sound.js';
+import * as speech from '../engine/speech.js';
 import { confetti, startThemeAmbient } from '../engine/particles.js';
 
 let tickInterval = null;
@@ -89,7 +90,7 @@ export function enter(container) {
         timerEl.textContent = label;
         if (miniEl) miniEl.textContent = label;
 
-        const pct = Math.max(0, Math.min(1, ms / LOCKOUT_MS));
+        const pct = Math.max(0, Math.min(1, ms / getLockoutDurationMs()));
         ringEl.style.strokeDashoffset = String(CIRC * (1 - pct));
 
         if (ms <= 0 && !released) {
@@ -128,6 +129,10 @@ export function enter(container) {
     // Ambient particles per theme
     const ambientLayer = container.querySelector('#lockout-ambient');
     ambientCleanup = startThemeAmbient(ambientLayer, profile.id);
+
+    if (speech.isSupported() && encouragement) {
+        speech.speak(encouragement, { toddlerMode: profile.id === 'ella' });
+    }
 }
 
 function releaseAndGo(container) {
@@ -146,6 +151,7 @@ function releaseAndGo(container) {
 }
 
 export function exit() {
+    speech.cancel();
     if (tickInterval) {
         clearInterval(tickInterval);
         tickInterval = null;

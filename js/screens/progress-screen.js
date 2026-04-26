@@ -1,6 +1,7 @@
-import { getState, getNextAvailableChallenge, getIslandProgress } from '../state.js';
+import { getState, getNextAvailableChallenge, getIslandProgress, getCurrentProfileMeta } from '../state.js';
 import { navigate } from '../router.js';
 import * as sound from '../engine/sound.js';
+import * as speech from '../engine/speech.js';
 import { getCurrentTheme } from '../engine/profile-theme.js';
 
 let autoAdvanceTimer = null;
@@ -9,7 +10,9 @@ const ISLAND_META = {
     'numbers-reef':  { name: 'Recife dos Números',  mascot: '🦉' },
     'purrfect-park': { name: 'Parque Purrfeito',    mascot: '🐱' },
     'bubble-magic':  { name: 'Magia das Bolhas',    mascot: '🧙‍♀️' },
-    'crystal-rock':  { name: 'Rock dos Cristais',   mascot: '🎸' }
+    'crystal-rock':  { name: 'Rock dos Cristais',   mascot: '🎸' },
+    'volcano-tots':  { name: 'Vulcão dos Pequenos', mascot: '🦖' },
+    'jungle-tots':   { name: 'Selva dos Pequenos',  mascot: '🦕' }
 };
 
 const AUTO_ADVANCE_MS = 3000;
@@ -64,6 +67,12 @@ export function enter(container, params) {
 
     sound.star && sound.star();
 
+    if (speech.isSupported()) {
+        const profile = getCurrentProfileMeta();
+        const headline = `Boa, ${state.playerName}! Vamos continuar!`;
+        speech.speak(headline, { toddlerMode: profile?.id === 'ella' });
+    }
+
     const bar = container.querySelector('#auto-advance-bar-fill');
     if (bar) {
         requestAnimationFrame(() => {
@@ -96,6 +105,7 @@ export function enter(container, params) {
 }
 
 export function exit() {
+    speech.cancel();
     if (autoAdvanceTimer) {
         clearTimeout(autoAdvanceTimer);
         autoAdvanceTimer = null;

@@ -1,0 +1,141 @@
+{
+  "island": "volcano-tots",
+  "name": "Vulcão dos Pequenos",
+  "challenges": [
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🦕 + 🦕 = ?",
+      "illustration": "➕",
+      "options": [1, 2, 3],
+      "correct": 2,
+      "hints": ["2", "2", "2"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🦕 + 🦕🦕 = ?",
+      "illustration": "➕",
+      "options": [2, 3, 4],
+      "correct": 3,
+      "hints": ["3", "3", "3"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🥚🥚 + 🥚🥚 = ?",
+      "illustration": "➕",
+      "options": [3, 4, 5],
+      "correct": 4,
+      "hints": ["4", "4", "4"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "🦕🦕 + 🦕🦕🦕 = ?",
+      "illustration": "➕",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": ["5", "5", "5"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "🦴🦴🦴 + 🦴🦴🦴 = ?",
+      "illustration": "➕",
+      "options": [5, 6, 7],
+      "correct": 6,
+      "hints": ["6", "6", "6"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🥚🥚 - 🥚 = ?",
+      "illustration": "➖",
+      "options": [1, 2, 3],
+      "correct": 1,
+      "hints": ["1", "1", "1"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🦕🦕🦕 - 🦕 = ?",
+      "illustration": "➖",
+      "options": [1, 2, 3],
+      "correct": 2,
+      "hints": ["2", "2", "2"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "Sobram? 🦴🦴🦴🦴 - 🦴🦴 = ?",
+      "illustration": "➖",
+      "options": [2, 3, 4],
+      "correct": 2,
+      "hints": ["2", "2", "2"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "🥚🥚🥚🥚🥚 - 🥚🥚 = ?",
+      "illustration": "➖",
+      "options": [2, 3, 4],
+      "correct": 3,
+      "hints": ["3", "3", "3"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "Sobram? 🦕🦕🦕🦕🦕 - 🦕🦕🦕 = ?",
+      "illustration": "➖",
+      "options": [1, 2, 3],
+      "correct": 2,
+      "hints": ["2", "2", "2"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🦴🦴🦴🦴🦴🦴🦴🦴🦴🦴🦴",
+      "illustration": "👀",
+      "options": [10, 11, 12],
+      "correct": 11,
+      "hints": ["11", "11", "11"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚",
+      "illustration": "👀",
+      "options": [11, 12, 13],
+      "correct": 12,
+      "hints": ["12", "12", "12"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕🦕",
+      "illustration": "👀",
+      "options": [12, 13, 14],
+      "correct": 13,
+      "hints": ["13", "13", "13"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 1,
+      "question": "Mais? 🦕🦕🦕🦕 + 🦕 = ?",
+      "illustration": "➕",
+      "options": [4, 5, 6],
+      "correct": 5,
+      "hints": ["5", "5", "5"]
+    },
+    {
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "question": "CHEFE 👑 🌋🌋🌋 + 🌋🌋🌋 = ?",
+      "illustration": "👑",
+      "options": [5, 6, 7],
+      "correct": 6,
+      "hints": ["6", "6", "6"]
+    }
+  ]
+}
