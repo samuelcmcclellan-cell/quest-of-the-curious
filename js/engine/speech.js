@@ -10,6 +10,10 @@ const AUDIO_BASE = './audio/questions';
 let preferredVoice = null;
 let voicesReady = false;
 let currentAudio = null;
+// Bumped on every cancel() and at the top of every speakPrerendered() call.
+// Lets in-flight async work detect that it has been superseded and bail out
+// before creating an Audio element that would overlap with a newer call.
+let speechGeneration = 0;
 const missingAudio = new Set();
 
 function pickVoice(lang) {
@@ -95,6 +99,7 @@ export function speak(text, opts = {}) {
 // speakQuestion and speakPhrase delegate here.
 async function speakPrerendered(text, opts = {}) {
     cancel();
+    const myGen = ++speechGeneration;
     const cleaned = (text || '').toString().trim();
     if (!cleaned) return;
 
@@ -102,9 +107,12 @@ async function speakPrerendered(text, opts = {}) {
     try {
         hash = await hashQuestion(cleaned);
     } catch (_) {
+        if (myGen !== speechGeneration) return;
         speakViaSynthesis(cleaned, opts);
         return;
     }
+
+    if (myGen !== speechGeneration) return;
 
     if (missingAudio.has(hash)) {
         speakViaSynthesis(cleaned, opts);
@@ -117,6 +125,7 @@ async function speakPrerendered(text, opts = {}) {
     currentAudio = audio;
 
     audio.addEventListener('error', () => {
+        if (myGen !== speechGeneration) return;
         if (!missingAudio.has(hash)) {
             // Warn once per hash so we can spot drift between runtime
             // strings and the generator's phrase pool.
@@ -134,14 +143,18 @@ async function speakPrerendered(text, opts = {}) {
         const playPromise = audio.play();
         if (playPromise && typeof playPromise.catch === 'function') {
             playPromise.catch(() => {
-                // play() rejection (often autoplay policy) — don't warn
-                // about missing audio here, just fall back silently.
+                // A deliberate cancel() (e.g. screen navigation superseded
+                // this call) rejects the play promise with AbortError —
+                // don't fire the synthesis fallback or mark the file as
+                // missing in that case.
+                if (myGen !== speechGeneration) return;
                 missingAudio.add(hash);
                 if (currentAudio === audio) currentAudio = null;
                 speakViaSynthesis(cleaned, opts);
             });
         }
     } catch (_) {
+        if (myGen !== speechGeneration) return;
         missingAudio.add(hash);
         currentAudio = null;
         speakViaSynthesis(cleaned, opts);
@@ -163,6 +176,9 @@ export function speakPhrase(text, opts = {}) {
 }
 
 export function cancel() {
+    // Bump first so any in-flight speakPrerendered() resuming from `await`
+    // immediately sees that its captured generation is stale and bails.
+    speechGeneration++;
     stopCurrentAudio();
     if (typeof window !== 'undefined' && window.speechSynthesis) {
         window.speechSynthesis.cancel();
